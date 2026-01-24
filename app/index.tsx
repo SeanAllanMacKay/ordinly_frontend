@@ -1,7 +1,12 @@
+import React from "react";
+import { Redirect } from "expo-router";
 import { Text, View } from "react-native";
+import { useGetCurrentUserQuery } from "@/api";
 
-export default function Index() {
-  return (
+export default function Projects() {
+  const userQuery = useGetCurrentUserQuery();
+
+  return userQuery?.isLoading ? (
     <View
       style={{
         flex: 1,
@@ -9,7 +14,11 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+      <Text>Loading...</Text>
     </View>
+  ) : userQuery?.data ? (
+    <Redirect href="/(authenticated)" />
+  ) : (
+    <Redirect href="/(unauthenticated)" />
   );
 }
