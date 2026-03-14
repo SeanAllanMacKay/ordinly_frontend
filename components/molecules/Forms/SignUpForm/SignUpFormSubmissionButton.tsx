@@ -13,11 +13,15 @@ export const SignUpFormSubmissionButton = ({
 
   const onSubmit = form.handleSubmit(
     ({ "verify-password": _verifyEmail, ...formValues }) =>
-      signUpMutation.mutate(formValues)
+      signUpMutation.mutate(formValues),
   );
 
   return (
-    <Button mode="contained" onPress={onSubmit}>
+    <Button
+      mode="contained"
+      onPress={onSubmit}
+      disabled={form.formState.isSubmitting}
+    >
       Sign up
     </Button>
   );

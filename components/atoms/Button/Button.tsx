@@ -1,16 +1,14 @@
-import React, { ReactNode, type ComponentProps } from "react";
+import React, { useRef, useState } from "react";
 import { Button as RNPButton, IconButton } from "react-native-paper";
-import { type IconProps } from "@/components";
-import { Link } from "expo-router";
+import { Href, Link } from "expo-router";
+import { ButtonProps } from "./types";
+import { buttonStyle } from "./styles";
+import { LayoutChangeEvent, View } from "react-native";
+import { Skeleton } from "../Skeleton";
 
-export const Button = ({
-  href,
-  ...restProps
-}: ComponentProps<typeof ButtonRender> & {
-  href?: string;
-}) =>
+export const Button = ({ href, ...restProps }: ButtonProps) =>
   href ? (
-    <Link href={href} asChild>
+    <Link href={href as Href<string>} asChild>
       <ButtonRender {...restProps} />
     </Link>
   ) : (
@@ -20,28 +18,59 @@ export const Button = ({
 const ButtonRender = ({
   icon,
   children,
-  mode,
+  mode = "text",
+  isLoading,
+  isDisabled,
   ...restProps
-}: Omit<ComponentProps<typeof RNPButton>, "icon" | "children"> & {
-  icon?: IconProps["name"];
-  children?: ReactNode;
-}) => {
+}: Omit<ButtonProps, "href">) => {
+  const ref = useRef();
+  const [dimensions, setDimensions] = useState<{
+    width: number;
+    height: number;
+  } | null>();
+
+  const handleLayout = (event: LayoutChangeEvent) => {
+    console.log(event.nativeEvent);
+    if (!dimensions) {
+      const { width, height } = event.nativeEvent.layout;
+
+      setDimensions({ width, height });
+    }
+  };
+
   if (icon && !children) {
     return (
       <IconButton
         icon={icon}
         mode={
-          (["contained", "contained-tonal", "outlined"] as const).includes(mode)
+          ["contained", "contained-tonal", "outlined"].includes(mode)
             ? (mode as "contained" | "contained-tonal" | "outlined")
             : undefined
         }
+        loading={isLoading}
+        disabled={isLoading || isDisabled}
+        ref={ref}
         {...restProps}
       />
     );
   }
 
   return (
-    <RNPButton icon={icon} mode={mode} {...restProps}>
+    <RNPButton
+      icon={icon}
+      mode={mode}
+      loading={isLoading}
+      disabled={isLoading || isDisabled}
+      contentStyle={buttonStyle.content}
+      onLayout={handleLayout}
+      ref={ref}
+      {...restProps}
+    >
+      {dimensions ? (
+        <View style={{ position: "absolute" }}>
+          <Skeleton height={dimensions?.height} width={dimensions?.width} />
+        </View>
+      ) : null}
       {children}
     </RNPButton>
   );

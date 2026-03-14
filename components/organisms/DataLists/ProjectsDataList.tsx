@@ -7,7 +7,7 @@ import { routes } from "@/constants/routes";
 const dataExtractor = (
   data: NonNullable<
     ReturnType<typeof useGetProjectsQuery>["data"]
-  >["pages"][number]
+  >["pages"][number],
 ) => data?.projects ?? [];
 
 export const ProjectsDataList = () => {
@@ -21,12 +21,12 @@ export const ProjectsDataList = () => {
       // card
       card={({ item }) => (
         <ProjectCard
-          key={item._id}
+          key={item.id}
           item={item}
-          href={routes.manage.projects.projectDetails(item._id)}
+          href={routes.manage.projects.projectDetails(item.id)}
         />
       )}
-      keyExtractor={(item) => item._id}
+      keyExtractor={(item) => item.id}
       //table
       columns={[
         { key: "name", label: "Name" },
@@ -34,7 +34,7 @@ export const ProjectsDataList = () => {
         { key: "priority", label: "Priority", variant: "tag" },
       ]}
       getHref={(item: ProjectType) =>
-        routes.manage.projects.projectDetails(item._id)
+        routes.manage.projects.projectDetails(item.id)
       }
     />
   );

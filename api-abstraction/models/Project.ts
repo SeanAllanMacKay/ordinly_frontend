@@ -1,7 +1,7 @@
 import { requests } from "../";
 
 export type ProjectType = {
-  _id: string;
+  id: string;
   name: string;
   description: string;
   status?: string;

@@ -43,15 +43,15 @@ export default function Companies() {
         <FlatList<CompanyType>
           items={data?.pages.reduce(
             (aggregator, { companies }) => [...aggregator, ...companies],
-            [] as CompanyType[]
+            [] as CompanyType[],
           )}
           card={({ item }) => (
             <CompanyCard
               item={item}
-              href={routes.manage.company.root(item._id)}
+              href={routes.manage.company.root(item.id)}
             />
           )}
-          keyExtractor={(item) => item._id}
+          keyExtractor={(item) => item.id}
           onFetchNextPage={onFetchNextPage}
           refetch={refetch}
           isFetching={isFetching}

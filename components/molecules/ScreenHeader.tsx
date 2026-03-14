@@ -1,6 +1,6 @@
 import { useRouter } from "expo-router";
 import React from "react";
-import { View } from "react-native";
+import { Platform, View } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";
 import { Button, Text } from "@/components";
 
@@ -17,16 +17,6 @@ export const ScreenHeader = ({
 
   return (
     <View style={{ position: "relative" }}>
-      <Animated.View
-        style={{
-          backgroundColor: "white",
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-        }}
-        sharedTransitionTag={sharedTransitionTag}
-      ></Animated.View>
-
       <View
         style={{
           display: "flex",
@@ -34,7 +24,7 @@ export const ScreenHeader = ({
           alignItems: "center",
         }}
       >
-        {withBackButton && router.canGoBack() ? (
+        {withBackButton && router.canGoBack() && Platform.OS !== "web" ? (
           <Animated.View entering={FadeIn}>
             <Button href="../" icon="chevron-left" />
           </Animated.View>

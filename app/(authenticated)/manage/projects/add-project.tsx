@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Form,
   FormField,
@@ -10,10 +10,12 @@ import {
 } from "@/components";
 import { useForm } from "react-hook-form";
 import { requiredValidator } from "@/util/validation";
-import { useCreateProjectMutation } from "@/api/entities/projects";
+import {
+  useCreateProjectMutation,
+  useGetProjectPrioritiesQuery,
+  useGetProjectStatusesQuery,
+} from "@/api/entities/projects";
 import { useRouter } from "expo-router";
-import { PROJECT_STATUSES } from "@/constants/PROJECT_STATUSES";
-import { PROJECT_PRIORITIES } from "@/constants/PROJECT_PRIORITIES";
 
 export default function AddProject() {
   const router = useRouter();
@@ -35,17 +37,40 @@ export default function AddProject() {
     },
   });
 
+  const projectStatuses = useGetProjectStatusesQuery();
+  const projectPriorities = useGetProjectPrioritiesQuery();
+
   const addProjectMutation = useCreateProjectMutation();
 
   const onSubmit = addProjectForm.handleSubmit((formValues) =>
-    addProjectMutation.mutate(formValues, { onSuccess: router.back })
+    addProjectMutation.mutate(formValues, { onSuccess: router.back }),
   );
+
+  useEffect(() => {
+    if (projectStatuses.data?.length) {
+      addProjectForm.setValue("status", projectStatuses.data[0].value);
+    }
+  }, [projectStatuses.data, addProjectForm]);
+
+  useEffect(() => {
+    if (projectPriorities.data?.length) {
+      addProjectForm.setValue("priority", projectPriorities.data[2].value);
+    }
+  }, [projectPriorities.data, addProjectForm]);
 
   return (
     <Modal
       title="Add project"
       actions={[
-        <Button mode="contained" onPress={onSubmit}>
+        <Button
+          mode="contained"
+          onPress={onSubmit}
+          disabled={
+            projectStatuses.isLoading ||
+            projectPriorities.isLoading ||
+            addProjectForm.formState.isSubmitting
+          }
+        >
           Add project
         </Button>,
       ]}
@@ -70,7 +95,7 @@ export default function AddProject() {
           name="status"
           label="Status"
           component={(fieldProps) => (
-            <Select {...fieldProps} options={PROJECT_STATUSES} />
+            <Select {...fieldProps} options={projectStatuses.data ?? []} />
           )}
         />
 
@@ -78,7 +103,7 @@ export default function AddProject() {
           name="priority"
           label="Priority"
           component={(fieldProps) => (
-            <Select {...fieldProps} options={PROJECT_PRIORITIES} />
+            <Select {...fieldProps} options={projectPriorities.data ?? []} />
           )}
         />
 

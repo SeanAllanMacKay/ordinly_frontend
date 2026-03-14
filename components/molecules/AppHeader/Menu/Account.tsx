@@ -41,8 +41,8 @@ export const Account = () => {
     } else {
       setSelectedEntity(
         userQuery?.data?.user?.companies?.find(
-          ({ _id }) => _id === globalParams["companyId"]
-        )?.name
+          ({ id }) => id === globalParams["companyId"],
+        )?.name,
       );
     }
   }, [
@@ -74,12 +74,12 @@ export const Account = () => {
         }
       />
 
-      {userQuery?.data?.user?.companies?.map(({ name, _id }) => (
+      {userQuery?.data?.user?.companies?.map(({ name, id }) => (
         <Menu.Item
           title={name}
           onPress={
             name !== selectedEntity
-              ? () => changeAccount(routes.manage.company.root(_id))
+              ? () => changeAccount(routes.manage.company.root(id))
               : undefined
           }
         />

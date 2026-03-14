@@ -14,8 +14,6 @@ import { useEditProjectMutation } from "@/api-abstraction/mutations";
 import { useQueryClient } from "@tanstack/react-query";
 import { projectQueryKeys } from "@/api-abstraction/queries/queryKeys";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { PROJECT_STATUSES } from "@/constants/PROJECT_STATUSES";
-import { PROJECT_PRIORITIES } from "@/constants/PROJECT_PRIORITIES";
 import { useGetPersonalProjectQuery } from "@/api-abstraction/queries";
 
 export default function EditProject() {
@@ -82,17 +80,13 @@ export default function EditProject() {
         <FormField
           name="status"
           label="Status"
-          component={(fieldProps) => (
-            <Select {...fieldProps} options={PROJECT_STATUSES} />
-          )}
+          component={(fieldProps) => <Select {...fieldProps} options={[]} />}
         />
 
         <FormField
           name="priority"
           label="Priority"
-          component={(fieldProps) => (
-            <Select {...fieldProps} options={PROJECT_PRIORITIES} />
-          )}
+          component={(fieldProps) => <Select {...fieldProps} options={[]} />}
         />
 
         <FormField name="startDate" label="Start date" component={DateInput} />

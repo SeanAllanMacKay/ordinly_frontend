@@ -44,15 +44,15 @@ export default function TaskDetails() {
         <FlatList<ProjectType>
           items={data?.pages.reduce(
             (aggregator, { projects }) => [...aggregator, ...projects],
-            [] as ProjectType[]
+            [] as ProjectType[],
           )}
           card={({ item }) => (
             <ProjectCard
               item={item}
-              href={routes.manage.projects.projectDetails(item._id)}
+              href={routes.manage.projects.projectDetails(item.id)}
             />
           )}
-          keyExtractor={(item) => item._id}
+          keyExtractor={(item) => item.id}
           onFetchNextPage={onFetchNextPage}
           refetch={refetch}
           isFetching={isFetching}

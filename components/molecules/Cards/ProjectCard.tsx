@@ -12,7 +12,7 @@ type ProjectCardProps = {
 };
 
 export const ProjectCard = ({
-  item: { _id, name, startDate, dueDate, status, priority },
+  item: { name, startDate, dueDate, status, priority },
   href,
   onPress,
 }: ProjectCardProps) => {
@@ -29,9 +29,17 @@ export const ProjectCard = ({
     >
       {status || priority ? (
         <View style={{ display: "flex", flexDirection: "row", gap: Spacing.s }}>
-          {status ? <Tag variant={status} /> : null}
+          {status ? (
+            <Tag variant={status} text={status.name} color={status.color} />
+          ) : null}
 
-          {priority ? <Tag variant={priority} /> : null}
+          {priority ? (
+            <Tag
+              variant={priority}
+              text={priority.name}
+              color={priority.color}
+            />
+          ) : null}
         </View>
       ) : null}
     </Card>

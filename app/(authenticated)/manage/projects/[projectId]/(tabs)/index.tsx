@@ -35,7 +35,7 @@ const valueFormatter = ({ key, value }) => {
   }
 
   if (["priority", "status"].includes(key)) {
-    return <Tag variant={value} />;
+    return <Tag variant={value} text={value.name} color={value.color} />;
   }
 
   return value;

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigation, useRouter } from "expo-router";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import {
   Screen,
   Button,
@@ -8,6 +8,7 @@ import {
   SignUpFormFieldValues,
   SignUpFormSubmissionButton,
   SignUpForm,
+  Text,
 } from "@/components";
 import { View } from "react-native";
 
@@ -24,6 +25,8 @@ export const SignUpScreen = () => {
       "verify-password": "",
     },
   });
+
+  const email = useWatch({ control: form.control, name: "email" });
 
   useEffect(() => {
     navigation.setOptions({ headerTitle: "Sign Up" });
@@ -52,16 +55,25 @@ export const SignUpScreen = () => {
             justifyContent: "center",
           }}
         >
-          <Card
-            title="Sign up"
-            style={{ padding: 16 }}
-            actions={[
-              <Button onPress={onLogin}>Login</Button>,
-              <SignUpFormSubmissionButton form={form} />,
-            ]}
-          >
-            <SignUpForm form={form} />
-          </Card>
+          {form.formState.isSubmitSuccessful ? (
+            <Card title="Verification email sent" style={{ padding: 16 }}>
+              <Text size="m">
+                We just sent a verification email to {email}. You can follow the
+                link in that email to log in once you've verified your account.
+              </Text>
+            </Card>
+          ) : (
+            <Card
+              title="Sign up"
+              style={{ padding: 16 }}
+              actions={[
+                <Button onPress={onLogin}>Login</Button>,
+                <SignUpFormSubmissionButton form={form} />,
+              ]}
+            >
+              <SignUpForm form={form} />
+            </Card>
+          )}
         </View>
       </View>
     </Screen>

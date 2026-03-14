@@ -1,5 +1,5 @@
 import React from "react";
-import { useGetPersonalProjectQuery } from "@/api-abstraction/queries";
+import { useGetProjectQuery } from "@/api";
 import { ScreenHeader } from "@/components";
 import { Stack } from "expo-router";
 
@@ -22,7 +22,7 @@ export default function TabLayout() {
         name="[projectId]"
         options={({ route: { params } }) => ({
           header: () => {
-            const { data: { project } = {} } = useGetPersonalProjectQuery({
+            const { data: { project } = {} } = useGetProjectQuery({
               projectId: params?.projectId,
             });
 

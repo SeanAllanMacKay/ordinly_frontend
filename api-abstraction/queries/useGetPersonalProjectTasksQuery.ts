@@ -17,13 +17,12 @@ export type PersonalProjectTaskType = {
   owner: {
     variant: "user" | "company";
     id: string;
-    _id: string;
   };
   priority: typeof TASK_PRIORITIES;
   startDate: string;
   status: typeof TASK_STATUSES;
   checklist: [];
-  _id: string;
+  id: string;
 };
 
 export type GetPersonalProjectTasksResponse = {

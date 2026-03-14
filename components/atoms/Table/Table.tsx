@@ -53,8 +53,6 @@ export const Table = <ItemType,>({
               <DataTable.Cell numeric={variant === "number"}>
                 {["string", "number"].includes(variant) ? (
                   <Text>{String(item[key])}</Text>
-                ) : variant === "tag" ? (
-                  <Tag variant={item[key]} />
                 ) : null}
               </DataTable.Cell>
             ))}

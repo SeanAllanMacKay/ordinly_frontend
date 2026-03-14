@@ -1,7 +1,7 @@
 import { POST, GET, PUT, REQUEST_ACTIONS } from "@/api/requests";
 
 export type ProjectType = {
-  _id: string;
+  id: string;
   name: string;
   description: string;
   status?: string;
@@ -27,6 +27,26 @@ export const projectRequests = {
       endpoint: `/projects`,
       queryParams,
     }),
+
+  listProjectPriorities: async () =>
+    await GET<{
+      projectPriorities: {
+        id: String;
+        name: string;
+        description: string;
+        color: string;
+      }[];
+    }>({ endpoint: "/projects/priority" }),
+
+  listProjectStatuses: async () =>
+    await GET<{
+      projectStatuses: {
+        id: String;
+        name: string;
+        description: string;
+        color: string;
+      }[];
+    }>({ endpoint: "/projects/status" }),
 
   getProject: async ({ projectId }: { projectId: string }) =>
     await GET<{
@@ -113,6 +133,18 @@ export const projectRequests = {
 export const projectRequestKeys = {
   createProject: () => [REQUEST_ACTIONS.POST, "projects"],
   listProjects: () => [REQUEST_ACTIONS.GET, "projects", "list"],
+  listProjectPriorities: () => [
+    REQUEST_ACTIONS.GET,
+    "projects",
+    "priorities",
+    "list",
+  ],
+  listProjectStatuses: () => [
+    REQUEST_ACTIONS.GET,
+    "projects",
+    "status",
+    "list",
+  ],
   getProject: ({ projectId }: { projectId: string }) => [
     REQUEST_ACTIONS.GET,
     "projects",

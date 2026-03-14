@@ -29,7 +29,7 @@ export const Select = ({
       value
         ? options.find(({ value: optionValue }) => value === optionValue)?.label
         : "",
-    [options, value]
+    [options, value],
   );
 
   const onOpen = () => {
@@ -64,7 +64,11 @@ export const Select = ({
         anchorPosition="bottom"
       >
         {options?.map(({ label, value }) => (
-          <Menu.Item title={label} onPress={() => onChangeValue(value)} />
+          <Menu.Item
+            title={label}
+            onPress={() => onChangeValue(value)}
+            key={value}
+          />
         ))}
       </Menu>
     </>
