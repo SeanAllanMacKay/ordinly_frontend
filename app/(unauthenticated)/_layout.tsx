@@ -15,9 +15,13 @@ export default function UnauthenticatedLayout() {
   }, [userQuery]);
 
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ header: () => <AppHeader /> }} />
-      <Stack.Screen name="login" options={{ header: () => <AppHeader /> }} />
+    <Stack
+      screenOptions={{
+        header: AppHeader,
+      }}
+    >
+      <Stack.Screen name="index" />
+      <Stack.Screen name="login" />
     </Stack>
   );
 }

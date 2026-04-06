@@ -5,8 +5,8 @@ import { Button, EmptyState, FlatList, Screen } from "@/components";
 import { routes } from "@/constants/routes";
 import { useGetCompaniesQuery } from "@/api-abstraction/queries/useGetCompaniesQuery";
 import { CompanyType } from "@/api-abstraction/models";
-import { ProjectCard } from "@/components/molecules/Cards/ProjectCard";
-import { CompanyCard } from "@/components/molecules/Cards/CompanyCard";
+import { ProjectCard } from "@/components/organisms/Cards/ProjectCard";
+import { CompanyCard } from "@/components/organisms/Cards/CompanyCard";
 import { FloatingActionButton } from "@/components/atoms/FloatingActionButton";
 
 export default function Companies() {

@@ -3,8 +3,9 @@ import { Platform, Text, View } from "react-native";
 
 import { LARGE_BREAKPOINT } from "@/constants/breakpoints";
 import { TabBarItem } from "../TabBar";
-import { Spacing } from "@/constants/Spacing";
+import { Spacing } from "@/styles";
 import { useWidth } from "@/styles";
+import { Icon } from "@/components/atoms";
 
 export const SideBarItem = ({
   children,
@@ -49,7 +50,7 @@ export const SideBarItem = ({
                 },
             ]}
           >
-            {icon({ focused })}
+            <Icon name={icon} size="lg" />
           </View>
 
           <Text
@@ -57,7 +58,7 @@ export const SideBarItem = ({
               {
                 color: "#000000",
                 fontSize: isLarge ? 16 : 12,
-                marginHorizontal: isLarge ? Spacing.m : undefined,
+                marginHorizontal: isLarge ? Spacing.md : undefined,
                 lineHeight: isLarge ? 24 : undefined,
               },
               Platform.select({

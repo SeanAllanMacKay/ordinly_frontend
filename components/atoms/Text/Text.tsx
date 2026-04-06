@@ -9,15 +9,18 @@ const sizeMapping = {
 };
 
 export const Text = ({
+  // @deprecated
   children,
   size = "m",
   sharedTransitionTag,
   isBold = false,
+  color,
 }: {
   children: string;
   size?: keyof typeof sizeMapping;
   sharedTransitionTag?: string;
   isBold?: boolean;
+  color?: string;
 }) => {
   return (
     <Animated.Text
@@ -25,6 +28,7 @@ export const Text = ({
         fontSize: sizeMapping[size],
         zIndex: 1,
         fontWeight: isBold ? "bold" : "normal",
+        color,
       }}
       sharedTransitionTag={sharedTransitionTag}
     >

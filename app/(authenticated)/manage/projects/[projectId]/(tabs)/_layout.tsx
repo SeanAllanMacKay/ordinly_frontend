@@ -1,14 +1,13 @@
 import React from "react";
-
-import { TopTabNavigation } from "@/components/organisms/Navigation";
+import { TabNavigation } from "@/components";
 
 export default function ProjectIdRouter() {
   return (
-    <TopTabNavigation>
-      <TopTabNavigation.Screen name="index" title="Overview" />
-      <TopTabNavigation.Screen name="tasks" title="Tasks" />
-      <TopTabNavigation.Screen name="invoices" title="Invoices" />
-      <TopTabNavigation.Screen name="documents" title="Documents" />
-    </TopTabNavigation>
+    <TabNavigation>
+      <TabNavigation.Screen name="index" options={{ title: "Details" }} />
+      <TabNavigation.Screen name="tasks" options={{ title: "Tasks" }} />
+      <TabNavigation.Screen name="invoices" options={{ title: "Invoices" }} />
+      <TabNavigation.Screen name="documents" options={{ title: "Documents" }} />
+    </TabNavigation>
   );
 }

@@ -1,64 +1,59 @@
-import { Spacing } from "@/constants/Spacing";
-import React from "react";
+import React, { useContext, useMemo } from "react";
 
-import { Controller, FieldValues, type Validate } from "react-hook-form";
+import {
+  FieldPath,
+  FieldValues,
+  useController,
+  useFormContext,
+} from "react-hook-form";
 import { View } from "react-native";
-import { Text } from "react-native-paper";
+import { FormLoadingStateContext } from "./Form";
+import { formFieldStyles } from "./styles";
+import { Typography } from "../Typography";
+import { FormFieldProps } from "./types";
 
-export type FormFieldProps<ValueType> = {
-  name: string;
-  label?: string;
-  component: React.FC<{
-    value: ValueType;
-    onChange: (newValue: ValueType) => void;
-    onBlur: () => void;
-    isDisabled?: boolean;
-    isError: boolean;
-    label?: string;
-  }>;
-  validation?: Record<string, Validate<ValueType, FieldValues>>;
-};
-
-export const FormField = <ValueType,>({
+export const FormField = <
+  TFieldValues extends FieldValues,
+  TName extends FieldPath<TFieldValues>,
+>({
   name,
   label,
-  component: Component,
+  component,
   validation,
-}: FormFieldProps<ValueType>) => {
-  return (
-    <Controller
-      name={name}
-      rules={{
-        validate: validation,
-      }}
-      render={({
-        field: { value, onChange, onBlur, disabled },
-        fieldState,
-      }) => {
-        return (
-          <View style={{ marginBottom: Spacing.s }}>
-            <Component
-              value={value}
-              onChange={onChange}
-              onBlur={onBlur}
-              isDisabled={disabled}
-              isError={!!fieldState?.error?.message}
-              label={label}
-            />
+}: FormFieldProps<TFieldValues, TName>) => {
+  const { control, getValues } = useFormContext<TFieldValues>();
+  const formLoadingState = useContext(FormLoadingStateContext);
 
-            <Text
-              variant="labelMedium"
-              style={{
-                color: "red",
-                marginLeft: Spacing.xs,
-                marginTop: Spacing.xs,
-              }}
-            >
-              {fieldState?.error?.message}
-            </Text>
-          </View>
-        );
-      }}
-    />
+  const index = useMemo(() => {
+    const keys = Object.keys(getValues());
+    return keys.indexOf(name);
+  }, [name, getValues]);
+
+  const {
+    field: { value, onChange, onBlur, disabled },
+    fieldState: { error: { message: errorMessage } = {} },
+  } = useController({
+    name,
+    control,
+    rules: { validate: validation },
+  });
+
+  return (
+    <View style={formFieldStyles.container}>
+      {component({
+        value,
+        onChange,
+        onBlur,
+        isDisabled: disabled,
+        isError: !!errorMessage,
+        label,
+        isLoading: formLoadingState.isLoading,
+        index,
+      })}
+
+      <View style={formFieldStyles.errorContainer}>
+        <Typography color="error">{errorMessage}</Typography>
+      </View>
+    </View>
   );
 };

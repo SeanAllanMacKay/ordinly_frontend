@@ -25,10 +25,16 @@ export type ButtonProps = Omit<
   | "disabled"
 > & {
   icon?: IconProps["name"];
-  children?: ReactNode;
+  label?: string;
   isLoading?: boolean;
   isDisabled?: boolean;
   isSkeleton?: boolean;
   mode?: "text" | "contained" | "contained-tonal" | "outlined";
-  href?: Href<string>;
+  href?: Href;
+};
+
+export type ButtonRenderProps = Omit<ButtonProps, "href">;
+
+export type IconButtonProps = Omit<ButtonRenderProps, "children" | "icon"> & {
+  icon: IconProps["name"];
 };

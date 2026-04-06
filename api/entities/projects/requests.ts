@@ -1,11 +1,12 @@
 import { POST, GET, PUT, REQUEST_ACTIONS } from "@/api/requests";
+import { AddProjectTaskFormFieldTypes } from "@/components";
 
 export type ProjectType = {
   id: string;
   name: string;
   description: string;
-  status?: string;
-  priority?: string;
+  status?: { id: string; name: string; color: string };
+  priority?: { id: string; name: string; color: string };
   tasks?: { taskId: string; assignees?: string[] }[];
   owner: { variant: string; id: string };
   createdBy: string;
@@ -14,6 +15,16 @@ export type ProjectType = {
   startDate?: Date;
   dueDate?: Date;
   updatedAt?: Date;
+};
+
+export type TaskType = {
+  id: string;
+  name: string;
+  description: string;
+  status?: { id: string; name: string; color: string };
+  priority?: { id: string; name: string; color: string };
+  startDate?: Date;
+  dueDate?: Date;
 };
 
 export const projectRequests = {
@@ -41,7 +52,7 @@ export const projectRequests = {
   listProjectStatuses: async () =>
     await GET<{
       projectStatuses: {
-        id: String;
+        id: string;
         name: string;
         description: string;
         color: string;
@@ -99,12 +110,26 @@ export const projectRequests = {
         page: number;
         totalPages: number;
         pageParam: number;
-        projects: ProjectType[];
+        tasks: TaskType[];
       }>({
         endpoint: `/projects/${projectId}/tasks`,
         queryParams: {
           page,
         },
+      }),
+
+    getTask: async ({
+      projectId,
+      taskId,
+    }: {
+      projectId: string;
+      taskId: string;
+    }) =>
+      await GET<{
+        message: string;
+        task: TaskType;
+      }>({
+        endpoint: `/projects/${projectId}/tasks/${taskId}`,
       }),
 
     createTask: async ({
@@ -114,10 +139,11 @@ export const projectRequests = {
       projectId: string;
       name: string;
       description?: string;
-      status: string;
-      priority: string;
+      status?: string;
+      priority?: string;
       startDate?: Date;
       dueDate?: Date;
+      checklist?: string[];
     }) =>
       await POST<{ project: ProjectType }>({
         endpoint: `/projects/${projectId}/tasks`,
@@ -132,7 +158,12 @@ export const projectRequests = {
 
 export const projectRequestKeys = {
   createProject: () => [REQUEST_ACTIONS.POST, "projects"],
-  listProjects: () => [REQUEST_ACTIONS.GET, "projects", "list"],
+  listProjects: ({ page }: { page: number }) => [
+    REQUEST_ACTIONS.GET,
+    "projects",
+    "list",
+    page,
+  ],
   listProjectPriorities: () => [
     REQUEST_ACTIONS.GET,
     "projects",
@@ -162,7 +193,13 @@ export const projectRequestKeys = {
   ],
 
   tasks: {
-    listTasks: ({ projectId, queryParams }: any) => [
+    listTasks: ({
+      projectId,
+      queryParams,
+    }: {
+      projectId: string;
+      queryParams?: { page: number };
+    }) => [
       REQUEST_ACTIONS.GET,
       "projects",
       projectId,
@@ -176,6 +213,12 @@ export const projectRequestKeys = {
       projectId,
       "tasks",
       taskId,
+    ],
+    createTask: ({ projectId }: { projectId: string }) => [
+      REQUEST_ACTIONS.POST,
+      "projects",
+      projectId,
+      "tasks",
     ],
     editTask: ({
       projectId,

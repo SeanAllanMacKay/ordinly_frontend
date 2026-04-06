@@ -1,25 +1,23 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { projectRequests, projectRequestKeys } from "../requests";
+import { routes } from "@/constants/routes";
 
-export const useGetProjectsQuery = () => {
-  return useInfiniteQuery({
-    queryKey: projectRequestKeys.listProjects(),
-    queryFn: ({ pageParam = 1 }) =>
-      projectRequests.listProjects({ queryParams: { page: pageParam } }),
-    initialPageParam: 1,
-    getNextPageParam: (lastPage, allPages) => {
-      if (!lastPage || allPages.length >= lastPage.totalPages) {
-        return;
-      }
-
-      return lastPage.page + 1;
+export const useGetProjectsQuery = ({ page }: { page: number }) => {
+  return useQuery({
+    queryKey: projectRequestKeys.listProjects({ page }),
+    queryFn: async () => {
+      return await projectRequests.listProjects({ queryParams: { page } });
     },
-    getPreviousPageParam: (prevPage) => {
-      if (!prevPage || prevPage.page === 1) {
-        return;
-      }
-
-      return prevPage.page - 1;
+    select: (response) => {
+      return {
+        ...response,
+        projects: response?.projects.map((project) => ({
+          ...project,
+          href: routes.manage.projects.projectDetails(project.id),
+        })),
+      };
     },
+    placeholderData: keepPreviousData,
+    retry: false,
   });
 };

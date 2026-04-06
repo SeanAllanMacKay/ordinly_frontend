@@ -1,16 +1,13 @@
-import React, { PropsWithChildren } from "react";
-import { Portal } from "react-native-paper";
+import React from "react";
 import Animated, {
   FadeIn,
   FadeInDown,
-  FadeInUp,
   FadeOut,
-  FadeOutDown,
+  LinearTransition,
   SlideInDown,
   SlideOutUp,
 } from "react-native-reanimated";
 import {
-  Platform,
   Pressable,
   Modal as RNModal,
   ScrollView,
@@ -20,99 +17,79 @@ import {
 } from "react-native";
 import { Link } from "expo-router";
 import { PaperProvider } from "@/styles/PaperProvider";
-import { Text, Button } from "@/components";
-import { DESKTOP_WIDTH, PHONE_WIDTH } from "@/constants/breakpoints";
-import { Spacing } from "@/constants/Spacing";
+import { Button, Typography } from "@/components";
+import { Spacing } from "@/styles";
+import { modalStyles } from "./styles";
+import { useIsPhone } from "@/styles/hooks/useIsPhone";
+import { useTheme } from "react-native-paper";
+import { ModalProps } from "./types";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export const Modal = ({
-  title,
-  isVisible,
-  children,
-  actions,
-}: PropsWithChildren<{
-  title?: string;
-  isVisible: boolean;
-  actions?: React.ReactElement[];
-}>) => {
+export const Modal = ({ title, isVisible, children, actions }: ModalProps) => {
+  const theme = useTheme();
   const { height, width } = useWindowDimensions();
-
-  const isDesktop = width > DESKTOP_WIDTH;
-  const isPhone = width <= PHONE_WIDTH;
+  const { top } = useSafeAreaInsets();
+  const isPhone = useIsPhone();
 
   return (
-    <Portal>
-      <RNModal transparent={true} visible={isVisible}>
-        <PaperProvider>
+    <RNModal transparent={true} visible={isVisible}>
+      <PaperProvider>
+        <Animated.View
+          entering={FadeIn}
+          exiting={FadeOut}
+          style={[
+            modalStyles.position,
+            { justifyContent: isPhone ? "flex-end" : "center" },
+            { backgroundColor: theme.dark ? "#ffffff30" : "#00000030" },
+          ]}
+        >
+          <Link href={"../"} asChild>
+            <Pressable style={StyleSheet.absoluteFill} />
+          </Link>
+
           <Animated.View
-            entering={FadeIn}
-            exiting={FadeOut}
-            style={{
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: isPhone ? "flex-end" : "center",
-              backgroundColor: "#00000025",
-            }}
+            layout={LinearTransition.damping(20).stiffness(150)}
+            style={[
+              modalStyles.container,
+              {
+                backgroundColor: theme.colors.surface,
+                maxHeight: height - top - Spacing.lg,
+              },
+              isPhone
+                ? {
+                    width,
+                    borderTopLeftRadius: Spacing.md,
+                    borderTopRightRadius: Spacing.md,
+                  }
+                : {
+                    width: width * 0.8,
+                    borderRadius: Spacing.md,
+                    maxHeight: height * 0.75,
+                  },
+            ]}
+            entering={isPhone ? SlideInDown : FadeInDown}
+            exiting={SlideOutUp}
           >
-            <Link href={"../"} asChild>
-              <Pressable style={StyleSheet.absoluteFill} />
-            </Link>
-            <Animated.View
-              style={[
-                {
-                  minWidth: 300,
-                  maxWidth: 600,
-                  backgroundColor: "#ffffff",
-                  ...(isPhone
-                    ? {
-                        width,
-                        borderTopLeftRadius: Spacing.m,
-                        borderTopRightRadius: Spacing.m,
-                      }
-                    : {
-                        width: width * 0.8,
-                        borderRadius: Spacing.m,
-                        maxHeight: height * 0.75,
-                      }),
-                },
-              ]}
-              entering={isPhone ? SlideInDown : FadeInDown}
-              exiting={SlideOutUp}
-            >
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  paddingLeft: 16,
-                }}
-              >
-                {title ? <Text isBold>{title}</Text> : <View />}
-                <Button icon="close" href="../"></Button>
-              </View>
+            <View style={modalStyles.headerContainer}>
+              {title ? (
+                <Typography emphasis="high">{title}</Typography>
+              ) : (
+                <View />
+              )}
 
-              <ScrollView style={{ padding: 16 }}>{children}</ScrollView>
+              <Button icon="close" href="../" />
+            </View>
 
-              {actions?.length ? (
-                <View
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    padding: Spacing.m,
-                    justifyContent: "flex-end",
-                    gap: Spacing.m,
-                    flexWrap: "wrap",
-                  }}
-                >
-                  {actions}
-                </View>
-              ) : null}
-            </Animated.View>
+            <ScrollView style={modalStyles.contentContainer}>
+              {children}
+            </ScrollView>
+
+            {actions?.length ? (
+              <View style={modalStyles.actionsContainer}>{actions}</View>
+            ) : null}
           </Animated.View>
-        </PaperProvider>
-      </RNModal>
-    </Portal>
+        </Animated.View>
+      </PaperProvider>
+    </RNModal>
   );
 };

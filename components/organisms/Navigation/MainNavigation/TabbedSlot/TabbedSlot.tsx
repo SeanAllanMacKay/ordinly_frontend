@@ -7,11 +7,9 @@ import { useNavigatorContext } from "@/components/organisms/Navigation/hooks";
 export const TabbedSlot = ({
   detachInavtiveScreens = true,
   style,
-  isRowLayout,
 }: {
   detachInavtiveScreens?: boolean;
   style?: ViewStyle;
-  isRowLayout: boolean;
 }) => {
   const { state, descriptors } = useNavigatorContext();
   const focusedRouteKey = state.routes[state.index].key;
@@ -31,14 +29,9 @@ export const TabbedSlot = ({
     >
       {routes.map((route, index) => {
         const descriptor = descriptors[route.key];
-        const { lazy = true, unmountOnBlur } = descriptor.options;
         const isFocused = state.index === index;
 
-        if (unmountOnBlur && !isFocused) {
-          return null;
-        }
-
-        if (lazy && !loaded.includes(route.key) && !isFocused) {
+        if (!isFocused) {
           return null;
         }
 
@@ -56,7 +49,6 @@ export const TabbedSlot = ({
               isFocused ? "auto" : "no-hide-descendants"
             }
             enabled={detachInavtiveScreens}
-            freezeOnBlur={descriptor.options.freezeOnBlur}
           >
             {descriptor.render()}
           </Screen>

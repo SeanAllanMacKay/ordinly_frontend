@@ -12,7 +12,7 @@ export const GET = async <T = {}>({
   endpoint,
   type = "application/json",
   queryParams = {},
-}: GETProps): Promise<(APIResponse & T) | undefined> => {
+}: GETProps): Promise<APIResponse & T> => {
   try {
     const queryParamString = queryParams
       ? new URLSearchParams(
@@ -28,7 +28,7 @@ export const GET = async <T = {}>({
             }
 
             return { ...aggregator, [formattedKey]: formattedValue };
-          }, {})
+          }, {}),
         )
       : null;
 
@@ -42,16 +42,16 @@ export const GET = async <T = {}>({
         headers: {
           "Content-Type": type,
         },
-      }
+      },
     );
 
     if (response.ok) {
       if (type === "application/json") {
         return await response?.json();
       }
-
-      throw { response };
     }
+
+    throw { response };
   } catch (caught: any) {
     const { response } = caught;
 

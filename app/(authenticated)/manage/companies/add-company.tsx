@@ -1,5 +1,4 @@
 import React from "react";
-import { Pressable, Text } from "react-native";
 import { Button, Form, FormField, Modal, TextInput } from "@/components";
 import { useForm } from "react-hook-form";
 import { useQueryClient } from "@tanstack/react-query";
@@ -34,16 +33,19 @@ export default function AddCompany() {
   });
 
   const onSubmit = addCompanyForm.handleSubmit((formValues) =>
-    addCompanyMutation.mutate(formValues)
+    addCompanyMutation.mutate(formValues),
   );
 
   return (
     <Modal
       title="Add company"
       actions={[
-        <Button icon="plus" onPress={onSubmit} mode="contained">
-          Add company
-        </Button>,
+        <Button
+          icon="plus"
+          onPress={onSubmit}
+          mode="contained"
+          label="Add company"
+        />,
       ]}
     >
       <Form form={addCompanyForm}>

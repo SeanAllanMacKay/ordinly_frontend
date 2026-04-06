@@ -29,4 +29,5 @@ export const useGetCompaniesQuery = () =>
 
       return prevPage.page - 1;
     },
+    retry: false,
   });

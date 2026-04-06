@@ -4,8 +4,8 @@ export type ProjectType = {
   id: string;
   name: string;
   description: string;
-  status?: string;
-  priority?: string;
+  status?: { id: string; name: string; color: string };
+  priority?: { id: string; name: string; color: string };
   tasks?: { taskId: string; assignees?: string[] }[];
   owner: { variant: string; id: string };
   createdBy: string;

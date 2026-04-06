@@ -1,56 +1,54 @@
-import React, { useMemo } from "react";
-
-import { MaskSad, type IconWeight } from "@phosphor-icons/react";
+import React from "react";
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { FontSizes } from "@/styles/FontSizes";
+import { IconMappingType, IconProps } from "./types";
+import { useTheme } from "react-native-paper";
 
-const sizes = {
-  sm: 20,
-  md: 24,
-  lg: 40,
-};
-
-const iconMapping = {
-  eye: () => <MaterialIcons name="visibility" />,
-  "eye-slash": () => <MaterialIcons name="visibility-off" />,
-  plus: () => <MaterialIcons name="add" />,
-  "building-office": () => <MaterialIcons name="apartment" />,
-  "pencil-outline": () => <MaterialIcons name="edit" />,
-  "chevron-left": () => <MaterialIcons name="chevron-left" />,
-  "chevron-right": () => <MaterialIcons name="chevron-right" />,
-  close: () => <MaterialIcons name="close" />,
-  "menu-down": () => <MaterialIcons name="arrow-drop-down" />,
-  "menu-up": () => <MaterialIcons name="arrow-drop-up" />,
-  projects: () => <MaterialIcons name="account-tree" />,
-  gear: () => <MaterialIcons name="settings" />,
-  "chart-bar-horizontal": () => <MaterialIcons name="pie-chart" />,
-  "presentation-chart": () => <MaterialIcons name="insert-chart" />,
-  "user-circle": () => <MaterialIcons name="account-circle" />,
-  "identification-card": () => <MaterialIcons name="contacts" />,
-  blueprint: () => <MaterialIcons name="schema" />,
-  "user-circle-gear": () => <MaterialIcons name="manage-accounts" />,
-  "squares-four": () => <MaterialIcons name="apps" />,
-  tasks: () => <MaterialIcons name="check-box" />,
-};
-
-export type IconProps = {
-  name: keyof typeof iconMapping;
-  color?: string;
-  size?: keyof typeof sizes;
-  weight?: IconWeight;
-};
+const iconMapping: IconMappingType = {
+  eye: "visibility",
+  "eye-slash": "visibility-off",
+  plus: "add",
+  companies: "apartment",
+  edit: "edit",
+  "chevron-left": "chevron-left",
+  "chevron-right": "chevron-right",
+  close: "close",
+  "menu-down": "arrow-drop-down",
+  "menu-up": "arrow-drop-up",
+  projects: "account-tree",
+  gear: "settings",
+  "chart-bar-horizontal": "pie-chart",
+  home: "home",
+  "user-circle": "account-circle",
+  "identification-card": "contacts",
+  blueprint: "schema",
+  account: "manage-accounts",
+  "squares-four": "apps",
+  tasks: "check-box",
+  remove: "delete",
+} as const;
 
 export const Icon = ({
   name,
   size = "md",
-  color = "#000000",
-  ...restProps
+  sizeOverride,
+  color = "onBackground",
+  colorOverride,
 }: IconProps) => {
-  const Component = useMemo(() => iconMapping?.[name], [name]);
+  const theme = useTheme();
 
-  return Component ? (
-    <Component {...restProps} size={sizes[size]} color={color} />
+  return iconMapping[name] ? (
+    <MaterialIcons
+      size={sizeOverride ?? FontSizes[size]}
+      color={colorOverride ?? theme.colors[color]}
+      name={iconMapping[name]}
+    />
   ) : (
-    <MaskSad {...restProps} size={sizes[size]} color={color} />
+    <MaterialIcons
+      size={sizeOverride ?? FontSizes[size]}
+      color={colorOverride ?? theme.colors[color]}
+      name="question-mark"
+    />
   );
 };

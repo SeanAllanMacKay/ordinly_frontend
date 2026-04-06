@@ -1,103 +1,80 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
-  Form,
-  FormField,
   Modal,
-  TextInput,
-  Select,
-  DateInput,
-  Button,
+  AddProjectTaskSubmissionButton,
+  AddProjectTaskDetailsInputs,
+  AddProjectTaskProvider,
+  Tabs,
+  AddProjectTaskChecklistInputs,
 } from "@/components";
-import { useForm } from "react-hook-form";
-import { requiredValidator } from "@/util/validation";
-import { useCreateProjectTaskMutation } from "@/api-abstraction/mutations";
-import { useQueryClient } from "@tanstack/react-query";
-import { projectQueryKeys } from "@/api-abstraction/queries/queryKeys";
 import { useGlobalSearchParams, useRouter } from "expo-router";
-import { TASK_PRIORITIES } from "@/constants/TASK_PRIORITIES";
-import { TASK_STATUSES } from "@/constants/TASK_STATUSES";
+import { routes } from "@/constants/routes";
+import { useFormContext } from "react-hook-form";
 
-export default function AddTask() {
-  const queryClient = useQueryClient();
+const detailsTabFields = [
+  "name",
+  "description",
+  "status",
+  "priority",
+  "startDate",
+  "dueDate",
+];
+
+const checklistTabFields = ["checklist"];
+
+const AddProjectTaskContent = () => {
   const router = useRouter();
-  const params = useGlobalSearchParams<{ projectId: string }>();
+  const { projectId } = useGlobalSearchParams<{ projectId: string }>();
+  const { formState } = useFormContext();
 
-  const addTaskForm = useForm<{
-    name: string;
-    description: string;
-    status: "notStarted" | "blocked" | "inProgress" | "complete";
-    priority: "critical" | "high" | "medium" | "low";
-    startDate: Date;
-    dueDate: Date;
-  }>({
-    mode: "all",
-    defaultValues: {
-      name: "",
-      description: "",
-      status: "notStarted",
-      priority: "medium",
-    },
-  });
+  const detailsErrors = useMemo(() => {
+    return Object.keys(formState.errors).filter((key) =>
+      detailsTabFields.includes(key),
+    ).length;
+  }, [formState.errors]);
 
-  const addTaskMutation = useCreateProjectTaskMutation({
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: projectQueryKeys.personalProjectTasks(params?.projectId),
-      });
+  const checklistErrors = useMemo(() => {
+    return !!Object.keys(formState.errors).filter((key) =>
+      checklistTabFields.includes(key),
+    ).length;
+  }, [formState.errors]);
 
-      router.back();
-    },
-  });
-
-  const onSubmit = addTaskForm.handleSubmit((formValues) =>
-    addTaskMutation.mutate(formValues)
-  );
+  console.log(formState.errors);
 
   return (
     <Modal
       title="Add task"
       actions={[
-        <Button icon="plus" onPress={onSubmit} mode="contained">
-          Add task
-        </Button>,
+        <AddProjectTaskSubmissionButton
+          projectId={projectId}
+          onSuccess={() => {
+            router.replace(routes.manage.projects.tasks.root(projectId));
+          }}
+        />,
       ]}
+      isVisible={true}
     >
-      <Form form={addTaskForm}>
-        <FormField
-          name="name"
-          label="Name"
-          component={TextInput}
-          validation={{ requiredValidator }}
-        />
+      <Tabs>
+        <Tabs.Scene tabKey="details" label="Details" badge={detailsErrors}>
+          <AddProjectTaskDetailsInputs />
+        </Tabs.Scene>
 
-        <FormField
-          name="description"
-          label="Description"
-          component={(fieldProps) => (
-            <TextInput {...fieldProps} type="multiline" />
-          )}
-        />
-
-        <FormField
-          name="status"
-          label="Status"
-          component={(fieldProps) => (
-            <Select {...fieldProps} options={TASK_STATUSES} />
-          )}
-        />
-
-        <FormField
-          name="priority"
-          label="Priority"
-          component={(fieldProps) => (
-            <Select {...fieldProps} options={TASK_PRIORITIES} />
-          )}
-        />
-
-        <FormField name="startDate" label="Start date" component={DateInput} />
-
-        <FormField name="dueDate" label="Due date" component={DateInput} />
-      </Form>
+        <Tabs.Scene
+          tabKey="checklist"
+          label="Checklist"
+          badge={checklistErrors}
+        >
+          <AddProjectTaskChecklistInputs />
+        </Tabs.Scene>
+      </Tabs>
     </Modal>
+  );
+};
+
+export default function AddProjectTask() {
+  return (
+    <AddProjectTaskProvider>
+      <AddProjectTaskContent />
+    </AddProjectTaskProvider>
   );
 }

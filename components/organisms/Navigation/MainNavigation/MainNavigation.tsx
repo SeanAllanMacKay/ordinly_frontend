@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { Platform, View } from "react-native";
 import { StyleSheet } from "@bacons/react-views";
 
@@ -12,31 +12,20 @@ import { SMALL_BREAKPOINT } from "@/constants/breakpoints";
 import { type IconProps } from "@/components";
 
 export type TabType = {
+  id: string;
   name: string;
   icon: IconProps["name"];
   index: string;
   title: string;
 };
 
-export const ResponsiveNavigation = ({
-  isShown = true,
+export const MainNavigation = ({
   tabs,
-  onBack,
-}: {
-  isShown?: boolean;
-  tabs: TabType[];
-  onBack?: () => void;
-}) => {
+}: PropsWithChildren<{ tabs: TabType[] }>) => {
   const isRowLayout = useWidth(SMALL_BREAKPOINT);
 
   return (
-    <TabbedNavigator
-      screenOptions={{
-        tabBarShowLabel: false,
-        headerShown: false,
-        tabBarActiveTintColor: "black",
-      }}
-    >
+    <TabbedNavigator>
       <View style={[styles.flex]}>
         <View
           style={[
@@ -47,17 +36,11 @@ export const ResponsiveNavigation = ({
             }),
           ]}
         >
-          <SideBar
-            visible={isShown && isRowLayout}
-            tabs={tabs}
-            onBack={onBack}
-          />
-          <TabbedNavigator.Slot isRowLayout={isRowLayout} />
-          <TabBar
-            visible={isShown && !isRowLayout}
-            tabs={tabs}
-            onBack={onBack}
-          />
+          {isRowLayout ? <SideBar tabs={tabs} /> : null}
+
+          <TabbedNavigator.Slot />
+
+          {!isRowLayout ? <TabBar tabs={tabs} /> : null}
         </View>
       </View>
     </TabbedNavigator>

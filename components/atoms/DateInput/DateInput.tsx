@@ -1,17 +1,9 @@
 import React, { useMemo, useState } from "react";
 import { Pressable } from "react-native";
-import { TextInput } from "react-native-paper";
-import { DatePickerModal } from "react-native-paper-dates";
+import { DatePickerModal } from "./DatePickerModal";
 import { format } from "date-fns";
-
-export type DateInputProps = {
-  value: Date;
-  onChange: (newValue: Date) => void;
-  onBlur: () => void;
-  isError: boolean;
-  isDisabled?: boolean;
-  label?: string;
-};
+import { TextInput } from "../TextInput";
+import { DateInputProps } from "./types";
 
 export const DateInput = ({
   value,
@@ -19,13 +11,16 @@ export const DateInput = ({
   isError,
   isDisabled,
   label,
+  isLoading = false,
+  index = 0,
+  min,
+  max,
 }: DateInputProps) => {
   const [isOpen, setOpen] = useState(false);
 
-  const displayValue = useMemo(
-    () => (value ? format(value, "dd MMM yyyy") : ""),
-    [value]
-  );
+  const displayValue = useMemo(() => {
+    return value ? format(value, "dd MMM yyyy") : "";
+  }, [value]);
 
   const onOpen = () => {
     setOpen(true);
@@ -35,33 +30,32 @@ export const DateInput = ({
     setOpen(false);
   };
 
-  const onConfirmSingle = (params: { date: Date }) => {
+  const onConfirmSingle = (date: Date | undefined) => {
     setOpen(false);
-    onChange(params.date);
+    onChange(date);
   };
 
-  return (
+  return isLoading ? (
+    <TextInput value="" isLoading={true} index={index} isEditable={false} />
+  ) : (
     <>
       <Pressable onPress={!isDisabled ? onOpen : undefined}>
         <TextInput
           value={displayValue}
-          error={isError}
+          isError={isError}
           label={label}
-          mode={"outlined"}
+          onPress={onOpen}
+          isEditable={false}
         />
       </Pressable>
 
       <DatePickerModal
-        locale="en"
-        mode="single"
-        visible={isOpen}
-        onDismiss={onDismiss}
-        date={value}
-        onConfirm={onConfirmSingle}
-        saveLabel="Save"
-        uppercase={false}
-        label="Select date"
-        presentationStyle="pageSheet"
+        isOpen={isOpen}
+        value={value}
+        onChange={onConfirmSingle}
+        onClose={onDismiss}
+        min={min}
+        max={max}
       />
     </>
   );

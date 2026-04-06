@@ -48,18 +48,18 @@ export const useGetPersonalProjectTasksQuery = ({
       models.Project.tasks.listTasks({ projectId, page: pageParam }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
-      if (allPages?.length >= lastPage.totalPages) {
+      if (allPages?.length >= lastPage?.totalPages) {
         return;
       }
 
-      return lastPage.page + 1;
+      return lastPage?.page + 1;
     },
     getPreviousPageParam: (prevPage) => {
-      if (prevPage.page === 1) {
+      if (prevPage?.page === 1) {
         return;
       }
 
-      return prevPage.page - 1;
+      return prevPage?.page - 1;
     },
     enabled: !!projectId,
     ...options,

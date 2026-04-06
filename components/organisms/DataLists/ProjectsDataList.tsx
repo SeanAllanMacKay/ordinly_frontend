@@ -1,41 +1,38 @@
 import React from "react";
-import { DataList, ProjectCard } from "@/components";
+import { ProjectCard } from "@/components";
 import { useGetProjectsQuery } from "@/api";
 import { ProjectType } from "@/api/entities/projects/requests";
-import { routes } from "@/constants/routes";
-
-const dataExtractor = (
-  data: NonNullable<
-    ReturnType<typeof useGetProjectsQuery>["data"]
-  >["pages"][number],
-) => data?.projects ?? [];
+import { usePagination } from "@/components/molecules/Pagination/utils";
+import { ListableData } from "@/components/molecules/ListableData";
 
 export const ProjectsDataList = () => {
-  const projectsQuery = useGetProjectsQuery();
+  const { page, onPaginationChange } = usePagination();
+
+  const projectsQuery = useGetProjectsQuery({ page });
 
   return (
-    <DataList<ProjectType, ReturnType<typeof useGetProjectsQuery>>
-      entities="projects"
-      query={projectsQuery}
-      dataExtractor={dataExtractor}
-      // card
-      card={({ item }) => (
-        <ProjectCard
-          key={item.id}
-          item={item}
-          href={routes.manage.projects.projectDetails(item.id)}
-        />
-      )}
-      keyExtractor={(item) => item.id}
-      //table
+    <ListableData
+      // common
+      entity="projects"
+      items={projectsQuery.data?.projects ?? []}
+      isLoading={projectsQuery.isLoading}
+      isFetching={projectsQuery.isFetching}
+      pagination={{
+        page,
+        totalPages: projectsQuery.data?.totalPages ?? 0,
+        onPaginationChange,
+      }}
+      // cards
+      keyExtractor={(item: ProjectType) => String(item.id)}
+      card={ProjectCard}
+      // table
       columns={[
-        { key: "name", label: "Name" },
-        { key: "status", label: "Status", variant: "tag" },
-        { key: "priority", label: "Priority", variant: "tag" },
+        { label: "Name", key: "name" },
+        { label: "Status", key: "status", variant: "tag" },
+        { label: "Priority", key: "priority", variant: "tag" },
+        { label: "Start", key: "startDate", variant: "date" },
+        { label: "Due", key: "dueDate", variant: "date" },
       ]}
-      getHref={(item: ProjectType) =>
-        routes.manage.projects.projectDetails(item.id)
-      }
     />
   );
 };

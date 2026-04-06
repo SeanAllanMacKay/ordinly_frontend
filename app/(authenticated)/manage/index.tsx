@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigation } from "expo-router";
-import { Text, View } from "react-native";
+import { Screen } from "@/components";
 
 export default function Dashboard() {
   const navigation = useNavigation();
@@ -9,15 +9,5 @@ export default function Dashboard() {
     navigation.setOptions({ headerTitle: "Dashboard" });
   }, [navigation]);
 
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Dashboard</Text>
-    </View>
-  );
+  return <Screen></Screen>;
 }

@@ -1,2 +1,3 @@
 export * from "./MainNavigation";
-export * from "./TopTabNavigation";
+export * from "./TabNavigation";
+export * from "./RootNavigation";

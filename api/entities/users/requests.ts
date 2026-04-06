@@ -9,7 +9,19 @@ export type UserGETArgs = {
   userId: string;
 };
 
-export type UserType = {};
+export type UserType = {
+  id: string;
+  name: string;
+  email: string;
+  companies: {
+    company: {
+      id: string;
+      name: string;
+    };
+  }[];
+  isVerified: boolean;
+  createdDate: Date;
+};
 
 export const userRequests = {
   signUp: async (body: UserAuthArgs) =>
@@ -32,7 +44,8 @@ export const userRequests = {
   persistentLogin: async () =>
     await POST({ endpoint: "/user/persistent-login" }),
 
-  getCurrentUser: async () => await GET({ endpoint: "/user" }),
+  getCurrentUser: async () =>
+    await GET<{ message: string; user: UserType }>({ endpoint: "/user" }),
 
   getUserById: async ({ userId }: UserGETArgs) =>
     await GET({ endpoint: `/user/${userId}` }),

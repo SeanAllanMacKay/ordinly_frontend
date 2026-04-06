@@ -1,63 +1,27 @@
-import { Spacing } from "@/constants/Spacing";
 import React, { PropsWithChildren } from "react";
-import {
-  useWindowDimensions,
-  View,
-  ImageBackground,
-  ImageSourcePropType,
-} from "react-native";
-import { Text } from "react-native-paper";
+import { View, KeyboardAvoidingView, Platform } from "react-native";
+import { Text, useTheme } from "react-native-paper";
+import { screenStyles } from "./styles";
+import { ScreenProps } from "./types";
 
-export const Screen = ({
-  children,
-  isLoading,
-  backgroundImage,
-}: PropsWithChildren<{
-  isLoading?: boolean;
-  backgroundImage?: ImageSourcePropType;
-}>) => {
-  const { width, height } = useWindowDimensions();
+export const Screen = ({ children, isLoading }: ScreenProps) => {
+  const theme = useTheme();
+
   return (
-    <View style={{ padding: Spacing.s, flex: 1, position: "relative" }}>
-      {backgroundImage ? (
-        <ImageBackground
-          source={backgroundImage}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            height,
-            width,
-          }}
-          resizeMode="cover"
-        >
-          <View
-            style={{
-              width: "100%",
-              height: "100%",
-              backgroundColor: "#00000045",
-            }}
-          />
-        </ImageBackground>
-      ) : null}
-
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={[
+        screenStyles.container,
+        { backgroundColor: theme.colors.background },
+      ]}
+    >
       {isLoading ? (
-        <View
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <View style={screenStyles.loadingContainer}>
           <Text>Loading...</Text>
         </View>
       ) : (
-        <View
-          style={{ display: "flex", flexDirection: "column", height: "100%" }}
-        >
-          <View style={{ flex: 1 }}>{children}</View>
-        </View>
+        <View style={screenStyles.contentContainer}>{children}</View>
       )}
-    </View>
+    </KeyboardAvoidingView>
   );
 };

@@ -1,45 +1,30 @@
 import React, { useMemo } from "react";
-import { ResponsiveNavigation, type TabType } from "@/components";
-import { Slot, Stack, useSegments } from "expo-router";
-
-const PERSONAL_MANAGE_TABS: TabType[] = [
-  {
-    name: "index",
-    icon: "chart-bar-horizontal",
-    title: "Dashboard",
-    index: "index",
-  },
-  {
-    name: "projects",
-    icon: "presentation-chart",
-    title: "Projects",
-    index: "projects",
-  },
-  {
-    name: "companies",
-    icon: "building-office",
-    title: "Companies",
-    index: "companies",
-  },
-  {
-    name: "account",
-    icon: "user-circle-gear",
-    title: "Account",
-    index: "account",
-  },
-];
+import { useSegments } from "expo-router";
+import { RootNavigation } from "@/components/organisms/Navigation/RootNavigation";
 
 export default function TabLayout() {
   const segments = useSegments();
 
   const isCompanyView = useMemo(() => segments.includes("company"), [segments]);
 
-  return (
-    <>
-      <ResponsiveNavigation
-        tabs={PERSONAL_MANAGE_TABS}
-        isShown={!isCompanyView}
+  return !isCompanyView ? (
+    <RootNavigation>
+      <RootNavigation.Screen
+        name="index"
+        options={{ title: "Home", icon: "home" }}
       />
-    </>
-  );
+      <RootNavigation.Screen
+        name="projects"
+        options={{ title: "Projects", icon: "projects" }}
+      />
+      <RootNavigation.Screen
+        name="companies"
+        options={{ title: "Companies", icon: "companies" }}
+      />
+      <RootNavigation.Screen
+        name="account"
+        options={{ title: "Account", icon: "account" }}
+      />
+    </RootNavigation>
+  ) : null;
 }

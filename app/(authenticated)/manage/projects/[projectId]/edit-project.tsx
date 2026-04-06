@@ -14,16 +14,27 @@ import { useEditProjectMutation } from "@/api-abstraction/mutations";
 import { useQueryClient } from "@tanstack/react-query";
 import { projectQueryKeys } from "@/api-abstraction/queries/queryKeys";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { useGetPersonalProjectQuery } from "@/api-abstraction/queries";
+import {
+  useGetProjectPrioritiesQuery,
+  useGetProjectQuery,
+  useGetProjectStatusesQuery,
+} from "@/api";
 
 export default function EditProject() {
   const queryClient = useQueryClient();
   const router = useRouter();
   const params = useLocalSearchParams<{ projectId: string }>();
 
-  const { data: { project } = {} } = useGetPersonalProjectQuery({
+  const projectQuery = useGetProjectQuery({
     projectId: params?.projectId,
   });
+  const projectStatuses = useGetProjectStatusesQuery();
+  const projectPriorities = useGetProjectPrioritiesQuery();
+
+  const isLoading =
+    projectPriorities.isLoading ||
+    projectStatuses.isLoading ||
+    projectQuery.isLoading;
 
   const editProjectForm = useForm<{
     name: string;
@@ -34,7 +45,11 @@ export default function EditProject() {
     dueDate: Date;
   }>({
     mode: "all",
-    defaultValues: project,
+    defaultValues: {
+      ...projectQuery.data?.project,
+      status: projectQuery.data?.project?.status?.id,
+      priority: projectQuery.data?.project?.priority?.id,
+    },
   });
 
   const editProjectMutation = useEditProjectMutation({
@@ -56,12 +71,10 @@ export default function EditProject() {
     <Modal
       title="Edit project"
       actions={[
-        <Button icon="pencil-outline" onPress={onSubmit} mode="contained">
-          Save
-        </Button>,
+        <Button icon="edit" onPress={onSubmit} mode="contained" label="Save" />,
       ]}
     >
-      <Form form={editProjectForm}>
+      <Form form={editProjectForm} isLoading={isLoading}>
         <FormField
           name="name"
           label="Name"
@@ -80,13 +93,17 @@ export default function EditProject() {
         <FormField
           name="status"
           label="Status"
-          component={(fieldProps) => <Select {...fieldProps} options={[]} />}
+          component={(fieldProps) => (
+            <Select {...fieldProps} options={projectStatuses.data ?? []} />
+          )}
         />
 
         <FormField
           name="priority"
           label="Priority"
-          component={(fieldProps) => <Select {...fieldProps} options={[]} />}
+          component={(fieldProps) => (
+            <Select {...fieldProps} options={projectPriorities.data ?? []} />
+          )}
         />
 
         <FormField name="startDate" label="Start date" component={DateInput} />

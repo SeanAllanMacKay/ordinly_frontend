@@ -10,15 +10,15 @@ export default function Companies() {
 
   return (
     <Stack>
-      <Stack.Screen name="index" />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
 
       <Stack.Screen
         name="add-company"
         options={{
           title: "Add company",
-          presentation: isDesktop ? "transparentModal" : "modal",
-          headerShown: !isDesktop,
-          animation: "fade",
+          presentation: "transparentModal",
+          headerShown: false,
+          animation: "none",
         }}
       />
     </Stack>

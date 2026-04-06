@@ -1,4 +1,4 @@
-import { Spacing } from "@/constants/Spacing";
+import { Spacing } from "@/styles";
 import React from "react";
 import { Platform, useWindowDimensions } from "react-native";
 import { Portal } from "react-native-paper";

@@ -18,8 +18,7 @@ export default function RootLayout() {
 
   return (
     <Stack>
-      <Stack.Screen name="index" />
-      <Stack.Screen name="manage" options={{ header: () => <AppHeader /> }} />
+      <Stack.Screen name="manage" options={{ header: AppHeader }} />
     </Stack>
   );
 }

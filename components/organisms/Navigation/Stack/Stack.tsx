@@ -24,7 +24,7 @@ const StackContent = ({ additionalChildren }) => {
   const additionalOptions = useMemo(() => {
     const options =
       additionalChildren.find(
-        ({ props: { name } }) => name === focusedRoute.name
+        ({ props: { name } }) => name === focusedRoute.name,
       )?.props?.options ?? {};
 
     if (options instanceof Function) {
@@ -37,8 +37,6 @@ const StackContent = ({ additionalChildren }) => {
   const descriptor = descriptors[focusedRoute.key];
 
   const screenOptions = { ...descriptor.options, ...additionalOptions };
-
-  console.log(routes);
 
   return (
     <ScreenContainer hasTwoStates style={styles.container}>

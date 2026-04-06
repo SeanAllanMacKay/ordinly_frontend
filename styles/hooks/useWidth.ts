@@ -13,9 +13,5 @@ export const useWidth = (size: number) => {
 
   const { width } = useWindowDimensions();
 
-  if (Platform.OS === "ios" || Platform.OS === "android") {
-    return false;
-  }
-
   return width >= size;
 };

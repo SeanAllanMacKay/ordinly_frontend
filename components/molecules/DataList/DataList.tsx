@@ -7,20 +7,22 @@ import {
   EmptyStateProps,
   Text,
 } from "@/components";
+import { useIsPhone } from "@/styles/hooks/useIsPhone";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { UseInfiniteQueryResult } from "@tanstack/react-query";
+import { Href } from "expo-router";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { View } from "react-native";
 import { Switch } from "react-native-paper";
 
 export type DataListProps<
   ItemType,
-  QueryType extends UseInfiniteQueryResult
+  QueryType extends UseInfiniteQueryResult,
 > = {
   entities: EmptyStateProps["variant"];
   query: QueryType;
   dataExtractor: (data: any) => ItemType[];
-  getHref?: (item: ItemType) => string;
+  getHref?: (item: ItemType) => Href;
 } & Pick<FlatListProps<ItemType>, "card" | "keyExtractor"> &
   Pick<TableProps<ItemType>, "columns">;
 
@@ -37,6 +39,7 @@ export const DataList = <ItemType, QueryType extends UseInfiniteQueryResult>({
   getHref,
   ...props
 }: DataListProps<ItemType, QueryType>) => {
+  const isPhone = useIsPhone();
   const [variant, setVariant] = useState<DataListVariant>();
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -69,8 +72,20 @@ export const DataList = <ItemType, QueryType extends UseInfiniteQueryResult>({
     () => ({
       isLoading,
       isFetching,
+      pagination: {
+        page: currentPage,
+        onPaginationChange: (page) => {
+          if (page < currentPage) {
+            onFetchPreviousPage();
+          } else {
+            onFetchNextPage();
+          }
+        },
+        totalPages: data?.pages?.[0]?.totalPages,
+        pageSize: 15,
+      },
     }),
-    [isLoading, isFetching]
+    [isLoading, isFetching],
   );
 
   const tableProps = useMemo(() => {
@@ -78,17 +93,8 @@ export const DataList = <ItemType, QueryType extends UseInfiniteQueryResult>({
 
     return {
       columns,
-      page: currentPage,
-      onPaginationChange: (page) => {
-        if (page < currentPage) {
-          onFetchPreviousPage();
-        } else {
-          onFetchNextPage();
-        }
-      },
-      totalPages: data?.pages?.[0].totalPages,
+
       items: dataExtractor(data?.pages[currentPage]),
-      pageSize: 15,
     };
   }, [props, currentPage, data, getHref]);
 
@@ -105,7 +111,7 @@ export const DataList = <ItemType, QueryType extends UseInfiniteQueryResult>({
           ...aggregator,
           ...dataExtractor(page),
         ],
-        []
+        [],
       ),
     };
   }, [props, data, refetch, onFetchNextPage]);
@@ -118,13 +124,13 @@ export const DataList = <ItemType, QueryType extends UseInfiniteQueryResult>({
         ...aggregator,
         ...dataExtractor(page),
       ],
-      []
+      [],
     ).length;
   }, [data, props]);
 
   const toggleVariant = useCallback(
     async (
-      newVariant: DataListVariant = variant === "cards" ? "table" : "cards"
+      newVariant: DataListVariant = variant === "cards" ? "table" : "cards",
     ) => {
       setVariant(newVariant);
 
@@ -134,16 +140,26 @@ export const DataList = <ItemType, QueryType extends UseInfiniteQueryResult>({
         // saving error
       }
     },
-    [variant]
+    [variant],
   );
 
   useEffect(() => {
     (async () => {
-      const value = await AsyncStorage.getItem(DATA_LIST_STORAGE_KEY);
+      if (!isPhone) {
+        const value = await AsyncStorage.getItem(DATA_LIST_STORAGE_KEY);
 
-      toggleVariant(isDataListVariant(value) ? value : "cards");
+        toggleVariant(isDataListVariant(value) ? value : "cards");
+      } else {
+        toggleVariant("cards");
+      }
     })();
   }, []);
+
+  useEffect(() => {
+    if (isPhone) {
+      toggleVariant("cards");
+    }
+  }, [isPhone]);
 
   return isLoading ? (
     <View
@@ -159,18 +175,20 @@ export const DataList = <ItemType, QueryType extends UseInfiniteQueryResult>({
     <EmptyState variant={entities} />
   ) : (
     <>
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "flex-end",
-        }}
-      >
-        <Switch
-          value={variant === "table"}
-          onValueChange={() => toggleVariant()}
-        />
-      </View>
+      {!isPhone ? (
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+          }}
+        >
+          <Switch
+            value={variant === "table"}
+            onValueChange={() => toggleVariant()}
+          />
+        </View>
+      ) : null}
 
       {variant === "cards" && "card" in props ? (
         <FlatList<ItemType> {...commonProps} {...cardProps} />
@@ -178,7 +196,7 @@ export const DataList = <ItemType, QueryType extends UseInfiniteQueryResult>({
         <Table<ItemType>
           {...commonProps}
           {...tableProps}
-          getRowHref={getHref}
+          onPressItem={getHref}
         />
       ) : null}
     </>

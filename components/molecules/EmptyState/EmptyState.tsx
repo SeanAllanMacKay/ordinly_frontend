@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { Text, useTheme } from "react-native-paper";
 import { Icon } from "@/components";
-import { Spacing } from "@/constants/Spacing";
+import { Spacing } from "@/styles";
 
 export type EmptyStateProps = {
   variant: "projects" | "tasks" | "companies";

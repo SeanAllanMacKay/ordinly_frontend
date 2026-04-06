@@ -1,69 +1,98 @@
-import React, { useEffect, useState } from "react";
-import { StyleProp, View, StyleSheet } from "react-native";
+import React, { ComponentProps, useEffect, useMemo, useState } from "react";
+import { View, LayoutChangeEvent } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import Animated, {
-  cancelAnimation,
-  Easing,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
   withRepeat,
   withTiming,
 } from "react-native-reanimated";
+import { useTheme } from "react-native-paper";
+import { skeletonStyles } from "./styles";
 
-import { Text } from "../Text";
-
-const duration = 1000;
+const DURATION = 1000;
 
 export const Skeleton = ({
   isRound,
   width,
   height,
+  delay = 0,
 }: {
   isRound?: boolean;
-  width: number;
+  width?: number;
   height: number;
+  delay?: number;
 }) => {
-  const defaultAnim = useSharedValue<number>(width);
+  const theme = useTheme();
+  const translateX = useSharedValue(0);
+
+  const [layoutWidth, setLayoutWidth] = useState(width ?? 0);
+
+  const handleLayout = (event: LayoutChangeEvent) => {
+    if (!width) {
+      setLayoutWidth(event.nativeEvent.layout.width);
+    }
+  };
 
   const animatedDefault = useAnimatedStyle(() => ({
-    transform: [{ translateX: defaultAnim.value }],
+    transform: [{ translateX: translateX.value }],
   }));
 
-  useEffect(() => {
-    defaultAnim.value = withRepeat(
-      withTiming(-defaultAnim.value, {
-        duration,
-      }),
-      -1,
-      true,
-    );
+  const shimmerWidth = useMemo(() => layoutWidth * 0.3, [layoutWidth]);
 
-    return () => {
-      cancelAnimation(defaultAnim);
-    };
-  }, []);
+  useEffect(() => {
+    if (layoutWidth > 0) {
+      translateX.value = 0;
+
+      translateX.value = withDelay(
+        delay,
+        withRepeat(
+          withTiming(layoutWidth - shimmerWidth, { duration: DURATION }),
+          -1,
+          true,
+        ),
+      );
+    }
+  }, [layoutWidth, delay, shimmerWidth]);
+
+  const gradientArray: ComponentProps<typeof LinearGradient>["colors"] =
+    theme.dark
+      ? [
+          `${theme.colors.outlineVariant}00`,
+          `${theme.colors.outlineVariant}25`,
+          `${theme.colors.outlineVariant}50`,
+          `${theme.colors.outlineVariant}25`,
+          `${theme.colors.outlineVariant}00`,
+        ]
+      : [
+          `${theme.colors.inverseOnSurface}00`,
+          `${theme.colors.inverseOnSurface}25`,
+          `${theme.colors.inverseOnSurface}50`,
+          `${theme.colors.inverseOnSurface}25`,
+          `${theme.colors.inverseOnSurface}00`,
+        ];
 
   return (
     <View
       style={[
-        styles.skeleton,
-        isRound ? styles.round : styles.rectangle,
-        { width, height },
+        skeletonStyles.skeleton,
+        { backgroundColor: theme.colors.surfaceVariant },
+        isRound ? skeletonStyles.round : skeletonStyles.rectangle,
+        { width: width ?? "100%", height },
       ]}
+      onLayout={handleLayout}
     >
       <Animated.View style={[animatedDefault]}>
         <LinearGradient
           // Button Linear Gradient
-          colors={[
-            "rgba(255,255,255,0)",
-            "rgba(255,255,255,0.2)",
-            "rgba(255,255,255,0.3)",
-            "rgba(255,255,255,0.2)",
-            "rgba(255,255,255,0)",
-          ]}
-          style={{ height, width, alignItems: "center" }}
+          colors={gradientArray}
+          style={{
+            height,
+            width: shimmerWidth,
+            alignItems: "center",
+          }}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
         ></LinearGradient>
@@ -71,13 +100,3 @@ export const Skeleton = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  skeleton: { overflow: "hidden", backgroundColor: "#E5E4E2" },
-  rectangle: { borderRadius: 10 },
-  round: {},
-  background: {
-    height: "100%",
-    width: "100%",
-  },
-});

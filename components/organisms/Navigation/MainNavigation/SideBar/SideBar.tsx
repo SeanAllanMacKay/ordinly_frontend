@@ -6,7 +6,6 @@ import { LARGE_BREAKPOINT } from "@/constants/breakpoints";
 import cssStyles from "@/styles/root-layout.module.scss";
 
 import { Logo } from "@/components";
-import { makeIcon } from "../TabBar";
 import { SideBarItem } from "./SideBarItem";
 import { TabType } from "../MainNavigation";
 
@@ -14,13 +13,7 @@ import { cns, useWidth } from "@/styles";
 
 const NAV_MEDIUM_WIDTH = 244;
 
-export const SideBar = ({
-  visible,
-  tabs,
-}: {
-  tabs: TabType[];
-  visible: boolean;
-}) => {
+export const SideBar = ({ tabs }: { tabs: TabType[] }) => {
   const isLarge = useWidth(LARGE_BREAKPOINT);
 
   return (
@@ -28,10 +21,7 @@ export const SideBar = ({
       style={[
         styles.sideBar,
         ...Platform.select({
-          default: [
-            !visible && { display: "none" },
-            isLarge && { minWidth: NAV_MEDIUM_WIDTH },
-          ],
+          default: [isLarge && { minWidth: NAV_MEDIUM_WIDTH }],
         }),
       ]}
     >
@@ -60,11 +50,9 @@ export const SideBar = ({
             }),
           ]}
         >
-          <Logo />
-
           <View style={{ gap: 4, flex: 1 }}>
             {tabs.map(({ title, name, id, icon }) => (
-              <SideBarItem key={id} name={name} icon={makeIcon(icon)}>
+              <SideBarItem key={id} name={name} icon={icon}>
                 {title}
               </SideBarItem>
             ))}
