@@ -15,6 +15,8 @@ export const Select = <ValueType,>({
   label,
   isLoading = false,
   index = 0,
+  icon,
+  isDense = false,
 }: SelectProps<ValueType>) => {
   const [isOpen, setOpen] = useState(false);
   const theme = useTheme();
@@ -33,7 +35,7 @@ export const Select = <ValueType,>({
   };
 
   const onClose = () => {
-    onBlur();
+    onBlur?.();
     setOpen(false);
   };
 
@@ -49,7 +51,12 @@ export const Select = <ValueType,>({
       onDismiss={onClose}
       anchor={
         isLoading ? (
-          <TextInput isLoading={true} index={index} isEditable={false} />
+          <TextInput
+            isLoading={true}
+            index={index}
+            isEditable={false}
+            isDense={isDense}
+          />
         ) : (
           <Pressable onPress={onOpen}>
             <TextInput
@@ -59,6 +66,9 @@ export const Select = <ValueType,>({
               isEditable={false}
               isDisabled={isDisabled}
               onPress={onOpen}
+              icon={icon}
+              isDense={isDense}
+              type="select"
             />
           </Pressable>
         )

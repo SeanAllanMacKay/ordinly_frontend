@@ -4,7 +4,6 @@ import { TabNavigation } from "@/components";
 export default function ProjectIdRouter() {
   return (
     <TabNavigation>
-      <TabNavigation.Screen name="index" options={{ title: "Details" }} />
       <TabNavigation.Screen name="tasks" options={{ title: "Tasks" }} />
       <TabNavigation.Screen name="invoices" options={{ title: "Invoices" }} />
       <TabNavigation.Screen name="documents" options={{ title: "Documents" }} />

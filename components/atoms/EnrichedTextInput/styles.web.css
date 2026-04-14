@@ -1,0 +1,22 @@
+.tiptap p.is-editor-empty {
+  position: relative;
+}
+
+/* 2. Target the paragraph with the placeholder attribute */
+.tiptap p.is-editor-empty::before {
+  content: attr(data-placeholder);
+  color: #adb5bd;
+  float: left;
+  height: 0;
+  pointer-events: none;
+  /* Add these to ensure visibility without base CSS */
+  display: block;
+  font-style: normal;
+}
+
+/* 3. Ensure the cursor/break doesn't hide the placeholder */
+.tiptap p.is-empty.is-editor-empty::before {
+  content: attr(data-placeholder);
+  color: var(--placeholder-color);
+  font-family: var(--placeholder-font);
+}

@@ -5,7 +5,7 @@ import {
   TabRouter,
   createNavigatorFactory,
 } from "@react-navigation/native";
-import { Slot, withLayoutContext } from "expo-router";
+import { withLayoutContext } from "expo-router";
 import { useIsPhone } from "@/styles/hooks/useIsPhone";
 import { RootNavigationProps } from "./types";
 import { rootNavigationStyles } from "./styles";

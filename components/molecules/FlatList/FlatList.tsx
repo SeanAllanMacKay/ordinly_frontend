@@ -25,20 +25,25 @@ export const FlatList = <ItemType extends Record<string, any>>({
   const { width } = useWindowDimensions();
   const numColumns = Math.floor(width / MIN_WIDTH) || 1;
 
+  console.log(items);
+
   return (
     <View style={{ flex: 1, height: "100%" }}>
       <RNFlastList
         data={items}
-        renderItem={({ item }) => (
-          <View style={{ flex: 1 / numColumns }}>
-            <ConditionalWrapper
-              isWrapped={item?.href}
-              wrapper={<Link href={item?.href} asChild />}
-            >
-              <Card item={item} />
-            </ConditionalWrapper>
-          </View>
-        )}
+        renderItem={({ item }) => {
+          console.log(!!item?.href);
+          return (
+            <View style={{ flex: 1 / numColumns }}>
+              <ConditionalWrapper
+                isWrapped={!!item?.href}
+                wrapper={<Link href={item?.href} asChild />}
+              >
+                <Card item={item} />
+              </ConditionalWrapper>
+            </View>
+          );
+        }}
         keyExtractor={keyExtractor}
         onRefresh={() => refetch?.()}
         refreshing={isFetching}

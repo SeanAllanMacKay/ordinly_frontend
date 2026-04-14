@@ -16,4 +16,7 @@ export type ContentColorProp =
   | "onSurface"
   | "onSurfaceVariant"
   | "onSurfaceDisabled"
-  | "primary";
+  | "primary"
+  | "secondary"
+  | "tertiary"
+  | "outline";

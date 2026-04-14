@@ -1,34 +1,30 @@
-import { GET, REQUEST_ACTIONS } from "@/api/requests";
+import { GET, POST, REQUEST_ACTIONS } from "@/api/requests";
+import { CompanyType } from "../types";
 
 export const companyRequests = {
-  listProjectPriorities: async ({
-    queryParams,
-  }: {
-    queryParams: { companyId: string };
-  }) =>
+  createCompany: async (body: { name: string; logo?: string }) =>
+    await POST<{ company: CompanyType }>({
+      endpoint: "/company",
+      body,
+    }),
+  listCompanies: async ({ queryParams }: { queryParams: { page: number } }) =>
     await GET<{
-      projectPriorities: {
-        id: String;
-        name: string;
-        description: string;
-        color: string;
-      }[];
-    }>({ endpoint: "/company/project-priorities", queryParams }),
-
-  listProjectStatuses: async () =>
-    await GET<{
-      projectStatuses: {
-        id: String;
-        name: string;
-        description: string;
-        color: string;
-      }[];
-    }>({ endpoint: "/company/project-status" }),
+      page: number;
+      totalPages: number;
+      pageParam: number;
+      companies: CompanyType[];
+    }>({
+      endpoint: `/company`,
+      queryParams,
+    }),
 };
 
 export const companyRequestKeys = {
-  listProjectPriorities: ({ companyId }: { companyId: string }) => [
+  createCompany: () => [REQUEST_ACTIONS.POST, "companies"],
+  listCompanies: ({ page }: { page: number }) => [
     REQUEST_ACTIONS.GET,
-    "company",
+    "companies",
+    "list",
+    page,
   ],
 };

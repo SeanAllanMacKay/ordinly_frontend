@@ -9,6 +9,7 @@ export const CardRender = ({
   title,
   subtitle,
   children,
+  headerLeft,
   headerRight,
   actions,
 }: CardRenderProps) => {
@@ -23,6 +24,8 @@ export const CardRender = ({
       <View>
         {title || subtitle ? (
           <View style={cardStyles.headerContainer}>
+            {headerLeft}
+
             <View>
               {title ? (
                 <Typography size="lg" color="onSurfaceVariant" emphasis="high">

@@ -45,6 +45,7 @@ export const FormFieldArray = ({
                 onRemove: fields.length > 1 ? () => remove(index) : undefined,
                 item,
                 index,
+                name: `${name}.${index}`,
               })
             }
           />

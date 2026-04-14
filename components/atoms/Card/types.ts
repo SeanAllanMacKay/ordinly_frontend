@@ -6,6 +6,7 @@ export type CardProps = PropsWithChildren<{
   subtitle?: string;
   href?: Href;
   onPress?: () => void;
+  headerLeft?: React.ReactElement;
   headerRight?: React.ReactElement;
   actions?: React.ReactElement[];
 }>;

@@ -1,0 +1,42 @@
+import { IconMappingType } from "./types";
+
+export const iconMapping: IconMappingType = {
+  eye: "visibility",
+  "eye-slash": "visibility-off",
+  plus: "add",
+  companies: "apartment",
+  edit: "edit",
+  "chevron-left": "chevron-left",
+  "chevron-right": "chevron-right",
+  close: "close",
+  "menu-down": "arrow-drop-down",
+  "menu-up": "arrow-drop-up",
+  projects: "account-tree",
+  gear: "settings",
+  "chart-bar-horizontal": "pie-chart",
+  home: "home",
+  "user-circle": "account-circle",
+  "identification-card": "contacts",
+  blueprint: "schema",
+  account: "manage-accounts",
+  "squares-four": "apps",
+  tasks: "check-box",
+  remove: "delete",
+  save: "save",
+  bold: "format-bold",
+  italic: "format-italic",
+  "unordered-list": "format-list-bulleted",
+  "ordered-list": "format-list-numbered",
+  strikethrough: "format-strikethrough",
+  link: "link",
+  image: "image",
+  quote: "format-quote",
+  underline: "format-underline",
+  "font-size": "format-size",
+  "chevron-down": "expand-more",
+  list: "list",
+} as const;
+
+export const getMaterialIconFromName = (name: keyof typeof iconMapping) => {
+  return iconMapping[name];
+};

@@ -1,4 +1,4 @@
-import { REQUEST_ACTIONS, type APIResponse } from "./";
+import { REQUEST_ACTIONS, serializePayload, type APIResponse } from "./";
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
@@ -12,13 +12,17 @@ export const PUT = async <T = {}>({
   body,
 }: PUTProps): Promise<APIResponse & T> => {
   try {
+    const serializedPayload = serializePayload(body);
+
     const response = await fetch(`${API_URL}/api${endpoint}`, {
       method: REQUEST_ACTIONS.PUT,
       credentials: "include",
       headers: {
-        "Content-Type": "application/json",
+        ...(serializedPayload.isMultipart
+          ? {}
+          : { "Content-Type": "application/json" }),
       },
-      body: JSON.stringify(body),
+      body: serializedPayload.body,
     });
 
     if (response.ok) {

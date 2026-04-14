@@ -2,11 +2,16 @@ import {
   useGetProjectPrioritiesQuery,
   useGetProjectStatusesQuery,
 } from "@/api";
-import { DateInput, FormField, Select, TextInput } from "@/components/atoms";
 import React from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { AddProjectFormFieldTypes } from "./types";
 import { requiredValidator } from "@/util/validation";
+import {
+  DateInputField,
+  EnrichedTextInputField,
+  SelectInputField,
+  TextInputField,
+} from "@/components/molecules";
 
 export const AddProjectForm = () => {
   const addProjectForm = useFormContext<AddProjectFormFieldTypes>();
@@ -18,37 +23,29 @@ export const AddProjectForm = () => {
 
   return (
     <>
-      <FormField
+      <TextInputField
         name="name"
         label="Name"
-        component={TextInput}
         validation={{ requiredValidator }}
       />
-      <FormField name="description" label="Description" component={TextInput} />
-      <FormField
+
+      <EnrichedTextInputField name="description" label="Description" />
+
+      <SelectInputField
         name="status"
         label="Status"
-        component={(fieldProps) => (
-          <Select {...fieldProps} options={projectStatuses.data ?? []} />
-        )}
+        options={projectStatuses.data ?? []}
       />
-      <FormField
+
+      <SelectInputField
         name="priority"
         label="Priority"
-        component={(fieldProps) => (
-          <Select {...fieldProps} options={projectPriorities.data ?? []} />
-        )}
+        options={projectPriorities.data ?? []}
       />
-      <FormField
-        name="startDate"
-        label="Start date"
-        component={(fieldProps) => <DateInput {...fieldProps} max={max} />}
-      />
-      <FormField
-        name="dueDate"
-        label="Due date"
-        component={(fieldProps) => <DateInput {...fieldProps} min={min} />}
-      />
+
+      <DateInputField name="startDate" label="Start date" max={max} />
+
+      <DateInputField name="dueDate" label="Due date" min={min} />
     </>
   );
 };

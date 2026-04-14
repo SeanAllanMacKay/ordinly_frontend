@@ -38,6 +38,8 @@ export const routes = {
           `${routes.manage.projects.tasks.root(projectId)}/${
             routeStringMap.addTask
           }` as const,
+        editTask: (projectId: string, taskId: string) =>
+          `${routes.manage.projects.tasks.details(projectId, taskId)}/edit-task`,
       },
     },
     companies: {

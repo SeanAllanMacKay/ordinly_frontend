@@ -1,5 +1,5 @@
 import React from "react";
-import Animated from "react-native-reanimated";
+import Animated, { LinearTransition } from "react-native-reanimated";
 
 import { TypographyProps } from "./types";
 import { typographyStyles } from "./styles";
@@ -11,16 +11,22 @@ export const Typography = ({
   children,
   color = "onSurface",
   colorOverride,
+  animationProps,
 }: TypographyProps) => {
   const theme = useTheme();
 
   return (
     <Animated.Text
       style={[
-        typographyStyles[size],
+        ,
         typographyStyles[emphasis],
-        { color: colorOverride ?? theme.colors[color] },
+        {
+          color: colorOverride ?? theme.colors[color],
+          fontSize: typographyStyles[size].fontSize,
+        },
       ]}
+      {...animationProps}
+      layout={LinearTransition}
     >
       {children}
     </Animated.Text>

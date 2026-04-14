@@ -10,6 +10,7 @@ export type IconNameType =
   | "edit"
   | "chevron-left"
   | "chevron-right"
+  | "chevron-down"
   | "close"
   | "menu-down"
   | "menu-up"
@@ -23,7 +24,20 @@ export type IconNameType =
   | "account"
   | "squares-four"
   | "tasks"
-  | "remove";
+  | "remove"
+  | "save"
+  | "bold"
+  | "italic"
+  | "unordered-list"
+  | "ordered-list"
+  | "strikethrough"
+  | "link"
+  | "image"
+  | "quote"
+  | "underline"
+  | "font-size"
+  | "list"
+  | "image";
 
 export type IconMappingType = Record<
   IconNameType,

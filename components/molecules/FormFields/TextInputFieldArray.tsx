@@ -4,7 +4,6 @@ import { TextInputFieldArrayProps } from "./types";
 import React from "react";
 import { View } from "react-native";
 import { textInputFieldArrayStyle } from "./styles";
-import { requiredValidator } from "@/util/validation";
 
 export const TextInputFieldArray = ({
   name,

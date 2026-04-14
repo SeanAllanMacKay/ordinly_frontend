@@ -50,6 +50,7 @@ export type FormFieldArrayProps<
     props: FormFieldArrayInputProps<PathValue<TFieldValues, TName>> & {
       item: any;
       index: number;
+      name: string;
     },
   ) => React.ReactElement;
   isLoading?: boolean;

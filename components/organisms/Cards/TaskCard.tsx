@@ -1,17 +1,28 @@
 import { format } from "date-fns";
 import React from "react";
-import { Tag, Card } from "@/components";
+import { Tag, Card, Typography } from "@/components";
 import { View } from "react-native";
 import { Spacing } from "@/styles";
 import { TaskType } from "@/api/entities/projects/requests";
 
 type TaskCardProps = {
   item: TaskType;
+  onPress?: () => void;
+  href?: string;
 };
 
 export const TaskCard = ({
-  item: { name, startDate, dueDate, status, priority },
+  item: { name, startDate, dueDate, status, priority, checklist },
+  onPress,
 }: TaskCardProps) => {
+  const completeItemsLength = checklist?.reduce((acc, item) => {
+    if (item.isComplete) {
+      acc++;
+    }
+
+    return acc;
+  }, 0);
+
   return (
     <Card
       title={name}
@@ -20,8 +31,15 @@ export const TaskCard = ({
       }${startDate && dueDate ? " - " : ""}${
         dueDate ? format(new Date(dueDate), "dd MMM yyyy") : ""
       }`}
+      onPress={onPress}
     >
-      {status || priority ? (
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
         <View
           style={{ display: "flex", flexDirection: "row", gap: Spacing.sm }}
         >
@@ -41,7 +59,11 @@ export const TaskCard = ({
             />
           ) : null}
         </View>
-      ) : null}
+
+        {checklist.length ? (
+          <Typography>{`${completeItemsLength}/${checklist.length}`}</Typography>
+        ) : null}
+      </View>
     </Card>
   );
 };

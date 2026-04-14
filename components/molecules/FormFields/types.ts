@@ -1,4 +1,4 @@
-import { CheckboxProps } from "@/components/atoms";
+import { CheckboxProps, EnrichedTextInputProps } from "@/components/atoms";
 import { DateInputProps } from "@/components/atoms/DateInput/types";
 import {
   FormFieldArrayProps,
@@ -11,7 +11,7 @@ export type TextInputFieldProps = Omit<
   FormFieldProps,
   "component" | "isLoading"
 > &
-  Pick<TextInputProps, "type" | "isEditable">;
+  Pick<TextInputProps, "type" | "isEditable" | "isAutoFocus">;
 
 export type DateInputFieldProps = Omit<
   FormFieldProps,
@@ -33,9 +33,23 @@ export type CheckboxInputFieldProps = Omit<
 export type ChecklistInputFieldProps = Omit<
   FormFieldArrayProps,
   "itemComponent" | "wrapper" | "isLoading"
->;
+> & {
+  labelKey: string;
+  valueKey: string;
+};
 
 export type TextInputFieldArrayProps = Omit<
   FormFieldArrayProps,
   "itemComponent" | "wrapper" | "isLoading" | "defaultItemValue"
+>;
+
+export type EnrichedTextInputFieldProps = Omit<
+  FormFieldProps,
+  "component" | "isLoading"
+> &
+  Pick<EnrichedTextInputProps, "initialValue" | "label">;
+
+export type ImageInputFieldProps = Omit<
+  FormFieldProps,
+  "component" | "isLoading" | "label"
 >;

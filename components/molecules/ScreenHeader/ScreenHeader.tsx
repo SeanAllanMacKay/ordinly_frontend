@@ -12,8 +12,8 @@ export const ScreenHeader = ({
   withBackButton = false,
   actions,
 }: {
-  title?: string;
-  subtitle?: string;
+  title?: string | React.ReactElement;
+  subtitle?: string | React.ReactElement;
   withBackButton?: boolean;
   actions?: React.ReactElement[];
 }) => {
@@ -27,7 +27,6 @@ export const ScreenHeader = ({
     <View
       style={[
         screenHeaderStyle.container,
-        !hasBackButton && screenHeaderStyle.withoutBackButton,
         { backgroundColor: theme.colors.background },
       ]}
     >
@@ -39,10 +38,19 @@ export const ScreenHeader = ({
         ) : null}
 
         <View>
-          <Typography size="lg">{title}</Typography>
-          <Typography size="sm" color="onSurface">
-            {subtitle}
-          </Typography>
+          {typeof title === "string" ? (
+            <Typography size="lg">{title}</Typography>
+          ) : (
+            title
+          )}
+
+          {typeof subtitle === "string" ? (
+            <Typography size="sm" color="onSurface">
+              {subtitle}
+            </Typography>
+          ) : (
+            subtitle
+          )}
         </View>
       </View>
 

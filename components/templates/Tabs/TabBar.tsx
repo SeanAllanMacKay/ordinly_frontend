@@ -22,15 +22,19 @@ export const TabBar = ({ tabs, onChange, activeIndex }) => {
             rippleColor={`${theme.colors.primary}20`}
             style={{
               alignItems: "center",
-              borderBottomWidth: 2,
+              borderBottomWidth: activeIndex === index ? 2 : 1,
               // Visual indicator for the active tab
               borderBottomColor:
-                activeIndex === index ? theme.colors.primary : "transparent",
+                activeIndex === index
+                  ? theme.colors.primary
+                  : theme.colors.onSurfaceVariant,
               padding: Spacing.sm,
+              paddingBottom:
+                activeIndex === index ? Spacing.sm : Spacing.sm + 1,
             }}
           >
             <Typography
-              color={activeIndex === index ? "primary" : "onBackground"}
+              color={activeIndex === index ? "primary" : "onSurfaceVariant"}
             >
               {label}
             </Typography>

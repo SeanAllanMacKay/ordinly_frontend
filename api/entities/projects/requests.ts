@@ -1,31 +1,6 @@
 import { POST, GET, PUT, REQUEST_ACTIONS } from "@/api/requests";
-import { AddProjectTaskFormFieldTypes } from "@/components";
 
-export type ProjectType = {
-  id: string;
-  name: string;
-  description: string;
-  status?: { id: string; name: string; color: string };
-  priority?: { id: string; name: string; color: string };
-  tasks?: { taskId: string; assignees?: string[] }[];
-  owner: { variant: string; id: string };
-  createdBy: string;
-  documents?: string[];
-  createdAt: Date;
-  startDate?: Date;
-  dueDate?: Date;
-  updatedAt?: Date;
-};
-
-export type TaskType = {
-  id: string;
-  name: string;
-  description: string;
-  status?: { id: string; name: string; color: string };
-  priority?: { id: string; name: string; color: string };
-  startDate?: Date;
-  dueDate?: Date;
-};
+import { ProjectType, TaskType } from "../types";
 
 export const projectRequests = {
   listProjects: async ({ queryParams }: { queryParams: { page: number } }) =>
@@ -145,14 +120,47 @@ export const projectRequests = {
       dueDate?: Date;
       checklist?: string[];
     }) =>
-      await POST<{ project: ProjectType }>({
+      await POST<{ task: TaskType }>({
         endpoint: `/projects/${projectId}/tasks`,
         body,
       }),
 
-    editTask: async () => {},
+    editTask: async ({
+      projectId,
+      taskId,
+      ...body
+    }: {
+      taskId: string;
+      projectId: string;
+      name: string;
+      description?: string;
+      status?: string;
+      priority?: string;
+      startDate?: Date;
+      dueDate?: Date;
+    }) =>
+      await PUT<{ task: TaskType }>({
+        endpoint: `/projects/${projectId}/tasks/${taskId}`,
+        body,
+      }),
 
     deleteTask: async () => {},
+
+    checklist: {
+      updateChecklist: async ({
+        projectId,
+        taskId,
+        ...body
+      }: {
+        projectId: string;
+        taskId: string;
+        items: { id: string; name: string; isComplete: boolean }[];
+      }) =>
+        await PUT<{ task: TaskType }>({
+          endpoint: `/projects/${projectId}/tasks/${taskId}/checklist`,
+          body,
+        }),
+    },
   },
 };
 
@@ -234,5 +242,22 @@ export const projectRequestKeys = {
       projectId: string;
       taskId: string;
     }) => [REQUEST_ACTIONS.DELETE, "projects", projectId, "tasks", taskId],
+
+    checklist: {
+      updateChecklist: ({
+        projectId,
+        taskId,
+      }: {
+        projectId: string;
+        taskId: string;
+      }) => [
+        REQUEST_ACTIONS.PUT,
+        "projects",
+        projectId,
+        "tasks",
+        taskId,
+        "checklist",
+      ],
+    },
   },
 };

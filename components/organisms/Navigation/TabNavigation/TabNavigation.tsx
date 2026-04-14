@@ -1,4 +1,4 @@
-import React, { ComponentProps } from "react";
+import React from "react";
 
 import {
   createMaterialTopTabNavigator,
@@ -20,7 +20,12 @@ export const MaterialTopTabs = withLayoutContext<
   MaterialTopTabNavigationEventMap
 >(Navigator);
 
-export const TabNavigation = ({ children }: TabNavigationProps) => {
+export const TabNavigation = ({
+  children,
+  screenOptions = { headerShown: true, isScrollable: true },
+}: TabNavigationProps & {
+  screenOptions?: { headerShown?: boolean; isScrollable?: boolean };
+}) => {
   const theme = useTheme();
 
   return (
@@ -29,8 +34,12 @@ export const TabNavigation = ({ children }: TabNavigationProps) => {
         tabBarScrollEnabled: true,
         tabBarActiveTintColor: theme.colors.primary,
         tabBarIndicatorStyle: { backgroundColor: theme.colors.primary },
-        tabBarStyle: { backgroundColor: theme.colors.background },
+        tabBarStyle: {
+          backgroundColor: theme.colors.background,
+          display: screenOptions?.headerShown ? undefined : "none",
+        },
         tabBarItemStyle: { width: "auto" },
+        swipeEnabled: screenOptions.isScrollable,
       }}
     >
       {children}

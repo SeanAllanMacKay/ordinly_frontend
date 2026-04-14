@@ -6,6 +6,7 @@ import { AddProjectTaskFormFieldTypes } from "./types";
 import { requiredValidator } from "@/util/validation";
 import {
   DateInputField,
+  EnrichedTextInputField,
   SelectInputField,
   TextInputField,
 } from "@/components/molecules";
@@ -32,7 +33,7 @@ export const AddProjectTaskDetailsInputs = () => {
         validation={{ requiredValidator }}
       />
 
-      <TextInputField name="description" label="Description" type="multiline" />
+      <EnrichedTextInputField name="description" label="Description" />
 
       <SelectInputField
         name="status"

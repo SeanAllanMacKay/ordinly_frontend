@@ -1,11 +1,11 @@
 import React, { useMemo } from "react";
 import {
-  Modal,
   AddProjectTaskSubmissionButton,
   AddProjectTaskDetailsInputs,
   AddProjectTaskProvider,
   Tabs,
   AddProjectTaskChecklistInputs,
+  Drawer,
 } from "@/components";
 import { useGlobalSearchParams, useRouter } from "expo-router";
 import { routes } from "@/constants/routes";
@@ -39,20 +39,25 @@ const AddProjectTaskContent = () => {
     ).length;
   }, [formState.errors]);
 
-  console.log(formState.errors);
+  const onClose = () => {
+    if (router.canDismiss()) {
+      router.dismiss();
+    } else {
+      router.replace(routes.manage.projects.tasks.root(projectId));
+    }
+  };
 
   return (
-    <Modal
+    <Drawer
       title="Add task"
       actions={[
         <AddProjectTaskSubmissionButton
           projectId={projectId}
-          onSuccess={() => {
-            router.replace(routes.manage.projects.tasks.root(projectId));
-          }}
+          onSuccess={onClose}
         />,
       ]}
       isVisible={true}
+      onClose={onClose}
     >
       <Tabs>
         <Tabs.Scene tabKey="details" label="Details" badge={detailsErrors}>
@@ -67,7 +72,7 @@ const AddProjectTaskContent = () => {
           <AddProjectTaskChecklistInputs />
         </Tabs.Scene>
       </Tabs>
-    </Modal>
+    </Drawer>
   );
 };
 
