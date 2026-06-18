@@ -53,3 +53,28 @@ export type ImageInputFieldProps = Omit<
   FormFieldProps,
   "component" | "isLoading" | "label"
 >;
+
+export type AddressInputFieldProps = Omit<
+  FormFieldProps,
+  "component" | "isLoading" | "label" | "validation"
+>;
+
+export type ProjectPriorityInputFieldProps = Omit<
+  FormFieldProps,
+  "component" | "isLoading" | "label"
+>;
+
+export type ProjectStatusInputFieldProps = Omit<
+  FormFieldProps,
+  "component" | "isLoading" | "label"
+>;
+
+export type TaskPriorityInputFieldProps = Omit<
+  FormFieldProps,
+  "component" | "isLoading" | "label"
+>;
+
+export type TaskStatusInputFieldProps = Omit<
+  FormFieldProps,
+  "component" | "isLoading" | "label"
+>;

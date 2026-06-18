@@ -15,7 +15,8 @@ import {
   View,
 } from "react-native";
 import { PaperProvider } from "@/styles/PaperProvider";
-import { Button, Typography } from "@/components";
+import { Button } from "../Button";
+import { Typography } from "../Typography";
 import { drawerStyles } from "./styles";
 import { useTheme } from "react-native-paper";
 import { DrawerProps } from "./types";
@@ -62,7 +63,9 @@ export const Drawer = ({
             <View style={drawerStyles.headerContainer}>
               {title ? (
                 typeof title === "string" ? (
-                  <Typography emphasis="high">{title}</Typography>
+                  <Typography emphasis="medium" size="lg">
+                    {title}
+                  </Typography>
                 ) : (
                   title
                 )

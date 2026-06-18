@@ -1,18 +1,8 @@
 import React from "react";
-import { CompaniesDataList, Screen } from "@/components";
-import { routes } from "@/constants/routes";
-import { FloatingActionButton } from "@/components/atoms/FloatingActionButton";
+import { CompaniesScreen } from "@/components/screens";
 
-export default function Projects() {
-  return (
-    <Screen>
-      <CompaniesDataList />
+const Companies = () => {
+  return <CompaniesScreen />;
+};
 
-      <FloatingActionButton
-        icon="plus"
-        label="Add company"
-        href={routes.manage.companies.addCompany()}
-      />
-    </Screen>
-  );
-}
+export default Companies;

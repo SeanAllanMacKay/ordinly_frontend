@@ -4,6 +4,7 @@ import { IconProps } from "../Icon";
 export type TextInputProps = {
   type?: "text" | "password" | "multiline" | "stealth" | "select";
   onPress?: () => void;
+  onClear?: () => void;
   isAutoFocus?: boolean;
   icon?: IconProps["name"];
   isDense?: boolean;

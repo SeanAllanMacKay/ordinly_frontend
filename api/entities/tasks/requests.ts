@@ -4,7 +4,7 @@ export const taskRequests = {
   listTaskPriorities: async () =>
     await GET<{
       taskPriorities: {
-        id: String;
+        id: string;
         name: string;
         description: string;
         color: string;

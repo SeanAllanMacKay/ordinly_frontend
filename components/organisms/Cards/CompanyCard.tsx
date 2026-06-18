@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import React from "react";
-import { Tag, Card } from "@/components";
-import { Image, View } from "react-native";
+import { Tag, Card, Image, EnrichedTypography } from "@/components";
+import { View } from "react-native";
 import { Spacing } from "@/styles";
 import { CompanyType } from "@/api";
 
@@ -12,10 +12,9 @@ type CompanyCardProps = {
 };
 
 export const CompanyCard = ({
-  item: { name, logo },
+  item: { name, logo, description },
   onPress,
 }: CompanyCardProps) => {
-  console.log(logo);
   return (
     <Card
       title={name}
@@ -24,14 +23,13 @@ export const CompanyCard = ({
         logo ? (
           <Image
             source={{ uri: logo.externalURL }}
-            style={{
-              width: 70,
-              height: 70,
-              borderRadius: 70,
-            }}
+            variant="company-logo"
+            size="sm"
           />
         ) : undefined
       }
-    ></Card>
+    >
+      <EnrichedTypography text={description} />
+    </Card>
   );
 };

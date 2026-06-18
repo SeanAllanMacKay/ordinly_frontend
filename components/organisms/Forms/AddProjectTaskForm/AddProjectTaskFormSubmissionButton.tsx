@@ -1,5 +1,5 @@
 import { useCreateProjectTaskMutation } from "@/api";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 import { AddProjectTaskFormFieldTypes } from "./types";
 import React, { useContext } from "react";
 import { Button, FormLoadingStateContext } from "@/components/atoms";
@@ -42,7 +42,6 @@ export const AddProjectTaskSubmissionButton = ({
       }
       isLoading={formLoadingState.isLoading}
       label={"Add task"}
-      icon="plus"
     />
   );
 };

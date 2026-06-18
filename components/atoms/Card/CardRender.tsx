@@ -12,13 +12,19 @@ export const CardRender = ({
   headerLeft,
   headerRight,
   actions,
+  emphasis,
 }: CardRenderProps) => {
   const theme = useTheme();
   return (
     <View
       style={[
         cardStyles.container,
-        { backgroundColor: theme.colors.surfaceVariant },
+        {
+          backgroundColor:
+            emphasis === "high"
+              ? theme.colors.primaryContainer
+              : theme.colors.surfaceVariant,
+        },
       ]}
     >
       <View>
@@ -26,14 +32,30 @@ export const CardRender = ({
           <View style={cardStyles.headerContainer}>
             {headerLeft}
 
-            <View>
+            <View style={cardStyles.headerContentContainer}>
               {title ? (
-                <Typography size="lg" color="onSurfaceVariant" emphasis="high">
+                <Typography
+                  size="lg"
+                  color={
+                    emphasis === "high"
+                      ? "onPrimaryContainer"
+                      : "onSurfaceVariant"
+                  }
+                  emphasis="high"
+                >
                   {title}
                 </Typography>
               ) : null}
               {subtitle ? (
-                <Typography color="onSurfaceVariant" size="sm" emphasis="low">
+                <Typography
+                  color={
+                    emphasis === "high"
+                      ? "onPrimaryContainer"
+                      : "onSurfaceVariant"
+                  }
+                  size="sm"
+                  emphasis="low"
+                >
                   {subtitle}
                 </Typography>
               ) : null}

@@ -4,6 +4,6 @@ import { TextInputProps } from "../TextInput/types";
 
 export type SelectProps<ValueType> = FormFieldInputProps<ValueType> & {
   options: Array<{ value: ValueType; label: string; color?: string }>;
-  icon: IconProps["name"];
-  isDense: TextInputProps["isDense"];
+  icon?: IconProps["name"];
+  isDense?: TextInputProps["isDense"];
 };

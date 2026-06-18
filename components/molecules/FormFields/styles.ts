@@ -16,3 +16,17 @@ export const textInputFieldArrayStyle = StyleSheet.create({
     gap: Spacing.md,
   },
 });
+
+export const addressInputStyles = StyleSheet.create({
+  background: {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+  },
+  container: {
+    minWidth: 300,
+    maxWidth: 500,
+    padding: Spacing.md,
+  },
+});

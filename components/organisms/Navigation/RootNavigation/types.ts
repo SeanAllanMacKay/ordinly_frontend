@@ -10,6 +10,7 @@ import {
   BottomTabNavigationProp,
 } from "@react-navigation/bottom-tabs";
 import { IconProps } from "@/components/atoms";
+import { LayoutChangeEvent } from "react-native";
 
 type NavigationOptions = BottomTabNavigationOptions & {
   icon: IconProps["name"];
@@ -30,4 +31,8 @@ export type TabType = {
   routeName: string;
 } & NavigationOptions;
 
-export type TabsProps = { tabs: TabType[]; onPress: (key: string) => void };
+export type TabsProps = {
+  tabs: TabType[];
+  onPress: (key: string) => void;
+  onLayout?: (event: LayoutChangeEvent) => void;
+};

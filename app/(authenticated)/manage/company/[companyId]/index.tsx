@@ -1,11 +1,8 @@
 import React from "react";
-import { Text } from "react-native";
-import { Screen } from "@/components";
+import { CompanyHomeScreen } from "@/components/screens";
 
-export default function CompanyDashboard() {
-  return (
-    <Screen>
-      <Text>Company dashboard</Text>
-    </Screen>
-  );
-}
+const CompanyDashboard = () => {
+  return <CompanyHomeScreen />;
+};
+
+export default CompanyDashboard;

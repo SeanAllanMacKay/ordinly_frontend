@@ -11,9 +11,22 @@ export const LoginFormSubmissionButton = ({
 }) => {
   const loginMutation = useLoginMutation();
 
-  const onSubmit = form.handleSubmit((formValues) =>
-    loginMutation.mutate(formValues),
-  );
+  const onSubmit = form.handleSubmit(async (formValues) => {
+    try {
+      await loginMutation.mutateAsync(formValues);
+    } catch (e: any) {
+      form.setError("root.serverError", {
+        message: e?.error ?? "Something went wrong. Please try again.",
+      });
+    }
+  });
 
-  return <Button mode="contained" onPress={onSubmit} label={"Login"} />;
+  return (
+    <Button
+      mode="contained"
+      onPress={onSubmit}
+      isDisabled={form.formState.isSubmitting}
+      label={"Login"}
+    />
+  );
 };

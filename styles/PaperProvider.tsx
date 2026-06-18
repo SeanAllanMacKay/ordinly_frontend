@@ -1,38 +1,35 @@
 import React, { PropsWithChildren } from "react";
 import { Icon } from "@/components/atoms/Icon";
-import {
-  MD3LightTheme as DefaultTheme,
-  PaperProvider as RNPPaperProvider,
-} from "react-native-paper";
+import { PaperProvider as RNPPaperProvider } from "react-native-paper";
 import { useColorScheme } from "./hooks";
-import { Colors } from "./Colors";
+import { lightTheme, darkTheme } from "./themes";
+import { ThemePreferenceProvider, useThemePreference } from "./ThemePreference";
 
-const commonTheme = {
-  ...DefaultTheme,
-  roundness: 4,
-};
+export const PaperProvider = ({
+  children,
+  scheme,
+}: PropsWithChildren<{ scheme?: "light" | "dark" }>) => (
+  <ThemePreferenceProvider>
+    <ThemedPaperProvider scheme={scheme}>{children}</ThemedPaperProvider>
+  </ThemePreferenceProvider>
+);
 
-const lightTheme = {
-  ...commonTheme,
-  dark: false,
-  colors: Colors.light,
-};
+const ThemedPaperProvider = ({
+  children,
+  scheme,
+}: PropsWithChildren<{ scheme?: "light" | "dark" }>) => {
+  const systemScheme = useColorScheme();
+  const { preference } = useThemePreference();
 
-const darkTheme = {
-  ...commonTheme,
-  dark: true,
-  colors: Colors.dark,
-};
-
-export const PaperProvider = ({ children }: PropsWithChildren) => {
-  const colorScheme = useColorScheme();
+  // An explicit user choice wins; otherwise follow the OS setting.
+  const colorScheme = scheme ?? preference ?? systemScheme;
 
   return (
     <RNPPaperProvider
       theme={colorScheme === "dark" ? darkTheme : lightTheme}
       settings={{
         icon: ({ name, color, size }) => {
-          return <Icon name={name} colorOverride={color} />;
+          return <Icon name={name} colorOverride={color} sizeOverride={size} />;
         },
       }}
     >

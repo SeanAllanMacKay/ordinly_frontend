@@ -20,7 +20,7 @@ export const iconMapping: IconMappingType = {
   blueprint: "schema",
   account: "manage-accounts",
   "squares-four": "apps",
-  tasks: "check-box",
+  tasks: "assignment",
   remove: "delete",
   save: "save",
   bold: "format-bold",
@@ -35,6 +35,16 @@ export const iconMapping: IconMappingType = {
   "font-size": "format-size",
   "chevron-down": "expand-more",
   list: "list",
+  "map-search": "map",
+  calendar: "calendar-today",
+  status: "info",
+  priority: "priority-high",
+  "document-upload": "upload-file",
+  document: "description",
+  download: "download",
+  phases: "view-timeline",
+  milestones: "flag",
+  warning: "warning",
 } as const;
 
 export const getMaterialIconFromName = (name: keyof typeof iconMapping) => {

@@ -37,7 +37,17 @@ export type IconNameType =
   | "underline"
   | "font-size"
   | "list"
-  | "image";
+  | "image"
+  | "map-search"
+  | "calendar"
+  | "status"
+  | "priority"
+  | "document-upload"
+  | "document"
+  | "download"
+  | "phases"
+  | "milestones"
+  | "warning";
 
 export type IconMappingType = Record<
   IconNameType,

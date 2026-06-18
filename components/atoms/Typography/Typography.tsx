@@ -12,13 +12,13 @@ export const Typography = ({
   color = "onSurface",
   colorOverride,
   animationProps,
+  canWrap = true,
 }: TypographyProps) => {
   const theme = useTheme();
 
   return (
     <Animated.Text
       style={[
-        ,
         typographyStyles[emphasis],
         {
           color: colorOverride ?? theme.colors[color],
@@ -27,6 +27,7 @@ export const Typography = ({
       ]}
       {...animationProps}
       layout={LinearTransition}
+      {...(canWrap ? {} : { ellipsizeMode: "middle", numberOfLines: 1 })}
     >
       {children}
     </Animated.Text>

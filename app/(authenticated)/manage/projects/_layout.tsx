@@ -1,36 +1,14 @@
 import React from "react";
 import { useGetProjectQuery } from "@/api";
-import { Button, ScreenHeader } from "@/components";
+import { ScreenHeader } from "@/components";
 import { Stack } from "expo-router";
-import { format } from "date-fns";
-import { routes } from "@/constants/routes";
 
 const ProjectHeader = ({ projectId }) => {
   const { data: { project } = {} } = useGetProjectQuery({
     projectId: projectId,
   });
 
-  return (
-    <ScreenHeader
-      title={project?.name}
-      subtitle={`${
-        project?.startDate
-          ? format(new Date(project?.startDate), "dd MMM yyyy")
-          : ""
-      }${project?.startDate && project?.dueDate ? " - " : ""}${
-        project?.dueDate
-          ? format(new Date(project?.dueDate), "dd MMM yyyy")
-          : ""
-      }`}
-      withBackButton
-      actions={[
-        <Button
-          icon="edit"
-          href={routes.manage.projects.editProject(projectId)}
-        />,
-      ]}
-    />
-  );
+  return <ScreenHeader title={project?.name} withBackButton />;
 };
 
 export default function TabLayout() {
@@ -52,6 +30,8 @@ export default function TabLayout() {
         name="[projectId]"
         options={({ route: { params } }) => ({
           header: () => <ProjectHeader projectId={params?.projectId} />,
+          presentation: "transparentModal",
+          animation: "slide_from_right",
         })}
       />
     </Stack>

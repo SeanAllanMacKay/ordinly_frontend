@@ -27,23 +27,7 @@ export default function ProjectTaskIdRouter() {
 
   return (
     <Drawer
-      title={
-        <ScreenHeader
-          title={taskQuery?.data?.task?.name}
-          subtitle={`${
-            taskQuery?.data?.task?.startDate
-              ? format(
-                  new Date(taskQuery?.data?.task?.startDate),
-                  "dd MMM yyyy",
-                )
-              : ""
-          }${taskQuery?.data?.task?.startDate && taskQuery?.data?.task?.dueDate ? " - " : ""}${
-            taskQuery?.data?.task?.dueDate
-              ? format(new Date(taskQuery?.data?.task?.dueDate), "dd MMM yyyy")
-              : ""
-          }`}
-        />
-      }
+      title={taskQuery?.data?.task?.name}
       isVisible={true}
       onClose={onClose}
     >

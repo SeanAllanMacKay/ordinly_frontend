@@ -12,7 +12,8 @@ export const cardStyles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "flex-start",
+    gap: Spacing.md,
   },
   contentContainer: { padding: Spacing.md },
   actionsContainer: {
@@ -24,5 +25,8 @@ export const cardStyles = StyleSheet.create({
     justifyContent: "flex-end",
     gap: Spacing.md,
     flexWrap: "wrap",
+  },
+  headerContentContainer: {
+    flex: 1,
   },
 });

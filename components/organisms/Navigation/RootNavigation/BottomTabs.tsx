@@ -7,7 +7,7 @@ import { Icon } from "@/components/atoms";
 import { useTheme } from "react-native-paper";
 import { Spacing } from "@/styles";
 
-export const BottomTabs = ({ tabs, onPress }: TabsProps) => {
+export const BottomTabs = ({ tabs, onPress, onLayout }: TabsProps) => {
   const theme = useTheme();
 
   return (
@@ -20,6 +20,7 @@ export const BottomTabs = ({ tabs, onPress }: TabsProps) => {
           web: { paddingBottom: Spacing.md },
         }),
       ]}
+      onLayout={onLayout}
     >
       {tabs.map(({ title, isFocused, icon, routeName }) => (
         <Pressable

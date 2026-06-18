@@ -11,6 +11,8 @@ import { RootNavigationProps } from "./types";
 import { rootNavigationStyles } from "./styles";
 import { LeftTabs } from "./LeftTabs";
 import { BottomTabs } from "./BottomTabs";
+import { VerificationBanner } from "../../VerificationBanner";
+import { ThemeScope } from "@/styles/ThemeScope";
 
 export const ResponsiveNavigator = ({
   children,
@@ -54,9 +56,16 @@ export const ResponsiveNavigator = ({
             : rootNavigationStyles.horizontal,
         ]}
       >
-        {!isPhone ? <LeftTabs tabs={tabs} onPress={onPress} /> : null}
+        {!isPhone ? (
+          <ThemeScope scheme="dark">
+            <LeftTabs tabs={tabs} onPress={onPress} />
+          </ThemeScope>
+        ) : null}
 
-        <View style={rootNavigationStyles.content}>{descriptor.render()}</View>
+        <View style={rootNavigationStyles.content}>
+          <VerificationBanner />
+          {descriptor.render()}
+        </View>
 
         {isPhone ? <BottomTabs tabs={tabs} onPress={onPress} /> : null}
       </View>

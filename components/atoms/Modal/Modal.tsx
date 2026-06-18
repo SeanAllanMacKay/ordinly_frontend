@@ -17,7 +17,8 @@ import {
 } from "react-native";
 import { Link } from "expo-router";
 import { PaperProvider } from "@/styles/PaperProvider";
-import { Button, Typography } from "@/components";
+import { Button } from "../Button";
+import { Typography } from "../Typography";
 import { Spacing } from "@/styles";
 import { modalStyles } from "./styles";
 import { useIsPhone } from "@/styles/hooks/useIsPhone";

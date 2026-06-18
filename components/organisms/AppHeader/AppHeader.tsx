@@ -5,10 +5,15 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { appHeaderStyles } from "./styles";
 import { Typography } from "@/components/atoms/Typography";
 import { EntitySwitcher } from "./EntitySwitcher";
+import { useShowVerificationBanner } from "@/components/organisms/VerificationBanner";
 import { Spacing } from "@/styles";
 
 export const AppHeader = () => {
   const { top } = useSafeAreaInsets();
+
+  // The verification banner sits above this header and already consumes the top
+  // safe-area inset when shown, so avoid double-padding in that case.
+  const showBanner = useShowVerificationBanner();
 
   return (
     <>
@@ -17,7 +22,7 @@ export const AppHeader = () => {
           appHeaderStyles.appHeader,
           Platform.select({
             default: {
-              paddingTop: top,
+              paddingTop: showBanner ? Spacing.sm : top,
               paddingHorizontal: Spacing.md,
               paddingBottom: Spacing.sm,
             },
@@ -35,10 +40,6 @@ export const AppHeader = () => {
         >
           Ordinly
         </Typography>
-
-        <View>
-          <EntitySwitcher />
-        </View>
       </View>
     </>
   );

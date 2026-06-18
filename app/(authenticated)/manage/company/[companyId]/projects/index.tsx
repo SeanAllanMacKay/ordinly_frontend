@@ -1,11 +1,8 @@
 import React from "react";
-import { Text } from "react-native";
-import { Screen } from "@/components";
+import { CompanyProjectsScreen } from "@/components/screens";
 
-export default function CompanyProjects() {
-  return (
-    <Screen>
-      <Text>Company projects</Text>
-    </Screen>
-  );
-}
+const CompanyProjects = () => {
+  return <CompanyProjectsScreen />;
+};
+
+export default CompanyProjects;

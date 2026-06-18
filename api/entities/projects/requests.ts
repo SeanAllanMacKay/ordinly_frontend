@@ -17,7 +17,7 @@ export const projectRequests = {
   listProjectPriorities: async () =>
     await GET<{
       projectPriorities: {
-        id: String;
+        id: string;
         name: string;
         description: string;
         color: string;
@@ -161,16 +161,31 @@ export const projectRequests = {
           body,
         }),
     },
+
+    documents: {
+      getDocumentDownloadURL: async ({
+        projectId,
+        taskId,
+        documentId,
+      }: {
+        projectId: string;
+        taskId: string;
+        documentId: string;
+      }) =>
+        await GET<{ downloadURL: string }>({
+          endpoint: `/projects/${projectId}/tasks/${taskId}/documents/${documentId}/download-url`,
+        }),
+    },
   },
 };
 
 export const projectRequestKeys = {
   createProject: () => [REQUEST_ACTIONS.POST, "projects"],
-  listProjects: ({ page }: { page: number }) => [
+  listProjects: ({ page }: { page?: number } = {}) => [
     REQUEST_ACTIONS.GET,
     "projects",
     "list",
-    page,
+    ...(page ? [page] : []),
   ],
   listProjectPriorities: () => [
     REQUEST_ACTIONS.GET,
@@ -213,7 +228,7 @@ export const projectRequestKeys = {
       projectId,
       "tasks",
       "list",
-      queryParams,
+      ...(queryParams ? [queryParams] : []),
     ],
     getTask: ({ projectId, taskId }: { projectId: string; taskId: string }) => [
       REQUEST_ACTIONS.GET,

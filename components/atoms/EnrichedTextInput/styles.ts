@@ -8,6 +8,7 @@ export const enrichedTextInputStyles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 1,
     position: "relative",
+    minHeight: 110,
   },
   actionsContainer: {
     display: "flex",

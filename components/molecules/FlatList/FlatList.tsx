@@ -10,8 +10,9 @@ import { Pagination } from "../Pagination/Pagination";
 import { flatListStyles } from "./styles";
 import { ConditionalWrapper } from "@/components/atoms";
 import { Link } from "expo-router";
+import { Spacing } from "@/styles";
 
-const MIN_WIDTH = 300;
+const MIN_WIDTH = 400;
 
 export const FlatList = <ItemType extends Record<string, any>>({
   items,
@@ -25,14 +26,11 @@ export const FlatList = <ItemType extends Record<string, any>>({
   const { width } = useWindowDimensions();
   const numColumns = Math.floor(width / MIN_WIDTH) || 1;
 
-  console.log(items);
-
   return (
     <View style={{ flex: 1, height: "100%" }}>
       <RNFlastList
         data={items}
         renderItem={({ item }) => {
-          console.log(!!item?.href);
           return (
             <View style={{ flex: 1 / numColumns }}>
               <ConditionalWrapper
@@ -59,6 +57,7 @@ export const FlatList = <ItemType extends Record<string, any>>({
           numColumns > 1 ? flatListStyles.columnWrapperStyle : undefined
         }
         contentContainerStyle={flatListStyles.columnWrapperStyle}
+        style={{ paddingHorizontal: Spacing.sm }}
       />
 
       {pagination ? <Pagination {...pagination} /> : null}

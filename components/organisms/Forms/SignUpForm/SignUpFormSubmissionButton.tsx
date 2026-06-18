@@ -12,8 +12,15 @@ export const SignUpFormSubmissionButton = ({
   const signUpMutation = useSignUpMutation();
 
   const onSubmit = form.handleSubmit(
-    ({ "verify-password": _verifyEmail, ...formValues }) =>
-      signUpMutation.mutate(formValues),
+    async ({ "verify-password": _verifyPassword, ...formValues }) => {
+      try {
+        await signUpMutation.mutateAsync(formValues);
+      } catch (e: any) {
+        form.setError("root.serverError", {
+          message: e?.error ?? "Something went wrong. Please try again.",
+        });
+      }
+    },
   );
 
   return (

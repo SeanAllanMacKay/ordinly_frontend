@@ -24,6 +24,10 @@ export const useEditProjectTaskMutation = ({
     ) => await projectRequests.tasks.editTask({ ...props, projectId, taskId }),
     onSuccess: (data) => {
       queryClient.invalidateQueries({
+        queryKey: projectRequestKeys.listProjects(),
+      });
+
+      queryClient.invalidateQueries({
         queryKey: projectRequestKeys.getProject({ projectId }),
       });
 

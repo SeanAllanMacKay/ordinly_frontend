@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 import { View, KeyboardAvoidingView, Platform } from "react-native";
 import { Text, useTheme } from "react-native-paper";
 import { screenStyles } from "./styles";
@@ -12,7 +12,9 @@ export const Screen = ({ children, isLoading }: ScreenProps) => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={[
         screenStyles.container,
-        { backgroundColor: theme.colors.background },
+        {
+          backgroundColor: theme.colors.background,
+        },
       ]}
     >
       {isLoading ? (

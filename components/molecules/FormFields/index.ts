@@ -6,3 +6,8 @@ export * from "./TextInputField";
 export * from "./TextInputFieldArray";
 export * from "./EnrichedTextInputField";
 export * from "./ImageInputField";
+export * from "./AddressInput";
+export * from "./ProjectPriorityInput";
+export * from "./ProjectStatusInput";
+export * from "./TaskStatusInput";
+export * from "./TaskPriorityInput";

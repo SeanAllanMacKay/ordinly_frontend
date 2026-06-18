@@ -1,21 +1,11 @@
-import { useGlobalSearchParams } from "expo-router";
 import React from "react";
-import { ProjectTasksDataList, Screen } from "@/components";
-import { FloatingActionButton } from "@/components/atoms/FloatingActionButton";
-import { routes } from "@/constants/routes";
+import { useGlobalSearchParams } from "expo-router";
+import { ProjectWorkScreen } from "@/components/screens";
 
-export default function TaskDetails() {
-  const params = useGlobalSearchParams<{ projectId: string }>();
+const Work = () => {
+  const { projectId } = useGlobalSearchParams<{ projectId: string }>();
 
-  return (
-    <Screen>
-      <ProjectTasksDataList />
+  return <ProjectWorkScreen projectId={projectId} />;
+};
 
-      <FloatingActionButton
-        icon="plus"
-        label="Add task"
-        href={routes.manage.projects.tasks.addTask(params?.projectId)}
-      />
-    </Screen>
-  );
-}
+export default Work;

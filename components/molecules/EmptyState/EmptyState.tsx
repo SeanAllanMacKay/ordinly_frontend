@@ -5,7 +5,7 @@ import { Icon } from "@/components";
 import { Spacing } from "@/styles";
 
 export type EmptyStateProps = {
-  variant: "projects" | "tasks" | "companies";
+  variant: "projects" | "tasks" | "companies" | "addresses";
 };
 
 export const EmptyState = ({ variant }: EmptyStateProps) => {

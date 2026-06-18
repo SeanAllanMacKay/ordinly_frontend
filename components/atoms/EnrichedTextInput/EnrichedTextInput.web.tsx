@@ -8,7 +8,9 @@ import { enrichedTextInputStyles } from "./styles";
 import { useEnrichedTextInputTheme } from "./util";
 import { useTheme } from "react-native-paper";
 import { MenuButton } from "../MenuButton";
-import { Button, TextInput, Typography } from "@/components";
+import { Button } from "../Button";
+import { TextInput } from "../TextInput";
+import { Typography } from "../Typography";
 import { Spacing } from "@/styles";
 import "./styles.web.css";
 

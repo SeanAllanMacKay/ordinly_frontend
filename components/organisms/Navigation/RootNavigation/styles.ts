@@ -36,7 +36,6 @@ export const leftTabsStyles = StyleSheet.create({
     alignItems: "center",
     padding: Spacing.md,
     borderRadius: Spacing.md,
-    minWidth: 160,
     gap: Spacing.md,
   },
   labelContainer: {

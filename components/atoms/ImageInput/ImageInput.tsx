@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, Pressable, View, Image } from "react-native";
+import { Alert, Pressable, View, Image, Platform } from "react-native";
 import { imageInputStyles as styles } from "./styles";
 import { ImageInputProps } from "./types";
 import { useGetImageMetadataQuery } from "@/api";
@@ -46,17 +46,15 @@ export const ImageInput = ({
     });
 
     if (!result.canceled) {
-      const { uri, fileName, fileSize, mimeType, file } = result.assets[0];
+      const { uri, fileName, mimeType, file } = result.assets[0];
 
       setImage(uri);
-      onChange({
-        uri,
-        fileName: fileName ?? undefined,
-        fileSize,
-        mimeType,
-        fileType: "image",
-        file,
-      });
+      onChange(
+        Platform.select({
+          native: { uri, type: mimeType ?? "*/*", name: fileName },
+          web: file,
+        }),
+      );
     }
   };
 

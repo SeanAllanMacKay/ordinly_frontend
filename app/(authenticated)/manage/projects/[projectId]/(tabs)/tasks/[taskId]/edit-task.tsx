@@ -1,14 +1,9 @@
 import React from "react";
-import { Drawer } from "@/components";
 import { useGlobalSearchParams, useRouter } from "expo-router";
-import {
-  EditProjectTaskDetailsInputs,
-  EditProjectTaskProvider,
-  EditProjectTaskSubmissionButton,
-} from "@/components/organisms/Forms/EditProjectTaskForm";
+import { EditTaskScreen } from "@/components/screens";
 import { routes } from "@/constants/routes";
 
-const EditProjectTaskContent = () => {
+const EditProjectTask = () => {
   const router = useRouter();
   const { projectId, taskId } = useGlobalSearchParams<{
     projectId: string;
@@ -24,32 +19,8 @@ const EditProjectTaskContent = () => {
   };
 
   return (
-    <Drawer
-      title="Edit task"
-      actions={[
-        <EditProjectTaskSubmissionButton
-          taskId={taskId}
-          projectId={projectId}
-          onSuccess={onClose}
-        />,
-      ]}
-      isVisible={true}
-      onClose={onClose}
-    >
-      <EditProjectTaskDetailsInputs />
-    </Drawer>
+    <EditTaskScreen projectId={projectId} taskId={taskId} onClose={onClose} />
   );
 };
 
-export default function EditProjectTask() {
-  const { projectId, taskId } = useGlobalSearchParams<{
-    projectId: string;
-    taskId: string;
-  }>();
-
-  return (
-    <EditProjectTaskProvider projectId={projectId} taskId={taskId}>
-      <EditProjectTaskContent />
-    </EditProjectTaskProvider>
-  );
-}
+export default EditProjectTask;

@@ -19,3 +19,7 @@ export * from "./Drawer";
 export * from "./EnrichedTextInput";
 export * from "./MenuButton";
 export * from "./ImageInput";
+export * from "./Image";
+export * from "./EnrichedTypography";
+export * from "./Accordion";
+export * from "./TagInput";

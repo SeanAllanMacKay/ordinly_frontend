@@ -1,19 +1,8 @@
 import React from "react";
-import { Screen } from "@/components";
-import { routes } from "@/constants/routes";
-import { FloatingActionButton } from "@/components/atoms/FloatingActionButton";
-import { ProjectsDataList } from "@/components/organisms/DataLists/ProjectsDataList";
+import { PersonalProjectsScreen } from "@/components/screens";
 
-export default function Projects() {
-  return (
-    <Screen>
-      <ProjectsDataList />
+const Projects = () => {
+  return <PersonalProjectsScreen />;
+};
 
-      <FloatingActionButton
-        icon="plus"
-        label="Add project"
-        href={routes.manage.projects.addProject()}
-      />
-    </Screen>
-  );
-}
+export default Projects;

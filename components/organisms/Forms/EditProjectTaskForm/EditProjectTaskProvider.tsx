@@ -25,8 +25,6 @@ export const EditProjectTaskProvider = ({
 
   const defaultValues = useMemo(() => {
     if (taskQuery.data?.task) {
-      console.log(taskQuery.data.task);
-
       const { name, description, startDate, dueDate, status, priority } =
         taskQuery.data.task;
 

@@ -2,7 +2,7 @@ import { Spacing } from "@/styles";
 import { StyleSheet } from "react-native";
 
 export const formFieldStyles = StyleSheet.create({
-  container: { marginBottom: Spacing.sm },
+  container: { marginBottom: Spacing.md },
   errorContainer: {
     marginLeft: Spacing.xs,
     marginTop: Spacing.xs,

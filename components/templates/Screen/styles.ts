@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native";
 
 export const screenStyles = StyleSheet.create({
   container: {
-    padding: Spacing.sm,
     flex: 1,
     position: "relative",
   },

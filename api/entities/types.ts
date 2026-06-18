@@ -65,19 +65,61 @@ export type DocumentType = {
   description?: string;
   size: number;
   type: string;
-  downloadURL: string;
+  externalURL: string;
 } & CreatedFieldTypes &
   DeletedFieldTypes;
 
+export type GeocodeContextItemType = {
+  mapbox_id: string;
+  name: string;
+};
+
+export type GeoCodeDataType = {
+  mapbox_id: string;
+  feature_type: string;
+  full_address: string;
+  name_preferred: string;
+  place_formatted: string;
+  coordinates: {
+    longitude: number;
+    latitude: number;
+    accuracy: string;
+    routable_points: Array<{
+      name: string;
+      latitude: number;
+      longitude: number;
+    }>;
+  };
+  context: {
+    address?: GeocodeContextItemType & {
+      address_number: string;
+      street_name: string;
+    };
+    street?: GeocodeContextItemType;
+    neighborhood?: GeocodeContextItemType & { wikidata_id?: string };
+    postcode?: GeocodeContextItemType;
+    place?: GeocodeContextItemType & { wikidata_id?: string };
+    region?: GeocodeContextItemType & {
+      wikidata_id?: string;
+      region_code: string;
+      region_code_full: string;
+    };
+    country?: GeocodeContextItemType & {
+      wikidata_id?: string;
+      country_code: string;
+      country_code_alpha_3: string;
+    };
+  };
+};
+
 export type LocationType = {
   id: string;
-  address: string;
-  city: string;
-  region: string;
-  country: string;
-  // ZIP, Postal Code, etc
-  zoneIdentifier: string;
-};
+  projectId: string;
+  name: string;
+  type: "address" | "poi" | "place" | string;
+  latitude: string;
+  longitude: string;
+} & GeoCodeDataType;
 
 export type PhoneNumberType = {
   id: string;
@@ -163,6 +205,7 @@ export type TaskType = {
   dueDate?: Date;
   checklist: ChecklistItemType[];
   documents?: DocumentType[];
+  externalURL: string;
 } & AssigneeFieldTypes;
 
 export type ProjectPermissionType = PermissionType<
@@ -187,6 +230,7 @@ export type ProjectType = {
   startDate?: Date;
   dueDate?: Date;
   updatedAt?: Date;
+  locations?: LocationType[];
 } & CreatedFieldTypes &
   DeletedFieldTypes & {
     assignedUsers: AssigneeFieldTypes["assignedUsers"] & {
@@ -303,6 +347,7 @@ export type LicenseNumber = {
 export type CompanyType = {
   id: string;
   name: string;
+  description: string;
   logo?: {
     createdBy: string;
     createdDate: Date;
@@ -328,4 +373,10 @@ export type FileMetadataType = {
   maxFileSize: number;
   acceptedFileTypes: string[];
   maxFiles: number;
+};
+
+export type CountryType = {
+  id: string;
+  name: string;
+  code: string;
 };

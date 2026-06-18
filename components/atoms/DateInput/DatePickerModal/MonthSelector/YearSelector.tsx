@@ -14,7 +14,9 @@ import {
   isSameYear,
 } from "date-fns";
 import { Menu, useTheme } from "react-native-paper";
-import { Button, Text, Typography } from "@/components";
+import { Button } from "../../../Button";
+import { Text } from "../../../Text";
+import { Typography } from "../../../Typography";
 import { yearSelectorStyles } from "../../styles";
 
 const RANGE = 10;

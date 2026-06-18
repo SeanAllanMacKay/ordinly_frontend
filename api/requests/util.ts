@@ -1,3 +1,5 @@
+import isNil from "lodash.isnil";
+
 export const REQUEST_ACTIONS = {
   GET: "GET",
   POST: "POST",
@@ -5,31 +7,94 @@ export const REQUEST_ACTIONS = {
   DELETE: "DELETE",
 };
 
+export const isValueFileObject = (value: any) => {
+  if (!!value?.uri && !!value?.type) {
+    return true;
+  }
+
+  return false;
+};
+
+export const isValueFileLike = (value: any) => {
+  if (value instanceof Blob) {
+    return true;
+  }
+
+  if (isValueFileObject(value)) {
+    return true;
+  }
+
+  if (Array.isArray(value)) {
+    return value.every(isValueFileLike);
+  }
+
+  return false;
+};
+
+const getBlobValue = async (value: any) => {
+  if (!isValueFileLike(value)) {
+    return;
+  }
+
+  if (value instanceof Blob) {
+    return value;
+  }
+
+  if (isValueFileObject(value)) {
+    const response = await fetch(value.uri);
+    return await response.blob();
+  }
+};
+
 export const serializePayload = async (data?: Record<string, any>) => {
-  const hasFile = Object.values(data ?? {}).some((value) => !!value?.fileType);
+  const formData = new FormData();
+  let hasFile = false;
 
-  if (hasFile) {
-    const formData = new FormData();
+  const entries = Object.entries(data ?? {});
 
-    for (const [key, value] of Object.entries(data ?? {})) {
-      if (value === null || value === undefined) continue;
-
-      if (value.fileType && value.uri) {
-        if (value.file instanceof Blob) {
-          formData.append(key, value.file, value.fileName);
-        } else {
-          const response = await fetch(value.uri);
-          const blob = await response.blob();
-
-          formData.append(key, blob, value.fileName);
-        }
-      } else if (Array.isArray(value)) {
-        value.forEach((item) => formData.append(key, item));
-      } else {
-        formData.append(key, value);
-      }
+  for (const [key, value] of entries) {
+    if (isNil(value)) {
+      continue;
     }
 
+    if (!isValueFileLike(value)) {
+      formData.append(key, value);
+      continue;
+    }
+
+    if (value instanceof Blob) {
+      formData.append(key, value, key);
+      hasFile = true;
+      continue;
+    }
+
+    if (isValueFileObject(value)) {
+      const blob = await getBlobValue(value);
+
+      if (!blob) {
+        continue;
+      }
+
+      formData.append(key, blob, value?.name ?? key);
+      hasFile = true;
+      continue;
+    }
+
+    if (Array.isArray(value)) {
+      for (const item of value) {
+        const blob = await getBlobValue(item);
+
+        if (!blob) {
+          continue;
+        }
+
+        formData.append(key, blob, item?.name ?? key);
+        hasFile = true;
+      }
+    }
+  }
+
+  if (hasFile) {
     return {
       body: formData,
       isMultipart: true,

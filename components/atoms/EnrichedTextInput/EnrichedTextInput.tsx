@@ -5,13 +5,11 @@ import {
 } from "react-native-enriched";
 import { useState, useRef } from "react";
 import { Pressable } from "react-native";
-import {
-  Button,
-  EnrichedTextInputProps,
-  MenuButton,
-  TextInput,
-  Typography,
-} from "@/components";
+import { Button } from "../Button";
+import { MenuButton } from "../MenuButton";
+import { TextInput } from "../TextInput";
+import { Typography } from "../Typography";
+import { EnrichedTextInputProps } from "./types";
 import { enrichedTextInputStyles } from "./styles";
 import React from "react";
 import { useEnrichedTextInputTheme } from "./util";

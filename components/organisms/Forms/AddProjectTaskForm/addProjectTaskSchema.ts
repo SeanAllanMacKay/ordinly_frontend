@@ -16,4 +16,16 @@ export const addProjectTaskSchema = zod.object({
       }),
     )
     .optional(),
+  documents: zod
+    .array(
+      zod.union([
+        zod.object({
+          name: zod.string().optional(),
+          uri: zod.string(),
+          type: zod.string(),
+        }),
+        zod.instanceof(File),
+      ]),
+    )
+    .optional(),
 });

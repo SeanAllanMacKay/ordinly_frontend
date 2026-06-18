@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import { useNavigation } from "expo-router";
-import { Screen } from "@/components";
+import { PersonalHomeScreen } from "@/components/screens";
 
-export default function Dashboard() {
+const Dashboard = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
     navigation.setOptions({ headerTitle: "Dashboard" });
   }, [navigation]);
 
-  return <Screen></Screen>;
-}
+  return <PersonalHomeScreen />;
+};
+
+export default Dashboard;

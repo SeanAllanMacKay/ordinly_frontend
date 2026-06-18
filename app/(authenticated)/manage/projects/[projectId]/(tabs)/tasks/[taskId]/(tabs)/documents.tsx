@@ -1,10 +1,14 @@
 import React from "react";
-import { Screen, Typography } from "@/components";
+import { useGlobalSearchParams } from "expo-router";
+import { TaskDocumentsScreen } from "@/components/screens";
 
-export default function ProjectTaskDocuments() {
-  return (
-    <Screen>
-      <Typography>Documents</Typography>
-    </Screen>
-  );
-}
+const ProjectTaskDocuments = () => {
+  const { projectId, taskId } = useGlobalSearchParams<{
+    projectId: string;
+    taskId: string;
+  }>();
+
+  return <TaskDocumentsScreen projectId={projectId} taskId={taskId} />;
+};
+
+export default ProjectTaskDocuments;

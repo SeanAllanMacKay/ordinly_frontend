@@ -1,11 +1,7 @@
-export type ImageType = {
-  fileName?: string;
-  uri: string;
-  mimeType?: string;
-  fileSize?: number;
-  fileType: "image";
-  file?: File;
-};
+export type ImageType =
+  | File
+  | { uri: string; type: string; name?: string | null }
+  | undefined;
 
 export type ImageInputProps = {
   isDisabled?: boolean;

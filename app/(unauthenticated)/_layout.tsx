@@ -1,19 +1,10 @@
-import React, { useEffect } from "react";
-import { Stack, useRouter } from "expo-router";
-import { useGetCurrentUserQuery } from "@/api";
+import React from "react";
+import { Stack } from "expo-router";
 import { AppHeader } from "@/components";
 
+// Auth enforcement lives in the root layout's `Stack.Protected` guard — this
+// group only renders when the user is unauthenticated, so no redirect logic here.
 export default function UnauthenticatedLayout() {
-  const userQuery = useGetCurrentUserQuery();
-
-  const router = useRouter();
-
-  useEffect(() => {
-    if (userQuery?.data && !userQuery?.isLoading) {
-      router.replace("/(authenticated)");
-    }
-  }, [userQuery]);
-
   return (
     <Stack
       screenOptions={{

@@ -1,6 +1,6 @@
 import { ComponentProps, ReactNode } from "react";
 import { Button as RNPButton } from "react-native-paper";
-import { type IconProps } from "@/components";
+import { type IconProps } from "../Icon";
 import { Href } from "expo-router";
 
 export type ButtonProps = Omit<

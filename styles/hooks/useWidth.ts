@@ -7,10 +7,6 @@ import { Platform, useWindowDimensions } from "react-native";
  * @returns Whether the width of the viewport is below the threshold
  */
 export const useWidth = (size: number) => {
-  if (typeof window === "undefined") {
-    return true;
-  }
-
   const { width } = useWindowDimensions();
 
   return width >= size;

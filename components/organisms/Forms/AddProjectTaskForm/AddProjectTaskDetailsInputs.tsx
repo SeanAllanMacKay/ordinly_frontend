@@ -1,5 +1,3 @@
-import { useGetTaskPrioritiesQuery, useGetTaskStatusesQuery } from "@/api";
-import { DateInput, FormField, Select, TextInput } from "@/components/atoms";
 import React from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { AddProjectTaskFormFieldTypes } from "./types";
@@ -7,14 +5,15 @@ import { requiredValidator } from "@/util/validation";
 import {
   DateInputField,
   EnrichedTextInputField,
-  SelectInputField,
+  TaskPriorityInput,
+  TaskStatusInput,
   TextInputField,
 } from "@/components/molecules";
+import { View } from "react-native";
+import { Spacing } from "@/styles";
 
 export const AddProjectTaskDetailsInputs = () => {
   const addProjectTaskForm = useFormContext<AddProjectTaskFormFieldTypes>();
-  const taskStatuses = useGetTaskStatusesQuery();
-  const taskPriorities = useGetTaskPrioritiesQuery();
 
   const min = useWatch({
     control: addProjectTaskForm.control,
@@ -33,19 +32,12 @@ export const AddProjectTaskDetailsInputs = () => {
         validation={{ requiredValidator }}
       />
 
+      <View style={{ display: "flex", flexDirection: "row", gap: Spacing.md }}>
+        <TaskPriorityInput name="priority" />
+        <TaskStatusInput name="status" />
+      </View>
+
       <EnrichedTextInputField name="description" label="Description" />
-
-      <SelectInputField
-        name="status"
-        label="Status"
-        options={taskStatuses.data ?? []}
-      />
-
-      <SelectInputField
-        name="priority"
-        label="Priority"
-        options={taskPriorities.data ?? []}
-      />
 
       <DateInputField name="startDate" label="Start date" max={max} />
 

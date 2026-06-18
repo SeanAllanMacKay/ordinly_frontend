@@ -18,7 +18,7 @@ export const CompaniesDataList = () => {
       isFetching={companiesQuery.isFetching}
       pagination={{
         page,
-        totalPages: companiesQuery.data?.totalPages ?? 0,
+        totalPages: companiesQuery.data?.totalPages ?? 1,
         onPaginationChange,
       }}
       // cards

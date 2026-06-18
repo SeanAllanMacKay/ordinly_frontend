@@ -1,15 +1,9 @@
-import React, { useState } from "react";
-import {
-  AddProjectSubmissionButton,
-  AddProjectForm,
-  AddProjectProvider,
-  Drawer,
-  TextInput,
-} from "@/components";
+import React from "react";
 import { useRouter } from "expo-router";
+import { AddProjectScreen } from "@/components/screens";
 import { routes } from "@/constants/routes";
 
-export default function AddProject() {
+const AddProject = () => {
   const router = useRouter();
 
   const onClose = () => {
@@ -20,16 +14,7 @@ export default function AddProject() {
     }
   };
 
-  return (
-    <AddProjectProvider>
-      <Drawer
-        title="Add project"
-        actions={[<AddProjectSubmissionButton onSuccess={onClose} />]}
-        isVisible={true}
-        onClose={onClose}
-      >
-        <AddProjectForm />
-      </Drawer>
-    </AddProjectProvider>
-  );
-}
+  return <AddProjectScreen onClose={onClose} />;
+};
+
+export default AddProject;

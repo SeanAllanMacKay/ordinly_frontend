@@ -12,7 +12,7 @@ export const PUT = async <T = {}>({
   body,
 }: PUTProps): Promise<APIResponse & T> => {
   try {
-    const serializedPayload = serializePayload(body);
+    const serializedPayload = await serializePayload(body);
 
     const response = await fetch(`${API_URL}/api${endpoint}`, {
       method: REQUEST_ACTIONS.PUT,

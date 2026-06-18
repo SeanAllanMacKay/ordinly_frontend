@@ -1,14 +1,9 @@
-import { Drawer } from "@/components";
-import {
-  EditProjectForm,
-  EditProjectProvider,
-  EditProjectSubmissionButton,
-} from "@/components/organisms/Forms/EditProjectForm";
-import { routes } from "@/constants/routes";
-import { useGlobalSearchParams, useRouter } from "expo-router";
 import React from "react";
+import { useGlobalSearchParams, useRouter } from "expo-router";
+import { EditProjectScreen } from "@/components/screens";
+import { routes } from "@/constants/routes";
 
-export default function EditProject() {
+const EditProject = () => {
   const router = useRouter();
   const { projectId } = useGlobalSearchParams<{ projectId: string }>();
 
@@ -20,21 +15,7 @@ export default function EditProject() {
     }
   };
 
-  return (
-    <EditProjectProvider projectId={projectId}>
-      <Drawer
-        title="Edit project"
-        actions={[
-          <EditProjectSubmissionButton
-            projectId={projectId}
-            onSuccess={onClose}
-          />,
-        ]}
-        isVisible={true}
-        onClose={onClose}
-      >
-        <EditProjectForm />
-      </Drawer>
-    </EditProjectProvider>
-  );
-}
+  return <EditProjectScreen projectId={projectId} onClose={onClose} />;
+};
+
+export default EditProject;

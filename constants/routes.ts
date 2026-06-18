@@ -6,6 +6,8 @@ export const routeStringMap = {
   editProject: "edit-project",
   tasks: "tasks",
   addTask: "add-task",
+  addMilestone: "add-milestone",
+  addPhase: "add-phase",
   companies: "companies",
   addCompany: "add-company",
 } as const;
@@ -37,6 +39,14 @@ export const routes = {
         addTask: (projectId: string) =>
           `${routes.manage.projects.tasks.root(projectId)}/${
             routeStringMap.addTask
+          }` as const,
+        addMilestone: (projectId: string) =>
+          `${routes.manage.projects.tasks.root(projectId)}/${
+            routeStringMap.addMilestone
+          }` as const,
+        addPhase: (projectId: string) =>
+          `${routes.manage.projects.tasks.root(projectId)}/${
+            routeStringMap.addPhase
           }` as const,
         editTask: (projectId: string, taskId: string) =>
           `${routes.manage.projects.tasks.details(projectId, taskId)}/edit-task`,

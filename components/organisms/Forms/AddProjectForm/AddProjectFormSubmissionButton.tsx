@@ -27,7 +27,6 @@ export const AddProjectSubmissionButton = ({
       }
       isLoading={formLoadingState.isLoading}
       label={"Add project"}
-      icon="plus"
     />
   );
 };

@@ -1,23 +1,18 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useNavigation, useRouter } from "expo-router";
-import { Screen } from "@/components";
-import { useVerifyAccountMutation } from "@/api";
-import { useLocalSearchParams } from "expo-router";
 import { View } from "react-native";
-import { Typography } from "@/components";
+import { Screen, Typography } from "@/components";
+import { useGetCurrentUserQuery, useVerifyAccountMutation } from "@/api";
+import { verifyAccountScreenStyles } from "./styles";
+import { VerifyAccountScreenProps } from "./types";
 
-export default function VerifyAccount() {
+export const VerifyAccountScreen = ({
+  code,
+  onRedirect,
+}: VerifyAccountScreenProps) => {
   const [timer, setTimer] = useState(5);
-  const navigation = useNavigation();
-  const router = useRouter();
 
-  const { code } = useLocalSearchParams<{ code: string }>();
-
+  const userQuery = useGetCurrentUserQuery();
   const verifyAccountMutation = useVerifyAccountMutation();
-
-  useEffect(() => {
-    navigation.setOptions({ headerTitle: "Verify account" });
-  }, [navigation]);
 
   useEffect(() => {
     if (
@@ -52,19 +47,14 @@ export default function VerifyAccount() {
 
   useEffect(() => {
     if (timer === 0) {
-      router.replace("/login");
+      // Signed-in users go home; logged-out users go to login.
+      onRedirect(!!userQuery.data?.user);
     }
   }, [timer]);
 
   return (
     <Screen>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <View style={verifyAccountScreenStyles.container}>
         {verifyAccountMutation.isSuccess ? (
           <>
             <Typography>Account verified</Typography>
@@ -79,4 +69,4 @@ export default function VerifyAccount() {
       </View>
     </Screen>
   );
-}
+};

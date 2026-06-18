@@ -8,4 +8,5 @@ export type TypographyProps = PropsWithChildren<{
   color?: ContentColorProp;
   colorOverride?: string;
   animationProps?: ComponentProps<typeof Animated.Text>;
+  canWrap?: boolean;
 }>;

@@ -1,16 +1,8 @@
-import { useLocalSearchParams, useNavigation } from "expo-router";
-import React, { useEffect } from "react";
-import { Text } from "react-native";
-import { Screen } from "@/components";
+import React from "react";
+import { ProjectInvoicesScreen } from "@/components/screens";
 
-export default function ProjectInvoices() {
-  const navigation = useNavigation();
+const ProjectInvoices = () => {
+  return <ProjectInvoicesScreen />;
+};
 
-  const params = useLocalSearchParams<{ projectId: string }>();
-
-  return (
-    <Screen>
-      <Text>Invoices</Text>
-    </Screen>
-  );
-}
+export default ProjectInvoices;

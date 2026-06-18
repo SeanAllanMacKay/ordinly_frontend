@@ -32,6 +32,7 @@ export const TaskCard = ({
         dueDate ? format(new Date(dueDate), "dd MMM yyyy") : ""
       }`}
       onPress={onPress}
+      emphasis={priority?.isCritical ? "high" : "medium"}
     >
       <View
         style={{

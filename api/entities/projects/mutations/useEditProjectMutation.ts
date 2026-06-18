@@ -26,7 +26,7 @@ export const useEditProjectMutation = ({
       });
 
       queryClient.invalidateQueries({
-        queryKey: projectRequestKeys.listProjects({ page: 1 }),
+        queryKey: projectRequestKeys.listProjects(),
       });
 
       onSuccess?.(data);

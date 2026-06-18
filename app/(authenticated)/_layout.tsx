@@ -1,24 +1,16 @@
-import React, { useEffect } from "react";
-import { useRouter } from "expo-router";
+import React from "react";
+import { View } from "react-native";
 
 import { Stack } from "expo-router";
-import { AppHeader } from "@/components";
-import { useGetCurrentUserQuery } from "@/api";
 
-export default function RootLayout() {
-  const userQuery = useGetCurrentUserQuery();
-
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!userQuery?.data && !userQuery?.isLoading) {
-      router.replace("/(unauthenticated)");
-    }
-  }, [userQuery]);
-
+// Auth enforcement lives in the root layout's `Stack.Protected` guard — this
+// group only renders when the user is authenticated, so no redirect logic here.
+export default function AuthenticatedLayout() {
   return (
-    <Stack>
-      <Stack.Screen name="manage" options={{ header: AppHeader }} />
-    </Stack>
+    <View style={{ flex: 1 }}>
+      <Stack>
+        <Stack.Screen name="manage" options={{ headerShown: false }} />
+      </Stack>
+    </View>
   );
 }

@@ -23,6 +23,11 @@ export const EditProjectProvider = ({
         priority: projectQuery.data.project.priority?.id,
         startDate: projectQuery.data.project.startDate,
         dueDate: projectQuery.data.project.dueDate,
+        location: {
+          latitude: projectQuery.data.project.locations?.[0]?.latitude,
+          longitude: projectQuery.data.project.locations?.[0]?.longitude,
+          type: projectQuery.data.project.locations?.[0]?.type,
+        },
       };
     }
   }, [projectQuery.data]);

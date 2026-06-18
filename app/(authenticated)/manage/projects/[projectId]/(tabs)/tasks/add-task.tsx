@@ -1,43 +1,11 @@
-import React, { useMemo } from "react";
-import {
-  AddProjectTaskSubmissionButton,
-  AddProjectTaskDetailsInputs,
-  AddProjectTaskProvider,
-  Tabs,
-  AddProjectTaskChecklistInputs,
-  Drawer,
-} from "@/components";
+import React from "react";
 import { useGlobalSearchParams, useRouter } from "expo-router";
+import { AddTaskScreen } from "@/components/screens";
 import { routes } from "@/constants/routes";
-import { useFormContext } from "react-hook-form";
 
-const detailsTabFields = [
-  "name",
-  "description",
-  "status",
-  "priority",
-  "startDate",
-  "dueDate",
-];
-
-const checklistTabFields = ["checklist"];
-
-const AddProjectTaskContent = () => {
+const AddProjectTask = () => {
   const router = useRouter();
   const { projectId } = useGlobalSearchParams<{ projectId: string }>();
-  const { formState } = useFormContext();
-
-  const detailsErrors = useMemo(() => {
-    return Object.keys(formState.errors).filter((key) =>
-      detailsTabFields.includes(key),
-    ).length;
-  }, [formState.errors]);
-
-  const checklistErrors = useMemo(() => {
-    return !!Object.keys(formState.errors).filter((key) =>
-      checklistTabFields.includes(key),
-    ).length;
-  }, [formState.errors]);
 
   const onClose = () => {
     if (router.canDismiss()) {
@@ -47,39 +15,7 @@ const AddProjectTaskContent = () => {
     }
   };
 
-  return (
-    <Drawer
-      title="Add task"
-      actions={[
-        <AddProjectTaskSubmissionButton
-          projectId={projectId}
-          onSuccess={onClose}
-        />,
-      ]}
-      isVisible={true}
-      onClose={onClose}
-    >
-      <Tabs>
-        <Tabs.Scene tabKey="details" label="Details" badge={detailsErrors}>
-          <AddProjectTaskDetailsInputs />
-        </Tabs.Scene>
-
-        <Tabs.Scene
-          tabKey="checklist"
-          label="Checklist"
-          badge={checklistErrors}
-        >
-          <AddProjectTaskChecklistInputs />
-        </Tabs.Scene>
-      </Tabs>
-    </Drawer>
-  );
+  return <AddTaskScreen projectId={projectId} onClose={onClose} />;
 };
 
-export default function AddProjectTask() {
-  return (
-    <AddProjectTaskProvider>
-      <AddProjectTaskContent />
-    </AddProjectTaskProvider>
-  );
-}
+export default AddProjectTask;

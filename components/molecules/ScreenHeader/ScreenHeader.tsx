@@ -5,6 +5,8 @@ import Animated, { FadeIn } from "react-native-reanimated";
 import { Button, Typography } from "@/components";
 import { screenHeaderStyle } from "./styles";
 import { useTheme } from "react-native-paper";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Spacing } from "@/styles";
 
 export const ScreenHeader = ({
   title,
@@ -19,15 +21,18 @@ export const ScreenHeader = ({
 }) => {
   const router = useRouter();
   const theme = useTheme();
+  const { top } = useSafeAreaInsets();
 
   const hasBackButton =
     withBackButton && router.canGoBack() && Platform.OS !== "web";
+
+  const paddingTop = top + Spacing.sm;
 
   return (
     <View
       style={[
         screenHeaderStyle.container,
-        { backgroundColor: theme.colors.background },
+        { backgroundColor: theme.colors.background, paddingTop },
       ]}
     >
       <View style={screenHeaderStyle.left}>

@@ -9,6 +9,7 @@ export type CardProps = PropsWithChildren<{
   headerLeft?: React.ReactElement;
   headerRight?: React.ReactElement;
   actions?: React.ReactElement[];
+  emphasis?: "medium" | "high";
 }>;
 
 export type CardRenderProps = Omit<CardProps, "onPress" | "href">;

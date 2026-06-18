@@ -36,10 +36,13 @@ export const userRequests = {
       body,
     }),
 
+  resendVerification: async () =>
+    await POST({ endpoint: "/user/resend-verification" }),
+
   login: async (body: UserAuthArgs) =>
     await POST<{ user: UserType }>({ endpoint: "/user/login", body }),
 
-  logout: async () => {},
+  logout: async () => await POST({ endpoint: "/user/logout" }),
 
   persistentLogin: async () =>
     await POST({ endpoint: "/user/persistent-login" }),
@@ -75,6 +78,7 @@ const base = "user";
 export const userRequestKeys = {
   signUp: () => [REQUEST_ACTIONS.POST, base, "sign-up"],
   verifyAccount: () => [REQUEST_ACTIONS.POST, base, "verify-account"],
+  resendVerification: () => [REQUEST_ACTIONS.POST, base, "resend-verification"],
   login: () => [REQUEST_ACTIONS.POST, base, "login"],
   logout: () => [REQUEST_ACTIONS.POST, base, "logout"],
   persistentLogin: () => [REQUEST_ACTIONS.POST, base, "persistent-login"],

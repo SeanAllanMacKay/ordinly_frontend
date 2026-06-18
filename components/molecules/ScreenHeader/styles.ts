@@ -8,7 +8,6 @@ export const screenHeaderStyle = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingVertical: Spacing.sm,
   },
   withoutBackButton: {
     paddingHorizontal: Spacing.md,

@@ -46,6 +46,8 @@ export const DateInput = ({
           label={label}
           onPress={onOpen}
           isEditable={false}
+          icon="calendar"
+          onClear={!isDisabled ? () => onChange(undefined) : undefined}
         />
       </Pressable>
 

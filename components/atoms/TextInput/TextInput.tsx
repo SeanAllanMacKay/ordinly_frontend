@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { TextInput as RNPTextInput } from "react-native-paper";
+import { TextInput as RNPTextInput, useTheme } from "react-native-paper";
 import { Skeleton } from "../Skeleton";
 import { TextInputProps } from "./types";
 import { textInputStyles } from "./styles";
 import { Spacing } from "@/styles";
+import { Icon } from "../Icon";
 
 export const TextInput = ({
   value,
   onChange,
   onBlur,
   onPress,
+  onClear,
   isError,
   isDisabled,
   label,
@@ -23,6 +25,14 @@ export const TextInput = ({
 }: TextInputProps) => {
   const [isSecure, setIsSecure] = useState(type === "password" ? true : false);
   const [isFocused, setIsFocused] = useState(false);
+  const theme = useTheme();
+
+  const handleClear = () => {
+    onChange?.("");
+    onClear?.();
+  };
+
+  const showClear = !!onClear && !!value && !isDisabled;
 
   return isLoading ? (
     <Skeleton height={type === "multiline" ? 68.41 : 48} delay={index * 100} />
@@ -46,7 +56,6 @@ export const TextInput = ({
       mode={"outlined"}
       secureTextEntry={isSecure}
       contentStyle={[
-        icon && { minWidth: 0, marginLeft: 35, marginRight: 35 },
         (onPress || (type === "stealth" && isEditable)) &&
           textInputStyles.pressable,
       ]}
@@ -58,22 +67,31 @@ export const TextInput = ({
       right={
         type === "password" ? (
           <RNPTextInput.Icon
-            icon={isSecure ? "eye" : "eye-slash"}
+            icon={() => (
+              <Icon
+                name={isSecure ? "eye" : "eye-slash"}
+                color="onBackground"
+              />
+            )}
             onPress={() => setIsSecure(!isSecure)}
+          />
+        ) : showClear ? (
+          <RNPTextInput.Icon
+            icon={() => <Icon name="close" color="onBackground" />}
+            onPress={handleClear}
           />
         ) : type === "select" ? (
           <RNPTextInput.Icon
-            icon="chevron-down"
+            icon={() => <Icon name="chevron-down" color="onBackground" />}
             disabled={true}
-            style={{ marginLeft: 24 }}
+            style={{ marginLeft: Spacing.lg }}
           />
         ) : undefined
       }
       left={
         icon ? (
           <RNPTextInput.Icon
-            icon={icon}
-            style={{ marginLeft: -Spacing.md }}
+            icon={() => <Icon name={icon} color="onBackground" />}
             disabled
           />
         ) : undefined

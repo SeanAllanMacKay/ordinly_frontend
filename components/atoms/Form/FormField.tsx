@@ -51,9 +51,11 @@ export const FormField = <
         index,
       })}
 
-      <View style={formFieldStyles.errorContainer}>
-        <Typography color="error">{errorMessage}</Typography>
-      </View>
+      {errorMessage ? (
+        <View style={formFieldStyles.errorContainer}>
+          <Typography color="error">{errorMessage}</Typography>
+        </View>
+      ) : null}
     </View>
   );
 };
