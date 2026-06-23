@@ -8,14 +8,17 @@ export default function PersonalLayout() {
         name="index"
         options={{ title: "Home", icon: "home" }}
       />
+
       <RootNavigation.Screen
         name="projects"
         options={{ title: "Projects", icon: "projects" }}
       />
+
       <RootNavigation.Screen
         name="companies"
         options={{ title: "Companies", icon: "companies" }}
       />
+
       <RootNavigation.Screen
         name="account"
         options={{ title: "Account", icon: "account" }}

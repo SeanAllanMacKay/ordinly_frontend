@@ -1,5 +1,6 @@
 import { useGetProjectTaskQuery, DocumentType } from "@/api";
 import { projectRequests } from "@/api/entities/projects/requests";
+import { useActiveCompanyId } from "@/util/navigation/useActiveCompanyId";
 import { DocumentsList } from "@/components/molecules";
 import React from "react";
 
@@ -10,11 +11,13 @@ export const ProjectTaskDocumentsScreenContent = ({
   projectId: string;
   taskId: string;
 }) => {
+  const companyId = useActiveCompanyId();
   const taskQuery = useGetProjectTaskQuery({ projectId, taskId });
 
   const getDownloadURL = async (document: DocumentType) => {
     const { downloadURL } =
       await projectRequests.tasks.documents.getDocumentDownloadURL({
+        companyId: companyId!,
         projectId,
         taskId,
         documentId: document.id,

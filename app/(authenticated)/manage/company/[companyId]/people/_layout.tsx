@@ -2,6 +2,7 @@ import React from "react";
 import { Stack } from "expo-router";
 import { useWindowDimensions } from "react-native";
 import { DESKTOP_WIDTH } from "@/constants/breakpoints";
+import { ScreenHeader } from "@/components";
 
 export default function TabLayout() {
   const { width } = useWindowDimensions();
@@ -10,7 +11,10 @@ export default function TabLayout() {
 
   return (
     <Stack>
-      <Stack.Screen name="index" options={{ headerLeft: () => <></> }} />
+      <Stack.Screen
+        name="index"
+        options={{ header: () => <ScreenHeader title="People" /> }}
+      />
     </Stack>
   );
 }

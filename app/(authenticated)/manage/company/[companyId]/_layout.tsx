@@ -14,7 +14,7 @@ export default function CompanyLayout() {
       />
       <RootNavigation.Screen
         name="projects"
-        options={{ title: "Projects", icon: "presentation-chart" }}
+        options={{ title: "Projects", icon: "projects" }}
       />
       <RootNavigation.Screen
         name="people"

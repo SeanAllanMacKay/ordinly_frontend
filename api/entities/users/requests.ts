@@ -19,6 +19,10 @@ export type UserType = {
       name: string;
     };
   }[];
+  personalCompany: {
+    id: string;
+    name: string;
+  };
   isVerified: boolean;
   createdDate: Date;
 };

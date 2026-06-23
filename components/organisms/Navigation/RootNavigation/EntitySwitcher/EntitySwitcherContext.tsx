@@ -1,28 +1,31 @@
-import { CompanyType, useGetCurrentUserQuery } from "@/api";
+import { useGetCompaniesQuery, useGetCurrentUserQuery } from "@/api";
 import { useGlobalSearchParams } from "expo-router";
 import React, {
   createContext,
   PropsWithChildren,
   useMemo,
-  useState,
 } from "react";
 
 type EntitySwitcherUser = NonNullable<
   ReturnType<typeof useGetCurrentUserQuery>["data"]
 >["user"];
 
-type EntitySwitcherCompany = EntitySwitcherUser["companies"][number];
+type EntitySwitcherCompanyOptions = NonNullable<
+  NonNullable<ReturnType<typeof useGetCompaniesQuery>["data"]>["companies"]
+>;
+
+type EntitySwitcherCompany = EntitySwitcherCompanyOptions[number];
 
 type EntitySwitcherSelectedEntity = {
   variant: "user" | "company";
-  id: EntitySwitcherUser["id"] | EntitySwitcherCompany["company"]["id"];
-  name: EntitySwitcherUser["name"] | EntitySwitcherCompany["company"]["name"];
+  id: EntitySwitcherUser["id"] | EntitySwitcherCompany["id"];
+  name: EntitySwitcherUser["name"] | EntitySwitcherCompany["name"];
 };
 
 export const EntitySwitcherContext = createContext<{
   selectedEntity: EntitySwitcherSelectedEntity | null;
   user: EntitySwitcherUser | null;
-  companyOptions: EntitySwitcherUser["companies"];
+  companyOptions: EntitySwitcherCompanyOptions;
 }>({
   selectedEntity: null,
   user: null,
@@ -32,7 +35,9 @@ export const EntitySwitcherContext = createContext<{
 export const EntitySwitcherProvider = ({ children }: PropsWithChildren) => {
   const userQuery = useGetCurrentUserQuery();
   const user = userQuery.data?.user ?? null;
-  const companyOptions = user?.companies ?? [];
+
+  const companiesQuery = useGetCompaniesQuery({ page: 1 });
+  const companyOptions = companiesQuery.data?.companies ?? [];
 
   const { companyId } = useGlobalSearchParams<{ companyId?: string }>();
 
@@ -42,13 +47,13 @@ export const EntitySwitcherProvider = ({ children }: PropsWithChildren) => {
     }
 
     if (companyId) {
-      const match = companyOptions.find((c) => c.company.id === companyId);
+      const match = companyOptions.find((c) => c.id === companyId);
 
       if (match) {
         return {
           variant: "company",
-          id: match.company.id,
-          name: match.company.name,
+          id: match.id,
+          name: match.name,
         };
       }
     }
@@ -60,7 +65,7 @@ export const EntitySwitcherProvider = ({ children }: PropsWithChildren) => {
     <EntitySwitcherContext.Provider
       value={{
         selectedEntity,
-        user: userQuery?.data?.user ?? null,
+        user,
         companyOptions,
       }}
     >

@@ -7,7 +7,8 @@ export const EntitySwitcherAvatar = ({ name }: { name: string }) => {
   const initials = name
     .split(" ")
     .reduce(
-      (total, current, index) => (index <= 3 ? `${total}${current[0]}` : total),
+      (total, current, index) =>
+        index < 3 ? `${total}${current[0].toUpperCase()}` : total,
       "",
     );
 

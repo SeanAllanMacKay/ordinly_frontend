@@ -74,8 +74,9 @@ export const EntitySwitcherMenu = ({
               Companies
             </Typography>
 
-            {companyOptions.map(({ company: { name, id } }) => (
+            {companyOptions.map(({ name, id }) => (
               <Pressable
+                key={id}
                 onPress={
                   selectedEntity?.variant === "company" &&
                   selectedEntity.id === id

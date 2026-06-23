@@ -3,18 +3,24 @@ import { POST, GET, PUT, REQUEST_ACTIONS } from "@/api/requests";
 import { ProjectType, TaskType } from "../types";
 
 export const projectRequests = {
-  listProjects: async ({ queryParams }: { queryParams: { page: number } }) =>
+  listProjects: async ({
+    companyId,
+    queryParams,
+  }: {
+    companyId: string;
+    queryParams: { page: number };
+  }) =>
     await GET<{
       page: number;
       totalPages: number;
       pageParam: number;
       projects: ProjectType[];
     }>({
-      endpoint: `/projects`,
+      endpoint: `/company/${companyId}/projects`,
       queryParams,
     }),
 
-  listProjectPriorities: async () =>
+  listProjectPriorities: async ({ companyId }: { companyId: string }) =>
     await GET<{
       projectPriorities: {
         id: string;
@@ -22,9 +28,9 @@ export const projectRequests = {
         description: string;
         color: string;
       }[];
-    }>({ endpoint: "/projects/priority" }),
+    }>({ endpoint: `/company/${companyId}/projects/priority` }),
 
-  listProjectStatuses: async () =>
+  listProjectStatuses: async ({ companyId }: { companyId: string }) =>
     await GET<{
       projectStatuses: {
         id: string;
@@ -32,16 +38,26 @@ export const projectRequests = {
         description: string;
         color: string;
       }[];
-    }>({ endpoint: "/projects/status" }),
+    }>({ endpoint: `/company/${companyId}/projects/status` }),
 
-  getProject: async ({ projectId }: { projectId: string }) =>
+  getProject: async ({
+    companyId,
+    projectId,
+  }: {
+    companyId: string;
+    projectId: string;
+  }) =>
     await GET<{
       project: ProjectType;
     }>({
-      endpoint: `/projects/${projectId}`,
+      endpoint: `/company/${companyId}/projects/${projectId}`,
     }),
 
-  createProject: async (body: {
+  createProject: async ({
+    companyId,
+    ...body
+  }: {
+    companyId: string;
     name: string;
     description?: string;
     status: string;
@@ -50,16 +66,18 @@ export const projectRequests = {
     dueDate?: Date;
   }) =>
     await POST<{ project: ProjectType }>({
-      endpoint: "/projects",
+      endpoint: `/company/${companyId}/projects`,
       body,
     }),
 
   deleteProject: async () => {},
 
   editProject: async ({
+    companyId,
     projectId,
     ...body
   }: {
+    companyId: string;
     projectId: string;
     name?: string;
     description?: string;
@@ -69,15 +87,17 @@ export const projectRequests = {
     dueDate?: Date;
   }) =>
     await PUT<{ project: ProjectType }>({
-      endpoint: `/projects/${projectId}`,
+      endpoint: `/company/${companyId}/projects/${projectId}`,
       body,
     }),
 
   tasks: {
     listTasks: async ({
+      companyId,
       projectId,
       page,
     }: {
+      companyId: string;
       projectId: string;
       page: number;
     }) =>
@@ -87,16 +107,18 @@ export const projectRequests = {
         pageParam: number;
         tasks: TaskType[];
       }>({
-        endpoint: `/projects/${projectId}/tasks`,
+        endpoint: `/company/${companyId}/projects/${projectId}/tasks`,
         queryParams: {
           page,
         },
       }),
 
     getTask: async ({
+      companyId,
       projectId,
       taskId,
     }: {
+      companyId: string;
       projectId: string;
       taskId: string;
     }) =>
@@ -104,13 +126,15 @@ export const projectRequests = {
         message: string;
         task: TaskType;
       }>({
-        endpoint: `/projects/${projectId}/tasks/${taskId}`,
+        endpoint: `/company/${companyId}/projects/${projectId}/tasks/${taskId}`,
       }),
 
     createTask: async ({
+      companyId,
       projectId,
       ...body
     }: {
+      companyId: string;
       projectId: string;
       name: string;
       description?: string;
@@ -121,15 +145,17 @@ export const projectRequests = {
       checklist?: string[];
     }) =>
       await POST<{ task: TaskType }>({
-        endpoint: `/projects/${projectId}/tasks`,
+        endpoint: `/company/${companyId}/projects/${projectId}/tasks`,
         body,
       }),
 
     editTask: async ({
+      companyId,
       projectId,
       taskId,
       ...body
     }: {
+      companyId: string;
       taskId: string;
       projectId: string;
       name: string;
@@ -140,7 +166,7 @@ export const projectRequests = {
       dueDate?: Date;
     }) =>
       await PUT<{ task: TaskType }>({
-        endpoint: `/projects/${projectId}/tasks/${taskId}`,
+        endpoint: `/company/${companyId}/projects/${projectId}/tasks/${taskId}`,
         body,
       }),
 
@@ -148,125 +174,195 @@ export const projectRequests = {
 
     checklist: {
       updateChecklist: async ({
+        companyId,
         projectId,
         taskId,
         ...body
       }: {
+        companyId: string;
         projectId: string;
         taskId: string;
         items: { id: string; name: string; isComplete: boolean }[];
       }) =>
         await PUT<{ task: TaskType }>({
-          endpoint: `/projects/${projectId}/tasks/${taskId}/checklist`,
+          endpoint: `/company/${companyId}/projects/${projectId}/tasks/${taskId}/checklist`,
           body,
         }),
     },
 
     documents: {
       getDocumentDownloadURL: async ({
+        companyId,
         projectId,
         taskId,
         documentId,
       }: {
+        companyId: string;
         projectId: string;
         taskId: string;
         documentId: string;
       }) =>
         await GET<{ downloadURL: string }>({
-          endpoint: `/projects/${projectId}/tasks/${taskId}/documents/${documentId}/download-url`,
+          endpoint: `/company/${companyId}/projects/${projectId}/tasks/${taskId}/documents/${documentId}/download-url`,
         }),
     },
   },
 };
 
 export const projectRequestKeys = {
-  createProject: () => [REQUEST_ACTIONS.POST, "projects"],
-  listProjects: ({ page }: { page?: number } = {}) => [
+  createProject: ({ companyId }: { companyId?: string } = {}) => [
+    REQUEST_ACTIONS.POST,
+    "company",
+    companyId,
+    "projects",
+  ],
+  listProjects: ({
+    companyId,
+    page,
+  }: { companyId?: string; page?: number } = {}) => [
     REQUEST_ACTIONS.GET,
+    "company",
+    companyId,
     "projects",
     "list",
     ...(page ? [page] : []),
   ],
-  listProjectPriorities: () => [
+  listProjectPriorities: ({ companyId }: { companyId?: string } = {}) => [
     REQUEST_ACTIONS.GET,
+    "company",
+    companyId,
     "projects",
     "priorities",
     "list",
   ],
-  listProjectStatuses: () => [
+  listProjectStatuses: ({ companyId }: { companyId?: string } = {}) => [
     REQUEST_ACTIONS.GET,
+    "company",
+    companyId,
     "projects",
     "status",
     "list",
   ],
-  getProject: ({ projectId }: { projectId: string }) => [
-    REQUEST_ACTIONS.GET,
-    "projects",
+  getProject: ({
+    companyId,
     projectId,
-  ],
-  editproject: ({ projectId }: { projectId: string }) => [
-    REQUEST_ACTIONS.PUT,
-    "projects",
+  }: {
+    companyId?: string;
+    projectId: string;
+  }) => [REQUEST_ACTIONS.GET, "company", companyId, "projects", projectId],
+  editproject: ({
+    companyId,
     projectId,
-  ],
-  deleteProject: ({ projectId }: { projectId: string }) => [
-    REQUEST_ACTIONS.DELETE,
-    "projects",
+  }: {
+    companyId?: string;
+    projectId: string;
+  }) => [REQUEST_ACTIONS.PUT, "company", companyId, "projects", projectId],
+  deleteProject: ({
+    companyId,
     projectId,
-  ],
+  }: {
+    companyId?: string;
+    projectId: string;
+  }) => [REQUEST_ACTIONS.DELETE, "company", companyId, "projects", projectId],
 
   tasks: {
     listTasks: ({
+      companyId,
       projectId,
       queryParams,
     }: {
+      companyId?: string;
       projectId: string;
       queryParams?: { page: number };
     }) => [
       REQUEST_ACTIONS.GET,
+      "company",
+      companyId,
       "projects",
       projectId,
       "tasks",
       "list",
       ...(queryParams ? [queryParams] : []),
     ],
-    getTask: ({ projectId, taskId }: { projectId: string; taskId: string }) => [
+    getTask: ({
+      companyId,
+      projectId,
+      taskId,
+    }: {
+      companyId?: string;
+      projectId: string;
+      taskId: string;
+    }) => [
       REQUEST_ACTIONS.GET,
+      "company",
+      companyId,
       "projects",
       projectId,
       "tasks",
       taskId,
     ],
-    createTask: ({ projectId }: { projectId: string }) => [
+    createTask: ({
+      companyId,
+      projectId,
+    }: {
+      companyId?: string;
+      projectId: string;
+    }) => [
       REQUEST_ACTIONS.POST,
+      "company",
+      companyId,
       "projects",
       projectId,
       "tasks",
     ],
     editTask: ({
+      companyId,
       projectId,
       taskId,
     }: {
+      companyId?: string;
       projectId: string;
       taskId: string;
-    }) => [REQUEST_ACTIONS.PUT, "projects", projectId, "tasks", taskId],
+    }) => [
+      REQUEST_ACTIONS.PUT,
+      "company",
+      companyId,
+      "projects",
+      projectId,
+      "tasks",
+      taskId,
+    ],
     deleteTask: ({
+      companyId,
       projectId,
       taskId,
     }: {
+      companyId?: string;
       projectId: string;
       taskId: string;
-    }) => [REQUEST_ACTIONS.DELETE, "projects", projectId, "tasks", taskId],
+    }) => [
+      REQUEST_ACTIONS.DELETE,
+      "company",
+      companyId,
+      "projects",
+      projectId,
+      "tasks",
+      taskId,
+    ],
 
     checklist: {
       updateChecklist: ({
+        companyId,
         projectId,
         taskId,
       }: {
+        companyId?: string;
         projectId: string;
         taskId: string;
       }) => [
         REQUEST_ACTIONS.PUT,
+        "company",
+        companyId,
         "projects",
         projectId,
         "tasks",

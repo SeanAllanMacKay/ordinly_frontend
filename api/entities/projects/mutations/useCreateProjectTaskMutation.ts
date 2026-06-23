@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { projectRequests, projectRequestKeys } from "../requests";
+import { useActiveCompanyId } from "@/util/navigation/useActiveCompanyId";
 
 export const useCreateProjectTaskMutation = ({
   projectId,
@@ -11,18 +12,25 @@ export const useCreateProjectTaskMutation = ({
   ) => void;
 }) => {
   const queryClient = useQueryClient();
+  const companyId = useActiveCompanyId();
 
   return useMutation({
-    mutationKey: projectRequestKeys.tasks.createTask({ projectId }),
+    mutationKey: projectRequestKeys.tasks.createTask({ companyId, projectId }),
     mutationFn: async (
       props: Omit<
         Parameters<typeof projectRequests.tasks.createTask>[0],
-        "projectId"
+        "projectId" | "companyId"
       >,
-    ) => await projectRequests.tasks.createTask({ ...props, projectId }),
+    ) =>
+      await projectRequests.tasks.createTask({
+        ...props,
+        companyId: companyId!,
+        projectId,
+      }),
     onSuccess: (data) => {
       queryClient.invalidateQueries({
         queryKey: projectRequestKeys.tasks.listTasks({
+          companyId,
           projectId,
         }),
       });

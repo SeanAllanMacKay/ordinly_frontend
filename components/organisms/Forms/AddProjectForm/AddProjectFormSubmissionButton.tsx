@@ -3,6 +3,7 @@ import { useFormContext } from "react-hook-form";
 import { AddProjectFormFieldTypes } from "./types";
 import React, { useContext } from "react";
 import { Button, FormLoadingStateContext } from "@/components/atoms";
+import { useActiveCompanyId } from "@/util/navigation/useActiveCompanyId";
 
 export const AddProjectSubmissionButton = ({
   onSuccess,
@@ -11,6 +12,7 @@ export const AddProjectSubmissionButton = ({
 }) => {
   const addProjectForm = useFormContext<AddProjectFormFieldTypes>();
   const formLoadingState = useContext(FormLoadingStateContext);
+  const companyId = useActiveCompanyId();
 
   const addProjectMutation = useCreateProjectMutation({ onSuccess });
 
@@ -23,7 +25,9 @@ export const AddProjectSubmissionButton = ({
       mode="contained"
       onPress={onSubmit}
       isDisabled={
-        formLoadingState.isLoading || addProjectForm.formState.isSubmitting
+        !companyId ||
+        formLoadingState.isLoading ||
+        addProjectForm.formState.isSubmitting
       }
       isLoading={formLoadingState.isLoading}
       label={"Add project"}
