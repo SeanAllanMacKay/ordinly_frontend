@@ -7,6 +7,19 @@ export const listableDataStyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
   },
+  emptyStateContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
+
+export const loadingStateStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
 
 export const emptyStateStyles = StyleSheet.create({

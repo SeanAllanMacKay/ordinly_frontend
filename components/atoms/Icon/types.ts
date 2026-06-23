@@ -1,6 +1,7 @@
 import { ContentColorProp, SizeProp } from "@/styles/types";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { ComponentProps } from "react";
+import { IconMode } from "./variants";
 
 export type IconNameType =
   | "eye"
@@ -47,7 +48,14 @@ export type IconNameType =
   | "download"
   | "phases"
   | "milestones"
-  | "warning";
+  | "warning"
+  | "logout"
+  | "clock"
+  | "portfolio"
+  | "estimate"
+  | "invoice"
+  | "clients"
+  | "crew";
 
 export type IconMappingType = Record<
   IconNameType,
@@ -60,4 +68,5 @@ export type IconProps = {
   colorOverride?: string;
   size?: SizeProp;
   sizeOverride?: number;
+  mode?: IconMode;
 };

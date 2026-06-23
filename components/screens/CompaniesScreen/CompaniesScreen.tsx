@@ -1,16 +1,15 @@
 import React from "react";
 import { CompaniesDataList, FloatingActionButton, Screen } from "@/components";
-import { routes } from "@/constants/routes";
+import { useDrawers } from "@/util/navigation/useDrawers";
 
 export const CompaniesScreen = () => {
+  const { open } = useDrawers();
+
   return (
     <Screen>
       <CompaniesDataList />
 
-      <FloatingActionButton
-        icon="plus"
-        href={routes.manage.companies.addCompany()}
-      />
+      <FloatingActionButton icon="plus" onPress={() => open("add-company")} />
     </Screen>
   );
 };

@@ -1,8 +1,10 @@
 import { useFormContext } from "react-hook-form";
 import { AddCompanyFormFieldTypes } from "./types";
 import React, { useContext } from "react";
+import { useRouter } from "expo-router";
 import { Button, FormLoadingStateContext } from "@/components/atoms";
 import { useCreateCompanyMutation } from "@/api/entities/companies/mutations";
+import { routes } from "@/constants/routes";
 
 export const AddCompanySubmissionButton = ({
   onSuccess,
@@ -13,8 +15,15 @@ export const AddCompanySubmissionButton = ({
 }) => {
   const addCompanyForm = useFormContext<AddCompanyFormFieldTypes>();
   const formLoadingState = useContext(FormLoadingStateContext);
+  const router = useRouter();
 
-  const addCompanyMutation = useCreateCompanyMutation({ onSuccess });
+  const addCompanyMutation = useCreateCompanyMutation({
+    onSuccess: (data) => {
+      onSuccess?.(data);
+
+      router.push(routes.manage.company.root(data.company.id));
+    },
+  });
 
   const onSubmit = addCompanyForm.handleSubmit((formValues) => {
     addCompanyMutation.mutateAsync(formValues);

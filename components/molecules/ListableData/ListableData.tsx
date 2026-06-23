@@ -8,6 +8,7 @@ import {
 } from "./utils";
 import { View } from "react-native";
 import { EmptyState } from "./EmptyState";
+import { LoadingState } from "./LoadingState";
 import { Toggle } from "@/components/atoms";
 import { listableDataStyles } from "./styles";
 import { FlatList, FlatListProps } from "../FlatList";
@@ -29,8 +30,15 @@ export const ListableData = <ItemType extends Record<string, any>>(
     AsyncStorage.setItem(`${ROOT_DATA_LIST_STORAGE_KEY}-${entity}`, newVariant);
   };
 
-  const { isLoading, isFetching, pagination, items, entity, onPressItem } =
-    props;
+  const {
+    isLoading,
+    isFetching,
+    pagination,
+    items,
+    entity,
+    onPressItem,
+    emptyState,
+  } = props;
 
   const commonProps = {
     isLoading,
@@ -60,8 +68,16 @@ export const ListableData = <ItemType extends Record<string, any>>(
 
   return (
     <>
-      {!items.length && !isLoading ? (
-        <EmptyState entity={entity} />
+      {isLoading ? (
+        <LoadingState />
+      ) : !items.length ? (
+        emptyState ? (
+          <View style={listableDataStyles.emptyStateContainer}>
+            {emptyState}
+          </View>
+        ) : (
+          <EmptyState entity={entity} />
+        )
       ) : (
         <>
           {!isPhone ? (

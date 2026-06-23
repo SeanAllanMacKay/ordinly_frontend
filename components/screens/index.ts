@@ -9,6 +9,7 @@ export * from "./CompanyHomeScreen";
 export * from "./CompanyPeopleScreen";
 export * from "./CompanyProjectsScreen";
 export * from "./CompanySettingsScreen";
+export * from "./DrawerHost";
 export * from "./EditProjectScreen";
 export * from "./EditTaskScreen";
 export * from "./PersonalHomeScreen";

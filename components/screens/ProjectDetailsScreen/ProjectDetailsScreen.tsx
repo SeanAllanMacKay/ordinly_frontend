@@ -16,7 +16,7 @@ export const ProjectDetailsScreen = ({
 
       <FloatingActionButton
         icon="edit"
-        href={routes.manage.projects.editProject(projectId)}
+        href={routes.manage.personal.projects.editProject(projectId)}
       />
     </Screen>
   );

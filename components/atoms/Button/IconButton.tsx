@@ -1,6 +1,7 @@
 import { LayoutChangeEvent, View } from "react-native";
-import { IconButton } from "react-native-paper";
+import { IconButton, useTheme } from "react-native-paper";
 import { buttonStyles } from "./styles";
+import { getIconButtonVariantColors } from "./variants";
 import { useState } from "react";
 import React from "react";
 import { Skeleton } from "../Skeleton";
@@ -11,8 +12,15 @@ export const IconButtonRender = ({
   isLoading,
   isDisabled,
   mode,
+  variant = "primary",
   ...restProps
 }: IconButtonProps) => {
+  const theme = useTheme();
+  const { containerColor, iconColor } = getIconButtonVariantColors(
+    variant,
+    mode ?? "text",
+    theme.colors,
+  );
   const [dimensions, setDimensions] = useState<{
     width: number;
     height: number;
@@ -35,6 +43,8 @@ export const IconButtonRender = ({
             ? (mode as "contained" | "contained-tonal" | "outlined")
             : undefined
         }
+        containerColor={containerColor}
+        iconColor={iconColor}
         loading={isLoading}
         disabled={isLoading || isDisabled}
         {...restProps}

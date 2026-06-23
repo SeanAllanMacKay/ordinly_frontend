@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Button } from "react-native-paper";
+import { Button, useTheme } from "react-native-paper";
 import { ButtonProps } from "./types";
 import { buttonStyles } from "./styles";
+import { getButtonVariantColors } from "./variants";
 import { LayoutChangeEvent, View } from "react-native";
 import { Skeleton } from "../Skeleton";
 
@@ -9,10 +10,17 @@ export const ButtonRender = ({
   icon,
   label,
   mode = "text",
+  variant = "primary",
   isLoading,
   isDisabled,
   ...restProps
 }: Omit<ButtonProps, "href">) => {
+  const theme = useTheme();
+  const { buttonColor, textColor } = getButtonVariantColors(
+    variant,
+    mode,
+    theme.colors,
+  );
   const [dimensions, setDimensions] = useState<{
     width: number;
     height: number;
@@ -31,6 +39,8 @@ export const ButtonRender = ({
       <Button
         icon={icon}
         mode={mode}
+        buttonColor={buttonColor}
+        textColor={textColor}
         loading={isLoading}
         disabled={isLoading || isDisabled}
         contentStyle={buttonStyles.contentContainer}

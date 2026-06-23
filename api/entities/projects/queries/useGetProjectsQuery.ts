@@ -13,7 +13,7 @@ export const useGetProjectsQuery = ({ page }: { page: number }) => {
         ...response,
         projects: response?.projects.map((project) => ({
           ...project,
-          href: routes.manage.projects.projectDetails(project.id),
+          href: routes.manage.personal.projects.projectDetails(project.id),
         })),
       };
     },

@@ -28,5 +28,6 @@ export const cardStyles = StyleSheet.create({
   },
   headerContentContainer: {
     flex: 1,
+    gap: Spacing.sm,
   },
 });

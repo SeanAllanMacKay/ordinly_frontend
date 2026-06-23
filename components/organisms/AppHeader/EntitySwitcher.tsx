@@ -55,7 +55,7 @@ export const EntitySwitcher = () => {
         title={userQuery?.data?.user?.name}
         onPress={
           userQuery?.data?.user?.name !== selectedEntity
-            ? () => changeAccount(routes.manage.root())
+            ? () => changeAccount(routes.manage.personal.root())
             : undefined
         }
       />

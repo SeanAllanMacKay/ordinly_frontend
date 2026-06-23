@@ -10,7 +10,13 @@ import { SplashScreen } from "@/components/screens";
 
 const queryClient = new QueryClient({
   defaultOptions: {
-    queries: { retry: false, refetchOnWindowFocus: false },
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: false,
+      // Treat fetched data as fresh for 5 minutes so navigating back to a
+      // screen serves the cache instead of refetching on every mount.
+      staleTime: 1000 * 60 * 5,
+    },
   },
 });
 

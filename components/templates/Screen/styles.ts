@@ -16,5 +16,6 @@ export const screenStyles = StyleSheet.create({
     flexDirection: "column",
     height: "100%",
     flex: 1,
+    maxWidth: 1200,
   },
 });

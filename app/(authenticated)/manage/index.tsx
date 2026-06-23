@@ -1,15 +1,7 @@
-import React, { useEffect } from "react";
-import { useNavigation } from "expo-router";
-import { PersonalHomeScreen } from "@/components/screens";
+import React from "react";
+import { Redirect } from "expo-router";
+import { routes } from "@/constants/routes";
 
-const Dashboard = () => {
-  const navigation = useNavigation();
-
-  useEffect(() => {
-    navigation.setOptions({ headerTitle: "Dashboard" });
-  }, [navigation]);
-
-  return <PersonalHomeScreen />;
-};
-
-export default Dashboard;
+export default function ManageIndex() {
+  return <Redirect href={routes.manage.personal.root()} />;
+}

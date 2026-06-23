@@ -1,9 +1,10 @@
 import { MD3LightTheme as DefaultTheme } from "react-native-paper";
 import { Colors } from "./Colors";
+import { Spacing } from "./Spacing";
 
 const commonTheme = {
   ...DefaultTheme,
-  roundness: 4,
+  roundness: Spacing.md,
 };
 
 export const lightTheme = {

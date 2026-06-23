@@ -4,7 +4,13 @@ import { IconProps } from "../Icon";
 
 export type MenuButtonProps = Pick<
   ButtonProps,
-  "label" | "icon" | "isLoading" | "isDisabled" | "isSkeleton" | "mode"
+  | "label"
+  | "icon"
+  | "isLoading"
+  | "isDisabled"
+  | "isSkeleton"
+  | "mode"
+  | "variant"
 > & {
   options: {
     label?: string;

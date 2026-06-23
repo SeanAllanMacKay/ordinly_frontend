@@ -22,6 +22,7 @@ export const FloatingActionButton = ({
   onPress?: () => void;
 } & (
   | { href: Href; items?: undefined }
+  | { onPress: () => void; href?: undefined; items?: undefined }
   | {
       items: ({
         icon: IconProps["name"];

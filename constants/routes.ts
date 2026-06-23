@@ -1,66 +1,72 @@
+import { Route } from "expo-router";
+
 export const routeStringMap = {
   manage: "manage",
-  dashboard: "dashboard",
+  personal: "personal",
+  company: "company",
   projects: "projects",
-  addProject: "add-project",
   editProject: "edit-project",
   tasks: "tasks",
   addTask: "add-task",
   addMilestone: "add-milestone",
   addPhase: "add-phase",
   companies: "companies",
-  addCompany: "add-company",
+  clients: "clients",
+  people: "people",
+  settings: "settings",
 } as const;
 
 export const routes = {
   manage: {
     root: () => `/${routeStringMap.manage}` as const,
-    dashboard: {
+    personal: {
       root: () =>
-        `${routes.manage.root()}/${routeStringMap.dashboard}` as const,
-    },
-    projects: {
-      root: () => `${routes.manage.root()}/${routeStringMap.projects}` as const,
-      addProject: () =>
-        `${routes.manage.projects.root()}/${routeStringMap.addProject}` as const,
-      projectDetails: (projectId: string) =>
-        `${routes.manage.projects.root()}/${projectId}` as const,
-      editProject: (projectId: string) =>
-        `${routes.manage.projects.projectDetails(projectId)}/${
-          routeStringMap.editProject
-        }` as const,
-      tasks: {
-        root: (projectId: string) =>
-          `${routes.manage.projects.projectDetails(projectId)}/${
-            routeStringMap.tasks
+        `${routes.manage.root()}/${routeStringMap.personal}` as const,
+      projects: {
+        root: () =>
+          `${routes.manage.personal.root()}/${routeStringMap.projects}` as const,
+        projectDetails: (projectId: string) =>
+          `${routes.manage.personal.projects.root()}/${projectId}` as const,
+        editProject: (projectId: string) =>
+          `${routes.manage.personal.projects.projectDetails(projectId)}/${
+            routeStringMap.editProject
           }` as const,
-        details: (projectId: string, taskId: string) =>
-          `${routes.manage.projects.tasks.root(projectId)}/${taskId}`,
-        addTask: (projectId: string) =>
-          `${routes.manage.projects.tasks.root(projectId)}/${
-            routeStringMap.addTask
-          }` as const,
-        addMilestone: (projectId: string) =>
-          `${routes.manage.projects.tasks.root(projectId)}/${
-            routeStringMap.addMilestone
-          }` as const,
-        addPhase: (projectId: string) =>
-          `${routes.manage.projects.tasks.root(projectId)}/${
-            routeStringMap.addPhase
-          }` as const,
-        editTask: (projectId: string, taskId: string) =>
-          `${routes.manage.projects.tasks.details(projectId, taskId)}/edit-task`,
+        tasks: {
+          root: (projectId: string) =>
+            `${routes.manage.personal.projects.projectDetails(projectId)}/${
+              routeStringMap.tasks
+            }` as const,
+          details: (projectId: string, taskId: string) =>
+            `${routes.manage.personal.projects.tasks.root(projectId)}/${taskId}`,
+          addTask: (projectId: string) =>
+            `${routes.manage.personal.projects.tasks.root(projectId)}/${
+              routeStringMap.addTask
+            }` as const,
+          addMilestone: (projectId: string) =>
+            `${routes.manage.personal.projects.tasks.root(projectId)}/${
+              routeStringMap.addMilestone
+            }` as const,
+          addPhase: (projectId: string) =>
+            `${routes.manage.personal.projects.tasks.root(projectId)}/${
+              routeStringMap.addPhase
+            }` as const,
+          editTask: (projectId: string, taskId: string) =>
+            `${routes.manage.personal.projects.tasks.details(
+              projectId,
+              taskId,
+            )}/edit-task`,
+        },
       },
-    },
-    companies: {
-      root: () =>
-        `${routes.manage.root()}/${routeStringMap.companies}` as const,
-      addCompany: () =>
-        `${routes.manage.companies.root()}/${routeStringMap.addCompany}` as const,
+      companies: {
+        root: () =>
+          `${routes.manage.personal.root()}/${
+            routeStringMap.companies
+          }` as Route,
+      },
     },
     company: {
       root: (companyId: string) =>
-        `${routes.manage.root()}/company/${companyId}` as const,
+        `${routes.manage.root()}/${routeStringMap.company}/${companyId}` as Route,
     },
   },
 };

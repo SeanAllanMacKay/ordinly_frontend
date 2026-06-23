@@ -1,17 +1,16 @@
 import React from "react";
 import { FloatingActionButton, Screen } from "@/components";
 import { ProjectsDataList } from "@/components/organisms/DataLists/ProjectsDataList";
-import { routes } from "@/constants/routes";
+import { useDrawers } from "@/util/navigation/useDrawers";
 
 export const PersonalProjectsScreen = () => {
+  const { open } = useDrawers();
+
   return (
     <Screen>
       <ProjectsDataList />
 
-      <FloatingActionButton
-        icon="plus"
-        href={routes.manage.projects.addProject()}
-      />
+      <FloatingActionButton icon="plus" onPress={() => open("add-project")} />
     </Screen>
   );
 };

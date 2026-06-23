@@ -10,6 +10,7 @@ export const MenuButton = ({
   icon,
   options,
   mode,
+  variant,
   isLoading,
   isDisabled,
   isSkeleton,
@@ -36,6 +37,7 @@ export const MenuButton = ({
           icon={icon}
           onPress={onOpen}
           mode={mode}
+          variant={variant}
           isLoading={isLoading}
           isDisabled={isDisabled}
           isSkeleton={isSkeleton}

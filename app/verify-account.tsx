@@ -14,7 +14,7 @@ const VerifyAccount = () => {
   }, [navigation]);
 
   const onRedirect = (hasUser: boolean) => {
-    router.replace(hasUser ? routes.manage.root() : "/login");
+    router.replace(hasUser ? routes.manage.personal.root() : "/login");
   };
 
   return <VerifyAccountScreen code={code} onRedirect={onRedirect} />;

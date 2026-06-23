@@ -29,39 +29,41 @@ export const LeftTabs = ({ tabs, onPress }: TabsProps) => {
 
       <EntitySwitcher />
 
-      {tabs.map(({ title, isFocused, icon, routeName }) => (
-        <Pressable
-          onPress={() => {
-            onPress(routeName);
-          }}
-          disabled={isFocused}
-          key={`left-tab-${routeName}`}
-        >
-          <View
-            key={`root-navigation-tab-${title}`}
-            style={[
-              leftTabsStyles.tabContainer,
-              isFocused && { backgroundColor: theme.colors.primaryContainer },
-              { minWidth: isDesktop ? 240 : 160 },
-            ]}
+      <View>
+        {tabs.map(({ title, isFocused, icon, routeName }) => (
+          <Pressable
+            onPress={() => {
+              onPress(routeName);
+            }}
+            disabled={isFocused}
+            key={`left-tab-${routeName}`}
           >
-            <Icon
-              name={icon}
-              size="lg"
-              color={isFocused ? "onPrimaryContainer" : "onBackground"}
-            />
-
-            <View style={leftTabsStyles.labelContainer}>
-              <Typography
+            <View
+              key={`root-navigation-tab-${title}`}
+              style={[
+                leftTabsStyles.tabContainer,
+                isFocused && { backgroundColor: theme.colors.primaryContainer },
+                { minWidth: isDesktop ? 240 : 160 },
+              ]}
+            >
+              <Icon
+                name={icon}
+                size="lg"
                 color={isFocused ? "onPrimaryContainer" : "onBackground"}
-                size="xs"
-              >
-                {title}
-              </Typography>
+              />
+
+              <View style={leftTabsStyles.labelContainer}>
+                <Typography
+                  color={isFocused ? "onPrimaryContainer" : "onBackground"}
+                  size="xs"
+                >
+                  {title}
+                </Typography>
+              </View>
             </View>
-          </View>
-        </Pressable>
-      ))}
+          </Pressable>
+        ))}
+      </View>
     </View>
   );
 };

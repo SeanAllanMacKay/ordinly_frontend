@@ -25,7 +25,7 @@ export const useGetProjectTasksQuery = ({
         ...response,
         tasks: response?.tasks.map((task) => ({
           ...task,
-          href: routes.manage.projects.tasks.details(projectId, task.id),
+          href: routes.manage.personal.projects.tasks.details(projectId, task.id),
         })),
       };
     },

@@ -21,7 +21,9 @@ export const EnrichedTextInput = ({
   isLoading,
   index,
 }: EnrichedTextInputProps) => {
-  const containerRef = useRef(null);
+  // react-native-web resolves this Pressable ref to a DOM node at runtime,
+  // though it is typed as a View — `any` lets us call DOM `.contains`.
+  const containerRef = useRef<any>(null);
   const [isOpen, setIsOpen] = useState(false);
   const theme = useTheme();
 
@@ -36,31 +38,26 @@ export const EnrichedTextInput = ({
     },
   });
 
+  const hasContent = !!editor && !editor.isEmpty;
+
   const themedStyles = useEnrichedTextInputTheme({
     isFocused: isOpen,
-    hasContent: !!initialValue,
+    hasContent,
   });
 
-  const isNormalText = !editor.isActive("heading");
+  const isNormalText = !!editor && !editor.isActive("heading");
 
   useEffect(() => {
-    const handleEvent = (event) => {
-      if (!isOpen) {
-        return;
-      }
+    if (!isOpen) {
+      return;
+    }
 
-      if (!containerRef.current?.contains(event.target)) {
-        const isClickingAnotherInput =
-          event.target.tagName === "INPUT" ||
-          event.target.tagName === "TEXTAREA" ||
-          event.target.closest('[contenteditable="true"]');
+    const handleEvent = (event: MouseEvent) => {
+      const target = event.target as Node | null;
 
-        if (!isClickingAnotherInput) {
-          setIsOpen(false);
-          editor.commands.blur();
-        } else {
-          setIsOpen(false);
-        }
+      if (target && !containerRef.current?.contains(target)) {
+        setIsOpen(false);
+        editor?.commands.blur();
       }
     };
 
@@ -69,7 +66,7 @@ export const EnrichedTextInput = ({
     return () => {
       document.removeEventListener("mousedown", handleEvent);
     };
-  }, []);
+  }, [isOpen, editor]);
 
   return isLoading ? (
     <TextInput value="" isLoading={true} index={index} isEditable={false} />
@@ -95,7 +92,7 @@ export const EnrichedTextInput = ({
           ]}
         >
           <Typography
-            size={isOpen || initialValue ? "xs" : "md"}
+            size={isOpen || hasContent ? "xs" : "md"}
             color={
               isOpen ? "primary" : theme.dark ? "onSurfaceVariant" : "outline"
             }

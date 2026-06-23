@@ -1,5 +1,6 @@
 import React from "react";
 import { View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   useNavigationBuilder,
   TabRouter,
@@ -7,10 +8,12 @@ import {
 } from "@react-navigation/native";
 import { withLayoutContext } from "expo-router";
 import { useIsPhone } from "@/styles/hooks/useIsPhone";
+import { Spacing } from "@/styles";
 import { RootNavigationProps } from "./types";
 import { rootNavigationStyles } from "./styles";
 import { LeftTabs } from "./LeftTabs";
 import { BottomTabs } from "./BottomTabs";
+import { EntitySwitcher } from "./EntitySwitcher";
 import { VerificationBanner } from "../../VerificationBanner";
 import { ThemeScope } from "@/styles/ThemeScope";
 
@@ -20,6 +23,7 @@ export const ResponsiveNavigator = ({
   screenOptions,
 }: RootNavigationProps) => {
   const isPhone = useIsPhone();
+  const insets = useSafeAreaInsets();
 
   const { state, navigation, descriptors, NavigationContent } =
     useNavigationBuilder(TabRouter, {
@@ -65,6 +69,17 @@ export const ResponsiveNavigator = ({
         <View style={rootNavigationStyles.content}>
           <VerificationBanner />
           {descriptor.render()}
+
+          {isPhone ? (
+            <View
+              style={[
+                rootNavigationStyles.mobileEntitySwitcher,
+                { top: insets.top + Spacing.sm },
+              ]}
+            >
+              <EntitySwitcher />
+            </View>
+          ) : null}
         </View>
 
         {isPhone ? <BottomTabs tabs={tabs} onPress={onPress} /> : null}

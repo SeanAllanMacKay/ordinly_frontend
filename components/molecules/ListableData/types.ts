@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { PaginationProps } from "../Pagination/types";
 import { TableProps } from "../Table";
 import { FlatListProps } from "../FlatList";
@@ -18,6 +19,7 @@ export type EmptyStateProps = {
 };
 
 export type ListableDataProps<ItemType> = EmptyStateProps &
+  { emptyState?: ReactNode } &
   (
     | ({ overrideDisplayType?: undefined } & TableProps<ItemType> &
         FlatListProps<ItemType>)

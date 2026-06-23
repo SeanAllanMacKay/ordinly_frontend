@@ -19,15 +19,21 @@ export const rootNavigationStyles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+  mobileEntitySwitcher: {
+    position: "absolute",
+    right: Spacing.md,
+    zIndex: 10,
+  },
 });
 
 export const leftTabsStyles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    alignItems: "stretch",
     height: "100%",
     padding: Spacing.md,
+    gap: Spacing.md,
   },
   tabContainer: {
     display: "flex",

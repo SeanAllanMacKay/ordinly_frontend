@@ -1,30 +1,11 @@
-import React, { useMemo } from "react";
-import { useSegments } from "expo-router";
-import { RootNavigation } from "@/components/organisms/Navigation/RootNavigation";
+import React from "react";
+import { Stack } from "expo-router";
 
-export default function TabLayout() {
-  const segments = useSegments();
-
-  const isCompanyView = useMemo(() => segments.includes("company"), [segments]);
-
-  return !isCompanyView ? (
-    <RootNavigation>
-      <RootNavigation.Screen
-        name="index"
-        options={{ title: "Home", icon: "home" }}
-      />
-      <RootNavigation.Screen
-        name="projects"
-        options={{ title: "Projects", icon: "projects" }}
-      />
-      <RootNavigation.Screen
-        name="companies"
-        options={{ title: "Companies", icon: "companies" }}
-      />
-      <RootNavigation.Screen
-        name="account"
-        options={{ title: "Account", icon: "account" }}
-      />
-    </RootNavigation>
-  ) : null;
+export default function ManageLayout() {
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="personal" />
+      <Stack.Screen name="company" />
+    </Stack>
+  );
 }

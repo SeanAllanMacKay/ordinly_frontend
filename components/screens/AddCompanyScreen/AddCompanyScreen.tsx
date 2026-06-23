@@ -8,10 +8,7 @@ import {
   Modal,
   Typography,
 } from "@/components";
-import {
-  useGetCurrentUserQuery,
-  useResendVerificationMutation,
-} from "@/api";
+import { useGetCurrentUserQuery, useResendVerificationMutation } from "@/api";
 import { AddCompanyScreenProps } from "./types";
 
 export const AddCompanyScreen = ({ onClose }: AddCompanyScreenProps) => {
@@ -40,6 +37,7 @@ export const AddCompanyScreen = ({ onClose }: AddCompanyScreenProps) => {
             isDisabled={resendMutation.isPending || resendMutation.isSuccess}
           />,
         ]}
+        onClose={onClose}
       >
         <Typography>
           Your account must be verified to create a company.

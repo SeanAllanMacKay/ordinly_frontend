@@ -30,6 +30,7 @@ export type ButtonProps = Omit<
   isDisabled?: boolean;
   isSkeleton?: boolean;
   mode?: "text" | "contained" | "contained-tonal" | "outlined";
+  variant?: "primary" | "secondary" | "danger";
   href?: Href;
 };
 

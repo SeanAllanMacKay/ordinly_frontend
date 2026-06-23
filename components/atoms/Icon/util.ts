@@ -45,6 +45,13 @@ export const iconMapping: IconMappingType = {
   phases: "view-timeline",
   milestones: "flag",
   warning: "warning",
+  logout: "logout",
+  clock: "schedule",
+  portfolio: "work",
+  estimate: "request-quote",
+  invoice: "receipt-long",
+  clients: "groups",
+  crew: "engineering",
 } as const;
 
 export const getMaterialIconFromName = (name: keyof typeof iconMapping) => {

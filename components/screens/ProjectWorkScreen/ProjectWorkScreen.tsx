@@ -18,17 +18,17 @@ export const ProjectWorkScreen = ({ projectId }: ProjectWorkScreenProps) => {
           {
             label: "Add phase",
             icon: "phases",
-            href: routes.manage.projects.tasks.addPhase(projectId),
+            href: routes.manage.personal.projects.tasks.addPhase(projectId),
           },
           {
             label: "Add milestone",
             icon: "milestones",
-            href: routes.manage.projects.tasks.addMilestone(projectId),
+            href: routes.manage.personal.projects.tasks.addMilestone(projectId),
           },
           {
             label: "Add task",
             icon: "tasks",
-            href: routes.manage.projects.tasks.addTask(projectId),
+            href: routes.manage.personal.projects.tasks.addTask(projectId),
           },
         ]}
       />

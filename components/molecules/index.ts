@@ -1,5 +1,3 @@
-export * from "./EmptyState";
-export * from "./DataList";
 export * from "./Table";
 export * from "./FlatList";
 export * from "./ScreenHeader";

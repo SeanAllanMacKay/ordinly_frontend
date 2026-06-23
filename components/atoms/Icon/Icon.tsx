@@ -1,10 +1,13 @@
 import React from "react";
 
+import { View } from "react-native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { FontSizes } from "@/styles/FontSizes";
 import { IconProps } from "./types";
 import { useTheme } from "react-native-paper";
 import { iconMapping } from "./util";
+import { getIconModeColors } from "./variants";
+import { iconStyles } from "./styles";
 
 export const Icon = ({
   name,
@@ -12,20 +15,42 @@ export const Icon = ({
   sizeOverride,
   color = "onBackground",
   colorOverride,
+  mode = "text",
 }: IconProps) => {
   const theme = useTheme();
 
-  return iconMapping[name] ? (
+  const glyphSize = sizeOverride ?? FontSizes[size];
+  const iconName = iconMapping[name] ?? "question-mark";
+  const { containerColor, iconColor, borderColor } = getIconModeColors(
+    color,
+    mode,
+    theme.colors,
+  );
+
+  const glyph = (
     <MaterialIcons
-      size={sizeOverride ?? FontSizes[size]}
-      color={colorOverride ?? theme.colors[color]}
-      name={iconMapping[name]}
+      size={glyphSize}
+      color={colorOverride ?? iconColor}
+      name={iconName}
     />
-  ) : (
-    <MaterialIcons
-      size={sizeOverride ?? FontSizes[size]}
-      color={colorOverride ?? theme.colors[color]}
-      name="question-mark"
-    />
+  );
+
+  if (mode === "text") {
+    return glyph;
+  }
+
+  return (
+    <View
+      style={[
+        iconStyles.container,
+        {
+          backgroundColor: containerColor,
+          borderColor,
+          borderWidth: borderColor ? 1 : 0,
+        },
+      ]}
+    >
+      {glyph}
+    </View>
   );
 };

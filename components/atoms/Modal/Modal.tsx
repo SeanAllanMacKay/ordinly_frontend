@@ -26,7 +26,13 @@ import { useTheme } from "react-native-paper";
 import { ModalProps } from "./types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export const Modal = ({ title, isVisible, children, actions }: ModalProps) => {
+export const Modal = ({
+  title,
+  isVisible,
+  children,
+  actions,
+  onClose,
+}: ModalProps) => {
   const theme = useTheme();
   const { height, width } = useWindowDimensions();
   const { top } = useSafeAreaInsets();
@@ -44,9 +50,7 @@ export const Modal = ({ title, isVisible, children, actions }: ModalProps) => {
             { backgroundColor: theme.dark ? "#ffffff30" : "#00000030" },
           ]}
         >
-          <Link href={"../"} asChild>
-            <Pressable style={StyleSheet.absoluteFill} />
-          </Link>
+          <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
 
           <Animated.View
             layout={LinearTransition.damping(20).stiffness(150)}
@@ -78,7 +82,7 @@ export const Modal = ({ title, isVisible, children, actions }: ModalProps) => {
                 <View />
               )}
 
-              <Button icon="close" href="../" />
+              <Button icon="close" onPress={onClose} />
             </View>
 
             <ScrollView style={modalStyles.contentContainer}>

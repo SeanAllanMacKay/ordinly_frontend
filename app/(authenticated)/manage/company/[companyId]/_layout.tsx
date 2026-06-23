@@ -1,48 +1,29 @@
-import React, { useCallback } from "react";
-import { ResponsiveNavigation, type TabType } from "@/components";
-import { useRouter } from "expo-router";
-import { routes } from "@/constants/routes";
+import React from "react";
+import { RootNavigation } from "@/components/organisms/Navigation/RootNavigation";
 
-const COMPANY_MANAGE_TABS: TabType[] = [
-  {
-    name: "index",
-    icon: "chart-bar-horizontal",
-    title: "Dashboard",
-    index: "index",
-  },
-  {
-    name: "clients",
-    icon: "blueprint",
-    title: "Clients",
-    index: "clients",
-  },
-  {
-    name: "projects",
-    icon: "presentation-chart",
-    title: "Projects",
-    index: "projects",
-  },
-  {
-    name: "people",
-    icon: "identification-card",
-    title: "People",
-    index: "people",
-  },
-  {
-    name: "settings",
-    icon: "gear",
-    title: "Settings",
-    index: "settings",
-  },
-];
-
-export default function TabLayout() {
-  const router = useRouter();
-
-  const onBack = useCallback(
-    () => router.push(routes.manage.companies.root()),
-    [router]
+export default function CompanyLayout() {
+  return (
+    <RootNavigation>
+      <RootNavigation.Screen
+        name="index"
+        options={{ title: "Dashboard", icon: "chart-bar-horizontal" }}
+      />
+      <RootNavigation.Screen
+        name="clients"
+        options={{ title: "Clients", icon: "blueprint" }}
+      />
+      <RootNavigation.Screen
+        name="projects"
+        options={{ title: "Projects", icon: "presentation-chart" }}
+      />
+      <RootNavigation.Screen
+        name="people"
+        options={{ title: "People", icon: "identification-card" }}
+      />
+      <RootNavigation.Screen
+        name="settings"
+        options={{ title: "Settings", icon: "gear" }}
+      />
+    </RootNavigation>
   );
-
-  return <ResponsiveNavigation tabs={COMPANY_MANAGE_TABS} onBack={onBack} />;
 }
