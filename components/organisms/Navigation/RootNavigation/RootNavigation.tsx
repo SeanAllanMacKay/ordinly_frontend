@@ -1,11 +1,13 @@
 import React from "react";
-import { View } from "react-native";
+import { useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   useNavigationBuilder,
   TabRouter,
   createNavigatorFactory,
+  ParamListBase,
 } from "@react-navigation/native";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { withLayoutContext } from "expo-router";
 import { useIsPhone } from "@/styles/hooks/useIsPhone";
 import { Spacing } from "@/styles";
@@ -24,6 +26,7 @@ export const ResponsiveNavigator = ({
 }: RootNavigationProps) => {
   const isPhone = useIsPhone();
   const insets = useSafeAreaInsets();
+  const { width, height } = useWindowDimensions();
 
   const { state, navigation, descriptors, NavigationContent } =
     useNavigationBuilder(TabRouter, {
@@ -68,6 +71,13 @@ export const ResponsiveNavigator = ({
 
         <View style={rootNavigationStyles.content}>
           <VerificationBanner />
+          {descriptor.options.header?.({
+            layout: { width, height },
+            route: descriptor.route,
+            navigation:
+              descriptor.navigation as unknown as BottomTabNavigationProp<ParamListBase>,
+            options: descriptor.options,
+          })}
           {descriptor.render()}
 
           {isPhone ? (

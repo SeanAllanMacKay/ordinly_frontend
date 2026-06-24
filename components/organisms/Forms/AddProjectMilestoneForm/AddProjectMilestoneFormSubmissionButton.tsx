@@ -21,7 +21,7 @@ export const AddProjectMilestoneSubmissionButton = ({
   });
 
   const onSubmit = addProjectTaskForm.handleSubmit((formValues) => {
-    addProjectTaskMutation.mutateAsync(formValues);
+    addProjectTaskMutation.mutateAsync({ ...formValues, type: "milestone" });
   });
 
   return (

@@ -10,12 +10,12 @@ export type ListableDataType<ItemType> = {
   isFetching?: boolean;
   items: ItemType[];
   onPressItem?: (item: ItemType) => void;
-  pagination: PaginationProps;
+  pagination?: PaginationProps;
   refetch?: () => void;
 };
 
 export type EmptyStateProps = {
-  entity: "projects" | "tasks" | "companies";
+  entity: "projects" | "tasks" | "companies" | "roles" | "teams" | "workers";
 };
 
 export type ListableDataProps<ItemType> = EmptyStateProps &

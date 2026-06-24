@@ -2,8 +2,19 @@ import React from "react";
 import { View } from "react-native";
 import { useTheme } from "react-native-paper";
 import { Icon, Typography } from "@/components";
+import { IconNameType } from "@/components/atoms/Icon/types";
 import { emptyStateStyles } from "./styles";
 import { EmptyStateProps } from "./types";
+
+// Not every entity name is itself a valid icon name, so map to a sensible icon.
+const entityIcons: Record<EmptyStateProps["entity"], IconNameType> = {
+  projects: "projects",
+  tasks: "tasks",
+  companies: "companies",
+  roles: "identification-card",
+  teams: "crew",
+  workers: "account",
+};
 
 export const EmptyState = ({ entity }: EmptyStateProps) => {
   const theme = useTheme();
@@ -16,7 +27,7 @@ export const EmptyState = ({ entity }: EmptyStateProps) => {
           { backgroundColor: theme.colors.primaryContainer },
         ]}
       >
-        <Icon name={entity} size="xxl" color="onPrimaryContainer" />
+        <Icon name={entityIcons[entity]} size="xxl" color="onPrimaryContainer" />
       </View>
 
       <Typography size="lg" emphasis="high" color="onBackground">

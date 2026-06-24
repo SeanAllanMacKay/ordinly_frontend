@@ -30,6 +30,7 @@ export const AddProjectTaskSubmissionButton = ({
     addProjectTaskMutation.mutateAsync({
       ...formValues,
       checklist: formattedChecklist,
+      type: "task",
     });
   });
 

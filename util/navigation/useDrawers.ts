@@ -3,7 +3,15 @@ import { useRouter } from "expo-router";
 // Drawer modals are driven by an appended `?drawer=<name>` query param rather
 // than dedicated routes, so they open in place over the current screen from
 // anywhere in the app. Add a name here for each modal wired into DrawerHost.
-export type DrawerName = "add-company" | "add-project";
+export type DrawerName =
+  | "add-company"
+  | "add-project"
+  | "add-role"
+  | "add-team"
+  | "add-worker"
+  | "add-task"
+  | "add-milestone"
+  | "add-phase";
 
 export const useDrawers = () => {
   const router = useRouter();

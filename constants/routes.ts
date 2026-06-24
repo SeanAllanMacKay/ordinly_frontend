@@ -7,12 +7,12 @@ export const routeStringMap = {
   projects: "projects",
   editProject: "edit-project",
   tasks: "tasks",
-  addTask: "add-task",
-  addMilestone: "add-milestone",
-  addPhase: "add-phase",
   companies: "companies",
   clients: "clients",
   people: "people",
+  roles: "roles",
+  teams: "teams",
+  workers: "workers",
   settings: "settings",
 } as const;
 
@@ -38,18 +38,6 @@ export const routes = {
             }` as const,
           details: (projectId: string, taskId: string) =>
             `${routes.manage.personal.projects.tasks.root(projectId)}/${taskId}`,
-          addTask: (projectId: string) =>
-            `${routes.manage.personal.projects.tasks.root(projectId)}/${
-              routeStringMap.addTask
-            }` as const,
-          addMilestone: (projectId: string) =>
-            `${routes.manage.personal.projects.tasks.root(projectId)}/${
-              routeStringMap.addMilestone
-            }` as const,
-          addPhase: (projectId: string) =>
-            `${routes.manage.personal.projects.tasks.root(projectId)}/${
-              routeStringMap.addPhase
-            }` as const,
           editTask: (projectId: string, taskId: string) =>
             `${routes.manage.personal.projects.tasks.details(
               projectId,
@@ -67,6 +55,24 @@ export const routes = {
     company: {
       root: (companyId: string) =>
         `${routes.manage.root()}/${routeStringMap.company}/${companyId}` as Route,
+      people: {
+        root: (companyId: string) =>
+          `${routes.manage.company.root(companyId)}/${
+            routeStringMap.people
+          }` as Route,
+        roles: (companyId: string) =>
+          `${routes.manage.company.people.root(companyId)}/${
+            routeStringMap.roles
+          }` as Route,
+        teams: (companyId: string) =>
+          `${routes.manage.company.people.root(companyId)}/${
+            routeStringMap.teams
+          }` as Route,
+        workers: (companyId: string) =>
+          `${routes.manage.company.people.root(companyId)}/${
+            routeStringMap.workers
+          }` as Route,
+      },
     },
   },
 };

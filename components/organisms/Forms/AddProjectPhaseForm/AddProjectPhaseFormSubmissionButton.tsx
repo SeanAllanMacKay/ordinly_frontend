@@ -30,6 +30,7 @@ export const AddProjectPhaseSubmissionButton = ({
     addProjectPhaseMutation.mutateAsync({
       ...formValues,
       checklist: formattedChecklist,
+      type: "phase",
     });
   });
 

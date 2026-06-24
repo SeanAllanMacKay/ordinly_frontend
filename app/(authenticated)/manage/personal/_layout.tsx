@@ -1,5 +1,6 @@
 import React from "react";
 import { RootNavigation } from "@/components/organisms/Navigation/RootNavigation";
+import { ScreenHeader } from "@/components";
 
 export default function PersonalLayout() {
   return (
@@ -11,17 +12,29 @@ export default function PersonalLayout() {
 
       <RootNavigation.Screen
         name="projects"
-        options={{ title: "Projects", icon: "projects" }}
+        options={{
+          title: "Projects",
+          icon: "projects",
+          header: () => <ScreenHeader title="Projects" />,
+        }}
       />
 
       <RootNavigation.Screen
         name="companies"
-        options={{ title: "Companies", icon: "companies" }}
+        options={{
+          title: "Companies",
+          icon: "companies",
+          header: () => <ScreenHeader title="Companies" />,
+        }}
       />
 
       <RootNavigation.Screen
         name="account"
-        options={{ title: "Account", icon: "account" }}
+        options={{
+          title: "Account",
+          icon: "account",
+          header: () => <ScreenHeader title="Account" />,
+        }}
       />
     </RootNavigation>
   );

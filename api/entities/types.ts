@@ -195,6 +195,8 @@ export type ChecklistItemType = {
   documents?: DocumentType[];
 } & AssigneeFieldTypes;
 
+export type ProjectTaskKind = "task" | "milestone" | "phase";
+
 export type TaskType = {
   id: string;
   name: string;
@@ -282,18 +284,98 @@ export type CompanyPermissionType = PermissionType<
 
 export type RoleType = {
   id: string;
+  // System roles are global and not owned by a company.
+  companyId: string | null;
   name: string;
   description: string;
-  permissions: CompanyPermissionType[];
+} & CreatedFieldTypes &
+  DeletedFieldTypes;
+
+// A company member's nested user differs from the global UserType: it carries
+// email/isVerified instead of a profile picture.
+export type MemberUserType = {
+  id: string;
+  name: string;
+  email: string;
+  isVerified: boolean;
+};
+
+export type WorkerRoleAssignmentType = {
+  id: string;
+  roleId: string;
+  assignedDate: Date;
+  role: RoleType;
 };
 
 export type WorkerType = {
   id: string;
-  user: UserType;
-  roles: RoleType[];
-  permissions: CompanyPermissionType[];
-} & AssignedFieldTypes &
+  userId: string;
+  companyId: string;
+  assignedDate: Date;
+  user: MemberUserType;
+  roles: WorkerRoleAssignmentType[];
+};
+
+export type TeamMemberType = {
+  id: string;
+  teamId: string;
+  userId: string;
+  assignedDate: Date;
+  user: MemberUserType;
+};
+
+export type TeamType = {
+  id: string;
+  companyId: string;
+  name: string;
+  description: string;
+  members: TeamMemberType[];
+} & CreatedFieldTypes &
   DeletedFieldTypes;
+
+export type InvitationType = {
+  id: string;
+  companyId: string;
+  email: string;
+  roleId: string;
+  status: "pending" | "accepted" | "revoked" | "declined";
+  token: string;
+  invitedDate: Date;
+  invitedBy: string;
+  respondedDate?: Date;
+  role: RoleType;
+};
+
+// ⚠ Exact shape of a permission level is unconfirmed with the BE.
+export type PermissionLevelType = {
+  id: string;
+  value: number;
+  name?: string;
+};
+
+// Item shape returned by GET /roles/:roleId/permissions. levelId/levelValue
+// reflect the role's current level (lowest level when assigned is false).
+export type RolePermissionType = {
+  id: string;
+  key: string;
+  name: string;
+  description: string;
+  category: string;
+  levels: PermissionLevelType[];
+  levelId: string;
+  levelValue: number;
+  assigned: boolean;
+};
+
+// Item shape returned by GET /roles/catalog.
+export type PermissionCatalogEntryType = {
+  id: string;
+  key: string;
+  name: string;
+  description: string;
+  category: string;
+  levels: PermissionLevelType[];
+};
 
 export type FolderType = {
   id: string;

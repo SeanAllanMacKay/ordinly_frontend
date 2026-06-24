@@ -6,6 +6,7 @@ export * from "./Text";
 export * from "./TextInput";
 export * from "./Tag";
 export * from "./Select";
+export * from "./MultiSelect";
 export * from "./Card";
 export * from "./FloatingActionButton";
 export * from "./Modal";

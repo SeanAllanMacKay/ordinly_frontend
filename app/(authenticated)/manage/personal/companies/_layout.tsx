@@ -2,7 +2,6 @@ import React from "react";
 import { Stack } from "expo-router";
 import { useWindowDimensions } from "react-native";
 import { DESKTOP_WIDTH } from "@/constants/breakpoints";
-import { ScreenHeader } from "@/components";
 
 export default function Companies() {
   const { width } = useWindowDimensions();
@@ -11,10 +10,7 @@ export default function Companies() {
 
   return (
     <Stack>
-      <Stack.Screen
-        name="index"
-        options={{ header: () => <ScreenHeader title="Companies" /> }}
-      />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
     </Stack>
   );
 }

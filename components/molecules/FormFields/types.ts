@@ -5,6 +5,7 @@ import {
   FormFieldProps,
 } from "@/components/atoms/Form/types";
 import { SelectProps } from "@/components/atoms/Select/types";
+import { MultiSelectProps } from "@/components/atoms/MultiSelect/types";
 import { TextInputProps } from "@/components/atoms/TextInput/types";
 
 export type TextInputFieldProps = Omit<
@@ -24,6 +25,12 @@ export type SelectInputFieldProps<ValueType> = Omit<
   "component" | "isLoading"
 > &
   Pick<SelectProps<ValueType>, "options">;
+
+export type MultiSelectInputFieldProps<ValueType> = Omit<
+  FormFieldProps,
+  "component" | "isLoading"
+> &
+  Pick<MultiSelectProps<ValueType>, "options">;
 
 export type CheckboxInputFieldProps = Omit<
   FormFieldProps,

@@ -12,6 +12,10 @@ import {
 import { IconProps } from "@/components/atoms";
 import { LayoutChangeEvent } from "react-native";
 
+// `header?: (props: BottomTabHeaderProps) => React.ReactNode` is inherited from
+// BottomTabNavigationOptions and is rendered by ResponsiveNavigator above the
+// active screen's content — available both per-Screen (`options`) and
+// navigator-wide (`screenOptions`).
 type NavigationOptions = BottomTabNavigationOptions & {
   icon: IconProps["name"];
 };

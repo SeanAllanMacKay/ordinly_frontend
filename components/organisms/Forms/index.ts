@@ -5,3 +5,6 @@ export * from "./AddProjectTaskForm";
 export * from "./AddCompanyForm";
 export * from "./AddProjectMilestoneForm";
 export * from "./AddProjectPhaseForm";
+export * from "./AddRoleForm";
+export * from "./AddTeamForm";
+export * from "./AddWorkerForm";

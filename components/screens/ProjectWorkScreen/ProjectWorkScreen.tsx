@@ -4,10 +4,12 @@ import {
   ProjectTasksDataList,
   Screen,
 } from "@/components";
-import { routes } from "@/constants/routes";
+import { useDrawers } from "@/util/navigation/useDrawers";
 import { ProjectWorkScreenProps } from "./types";
 
-export const ProjectWorkScreen = ({ projectId }: ProjectWorkScreenProps) => {
+export const ProjectWorkScreen = (_props: ProjectWorkScreenProps) => {
+  const { open } = useDrawers();
+
   return (
     <Screen>
       <ProjectTasksDataList />
@@ -18,17 +20,17 @@ export const ProjectWorkScreen = ({ projectId }: ProjectWorkScreenProps) => {
           {
             label: "Add phase",
             icon: "phases",
-            href: routes.manage.personal.projects.tasks.addPhase(projectId),
+            onPress: () => open("add-phase"),
           },
           {
             label: "Add milestone",
             icon: "milestones",
-            href: routes.manage.personal.projects.tasks.addMilestone(projectId),
+            onPress: () => open("add-milestone"),
           },
           {
             label: "Add task",
             icon: "tasks",
-            href: routes.manage.personal.projects.tasks.addTask(projectId),
+            onPress: () => open("add-task"),
           },
         ]}
       />

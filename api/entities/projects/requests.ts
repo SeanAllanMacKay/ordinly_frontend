@@ -1,6 +1,6 @@
 import { POST, GET, PUT, REQUEST_ACTIONS } from "@/api/requests";
 
-import { ProjectType, TaskType } from "../types";
+import { ProjectTaskKind, ProjectType, TaskType } from "../types";
 
 export const projectRequests = {
   listProjects: async ({
@@ -136,6 +136,7 @@ export const projectRequests = {
     }: {
       companyId: string;
       projectId: string;
+      type: ProjectTaskKind;
       name: string;
       description?: string;
       status?: string;

@@ -19,33 +19,6 @@ export default function ProjectIdRouter() {
           animation: "none",
         }}
       />
-
-      <Stack.Screen
-        name="add-task"
-        options={{
-          title: "Add task",
-          presentation: "transparentModal",
-          animation: "none",
-        }}
-      />
-
-      <Stack.Screen
-        name="add-milestone"
-        options={{
-          title: "Add milestone",
-          presentation: "transparentModal",
-          animation: "none",
-        }}
-      />
-
-      <Stack.Screen
-        name="add-phase"
-        options={{
-          title: "Add phase",
-          presentation: "transparentModal",
-          animation: "none",
-        }}
-      />
     </Stack>
   );
 }

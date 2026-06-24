@@ -1,20 +1,12 @@
 import React from "react";
-import { Stack } from "expo-router";
-import { useWindowDimensions } from "react-native";
-import { DESKTOP_WIDTH } from "@/constants/breakpoints";
-import { ScreenHeader } from "@/components";
+import { TabNavigation } from "@/components";
 
-export default function TabLayout() {
-  const { width } = useWindowDimensions();
-
-  const isDesktop = width > DESKTOP_WIDTH;
-
+export default function PeopleRouter() {
   return (
-    <Stack>
-      <Stack.Screen
-        name="index"
-        options={{ header: () => <ScreenHeader title="People" /> }}
-      />
-    </Stack>
+    <TabNavigation>
+      <TabNavigation.Screen name="roles" options={{ title: "Roles" }} />
+      <TabNavigation.Screen name="teams" options={{ title: "Teams" }} />
+      <TabNavigation.Screen name="workers" options={{ title: "Workers" }} />
+    </TabNavigation>
   );
 }
