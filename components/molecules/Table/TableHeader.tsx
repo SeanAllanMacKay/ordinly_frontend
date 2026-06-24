@@ -14,7 +14,7 @@ export const TableHeader = <ListItem,>({
           numeric={variant === "number"}
           key={`table-column-${label}`}
         >
-          <Typography>{label}</Typography>
+          <Typography color="onSurfaceDisabled">{label}</Typography>
         </DataTable.Title>
       ))}
     </DataTable.Header>

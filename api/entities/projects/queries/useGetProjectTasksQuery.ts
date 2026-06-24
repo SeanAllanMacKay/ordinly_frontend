@@ -1,7 +1,7 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { projectRequestKeys, projectRequests } from "../requests";
-import { routes } from "@/constants/routes";
 import { useActiveCompanyId } from "@/util/navigation/useActiveCompanyId";
+import { useProjectRoutes } from "@/util/navigation/useProjectRoutes";
 
 export const useGetProjectTasksQuery = ({
   projectId,
@@ -11,6 +11,7 @@ export const useGetProjectTasksQuery = ({
   page: number;
 }) => {
   const companyId = useActiveCompanyId();
+  const projectRoutes = useProjectRoutes();
 
   return useQuery({
     queryKey: projectRequestKeys.tasks.listTasks({
@@ -31,7 +32,7 @@ export const useGetProjectTasksQuery = ({
         ...response,
         tasks: response?.tasks.map((task) => ({
           ...task,
-          href: routes.manage.personal.projects.tasks.details(projectId, task.id),
+          href: projectRoutes.tasks.details(projectId, task.id),
         })),
       };
     },

@@ -1,4 +1,4 @@
-import { GET, POST, REQUEST_ACTIONS } from "@/api/requests";
+import { GET, POST, DELETE, REQUEST_ACTIONS } from "@/api/requests";
 import { CompanyType } from "../types";
 
 export const companyRequests = {
@@ -17,6 +17,8 @@ export const companyRequests = {
       endpoint: `/company`,
       queryParams,
     }),
+  deleteCompany: async ({ companyId }: { companyId: string }) =>
+    await DELETE({ endpoint: `/company/${companyId}` }),
 };
 
 export const companyRequestKeys = {
@@ -26,5 +28,10 @@ export const companyRequestKeys = {
     "companies",
     "list",
     page,
+  ],
+  deleteCompany: ({ companyId }: { companyId?: string }) => [
+    REQUEST_ACTIONS.DELETE,
+    "companies",
+    companyId,
   ],
 };

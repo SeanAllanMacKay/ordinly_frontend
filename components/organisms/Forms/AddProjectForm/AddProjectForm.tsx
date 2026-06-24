@@ -3,13 +3,15 @@ import { useFormContext, useWatch } from "react-hook-form";
 import { AddProjectFormFieldTypes } from "./types";
 import { requiredValidator } from "@/util/validation";
 import {
-  AddressInput,
-  DateInputField,
-  EnrichedTextInputField,
-  ProjectStatusInput,
-  TextInputField,
+  DateFieldInput,
+  EnrichedTextFieldInput,
+  TextFieldInput,
 } from "@/components/molecules";
-import { ProjectPriorityInput } from "@/components/molecules/FormFields/ProjectPriorityInput";
+import {
+  LocationDataFieldInput,
+  ProjectPriorityDataFieldInput,
+  ProjectStatusDataFieldInput,
+} from "@/components/organisms/DataFieldInputs";
 import { View } from "react-native";
 import { Spacing } from "@/styles";
 
@@ -21,24 +23,24 @@ export const AddProjectForm = () => {
 
   return (
     <>
-      <TextInputField
+      <TextFieldInput
         name="name"
         label="Name"
         validation={{ requiredValidator }}
       />
 
       <View style={{ display: "flex", flexDirection: "row", gap: Spacing.md }}>
-        <ProjectPriorityInput name="priority" />
-        <ProjectStatusInput name="status" />
+        <ProjectPriorityDataFieldInput name="priority" />
+        <ProjectStatusDataFieldInput name="status" />
       </View>
 
-      <EnrichedTextInputField name="description" label="Description" />
+      <EnrichedTextFieldInput name="description" label="Description" />
 
-      <DateInputField name="startDate" label="Start date" max={max} />
+      <DateFieldInput name="startDate" label="Start date" max={max} />
 
-      <DateInputField name="dueDate" label="Due date" min={min} />
+      <DateFieldInput name="dueDate" label="Due date" min={min} />
 
-      <AddressInput name="location" label="Address" />
+      <LocationDataFieldInput name="location" label="Address" />
     </>
   );
 };

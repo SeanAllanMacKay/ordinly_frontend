@@ -1,20 +1,20 @@
 import React from "react";
 import { View } from "react-native";
 import { requiredValidator } from "@/util/validation";
-import { TextInputField } from "@/components/molecules";
+import { TextFieldInput } from "@/components/molecules";
 import { Typography } from "@/components/atoms";
 import { Spacing } from "@/styles";
 
 export const AddRoleForm = () => {
   return (
     <>
-      <TextInputField
+      <TextFieldInput
         name="name"
         label="Name"
         validation={{ requiredValidator }}
       />
 
-      <TextInputField name="description" label="Description (optional)" />
+      <TextFieldInput name="description" label="Description (optional)" />
 
       {/* Permissions are stubbed for now — wiring them up is a larger effort
           that depends on the backend permission model. */}

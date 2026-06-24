@@ -3,10 +3,10 @@ import React from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { requiredValidator } from "@/util/validation";
 import {
-  DateInputField,
-  EnrichedTextInputField,
-  SelectInputField,
-  TextInputField,
+  DateFieldInput,
+  EnrichedTextFieldInput,
+  SelectFieldInput,
+  TextFieldInput,
 } from "@/components/molecules";
 import { EditProjectTaskFormFieldTypes } from "./types";
 
@@ -26,29 +26,29 @@ export const EditProjectTaskDetailsInputs = () => {
 
   return (
     <>
-      <TextInputField
+      <TextFieldInput
         name="name"
         label="Name"
         validation={{ requiredValidator }}
       />
 
-      <EnrichedTextInputField name="description" label="Description" />
+      <EnrichedTextFieldInput name="description" label="Description" />
 
-      <SelectInputField
+      <SelectFieldInput
         name="status"
         label="Status"
         options={taskStatuses.data ?? []}
       />
 
-      <SelectInputField
+      <SelectFieldInput
         name="priority"
         label="Priority"
         options={taskPriorities.data ?? []}
       />
 
-      <DateInputField name="startDate" label="Start date" max={max} />
+      <DateFieldInput name="startDate" label="Start date" max={max} />
 
-      <DateInputField name="dueDate" label="Due date" min={min} />
+      <DateFieldInput name="dueDate" label="Due date" min={min} />
     </>
   );
 };

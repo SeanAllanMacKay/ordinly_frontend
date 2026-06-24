@@ -5,6 +5,8 @@ import { useRouter } from "expo-router";
 // anywhere in the app. Add a name here for each modal wired into DrawerHost.
 export type DrawerName =
   | "add-company"
+  | "add-client"
+  | "add-contact"
   | "add-project"
   | "add-role"
   | "add-team"

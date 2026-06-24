@@ -8,13 +8,16 @@ import { useFormContext, useWatch } from "react-hook-form";
 import { EditProjectFormFieldTypes } from "./types";
 import { requiredValidator } from "@/util/validation";
 import {
-  AddressInput,
-  DateInputField,
-  EnrichedTextInputField,
-  formatAddressDisplayValue,
-  SelectInputField,
-  TextInputField,
+  DateFieldInput,
+  EnrichedTextFieldInput,
+  SelectFieldInput,
+  TextFieldInput,
 } from "@/components/molecules";
+import {
+  LocationDataFieldInput,
+  formatLocationDisplayValue,
+  mapFeatureToLocationValue,
+} from "@/components/organisms/DataFieldInputs";
 
 export const EditProjectForm = ({ projectId }: { projectId: string }) => {
   const editProjectForm = useFormContext<EditProjectFormFieldTypes>();
@@ -25,66 +28,42 @@ export const EditProjectForm = ({ projectId }: { projectId: string }) => {
   const min = useWatch({ control: editProjectForm.control, name: "startDate" });
   const max = useWatch({ control: editProjectForm.control, name: "dueDate" });
 
+  const storedLocation = projectQuery?.data?.project?.locations?.[0];
+
   return (
     <>
-      <TextInputField
+      <TextFieldInput
         name="name"
         label="Name"
         validation={{ requiredValidator }}
       />
 
-      <EnrichedTextInputField name="description" label="Description" />
+      <EnrichedTextFieldInput name="description" label="Description" />
 
-      <SelectInputField
+      <SelectFieldInput
         name="status"
         label="Status"
         options={projectStatuses.data ?? []}
       />
 
-      <SelectInputField
+      <SelectFieldInput
         name="priority"
         label="Priority"
         options={projectPriorities.data ?? []}
       />
 
-      <DateInputField name="startDate" label="Start date" max={max} />
+      <DateFieldInput name="startDate" label="Start date" max={max} />
 
-      <DateInputField name="dueDate" label="Due date" min={min} />
+      <DateFieldInput name="dueDate" label="Due date" min={min} />
 
-      <AddressInput
+      <LocationDataFieldInput
         name="location"
         label="Address"
-        defaultDisplayValue={formatAddressDisplayValue({
-          country:
-            projectQuery?.data?.project?.locations?.[0]?.context?.country
-              .name ??
-            (projectQuery?.data?.project?.locations?.[0]?.feature_type ===
-            "country"
-              ? name
-              : undefined),
-          region:
-            projectQuery?.data?.project?.locations?.[0]?.context?.region
-              ?.name ??
-            (projectQuery?.data?.project?.locations?.[0]?.feature_type ===
-            "region"
-              ? name
-              : undefined),
-          city:
-            projectQuery?.data?.project?.locations?.[0]?.context?.place?.name ??
-            (projectQuery?.data?.project?.locations?.[0]?.feature_type ===
-            "place"
-              ? name
-              : undefined),
-          postalCode:
-            projectQuery?.data?.project?.locations?.[0]?.context?.postcode
-              ?.name ??
-            (projectQuery?.data?.project?.locations?.[0]?.eature_type ===
-            "postcode"
-              ? name
-              : undefined),
-          address:
-            projectQuery?.data?.project?.locations?.[0]?.context?.address?.name,
-        })}
+        defaultDisplayValue={
+          storedLocation
+            ? formatLocationDisplayValue(mapFeatureToLocationValue(storedLocation))
+            : undefined
+        }
       />
     </>
   );

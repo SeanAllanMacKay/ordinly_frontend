@@ -1,11 +1,15 @@
 import React from "react";
-import { Text } from "react-native";
-import { Screen } from "@/components";
+import { ClientsDataList, FloatingActionButton, Screen } from "@/components";
+import { useDrawers } from "@/util/navigation/useDrawers";
 
 export const CompanyClientsScreen = () => {
+  const { open } = useDrawers();
+
   return (
     <Screen>
-      <Text>Company clients</Text>
+      <ClientsDataList />
+
+      <FloatingActionButton icon="plus" onPress={() => open("add-client")} />
     </Screen>
   );
 };

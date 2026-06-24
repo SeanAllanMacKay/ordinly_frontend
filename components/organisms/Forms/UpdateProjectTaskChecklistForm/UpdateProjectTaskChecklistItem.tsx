@@ -1,5 +1,5 @@
-import { Button, Checkbox } from "@/components/atoms";
-import { CheckboxInputField, TextInputField } from "@/components/molecules";
+import { Button } from "@/components/atoms";
+import { CheckboxFieldInput, TextFieldInput } from "@/components/molecules";
 import { Spacing } from "@/styles";
 import React from "react";
 import { View } from "react-native";
@@ -19,10 +19,10 @@ export const UpdateProjectTaskChecklistItem = ({
         alignItems: "center",
       }}
     >
-      <CheckboxInputField name={`${name}.isComplete`} />
+      <CheckboxFieldInput name={`${name}.isComplete`} />
 
       <View style={{ flex: 1 }}>
-        <TextInputField
+        <TextFieldInput
           name={`${name}.name`}
           type="stealth"
           isAutoFocus={!item.id ? true : false}

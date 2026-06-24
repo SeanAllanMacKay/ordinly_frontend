@@ -1,34 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { ListableDataDisplayType, ListableDataProps } from "./types";
+import React from "react";
+import { ListableDataProps } from "./types";
 import { useIsPhone } from "@/styles/hooks/useIsPhone";
-import {
-  getFlatListProps,
-  getTableProps,
-  isListableDataDisplayType,
-} from "./utils";
+import { getFlatListProps, getTableProps } from "./utils";
 import { View } from "react-native";
 import { EmptyState } from "./EmptyState";
 import { LoadingState } from "./LoadingState";
-import { Toggle } from "@/components/atoms";
 import { listableDataStyles } from "./styles";
 import { FlatList, FlatListProps } from "../FlatList";
 import { Table, TableProps } from "../Table";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-const ROOT_DATA_LIST_STORAGE_KEY = "data-list-display";
+import { useWidth } from "@/styles";
 
 export const ListableData = <ItemType extends Record<string, any>>(
   props: ListableDataProps<ItemType>,
 ) => {
-  const isPhone = useIsPhone();
-  const [variant, setVariant] = useState<ListableDataDisplayType | undefined>();
-
-  const toggleVariant = () => {
-    const newVariant = variant === "table" ? "cards" : "table";
-    setVariant(newVariant);
-
-    AsyncStorage.setItem(`${ROOT_DATA_LIST_STORAGE_KEY}-${entity}`, newVariant);
-  };
+  const isWide = useWidth(700);
+  const variant = isWide ? "table" : "cards";
 
   const {
     isLoading,
@@ -51,21 +37,6 @@ export const ListableData = <ItemType extends Record<string, any>>(
   const tableProps = getTableProps(props);
   const flatListProps = getFlatListProps(props);
 
-  // Set variant to specified preference for table
-  useEffect(() => {
-    (async () => {
-      if (!isPhone) {
-        const value = await AsyncStorage.getItem(
-          `${ROOT_DATA_LIST_STORAGE_KEY}-${entity}`,
-        );
-
-        setVariant(isListableDataDisplayType(value) ? value : "cards");
-      } else {
-        setVariant("cards");
-      }
-    })();
-  }, [isPhone]);
-
   return (
     <>
       {isLoading ? (
@@ -80,15 +51,6 @@ export const ListableData = <ItemType extends Record<string, any>>(
         )
       ) : (
         <>
-          {!isPhone ? (
-            <View style={listableDataStyles.toggleContainer}>
-              <Toggle
-                value={variant === "table"}
-                onChange={() => toggleVariant()}
-              />
-            </View>
-          ) : null}
-
           {variant === "cards" ? (
             <FlatList<ItemType>
               {...commonProps}

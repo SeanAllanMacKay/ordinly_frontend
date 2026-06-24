@@ -1,7 +1,7 @@
 import React from "react";
 import { useGetRolesQuery } from "@/api";
 import { emailValidator, requiredValidator } from "@/util/validation";
-import { SelectInputField, TextInputField } from "@/components/molecules";
+import { SelectFieldInput, TextFieldInput } from "@/components/molecules";
 
 export const AddWorkerForm = () => {
   const roles = useGetRolesQuery();
@@ -14,13 +14,13 @@ export const AddWorkerForm = () => {
 
   return (
     <>
-      <TextInputField
+      <TextFieldInput
         name="email"
         label="Email"
         validation={{ emailValidator }}
       />
 
-      <SelectInputField
+      <SelectFieldInput
         name="roleId"
         label="Role"
         options={roleOptions}

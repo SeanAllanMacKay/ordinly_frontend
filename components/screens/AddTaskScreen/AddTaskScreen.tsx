@@ -25,11 +25,9 @@ export const AddTaskScreen = ({ projectId, onClose }: AddTaskScreenProps) => {
         isVisible={true}
         onClose={onClose}
       >
-        <Accordion defaultOpenSections={["details"]}>
-          <Accordion.Item id="details" label="Details">
-            <AddProjectTaskDetailsInputs />
-          </Accordion.Item>
+        <AddProjectTaskDetailsInputs />
 
+        <Accordion>
           <Accordion.Item id="checklist" label="Checklist">
             <AddProjectTaskChecklistInputs />
           </Accordion.Item>

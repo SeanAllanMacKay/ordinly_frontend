@@ -1,4 +1,4 @@
-import { FileInputProps } from "@/components/atoms/FileInput";
+import { FileInputProps } from "@/components/atoms";
 
 export type AddProjectMilestoneFormFieldTypes = {
   name: string;

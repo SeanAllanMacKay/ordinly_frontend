@@ -3,12 +3,14 @@ import { useFormContext, useWatch } from "react-hook-form";
 import { AddProjectTaskFormFieldTypes } from "./types";
 import { requiredValidator } from "@/util/validation";
 import {
-  DateInputField,
-  EnrichedTextInputField,
-  TaskPriorityInput,
-  TaskStatusInput,
-  TextInputField,
+  DateFieldInput,
+  EnrichedTextFieldInput,
+  TextFieldInput,
 } from "@/components/molecules";
+import {
+  TaskPriorityDataFieldInput,
+  TaskStatusDataFieldInput,
+} from "@/components/organisms/DataFieldInputs";
 import { View } from "react-native";
 import { Spacing } from "@/styles";
 
@@ -26,22 +28,22 @@ export const AddProjectTaskDetailsInputs = () => {
 
   return (
     <>
-      <TextInputField
+      <TextFieldInput
         name="name"
         label="Name"
         validation={{ requiredValidator }}
       />
 
       <View style={{ display: "flex", flexDirection: "row", gap: Spacing.md }}>
-        <TaskPriorityInput name="priority" />
-        <TaskStatusInput name="status" />
+        <TaskPriorityDataFieldInput name="priority" />
+        <TaskStatusDataFieldInput name="status" />
       </View>
 
-      <EnrichedTextInputField name="description" label="Description" />
+      <EnrichedTextFieldInput name="description" label="Description" />
 
-      <DateInputField name="startDate" label="Start date" max={max} />
+      <DateFieldInput name="startDate" label="Start date" max={max} />
 
-      <DateInputField name="dueDate" label="Due date" min={min} />
+      <DateFieldInput name="dueDate" label="Due date" min={min} />
     </>
   );
 };

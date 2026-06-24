@@ -35,7 +35,7 @@ export const CompanyWorkersList = () => {
       }}
       // cards
       keyExtractor={(item: WorkerRow) => String(item.id)}
-      card={({ item }: { item: WorkerRow }) => (
+      item={({ item }: { item: WorkerRow }) => (
         <Card title={item.name} subtitle={item.roles} />
       )}
       // table

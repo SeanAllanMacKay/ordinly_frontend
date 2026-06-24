@@ -25,7 +25,7 @@ export const CompanyRolesList = () => {
       emptyState={<CompanyRolesListEmptyState />}
       // cards
       keyExtractor={(item: RoleRow) => String(item.id)}
-      card={({ item }: { item: RoleRow }) => (
+      item={({ item }: { item: RoleRow }) => (
         <Card title={item.name} subtitle={item.description} />
       )}
       // table

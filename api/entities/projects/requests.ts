@@ -1,4 +1,4 @@
-import { POST, GET, PUT, REQUEST_ACTIONS } from "@/api/requests";
+import { POST, GET, PUT, DELETE, REQUEST_ACTIONS } from "@/api/requests";
 
 import { ProjectTaskKind, ProjectType, TaskType } from "../types";
 
@@ -70,7 +70,14 @@ export const projectRequests = {
       body,
     }),
 
-  deleteProject: async () => {},
+  deleteProject: async ({
+    companyId,
+    projectId,
+  }: {
+    companyId: string;
+    projectId: string;
+  }) =>
+    await DELETE({ endpoint: `/company/${companyId}/projects/${projectId}` }),
 
   editProject: async ({
     companyId,
@@ -171,7 +178,18 @@ export const projectRequests = {
         body,
       }),
 
-    deleteTask: async () => {},
+    deleteTask: async ({
+      companyId,
+      projectId,
+      taskId,
+    }: {
+      companyId: string;
+      projectId: string;
+      taskId: string;
+    }) =>
+      await DELETE({
+        endpoint: `/company/${companyId}/projects/${projectId}/tasks/${taskId}`,
+      }),
 
     checklist: {
       updateChecklist: async ({

@@ -1,7 +1,7 @@
 import React from "react";
-import { TextInputFieldArray } from "@/components/molecules";
+import { TextFieldInputArray } from "@/components/molecules";
 import { useWatch } from "react-hook-form";
 
 export const AddProjectTaskChecklistInputs = () => {
-  return <TextInputFieldArray name="checklist" />;
+  return <TextFieldInputArray name="checklist" />;
 };

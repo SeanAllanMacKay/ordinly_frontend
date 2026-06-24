@@ -1,7 +1,7 @@
 import React from "react";
 import { useGetWorkersQuery } from "@/api";
 import { requiredValidator } from "@/util/validation";
-import { MultiSelectInputField, TextInputField } from "@/components/molecules";
+import { MultiSelectFieldInput, TextFieldInput } from "@/components/molecules";
 
 export const AddTeamForm = () => {
   const workers = useGetWorkersQuery({ page: 1 });
@@ -14,15 +14,15 @@ export const AddTeamForm = () => {
 
   return (
     <>
-      <TextInputField
+      <TextFieldInput
         name="name"
         label="Name"
         validation={{ requiredValidator }}
       />
 
-      <TextInputField name="description" label="Description" />
+      <TextFieldInput name="description" label="Description" />
 
-      <MultiSelectInputField
+      <MultiSelectFieldInput
         name="memberIds"
         label="Members"
         options={memberOptions}

@@ -55,6 +55,45 @@ export const routes = {
     company: {
       root: (companyId: string) =>
         `${routes.manage.root()}/${routeStringMap.company}/${companyId}` as Route,
+      projects: {
+        root: (companyId: string) =>
+          `${routes.manage.company.root(companyId)}/${
+            routeStringMap.projects
+          }` as Route,
+        projectDetails: (companyId: string, projectId: string) =>
+          `${routes.manage.company.projects.root(companyId)}/${projectId}` as Route,
+        editProject: (companyId: string, projectId: string) =>
+          `${routes.manage.company.projects.projectDetails(
+            companyId,
+            projectId,
+          )}/${routeStringMap.editProject}` as Route,
+        tasks: {
+          root: (companyId: string, projectId: string) =>
+            `${routes.manage.company.projects.projectDetails(
+              companyId,
+              projectId,
+            )}/${routeStringMap.tasks}` as Route,
+          details: (companyId: string, projectId: string, taskId: string) =>
+            `${routes.manage.company.projects.tasks.root(
+              companyId,
+              projectId,
+            )}/${taskId}` as Route,
+          editTask: (companyId: string, projectId: string, taskId: string) =>
+            `${routes.manage.company.projects.tasks.details(
+              companyId,
+              projectId,
+              taskId,
+            )}/edit-task` as Route,
+        },
+      },
+      clients: {
+        root: (companyId: string) =>
+          `${routes.manage.company.root(companyId)}/${
+            routeStringMap.clients
+          }` as Route,
+        clientDetails: (companyId: string, clientId: string) =>
+          `${routes.manage.company.clients.root(companyId)}/${clientId}` as Route,
+      },
       people: {
         root: (companyId: string) =>
           `${routes.manage.company.root(companyId)}/${

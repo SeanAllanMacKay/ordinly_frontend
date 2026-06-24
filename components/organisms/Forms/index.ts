@@ -2,6 +2,8 @@ export * from "./LoginForm";
 export * from "./SignUpForm";
 export * from "./AddProjectForm";
 export * from "./AddProjectTaskForm";
+export * from "./AddClientForm";
+export * from "./AddContactForm";
 export * from "./AddCompanyForm";
 export * from "./AddProjectMilestoneForm";
 export * from "./AddProjectPhaseForm";

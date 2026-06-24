@@ -1,5 +1,5 @@
 import React from "react";
-import { CompanyCard } from "@/components";
+import { CompanyListItem } from "@/components";
 import { CompanyType, useGetCompaniesQuery } from "@/api";
 import { usePagination } from "@/components/molecules/Pagination/utils";
 import { ListableData } from "@/components/molecules/ListableData";
@@ -25,7 +25,7 @@ export const CompaniesDataList = () => {
       }}
       // cards
       keyExtractor={(item: CompanyType) => String(item.id)}
-      card={CompanyCard}
+      item={CompanyListItem}
       // table
       columns={[{ label: "Name", key: "name" }]}
     />

@@ -1,17 +1,33 @@
 import React from "react";
-import { Stack } from "expo-router";
-import { useWindowDimensions } from "react-native";
-import { DESKTOP_WIDTH } from "@/constants/breakpoints";
+import { useGetClientQuery } from "@/api";
 import { ScreenHeader } from "@/components";
+import { Stack } from "expo-router";
+
+const ClientHeader = ({ clientId }: { clientId?: string }) => {
+  const { data: { client } = {} } = useGetClientQuery({
+    clientId: clientId!,
+  });
+
+  return <ScreenHeader title={client?.name} withBackButton />;
+};
 
 export default function TabLayout() {
-  const { width } = useWindowDimensions();
-
-  const isDesktop = width > DESKTOP_WIDTH;
-
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
+
+      <Stack.Screen
+        name="[clientId]"
+        options={({ route: { params } }) => ({
+          header: () => (
+            <ClientHeader
+              clientId={(params as { clientId?: string })?.clientId}
+            />
+          ),
+          presentation: "transparentModal",
+          animation: "slide_from_right",
+        })}
+      />
     </Stack>
   );
 }

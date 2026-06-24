@@ -20,6 +20,7 @@ export const FormField = <
   label,
   component,
   validation,
+  defaultValue,
 }: FormFieldProps<TFieldValues, TName>) => {
   const { control, getValues } = useFormContext<TFieldValues>();
   const formLoadingState = useContext(FormLoadingStateContext);
@@ -36,6 +37,7 @@ export const FormField = <
     name,
     control,
     rules: { validate: validation },
+    defaultValue,
   });
 
   return (

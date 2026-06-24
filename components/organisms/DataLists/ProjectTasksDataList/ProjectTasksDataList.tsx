@@ -4,7 +4,7 @@ import { TaskType } from "@/api/entities/projects/requests";
 import { usePagination } from "@/components/molecules/Pagination/utils";
 import { ListableData } from "@/components/molecules/ListableData";
 import { useGlobalSearchParams } from "expo-router";
-import { TaskCard } from "../../Cards/TaskCard";
+import { TaskListItem } from "@/components";
 
 export const ProjectTasksDataList = () => {
   const { projectId } = useGlobalSearchParams<{ projectId: string }>();
@@ -26,7 +26,7 @@ export const ProjectTasksDataList = () => {
       }}
       // cards
       keyExtractor={(item: TaskType) => String(item.id)}
-      card={TaskCard}
+      item={TaskListItem}
       // table
       columns={[
         { label: "Name", key: "name" },

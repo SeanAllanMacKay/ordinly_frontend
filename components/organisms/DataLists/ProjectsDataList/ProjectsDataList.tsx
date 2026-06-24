@@ -1,5 +1,5 @@
 import React from "react";
-import { ProjectCard } from "@/components";
+import { ProjectListItem } from "@/components";
 import { useGetProjectsQuery } from "@/api";
 import { ProjectType } from "@/api/entities/projects/requests";
 import { usePagination } from "@/components/molecules/Pagination/utils";
@@ -26,7 +26,7 @@ export const ProjectsDataList = () => {
       }}
       // cards
       keyExtractor={(item: ProjectType) => String(item.id)}
-      card={ProjectCard}
+      item={ProjectListItem}
       // table
       columns={[
         { label: "Name", key: "name" },

@@ -8,14 +8,14 @@ import { useForm } from "react-hook-form";
 import { AddProjectFormFieldTypes } from "./types";
 
 export const AddProjectProvider = ({ children }: PropsWithChildren) => {
-  const addProjectForm = useForm<AddProjectFormFieldTypes>({
-    mode: "all",
-  });
-
   const projectStatuses = useGetProjectStatusesQuery();
   const projectPriorities = useGetProjectPrioritiesQuery();
 
   const isLoading = projectPriorities.isLoading || projectStatuses.isLoading;
+
+  const addProjectForm = useForm<AddProjectFormFieldTypes>({
+    mode: "all",
+  });
 
   return (
     <Form form={addProjectForm} isLoading={isLoading}>

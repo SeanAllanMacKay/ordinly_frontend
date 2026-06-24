@@ -1,6 +1,6 @@
 import React from "react";
-import { TextInputFieldArray } from "@/components/molecules";
+import { TextFieldInputArray } from "@/components/molecules";
 
 export const AddProjectPhaseChecklistInputs = () => {
-  return <TextInputFieldArray name="checklist" />;
+  return <TextFieldInputArray name="checklist" />;
 };

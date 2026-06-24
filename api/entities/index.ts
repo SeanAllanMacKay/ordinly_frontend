@@ -1,5 +1,6 @@
 export * from "./users";
 export * from "./projects";
+export * from "./clients";
 export * from "./tasks";
 export * from "./types";
 export * from "./metadata";

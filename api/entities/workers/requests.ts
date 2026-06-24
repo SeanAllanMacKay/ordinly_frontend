@@ -46,7 +46,8 @@ export const workerRequests = {
       body,
     }),
 
-  // Replaces the member's entire role set ([] clears all).
+  // Replaces the member's entire role set ([] clears all). The body carries the
+  // membership row id (memberId), distinct from the userId in the path.
   updateWorkerRoles: async ({
     companyId,
     userId,
@@ -54,6 +55,7 @@ export const workerRequests = {
   }: {
     companyId: string;
     userId: string;
+    memberId: string;
     roleIds: string[];
   }) =>
     await PUT({

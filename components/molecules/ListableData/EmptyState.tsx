@@ -14,6 +14,8 @@ const entityIcons: Record<EmptyStateProps["entity"], IconNameType> = {
   roles: "identification-card",
   teams: "crew",
   workers: "account",
+  clients: "blueprint",
+  contacts: "identification-card",
 };
 
 export const EmptyState = ({ entity }: EmptyStateProps) => {

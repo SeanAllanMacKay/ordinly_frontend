@@ -37,6 +37,7 @@ export type FormFieldProps<
     Validate<PathValue<TFieldValues, TName>, TFieldValues>
   >;
   isLoading?: boolean;
+  defaultValue?: PathValue<TFieldValues, TName>;
 };
 
 export type FormFieldArrayProps<

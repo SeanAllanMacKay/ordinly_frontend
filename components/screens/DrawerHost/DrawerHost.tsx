@@ -1,7 +1,9 @@
 import React from "react";
 import { useGlobalSearchParams } from "expo-router";
 import { useDrawers } from "@/util/navigation/useDrawers";
+import { AddClientScreen } from "../AddClientScreen";
 import { AddCompanyScreen } from "../AddCompanyScreen";
+import { AddContactScreen } from "../AddContactScreen";
 import { AddMilestoneScreen } from "../AddMilestoneScreen";
 import { AddPhaseScreen } from "../AddPhaseScreen";
 import { AddProjectScreen } from "../AddProjectScreen";
@@ -16,15 +18,20 @@ import { AddWorkerScreen } from "../AddWorkerScreen";
 // everything overlay comes from the Drawer atom's own RN <Modal>, so no route
 // or presentation config is involved. Add a `case` per modal here.
 export const DrawerHost = () => {
-  const { drawer, projectId } = useGlobalSearchParams<{
+  const { drawer, projectId, clientId } = useGlobalSearchParams<{
     drawer?: string;
     projectId?: string;
+    clientId?: string;
   }>();
   const { close } = useDrawers();
 
   switch (drawer) {
     case "add-company":
       return <AddCompanyScreen onClose={close} />;
+    case "add-client":
+      return <AddClientScreen onClose={close} />;
+    case "add-contact":
+      return <AddContactScreen clientId={clientId!} onClose={close} />;
     case "add-project":
       return <AddProjectScreen onClose={close} />;
     case "add-role":

@@ -1,34 +1,36 @@
 import React from "react";
 import { requiredValidator } from "@/util/validation";
 import {
-  DateInputField,
-  EnrichedTextInputField,
-  TaskPriorityInput,
-  TaskStatusInput,
-  TextInputField,
+  DateFieldInput,
+  EnrichedTextFieldInput,
+  TextFieldInput,
 } from "@/components/molecules";
+import {
+  TaskPriorityDataFieldInput,
+  TaskStatusDataFieldInput,
+} from "@/components/organisms/DataFieldInputs";
 import { View } from "react-native";
 import { Spacing } from "@/styles";
 
 export const AddProjectMilestoneDetailsInputs = () => {
   return (
     <>
-      <TextInputField
+      <TextFieldInput
         name="name"
         label="Name"
         validation={{ requiredValidator }}
       />
 
       <View style={{ display: "flex", flexDirection: "row", gap: Spacing.md }}>
-        <TaskPriorityInput name="priority" />
-        <TaskStatusInput name="status" />
+        <TaskPriorityDataFieldInput name="priority" />
+        <TaskStatusDataFieldInput name="status" />
       </View>
 
-      <EnrichedTextInputField name="description" label="Description" />
+      <EnrichedTextFieldInput name="description" label="Description" />
 
-      <DateInputField name="dueDate" label="Due date" />
+      <DateFieldInput name="dueDate" label="Due date" />
 
-      <TextInputField name="approver" label="Approver" />
+      <TextFieldInput name="approver" label="Approver" />
     </>
   );
 };

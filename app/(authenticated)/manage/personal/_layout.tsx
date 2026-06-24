@@ -20,15 +20,6 @@ export default function PersonalLayout() {
       />
 
       <RootNavigation.Screen
-        name="companies"
-        options={{
-          title: "Companies",
-          icon: "companies",
-          header: () => <ScreenHeader title="Companies" />,
-        }}
-      />
-
-      <RootNavigation.Screen
         name="account"
         options={{
           title: "Account",

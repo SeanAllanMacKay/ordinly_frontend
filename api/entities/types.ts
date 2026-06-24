@@ -392,32 +392,28 @@ export type ChangeOrder = {};
 
 export type PurchaseOrder = {};
 
+export type ContactType = {
+  id: string;
+  name: string;
+  role?: string;
+  description?: string;
+  phoneNumbers?: PhoneNumberType[];
+  emails?: EmailType[];
+  locations?: LocationType[];
+} & CreatedFieldTypes &
+  DeletedFieldTypes;
+
 export type ClientType = {
   id: string;
   name: string;
-  description: string;
-  projects: ProjectType[];
-  documents: DocumentType[];
-  billingAddress: LocationType;
-  issueDate: Date;
-  payableDate: Date;
-  billingPeriod: { start: Date; end: Date };
-  purchaseOrders: PurchaseOrder[];
-  changeOrders: ChangeOrder[];
-  // percentage
-  retainage: number;
-  // percentages
-  taxes: {
-    federal: number;
-    state: number;
-    local: number;
-  };
-  paymentMethods: PaymentMethodType[];
-} & (
-  | { user?: UserType }
-  | { company?: Pick<CompanyType, "id" | "name" | "logo"> }
-) &
-  CreatedFieldTypes &
+  description?: string;
+  clientUserId?: string;
+  clientCompanyId?: string;
+  contacts?: ContactType[];
+  phoneNumbers?: PhoneNumberType[];
+  emails?: EmailType[];
+  locations?: LocationType[];
+} & CreatedFieldTypes &
   DeletedFieldTypes;
 
 export type LicenseNumber = {

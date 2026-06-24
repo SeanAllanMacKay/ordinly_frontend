@@ -19,9 +19,19 @@ export const getFlatListProps = <ListItem>(
   props: ListableDataProps<ListItem>,
 ) => {
   if (!props.overrideDisplayType || props.overrideDisplayType === "cards") {
-    const { card, keyExtractor } = props;
+    const { item, keyExtractor } = props;
 
-    return { card, keyExtractor };
+    return { item, keyExtractor };
+  }
+
+  return undefined;
+};
+
+export const getListProps = <ListItem>(props: ListableDataProps<ListItem>) => {
+  if (!props.overrideDisplayType || props.overrideDisplayType === "list") {
+    const { listItem, keyExtractor } = props;
+
+    return { listItem, keyExtractor };
   }
 
   return undefined;

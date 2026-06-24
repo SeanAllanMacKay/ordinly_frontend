@@ -1,10 +1,25 @@
 import { GET, REQUEST_ACTIONS } from "@/api/requests";
+import { GeoCodeDataType } from "../types";
 
 export type AddressSuggestionType =
   | "address"
   | "region"
   | "postal-code"
   | "city";
+
+export type AddressSuggestion = {
+  name: string;
+  place_formatted: string;
+  mapbox_id: string;
+};
+
+export type SuggestAddressesResponse = {
+  suggestions: AddressSuggestion[];
+};
+
+export type RetrieveAddressResponse = {
+  features: { properties: GeoCodeDataType & { name?: string } }[];
+};
 
 const addressTypeMapping: Record<AddressSuggestionType, string> = {
   address: "address",
@@ -23,7 +38,7 @@ export const addressRequests = {
     proximity?: { lat: number; lng: number } | null;
     sessionId: string;
   }) =>
-    await GET({
+    await GET<SuggestAddressesResponse>({
       endpoint: `/maps/search/searchbox/v1/suggest`,
       queryParams: {
         q: searchTerm,
@@ -39,7 +54,7 @@ export const addressRequests = {
     mapboxId: string;
     sessionId: string;
   }) =>
-    await GET({
+    await GET<RetrieveAddressResponse>({
       endpoint: `/maps/search/searchbox/v1/retrieve/${mapboxId}`,
       queryParams: {
         session_token: sessionId,

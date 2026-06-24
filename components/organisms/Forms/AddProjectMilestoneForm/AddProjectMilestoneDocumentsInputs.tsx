@@ -1,6 +1,6 @@
 import React from "react";
-import { FileInputField } from "@/components/molecules/FormFields/FileInputField";
+import { FileFieldInput } from "@/components/molecules";
 
 export const AddProjectMilestoneDocumentsInputs = () => {
-  return <FileInputField name="documents" />;
+  return <FileFieldInput name="documents" />;
 };

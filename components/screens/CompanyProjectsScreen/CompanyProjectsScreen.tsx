@@ -1,11 +1,16 @@
 import React from "react";
-import { Text } from "react-native";
-import { Screen } from "@/components";
+import { FloatingActionButton, Screen } from "@/components";
+import { ProjectsDataList } from "@/components/organisms/DataLists/ProjectsDataList";
+import { useDrawers } from "@/util/navigation/useDrawers";
 
 export const CompanyProjectsScreen = () => {
+  const { open } = useDrawers();
+
   return (
     <Screen>
-      <Text>Company projects</Text>
+      <ProjectsDataList />
+
+      <FloatingActionButton icon="plus" onPress={() => open("add-project")} />
     </Screen>
   );
 };

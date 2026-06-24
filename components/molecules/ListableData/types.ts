@@ -15,12 +15,20 @@ export type ListableDataType<ItemType> = {
 };
 
 export type EmptyStateProps = {
-  entity: "projects" | "tasks" | "companies" | "roles" | "teams" | "workers";
+  entity:
+    | "projects"
+    | "tasks"
+    | "companies"
+    | "roles"
+    | "teams"
+    | "workers"
+    | "clients"
+    | "contacts";
 };
 
-export type ListableDataProps<ItemType> = EmptyStateProps &
-  { emptyState?: ReactNode } &
-  (
+export type ListableDataProps<ItemType> = EmptyStateProps & {
+  emptyState?: ReactNode;
+} & (
     | ({ overrideDisplayType?: undefined } & TableProps<ItemType> &
         FlatListProps<ItemType>)
     | ({ overrideDisplayType: "table" } & TableProps<ItemType> & {
