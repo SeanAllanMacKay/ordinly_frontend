@@ -45,6 +45,12 @@ export const routes = {
             )}/edit-task`,
         },
       },
+      clients: {
+        root: () =>
+          `${routes.manage.personal.root()}/${routeStringMap.clients}` as const,
+        clientDetails: (clientId: string) =>
+          `${routes.manage.personal.clients.root()}/${clientId}` as const,
+      },
       companies: {
         root: () =>
           `${routes.manage.personal.root()}/${

@@ -1,10 +1,11 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { clientRequests, clientRequestKeys } from "../requests";
-import { routes } from "@/constants/routes";
 import { useActiveCompanyId } from "@/util/navigation/useActiveCompanyId";
+import { useClientRoutes } from "@/util/navigation/useClientRoutes";
 
 export const useGetClientsQuery = ({ page }: { page: number }) => {
   const companyId = useActiveCompanyId();
+  const clientRoutes = useClientRoutes();
 
   return useQuery({
     queryKey: clientRequestKeys.listClients({ companyId, page }),
@@ -20,10 +21,7 @@ export const useGetClientsQuery = ({ page }: { page: number }) => {
         ...response,
         clients: response?.clients.map((client) => ({
           ...client,
-          href: routes.manage.company.clients.clientDetails(
-            companyId!,
-            client.id,
-          ),
+          href: clientRoutes.clientDetails(client.id),
         })),
       };
     },
