@@ -1,6 +1,6 @@
 import { GET, POST, PUT, DELETE, REQUEST_ACTIONS } from "@/api/requests";
 
-import { InvitationType, WorkerType } from "../types";
+import { InvitationType, OptionType, WorkerType } from "../types";
 
 // NB: the BE exposes company members under `/users` (and pending invites under
 // `/invitations`). The FE keeps the "worker" naming for the entity/UI, which
@@ -20,6 +20,11 @@ export const workerRequests = {
     }>({
       endpoint: `/company/${companyId}/users`,
       queryParams,
+    }),
+
+  listWorkerOptions: async ({ companyId }: { companyId: string }) =>
+    await GET<{ options: OptionType[] }>({
+      endpoint: `/company/${companyId}/users/options`,
     }),
 
   getWorker: async ({
@@ -104,6 +109,13 @@ export const workerRequestKeys = {
     "users",
     "list",
     ...(page ? [page] : []),
+  ],
+  listWorkerOptions: ({ companyId }: { companyId?: string } = {}) => [
+    REQUEST_ACTIONS.GET,
+    "company",
+    companyId,
+    "users",
+    "options",
   ],
   getWorker: ({
     companyId,

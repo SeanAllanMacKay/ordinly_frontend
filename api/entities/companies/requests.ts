@@ -1,11 +1,22 @@
 import { GET, POST, DELETE, REQUEST_ACTIONS } from "@/api/requests";
-import { CompanyType } from "../types";
+import {
+  CompanyType,
+  CompanyWithOwnershipType,
+  CompanyPermissionFlags,
+} from "../types";
 
 export const companyRequests = {
   createCompany: async (body: { name: string; logo?: string }) =>
     await POST<{ company: CompanyType }>({
       endpoint: "/company",
       body,
+    }),
+  getCompany: async ({ companyId }: { companyId: string }) =>
+    await GET<{
+      company: CompanyWithOwnershipType;
+      permissions: CompanyPermissionFlags;
+    }>({
+      endpoint: `/company/${companyId}`,
     }),
   listCompanies: async ({ queryParams }: { queryParams: { page: number } }) =>
     await GET<{
@@ -23,6 +34,11 @@ export const companyRequests = {
 
 export const companyRequestKeys = {
   createCompany: () => [REQUEST_ACTIONS.POST, "companies"],
+  getCompany: ({ companyId }: { companyId?: string } = {}) => [
+    REQUEST_ACTIONS.GET,
+    "companies",
+    companyId,
+  ],
   listCompanies: ({ page }: { page: number }) => [
     REQUEST_ACTIONS.GET,
     "companies",

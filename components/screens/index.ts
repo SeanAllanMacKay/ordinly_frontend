@@ -28,6 +28,7 @@ export * from "./DrawerHost";
 export * from "./EditProjectScreen";
 export * from "./EditTaskScreen";
 export * from "./ModalHost";
+export * from "./PermissionDeniedScreen";
 export * from "./PersonalClientsScreen";
 export * from "./PersonalHomeScreen";
 export * from "./PersonalProjectsScreen";

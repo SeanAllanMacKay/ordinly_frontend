@@ -11,6 +11,8 @@ export type MenuButtonProps = Pick<
   | "isSkeleton"
   | "mode"
   | "variant"
+  | "permission"
+  | "deniedMessage"
 > & {
   options: {
     label?: string;

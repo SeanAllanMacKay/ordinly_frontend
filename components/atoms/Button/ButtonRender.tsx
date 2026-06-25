@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, useTheme } from "react-native-paper";
-import { ButtonProps } from "./types";
+import { ButtonRenderProps } from "./types";
 import { buttonStyles } from "./styles";
 import { getButtonVariantColors } from "./variants";
 import { LayoutChangeEvent, View } from "react-native";
@@ -14,7 +14,7 @@ export const ButtonRender = ({
   isLoading,
   isDisabled,
   ...restProps
-}: Omit<ButtonProps, "href">) => {
+}: ButtonRenderProps) => {
   const theme = useTheme();
   const { buttonColor, textColor } = getButtonVariantColors(
     variant,

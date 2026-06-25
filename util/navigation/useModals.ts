@@ -7,7 +7,8 @@ export type ModalName =
   | "confirm-delete-project"
   | "confirm-delete-company"
   | "confirm-delete-task"
-  | "confirm-delete-account";
+  | "confirm-delete-account"
+  | "permission-denied";
 
 export const useModals = () => {
   const router = useRouter();
@@ -15,7 +16,11 @@ export const useModals = () => {
   return {
     // Appends `?modal=<name>` to the current URL — does not navigate.
     open: (modal: ModalName) => router.setParams({ modal }),
-    // Strips the param, closing the modal and returning to the base path.
-    close: () => router.setParams({ modal: undefined }),
+    // Opens the shared permission-denied modal, carrying the message to show.
+    openPermissionDenied: (deniedMessage: string) =>
+      router.setParams({ modal: "permission-denied", deniedMessage }),
+    // Strips the params, closing the modal and returning to the base path.
+    close: () =>
+      router.setParams({ modal: undefined, deniedMessage: undefined }),
   };
 };

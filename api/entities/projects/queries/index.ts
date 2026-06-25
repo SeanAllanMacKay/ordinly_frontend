@@ -4,3 +4,6 @@ export * from "./useGetProjectStatusesQuery";
 export * from "./useGetProjectQuery";
 export * from "./useGetProjectTaskQuery";
 export * from "./useGetProjectTasksQuery";
+export * from "./useGetProjectOptionsQuery";
+export * from "./useGetTaskOptionsQuery";
+export * from "./useGetPhaseOptionsQuery";

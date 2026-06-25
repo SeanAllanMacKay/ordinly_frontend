@@ -1,6 +1,6 @@
 import { POST, GET, PUT, DELETE, REQUEST_ACTIONS } from "@/api/requests";
 
-import { ProjectTaskKind, ProjectType, TaskType } from "../types";
+import { OptionType, ProjectTaskKind, ProjectType, TaskType } from "../types";
 
 export const projectRequests = {
   listProjects: async ({
@@ -39,6 +39,11 @@ export const projectRequests = {
         color: string;
       }[];
     }>({ endpoint: `/company/${companyId}/projects/status` }),
+
+  listProjectOptions: async ({ companyId }: { companyId: string }) =>
+    await GET<{ options: OptionType[] }>({
+      endpoint: `/company/${companyId}/projects/options`,
+    }),
 
   getProject: async ({
     companyId,
@@ -99,6 +104,17 @@ export const projectRequests = {
     }),
 
   tasks: {
+    listTaskOptions: async ({
+      companyId,
+      projectId,
+    }: {
+      companyId: string;
+      projectId: string;
+    }) =>
+      await GET<{ options: OptionType[] }>({
+        endpoint: `/company/${companyId}/projects/${projectId}/tasks/options`,
+      }),
+
     listTasks: async ({
       companyId,
       projectId,
@@ -226,6 +242,19 @@ export const projectRequests = {
         }),
     },
   },
+
+  phases: {
+    listPhaseOptions: async ({
+      companyId,
+      projectId,
+    }: {
+      companyId: string;
+      projectId: string;
+    }) =>
+      await GET<{ options: OptionType[] }>({
+        endpoint: `/company/${companyId}/projects/${projectId}/phases/options`,
+      }),
+  },
 };
 
 export const projectRequestKeys = {
@@ -262,6 +291,13 @@ export const projectRequestKeys = {
     "status",
     "list",
   ],
+  listProjectOptions: ({ companyId }: { companyId?: string } = {}) => [
+    REQUEST_ACTIONS.GET,
+    "company",
+    companyId,
+    "projects",
+    "options",
+  ],
   getProject: ({
     companyId,
     projectId,
@@ -285,6 +321,21 @@ export const projectRequestKeys = {
   }) => [REQUEST_ACTIONS.DELETE, "company", companyId, "projects", projectId],
 
   tasks: {
+    listTaskOptions: ({
+      companyId,
+      projectId,
+    }: {
+      companyId?: string;
+      projectId?: string;
+    } = {}) => [
+      REQUEST_ACTIONS.GET,
+      "company",
+      companyId,
+      "projects",
+      projectId,
+      "tasks",
+      "options",
+    ],
     listTasks: ({
       companyId,
       projectId,
@@ -389,5 +440,23 @@ export const projectRequestKeys = {
         "checklist",
       ],
     },
+  },
+
+  phases: {
+    listPhaseOptions: ({
+      companyId,
+      projectId,
+    }: {
+      companyId?: string;
+      projectId?: string;
+    } = {}) => [
+      REQUEST_ACTIONS.GET,
+      "company",
+      companyId,
+      "projects",
+      projectId,
+      "phases",
+      "options",
+    ],
   },
 };

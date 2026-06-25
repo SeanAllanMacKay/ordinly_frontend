@@ -9,6 +9,8 @@ import { useIsPhone } from "@/styles/hooks/useIsPhone";
 import { Spacing } from "@/styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { FullWindowOverlay } from "react-native-screens";
+import { CompanyPermissionFlag } from "@/api/entities/types";
+import { usePermissionGate } from "@/util/permissions/usePermissionGate";
 
 export const FloatingActionButton = ({
   icon,
@@ -16,10 +18,16 @@ export const FloatingActionButton = ({
   onPress,
   items,
   href,
+  permission,
+  deniedMessage,
 }: {
   icon: IconProps["name"];
   label?: string;
   onPress?: () => void;
+  // When set, the single-FAB variant is gated on this RBAC flag: if the current
+  // company lacks it, pressing shows the permission-denied modal.
+  permission?: CompanyPermissionFlag;
+  deniedMessage?: string;
 } & (
   | { href: Href; items?: undefined }
   | { onPress: () => void; href?: undefined; items?: undefined }
@@ -38,6 +46,10 @@ export const FloatingActionButton = ({
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const theme = useTheme();
+  const { isDenied, showDenied } = usePermissionGate({
+    permission,
+    deniedMessage,
+  });
 
   const isPhone = useIsPhone();
 
@@ -77,9 +89,13 @@ export const FloatingActionButton = ({
     >
       <ConditionalWrapper
         wrapper={<Link href={href as Href} asChild />}
-        isWrapped={!!href}
+        isWrapped={!!href && !isDenied}
       >
-        <FAB icon={icon} label={label} onPress={onPress} />
+        <FAB
+          icon={icon}
+          label={label}
+          onPress={isDenied ? showDenied : onPress}
+        />
       </ConditionalWrapper>
     </Animated.View>
   );

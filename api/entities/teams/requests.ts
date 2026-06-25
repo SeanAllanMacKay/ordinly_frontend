@@ -1,11 +1,16 @@
 import { GET, POST, PUT, DELETE, REQUEST_ACTIONS } from "@/api/requests";
 
-import { TeamType } from "../types";
+import { OptionType, TeamType } from "../types";
 
 export const teamRequests = {
   listTeams: async ({ companyId }: { companyId: string }) =>
     await GET<{ teams: TeamType[] }>({
       endpoint: `/company/${companyId}/teams`,
+    }),
+
+  listTeamOptions: async ({ companyId }: { companyId: string }) =>
+    await GET<{ options: OptionType[] }>({
+      endpoint: `/company/${companyId}/teams/options`,
     }),
 
   getTeam: async ({
@@ -68,6 +73,13 @@ export const teamRequestKeys = {
     companyId,
     "teams",
     "list",
+  ],
+  listTeamOptions: ({ companyId }: { companyId?: string } = {}) => [
+    REQUEST_ACTIONS.GET,
+    "company",
+    companyId,
+    "teams",
+    "options",
   ],
   getTeam: ({ companyId, teamId }: { companyId?: string; teamId: string }) => [
     REQUEST_ACTIONS.GET,

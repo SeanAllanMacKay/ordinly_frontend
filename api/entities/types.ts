@@ -1,3 +1,7 @@
+// Display-only shape returned by the dedicated `/options` endpoints (unpaginated
+// select/multiselect data). `label` is nullable for some entities (e.g. clients).
+export type OptionType = { value: string; label: string | null };
+
 export type PermissionType<AssetTypes extends string> = {
   asset: AssetTypes;
   description: string;
@@ -446,6 +450,47 @@ export type CompanyType = {
   paymentMethods?: PaymentMethodType[];
 } & CreatedFieldTypes &
   DeletedFieldTypes;
+
+export const COMPANY_PERMISSION_KEYS = [
+  "company_settings",
+  "profile",
+  "workers",
+  "roles",
+  "teams",
+  "documents",
+  "folders",
+  "invoices",
+  "license_numbers",
+  "all_clients",
+  "all_projects",
+  "all_tasks",
+  "all_checklist_items",
+  "assigned_projects",
+  "assigned_tasks",
+  "assigned_clients",
+  "assigned_checklist_items",
+  "project_documents",
+  "task_documents",
+  "checklist_item_documents",
+] as const;
+
+export const PERMISSION_ACTIONS = [
+  "create",
+  "read",
+  "update",
+  "delete",
+] as const;
+
+export type CompanyPermissionKey = (typeof COMPANY_PERMISSION_KEYS)[number];
+export type PermissionAction = (typeof PERMISSION_ACTIONS)[number];
+
+// Flat "key:action" -> boolean map matching the GET /company/:companyId
+// response. All keys are always present; ungranted entries are `false`.
+export type CompanyPermissionFlag = `${CompanyPermissionKey}:${PermissionAction}`;
+export type CompanyPermissionFlags = Record<CompanyPermissionFlag, boolean>;
+
+// Single company as returned by GET /company/:companyId (isOwner merged on).
+export type CompanyWithOwnershipType = CompanyType & { isOwner: boolean };
 
 export type FileMetadataType = {
   maxFileSize: number;

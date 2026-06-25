@@ -14,6 +14,8 @@ export const MenuButton = ({
   isLoading,
   isDisabled,
   isSkeleton,
+  permission,
+  deniedMessage,
 }: MenuButtonProps) => {
   const theme = useTheme();
   const [isOpen, setOpen] = useState(false);
@@ -41,6 +43,8 @@ export const MenuButton = ({
           isLoading={isLoading}
           isDisabled={isDisabled}
           isSkeleton={isSkeleton}
+          permission={permission}
+          deniedMessage={deniedMessage}
         />
       }
       anchorPosition="bottom"

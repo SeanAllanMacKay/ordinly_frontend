@@ -5,6 +5,7 @@ import { DeleteAccountScreen } from "../DeleteAccountScreen";
 import { DeleteCompanyScreen } from "../DeleteCompanyScreen";
 import { DeleteProjectScreen } from "../DeleteProjectScreen";
 import { DeleteTaskScreen } from "../DeleteTaskScreen";
+import { PermissionDeniedScreen } from "../PermissionDeniedScreen";
 
 // Single global host for confirmation modals. Mounted once in the authenticated
 // layout, it watches the `modal` query param and renders the matching screen in
@@ -12,12 +13,14 @@ import { DeleteTaskScreen } from "../DeleteTaskScreen";
 // the active route params (exactly like DrawerHost reads `projectId`). Add a
 // `case` per modal here.
 export const ModalHost = () => {
-  const { modal, projectId, companyId, taskId } = useGlobalSearchParams<{
-    modal?: string;
-    projectId?: string;
-    companyId?: string;
-    taskId?: string;
-  }>();
+  const { modal, projectId, companyId, taskId, deniedMessage } =
+    useGlobalSearchParams<{
+      modal?: string;
+      projectId?: string;
+      companyId?: string;
+      taskId?: string;
+      deniedMessage?: string;
+    }>();
   const { close } = useModals();
 
   switch (modal) {
@@ -27,6 +30,10 @@ export const ModalHost = () => {
       return <DeleteCompanyScreen companyId={companyId!} onClose={close} />;
     case "confirm-delete-account":
       return <DeleteAccountScreen onClose={close} />;
+    case "permission-denied":
+      return (
+        <PermissionDeniedScreen message={deniedMessage} onClose={close} />
+      );
     case "confirm-delete-task":
       return (
         <DeleteTaskScreen

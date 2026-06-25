@@ -1,6 +1,6 @@
 import { POST, GET, PUT, REQUEST_ACTIONS } from "@/api/requests";
 
-import { ClientType, ContactType } from "../types";
+import { ClientType, ContactType, OptionType } from "../types";
 
 // Repeatable contact-detail inputs accepted by the client/contact create &
 // update endpoints. Modelled from the OpenAPI request bodies; not all are wired
@@ -100,7 +100,23 @@ export const clientRequests = {
 
   deleteClient: async () => {},
 
+  listClientOptions: async ({ companyId }: { companyId: string }) =>
+    await GET<{ options: OptionType[] }>({
+      endpoint: `/company/${companyId}/clients/options`,
+    }),
+
   contacts: {
+    listContactOptions: async ({
+      companyId,
+      clientId,
+    }: {
+      companyId: string;
+      clientId: string;
+    }) =>
+      await GET<{ options: OptionType[] }>({
+        endpoint: `/company/${companyId}/clients/${clientId}/contacts/options`,
+      }),
+
     listContacts: async ({
       companyId,
       clientId,
@@ -210,8 +226,30 @@ export const clientRequestKeys = {
     companyId?: string;
     clientId: string;
   }) => [REQUEST_ACTIONS.DELETE, "company", companyId, "clients", clientId],
+  listClientOptions: ({ companyId }: { companyId?: string } = {}) => [
+    REQUEST_ACTIONS.GET,
+    "company",
+    companyId,
+    "clients",
+    "options",
+  ],
 
   contacts: {
+    listContactOptions: ({
+      companyId,
+      clientId,
+    }: {
+      companyId?: string;
+      clientId?: string;
+    } = {}) => [
+      REQUEST_ACTIONS.GET,
+      "company",
+      companyId,
+      "clients",
+      clientId,
+      "contacts",
+      "options",
+    ],
     listContacts: ({
       companyId,
       clientId,
