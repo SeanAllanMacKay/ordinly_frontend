@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { ConfirmDeleteModal } from "@/components";
 import { useDeleteCompanyMutation } from "@/api";
 import { routes } from "@/constants/routes";
@@ -9,6 +10,7 @@ export const DeleteCompanyScreen = ({
   companyId,
   onClose,
 }: DeleteCompanyScreenProps) => {
+  const { t } = useTranslation("companies");
   const router = useRouter();
 
   const { mutate, isPending } = useDeleteCompanyMutation({
@@ -21,9 +23,9 @@ export const DeleteCompanyScreen = ({
 
   return (
     <ConfirmDeleteModal
-      title="Delete company?"
-      message="This will permanently delete the company and all of its projects, teams, and members. This action cannot be undone."
-      confirmLabel="Delete company"
+      title={t("deleteCompany.title")}
+      message={t("deleteCompany.message")}
+      confirmLabel={t("deleteCompany.confirmLabel")}
       isDeleting={isPending}
       onConfirm={() => mutate()}
       onClose={onClose}

@@ -1,15 +1,13 @@
 import { Typography } from "@/components/atoms";
 import React from "react";
 import { DateCellProps } from "../types";
-import { format, isValid } from "date-fns";
+import { useDateFormat } from "@/i18n/useDateFormat";
 
 const dateFormat = "MMM dd, yyyy";
 
 export const DateCell = ({ value }: DateCellProps) => {
-  const dateValue = value ? new Date(value as Date) : undefined;
-  const displayValue = isValid(dateValue)
-    ? format(dateValue as Date, dateFormat)
-    : "-";
+  const formatDate = useDateFormat();
+  const displayValue = formatDate(value, dateFormat);
 
   return <Typography>{displayValue}</Typography>;
 };

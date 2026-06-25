@@ -6,9 +6,11 @@ import { bottomTabsStyles } from "./styles";
 import { Icon } from "@/components/atoms";
 import { useTheme } from "react-native-paper";
 import { Spacing } from "@/styles";
+import { useTranslation } from "react-i18next";
 
 export const BottomTabs = ({ tabs, onPress, onLayout }: TabsProps) => {
   const theme = useTheme();
+  const { t } = useTranslation("navigation");
 
   return (
     <View
@@ -46,7 +48,7 @@ export const BottomTabs = ({ tabs, onPress, onLayout }: TabsProps) => {
               color={isFocused ? "onPrimaryContainer" : "onBackground"}
               size="xs"
             >
-              {title}
+              {t(title ?? "", { defaultValue: title ?? "" })}
             </Typography>
           </View>
         </Pressable>

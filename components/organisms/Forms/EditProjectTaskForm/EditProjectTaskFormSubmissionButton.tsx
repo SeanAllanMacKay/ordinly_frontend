@@ -1,4 +1,5 @@
 import { useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { EditProjectTaskFormFieldTypes } from "./types";
 import React, { useContext } from "react";
 import { Button, FormLoadingStateContext } from "@/components/atoms";
@@ -13,6 +14,7 @@ export const EditProjectTaskSubmissionButton = ({
   taskId: string;
   onSuccess?: Parameters<typeof useEditProjectTaskMutation>[0]["onSuccess"];
 }) => {
+  const { t } = useTranslation("tasks");
   const editProjectTaskForm = useFormContext<EditProjectTaskFormFieldTypes>();
   const formLoadingState = useContext(FormLoadingStateContext);
 
@@ -34,7 +36,7 @@ export const EditProjectTaskSubmissionButton = ({
         formLoadingState.isLoading || editProjectTaskForm.formState.isSubmitting
       }
       isLoading={formLoadingState.isLoading}
-      label={"Save"}
+      label={t("save")}
       icon="save"
     />
   );

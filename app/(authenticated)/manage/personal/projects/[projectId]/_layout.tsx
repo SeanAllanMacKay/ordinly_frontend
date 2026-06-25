@@ -9,7 +9,7 @@ export default function ProjectIdRouter() {
       <Stack.Screen
         name="edit-project"
         options={{
-          title: "Edit project",
+          title: "headers.editProject",
           presentation: "transparentModal",
           headerShown: false,
           animation: "none",

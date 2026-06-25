@@ -1,0 +1,9 @@
+{
+  "noAppToOpenFile": "No hay ninguna aplicación instalada para abrir este archivo.",
+  "openPreviewFailed": "No se pudo abrir la vista previa del archivo.",
+  "downloadFailed": "Ocurrió un error inesperado durante la descarga.",
+  "selectFile": "Selecciona un archivo ",
+  "pickDocumentFailed": "No se pudo seleccionar el documento",
+  "permissionNeeded": "Permiso necesario",
+  "allowPhotoAccess": "Permite el acceso a las fotos para establecer una foto de perfil."
+}

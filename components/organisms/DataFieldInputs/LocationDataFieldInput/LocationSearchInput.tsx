@@ -5,6 +5,7 @@ import { Spacing } from "@/styles";
 import { useQueryClient } from "@tanstack/react-query";
 import debounce from "lodash.debounce";
 import React, { useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Modal,
   Pressable,
@@ -36,6 +37,7 @@ export const LocationSearchInput = ({
   isDisabled,
   isError,
 }: LocationSearchInputProps) => {
+  const { t } = useTranslation("projects");
   const { height, width } = useWindowDimensions();
   const [isOpen, setOpen] = useState(false);
   const [displayValue, setDisplayValue] = useState<string>("");
@@ -159,7 +161,7 @@ export const LocationSearchInput = ({
               exiting={FadeOutUp}
             >
               <TextInput
-                label={"Search"}
+                label={t("location.search")}
                 onChange={handleTextChange}
                 value={displayValue}
                 icon="map-search"
@@ -199,7 +201,7 @@ export const LocationSearchInput = ({
                     </View>
 
                     <Typography size="lg" emphasis="high" color="onBackground">
-                      {"Search to find the address you're looking for"}
+                      {t("location.searchHint")}
                     </Typography>
                   </View>
                 )}

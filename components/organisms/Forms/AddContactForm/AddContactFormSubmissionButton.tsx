@@ -1,5 +1,6 @@
 import { useCreateClientContactMutation } from "@/api";
 import { useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { AddContactFormFieldTypes } from "./types";
 import { toContactInput } from "./util";
 import React, { useContext } from "react";
@@ -13,6 +14,7 @@ export const AddContactSubmissionButton = ({
   clientId: string;
   onSuccess?: Parameters<typeof useCreateClientContactMutation>[0]["onSuccess"];
 }) => {
+  const { t } = useTranslation("clients");
   const addContactForm = useFormContext<AddContactFormFieldTypes>();
   const formLoadingState = useContext(FormLoadingStateContext);
   const companyId = useActiveCompanyId();
@@ -36,7 +38,7 @@ export const AddContactSubmissionButton = ({
         addContactForm.formState.isSubmitting
       }
       isLoading={formLoadingState.isLoading}
-      label={"Add contact"}
+      label={t("addContact.submit")}
     />
   );
 };

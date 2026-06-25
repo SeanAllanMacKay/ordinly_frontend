@@ -6,7 +6,7 @@ const Account = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    navigation.setOptions({ headerTitle: "Account" });
+    navigation.setOptions({ headerTitle: "headers.account" });
   }, [navigation]);
 
   return <PersonalSettingsScreen />;

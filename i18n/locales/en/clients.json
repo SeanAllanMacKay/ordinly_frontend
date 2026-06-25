@@ -1,0 +1,31 @@
+{
+  "addClient": {
+    "title": "Add client",
+    "submit": "Add client"
+  },
+  "addContact": {
+    "title": "Add contact",
+    "submit": "Add contact",
+    "roleLabel": "Role",
+    "emailsLabel": "Email addresses",
+    "phoneNumbersLabel": "Phone numbers",
+    "locationsLabel": "Locations"
+  },
+  "clientsEmpty": {
+    "title": "No clients yet",
+    "subtitle": "Clients you add will show up here."
+  },
+  "contactsEmpty": {
+    "title": "No contacts yet",
+    "subtitle": "Contacts you add for this client will show up here."
+  },
+  "details": {
+    "title": "Details"
+  },
+  "documents": {
+    "title": "Documents"
+  },
+  "invoices": {
+    "title": "Invoices"
+  }
+}

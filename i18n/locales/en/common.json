@@ -1,0 +1,87 @@
+{
+  "save": "Save",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "edit": "Edit",
+  "add": "Add",
+  "remove": "Remove",
+  "create": "Create",
+  "confirm": "Confirm",
+  "close": "Close",
+  "back": "Back",
+  "next": "Next",
+  "submit": "Submit",
+  "error": "Error",
+  "success": "Success",
+  "loading": "Loading…",
+  "sending": "Sending…",
+  "saving": "Saving…",
+  "retry": "Retry",
+  "emptyValue": "-",
+  "name": "Name",
+  "description": "Description",
+  "email": "Email",
+  "password": "Password",
+  "phone": "Phone",
+  "address": "Address",
+  "startDate": "Start date",
+  "dueDate": "Due date",
+  "status": "Status",
+  "priority": "Priority",
+  "dangerZone": "Danger zone",
+  "noEntities": "No {{entity}} to show",
+  "verificationBanner": {
+    "message": "Your account isn't verified yet.",
+    "emailSent": "Email sent",
+    "resend": "Resend email"
+  },
+  "home": {
+    "welcome": "Welcome to Ordinly{{suffix}}",
+    "subtitle": "Pick a place to start.",
+    "project": {
+      "title": "Create your first project",
+      "subtitle": "Track tasks, time, and photos for personal jobs, side work, and your professional portfolio.",
+      "cta": "Create a project",
+      "features": {
+        "scheduleTitle": "Schedule",
+        "scheduleSubtitle": "Break your project into tasks, phases, and milestones",
+        "timeTitle": "Time tracking",
+        "timeSubtitle": "Log hours on site",
+        "filesTitle": "Images & files",
+        "filesSubtitle": "Keep your contracts, waivers, and proof of work in one place",
+        "portfolioTitle": "Portfolio",
+        "portfolioSubtitle": "Show your best work to get more jobs"
+      }
+    },
+    "company": {
+      "title": "Create a company",
+      "subtitle": "Step up to managing bids, invoices, clients, crew, equipment, and much more.",
+      "cta": "Create a company",
+      "features": {
+        "communicationTitle": "Real-time communication",
+        "communicationSubtitle": "Never miss a beat with clients, contractors, or your crew",
+        "paymentsTitle": "Payments",
+        "paymentsSubtitle": "Get paid faster and easier through our payment portal",
+        "clientsTitle": "Client management",
+        "clientsSubtitle": "Bids, quotes, estimates, invoices, and a dedicated client portal",
+        "crewTitle": "Crew management",
+        "crewSubtitle": "Make sure everyone's working on the right thing at the right time"
+      }
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "darkMode": "Dark Mode",
+    "deleteDescription": "Permanently delete your account and all associated data. This action cannot be undone.",
+    "deleteAccount": "Delete account"
+  },
+  "deleteAccount": {
+    "title": "Delete account?",
+    "warning": "This will permanently delete your account and all associated data. This action cannot be undone.",
+    "confirmEmailLabel": "Type your email to confirm"
+  },
+  "permissionDenied": {
+    "title": "You don't have permission",
+    "gotIt": "Got it"
+  }
+}

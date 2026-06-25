@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useFormContext, useWatch } from "react-hook-form";
 import { AddProjectFormFieldTypes } from "./types";
 import { requiredValidator } from "@/util/validation";
@@ -16,6 +17,7 @@ import { View } from "react-native";
 import { Spacing } from "@/styles";
 
 export const AddProjectForm = () => {
+  const { t } = useTranslation("projects");
   const addProjectForm = useFormContext<AddProjectFormFieldTypes>();
 
   const min = useWatch({ control: addProjectForm.control, name: "startDate" });
@@ -25,7 +27,7 @@ export const AddProjectForm = () => {
     <>
       <TextFieldInput
         name="name"
-        label="Name"
+        label={t("name")}
         validation={{ requiredValidator }}
       />
 
@@ -34,13 +36,13 @@ export const AddProjectForm = () => {
         <ProjectStatusDataFieldInput name="status" />
       </View>
 
-      <EnrichedTextFieldInput name="description" label="Description" />
+      <EnrichedTextFieldInput name="description" label={t("description")} />
 
-      <DateFieldInput name="startDate" label="Start date" max={max} />
+      <DateFieldInput name="startDate" label={t("startDate")} max={max} />
 
-      <DateFieldInput name="dueDate" label="Due date" min={min} />
+      <DateFieldInput name="dueDate" label={t("dueDate")} min={min} />
 
-      <LocationDataFieldInput name="location" label="Address" />
+      <LocationDataFieldInput name="location" label={t("address")} />
     </>
   );
 };

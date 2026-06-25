@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { ConfirmDeleteModal } from "@/components";
 import { useDeleteProjectTaskMutation } from "@/api";
 import { DeleteTaskScreenProps } from "./types";
@@ -8,6 +9,7 @@ export const DeleteTaskScreen = ({
   taskId,
   onClose,
 }: DeleteTaskScreenProps) => {
+  const { t } = useTranslation("tasks");
   const { mutate, isPending } = useDeleteProjectTaskMutation({
     projectId,
     taskId,
@@ -16,9 +18,9 @@ export const DeleteTaskScreen = ({
 
   return (
     <ConfirmDeleteModal
-      title="Delete task?"
-      message="This will permanently delete this item and everything within it. This action cannot be undone."
-      confirmLabel="Delete"
+      title={t("deleteTask.title")}
+      message={t("deleteTask.message")}
+      confirmLabel={t("delete")}
       isDeleting={isPending}
       onConfirm={() => mutate()}
       onClose={onClose}

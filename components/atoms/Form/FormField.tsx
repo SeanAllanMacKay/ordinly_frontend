@@ -7,6 +7,7 @@ import {
   useFormContext,
 } from "react-hook-form";
 import { View } from "react-native";
+import { useTranslation } from "react-i18next";
 import { FormLoadingStateContext } from "./Form";
 import { formFieldStyles } from "./styles";
 import { Typography } from "../Typography";
@@ -24,6 +25,7 @@ export const FormField = <
 }: FormFieldProps<TFieldValues, TName>) => {
   const { control, getValues } = useFormContext<TFieldValues>();
   const formLoadingState = useContext(FormLoadingStateContext);
+  const { t } = useTranslation();
 
   const index = useMemo(() => {
     const keys = Object.keys(getValues());
@@ -55,7 +57,13 @@ export const FormField = <
 
       {errorMessage ? (
         <View style={formFieldStyles.errorContainer}>
-          <Typography color="error">{errorMessage}</Typography>
+          {/* Validators and zod schemas return i18n keys (e.g.
+              "validation:required"); translate here. `defaultValue` lets any
+              non-key string (e.g. a raw server message) pass through unchanged
+              without a missing-key warning. */}
+          <Typography color="error">
+            {t(errorMessage, { defaultValue: errorMessage })}
+          </Typography>
         </View>
       ) : null}
     </View>

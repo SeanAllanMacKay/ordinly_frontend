@@ -1,6 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { useTheme } from "react-native-paper";
+import { useTranslation } from "react-i18next";
 import { Icon, Typography } from "@/components";
 import { IconNameType } from "@/components/atoms/Icon/types";
 import { emptyStateStyles } from "./styles";
@@ -20,6 +21,7 @@ const entityIcons: Record<EmptyStateProps["entity"], IconNameType> = {
 
 export const EmptyState = ({ entity }: EmptyStateProps) => {
   const theme = useTheme();
+  const { t } = useTranslation("common");
 
   return (
     <View style={[emptyStateStyles.container]}>
@@ -33,7 +35,7 @@ export const EmptyState = ({ entity }: EmptyStateProps) => {
       </View>
 
       <Typography size="lg" emphasis="high" color="onBackground">
-        No {entity} to show
+        {t("noEntities", { entity })}
       </Typography>
     </View>
   );

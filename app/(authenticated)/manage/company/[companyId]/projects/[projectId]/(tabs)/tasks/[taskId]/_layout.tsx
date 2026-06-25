@@ -11,7 +11,7 @@ export default function TaskIdRouter() {
       <Stack.Screen
         name="(tabs)"
         options={{
-          title: "Task details",
+          title: "headers.taskDetails",
           presentation: "transparentModal",
           animation: "none",
           headerShown: false,
@@ -21,7 +21,7 @@ export default function TaskIdRouter() {
       <Stack.Screen
         name="edit-task"
         options={{
-          title: "Task details",
+          title: "headers.taskDetails",
           presentation: "transparentModal",
           animation: "none",
           headerShown: false,

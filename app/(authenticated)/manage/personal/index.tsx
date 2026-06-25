@@ -6,7 +6,7 @@ const Dashboard = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    navigation.setOptions({ headerTitle: "Dashboard" });
+    navigation.setOptions({ headerTitle: "headers.dashboard" });
   }, [navigation]);
 
   return <PersonalHomeScreen />;

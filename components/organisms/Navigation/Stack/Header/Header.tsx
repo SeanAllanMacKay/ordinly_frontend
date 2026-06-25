@@ -1,9 +1,12 @@
 import React from "react";
 import { Navigator, Stack as ERStack, useRouter } from "expo-router";
 import Animated, { FadeIn } from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/Button";
 
 export const Header = ({ screenOptions }) => {
+  const { t } = useTranslation("navigation");
+
   return screenOptions?.header ? (
     screenOptions?.header()
   ) : (
@@ -18,7 +21,9 @@ export const Header = ({ screenOptions }) => {
         <Button onPress={() => {}} icon="chevron-left" />
       </Animated.View>
 
-      <Animated.Text>{screenOptions.headerTitle}</Animated.Text>
+      <Animated.Text>
+        {t(screenOptions.headerTitle, { defaultValue: screenOptions.headerTitle })}
+      </Animated.Text>
     </Animated.View>
   );
 };

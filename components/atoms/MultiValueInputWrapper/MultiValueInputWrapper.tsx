@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View } from "react-native";
+import { useTranslation } from "react-i18next";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { MultiValueInputWrapperProps } from "./types";
@@ -19,6 +20,7 @@ export const MultiValueInputWrapper = <V,>({
   validate,
   showAddButton = true,
 }: MultiValueInputWrapperProps<V>) => {
+  const { t } = useTranslation("common");
   const [draft, setDraft] = useState<V | undefined>(undefined);
   const [draftError, setDraftError] = useState<string | undefined>(undefined);
 
@@ -75,7 +77,7 @@ export const MultiValueInputWrapper = <V,>({
         {showAddButton ? (
           <Button
             icon="plus"
-            label="Add"
+            label={t("add")}
             onPress={() => commit()}
             isDisabled={isDisabled}
           />

@@ -1,6 +1,7 @@
 import { useRouter } from "expo-router";
 import React from "react";
 import { Platform, View } from "react-native";
+import { useTranslation } from "react-i18next";
 import Animated, { FadeIn } from "react-native-reanimated";
 import { Button, Typography } from "@/components";
 import { screenHeaderStyle, ENTITY_SWITCHER_RESERVED_WIDTH } from "./styles";
@@ -22,6 +23,7 @@ export const ScreenHeader = ({
 }) => {
   const router = useRouter();
   const theme = useTheme();
+  const { t } = useTranslation("navigation");
   const { top } = useSafeAreaInsets();
   const isPhone = useIsPhone();
 
@@ -49,7 +51,12 @@ export const ScreenHeader = ({
 
         <View>
           {typeof title === "string" ? (
-            <Typography size="lg">{title}</Typography>
+            // String titles may be navigation keys (e.g. "tabs.clients") or
+            // dynamic data (e.g. a client name); `defaultValue` passes
+            // non-keys through unchanged.
+            <Typography size="lg">
+              {t(title, { defaultValue: title })}
+            </Typography>
           ) : (
             title
           )}

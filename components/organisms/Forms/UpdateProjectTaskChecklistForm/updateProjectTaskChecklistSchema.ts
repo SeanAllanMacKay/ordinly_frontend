@@ -5,8 +5,8 @@ export const updateProjectTaskChecklistSchema = zod.object({
     zod.object({
       id: zod.string().optional(),
       name: zod
-        .string({ error: "Item name is required" })
-        .min(1, { message: "Item name is required" }),
+        .string({ error: "validation:itemNameRequired" })
+        .min(1, { message: "validation:itemNameRequired" }),
       isComplete: zod.boolean(),
       order: zod.number(),
     }),

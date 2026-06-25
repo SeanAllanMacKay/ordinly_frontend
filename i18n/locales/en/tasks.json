@@ -1,0 +1,28 @@
+{
+  "addTask": {
+    "title": "Add task",
+    "submit": "Add task"
+  },
+  "editTask": {
+    "title": "Edit task"
+  },
+  "deleteTask": {
+    "title": "Delete task?",
+    "message": "This will permanently delete this item and everything within it. This action cannot be undone."
+  },
+  "milestone": {
+    "title": "Add milestone",
+    "submit": "Add milestone",
+    "approver": "Approver"
+  },
+  "phase": {
+    "title": "Add phase",
+    "submit": "Add phase"
+  },
+  "accordion": {
+    "details": "Details",
+    "checklist": "Checklist",
+    "documents": "Documents",
+    "links": "Links"
+  }
+}

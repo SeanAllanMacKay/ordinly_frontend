@@ -3,6 +3,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StyleSheet } from "@bacons/react-views";
 import { Text, useTheme } from "react-native-paper";
 import { Platform, View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import { TabBarItem } from "./TabBarItem";
 import { Spacing } from "@/styles";
@@ -11,6 +12,7 @@ import { Icon } from "@/components/atoms";
 
 export const TabBar = ({ tabs }: { tabs: TabType[] }) => {
   const { colors } = useTheme();
+  const { t } = useTranslation("navigation");
 
   const styles = useMemo(
     () =>
@@ -47,7 +49,7 @@ export const TabBar = ({ tabs }: { tabs: TabType[] }) => {
                     focused && { fontWeight: "bold" },
                   ]}
                 >
-                  {tab.title}
+                  {t(tab.title, { defaultValue: tab.title })}
                 </Text>
               </View>
             )}

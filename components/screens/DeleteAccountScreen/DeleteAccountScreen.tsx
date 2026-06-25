@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button, Grid, Modal, TextInput, Typography } from "@/components";
 import { useDeleteUserMutation, useGetCurrentUserQuery } from "@/api";
 import { DeleteAccountScreenProps } from "./types";
@@ -8,6 +9,7 @@ import { DeleteAccountScreenProps } from "./types";
 // verifies before deleting. On success the mutation clears the query cache,
 // which flips the auth gate and redirects to the unauthenticated route group.
 export const DeleteAccountScreen = ({ onClose }: DeleteAccountScreenProps) => {
+  const { t } = useTranslation("common");
   const userQuery = useGetCurrentUserQuery();
   const email = userQuery.data?.user?.email ?? "";
 
@@ -22,7 +24,7 @@ export const DeleteAccountScreen = ({ onClose }: DeleteAccountScreenProps) => {
 
   return (
     <Modal
-      title="Delete account?"
+      title={t("deleteAccount.title")}
       isVisible
       onClose={onClose}
       actions={[
@@ -30,7 +32,7 @@ export const DeleteAccountScreen = ({ onClose }: DeleteAccountScreenProps) => {
           key="cancel"
           variant="secondary"
           mode="outlined"
-          label="Cancel"
+          label={t("cancel")}
           onPress={onClose}
           isDisabled={isPending}
         />,
@@ -39,7 +41,7 @@ export const DeleteAccountScreen = ({ onClose }: DeleteAccountScreenProps) => {
           variant="danger"
           mode="contained"
           icon="remove"
-          label="Delete account"
+          label={t("settings.deleteAccount")}
           onPress={() => mutate({ password })}
           isLoading={isPending}
           isDisabled={!canDelete}
@@ -47,20 +49,17 @@ export const DeleteAccountScreen = ({ onClose }: DeleteAccountScreenProps) => {
       ]}
     >
       <Grid>
-        <Typography>
-          This will permanently delete your account and all associated data.
-          This action cannot be undone.
-        </Typography>
+        <Typography>{t("deleteAccount.warning")}</Typography>
 
         <TextInput
-          label="Type your email to confirm"
+          label={t("deleteAccount.confirmEmailLabel")}
           value={emailInput}
           onChange={setEmailInput}
           keyboardType="email-address"
         />
 
         <TextInput
-          label="Password"
+          label={t("password")}
           type="password"
           value={password}
           onChange={setPassword}

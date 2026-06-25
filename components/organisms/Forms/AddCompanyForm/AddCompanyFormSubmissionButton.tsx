@@ -1,4 +1,5 @@
 import { useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { AddCompanyFormFieldTypes } from "./types";
 import React, { useContext } from "react";
 import { useRouter } from "expo-router";
@@ -16,6 +17,7 @@ export const AddCompanySubmissionButton = ({
   const addCompanyForm = useFormContext<AddCompanyFormFieldTypes>();
   const formLoadingState = useContext(FormLoadingStateContext);
   const router = useRouter();
+  const { t } = useTranslation("companies");
 
   const addCompanyMutation = useCreateCompanyMutation({
     onSuccess: (data) => {
@@ -37,7 +39,7 @@ export const AddCompanySubmissionButton = ({
         formLoadingState.isLoading || addCompanyForm.formState.isSubmitting
       }
       isLoading={formLoadingState.isLoading}
-      label={"Add company"}
+      label={t("addCompany.submit")}
       icon="plus"
     />
   );

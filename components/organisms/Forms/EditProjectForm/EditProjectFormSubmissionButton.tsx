@@ -1,5 +1,6 @@
 import { useCreateProjectMutation, useEditProjectMutation } from "@/api";
 import { useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { EditProjectFormFieldTypes } from "./types";
 import React, { useContext } from "react";
 import { Button, FormLoadingStateContext } from "@/components/atoms";
@@ -11,6 +12,7 @@ export const EditProjectSubmissionButton = ({
   projectId: string;
   onSuccess?: Parameters<typeof useCreateProjectMutation>[0]["onSuccess"];
 }) => {
+  const { t } = useTranslation("projects");
   const editProjectForm = useFormContext<EditProjectFormFieldTypes>();
   const formLoadingState = useContext(FormLoadingStateContext);
 
@@ -28,7 +30,7 @@ export const EditProjectSubmissionButton = ({
         formLoadingState.isLoading || editProjectForm.formState.isSubmitting
       }
       isLoading={formLoadingState.isLoading}
-      label={"Save"}
+      label={t("save")}
       icon="save"
     />
   );

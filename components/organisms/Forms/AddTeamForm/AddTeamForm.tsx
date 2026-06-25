@@ -1,9 +1,11 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useGetWorkersQuery } from "@/api";
 import { requiredValidator } from "@/util/validation";
 import { MultiSelectFieldInput, TextFieldInput } from "@/components/molecules";
 
 export const AddTeamForm = () => {
+  const { t } = useTranslation("companies");
   const workers = useGetWorkersQuery({ page: 1 });
 
   const memberOptions =
@@ -16,15 +18,15 @@ export const AddTeamForm = () => {
     <>
       <TextFieldInput
         name="name"
-        label="Name"
+        label={t("name")}
         validation={{ requiredValidator }}
       />
 
-      <TextFieldInput name="description" label="Description" />
+      <TextFieldInput name="description" label={t("description")} />
 
       <MultiSelectFieldInput
         name="memberIds"
-        label="Members"
+        label={t("addTeam.members")}
         options={memberOptions}
       />
     </>

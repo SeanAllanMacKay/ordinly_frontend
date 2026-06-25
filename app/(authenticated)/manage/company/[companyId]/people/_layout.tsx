@@ -4,9 +4,9 @@ import { TabNavigation } from "@/components";
 export default function PeopleRouter() {
   return (
     <TabNavigation>
-      <TabNavigation.Screen name="workers" options={{ title: "Workers" }} />
-      <TabNavigation.Screen name="teams" options={{ title: "Teams" }} />
-      <TabNavigation.Screen name="roles" options={{ title: "Roles" }} />
+      <TabNavigation.Screen name="workers" options={{ title: "tabs.workers" }} />
+      <TabNavigation.Screen name="teams" options={{ title: "tabs.teams" }} />
+      <TabNavigation.Screen name="roles" options={{ title: "tabs.roles" }} />
     </TabNavigation>
   );
 }

@@ -1,5 +1,6 @@
 import { useCreateRoleMutation } from "@/api";
 import { useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { AddRoleFormFieldTypes } from "./types";
 import React, { useContext } from "react";
 import { Button, FormLoadingStateContext } from "@/components/atoms";
@@ -13,6 +14,7 @@ export const AddRoleSubmissionButton = ({
   const addRoleForm = useFormContext<AddRoleFormFieldTypes>();
   const formLoadingState = useContext(FormLoadingStateContext);
   const companyId = useActiveCompanyId();
+  const { t } = useTranslation("companies");
 
   const addRoleMutation = useCreateRoleMutation({ onSuccess });
 
@@ -30,7 +32,7 @@ export const AddRoleSubmissionButton = ({
         addRoleForm.formState.isSubmitting
       }
       isLoading={formLoadingState.isLoading}
-      label={"Add role"}
+      label={t("addRole.submit")}
     />
   );
 };

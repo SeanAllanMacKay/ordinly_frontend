@@ -10,7 +10,7 @@ const VerifyAccount = () => {
   const { code } = useLocalSearchParams<{ code: string }>();
 
   useEffect(() => {
-    navigation.setOptions({ headerTitle: "Verify account" });
+    navigation.setOptions({ headerTitle: "headers.verifyAccount" });
   }, [navigation]);
 
   const onRedirect = (hasUser: boolean) => {

@@ -9,6 +9,7 @@ import {
   launchImageLibraryAsync,
   useMediaLibraryPermissions,
 } from "expo-image-picker";
+import { useTranslation } from "react-i18next";
 
 export const ImageInput = ({
   value,
@@ -17,6 +18,7 @@ export const ImageInput = ({
 }: ImageInputProps) => {
   const [permissions, requestPermission] = useMediaLibraryPermissions();
   const theme = useTheme();
+  const { t } = useTranslation("documents");
   const imageMetadataQuery = useGetImageMetadataQuery();
 
   const [image, setImage] = useState<string | undefined>(value?.uri);
@@ -31,10 +33,7 @@ export const ImageInput = ({
       const response = await requestPermission();
 
       if (!response.granted) {
-        Alert.alert(
-          "Permission Needed",
-          "Allow access to photos to set a profile picture.",
-        );
+        Alert.alert(t("permissionNeeded"), t("allowPhotoAccess"));
         return;
       }
     }

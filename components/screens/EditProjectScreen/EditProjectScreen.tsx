@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Drawer } from "@/components";
 import {
   EditProjectForm,
@@ -11,10 +12,12 @@ export const EditProjectScreen = ({
   projectId,
   onClose,
 }: EditProjectScreenProps) => {
+  const { t } = useTranslation("projects");
+
   return (
     <EditProjectProvider projectId={projectId}>
       <Drawer
-        title="Edit project"
+        title={t("editProject.title")}
         actions={[
           <EditProjectSubmissionButton
             key="submit"

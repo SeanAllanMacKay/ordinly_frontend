@@ -9,6 +9,7 @@ import { Spacing } from "@/styles";
 import { EntitySwitcherItem } from "./EntitySwitcherItem";
 import { useDrawers } from "@/util/navigation/useDrawers";
 import { useLogoutMutation } from "@/api";
+import { useTranslation } from "react-i18next";
 
 export const EntitySwitcherMenu = ({
   anchor,
@@ -17,6 +18,7 @@ export const EntitySwitcherMenu = ({
 }) => {
   const router = useRouter();
   const theme = useTheme();
+  const { t } = useTranslation("navigation");
   const { user, companyOptions, selectedEntity } = useContext(
     EntitySwitcherContext,
   );
@@ -54,7 +56,7 @@ export const EntitySwitcherMenu = ({
         {companyOptions?.length ? (
           <>
             <Typography color="onSurfaceVariant" size="xs">
-              Personal
+              {t("entitySwitcher.personal")}
             </Typography>
 
             <Pressable
@@ -71,7 +73,7 @@ export const EntitySwitcherMenu = ({
             </Pressable>
 
             <Typography color="onSurfaceVariant" size="xs">
-              Companies
+              {t("entitySwitcher.companies")}
             </Typography>
 
             {companyOptions.map(({ name, id }) => (
@@ -91,13 +93,13 @@ export const EntitySwitcherMenu = ({
         ) : null}
 
         <Button
-          label="Add a company"
+          label={t("entitySwitcher.addCompany")}
           icon="plus"
           onPress={() => open("add-company")}
         />
 
         <Button
-          label="Log out"
+          label={t("entitySwitcher.logout")}
           icon="logout"
           onPress={async () => onLogoutMutation.mutateAsync()}
         />

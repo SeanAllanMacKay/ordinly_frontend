@@ -1,50 +1,56 @@
 import React from "react";
 import { View } from "react-native";
 import { useTheme } from "react-native-paper";
+import { useTranslation } from "react-i18next";
 import { Button, Card, Icon, Tag } from "@/components";
 import { Spacing } from "@/styles";
 import { useDrawers } from "@/util/navigation/useDrawers";
 import { FeatureItem, FeatureList } from "./FeatureList";
 
-const FEATURES: FeatureItem[] = [
-  {
-    icon: "tasks",
-    title: "Schedule",
-    subtitle: "Break your project into tasks, phases, and milestones",
-  },
-  { icon: "clock", title: "Time tracking", subtitle: "Log hours on site" },
-  {
-    icon: "image",
-    title: "Images & files",
-    subtitle: "Keep your contracts, waivers, and proof of work in one place",
-  },
-  {
-    icon: "portfolio",
-    title: "Portfolio",
-    subtitle: "Show your best work to get more jobs",
-  },
-];
-
 export const CreateProjectCard = () => {
+  const { t } = useTranslation("common");
   const { open } = useDrawers();
   const theme = useTheme();
+
+  const features: FeatureItem[] = [
+    {
+      icon: "tasks",
+      title: t("home.project.features.scheduleTitle"),
+      subtitle: t("home.project.features.scheduleSubtitle"),
+    },
+    {
+      icon: "clock",
+      title: t("home.project.features.timeTitle"),
+      subtitle: t("home.project.features.timeSubtitle"),
+    },
+    {
+      icon: "image",
+      title: t("home.project.features.filesTitle"),
+      subtitle: t("home.project.features.filesSubtitle"),
+    },
+    {
+      icon: "portfolio",
+      title: t("home.project.features.portfolioTitle"),
+      subtitle: t("home.project.features.portfolioSubtitle"),
+    },
+  ];
 
   return (
     <Card
       emphasis="high"
-      title="Create your first project"
-      subtitle="Track tasks, time, and photos for personal jobs, side work, and your professional portfolio."
+      title={t("home.project.title")}
+      subtitle={t("home.project.subtitle")}
       headerLeft={<Icon name="projects" size="xxl" color="secondary" />}
     >
       <View style={{ gap: Spacing.md }}>
-        <FeatureList items={FEATURES} />
+        <FeatureList items={features} />
 
         <View style={{ flexDirection: "row" }}>
           <Button
             variant="primary"
             mode="contained"
             icon="plus"
-            label="Create a project"
+            label={t("home.project.cta")}
             onPress={() => open("add-project")}
           />
         </View>

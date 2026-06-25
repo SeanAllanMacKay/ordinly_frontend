@@ -8,12 +8,14 @@ import {
 } from "@react-navigation/native";
 import { TabBar } from "@/components/templates/Tabs/TabBar";
 import { View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 export const TopTabNavigator = ({
   children,
   initialRouteName,
   screenOptions,
 }: TopTabNavigationProps) => {
+  const { t } = useTranslation("navigation");
   const { state, navigation, descriptors, NavigationContent } =
     useNavigationBuilder(TabRouter, {
       children,
@@ -30,7 +32,7 @@ export const TopTabNavigator = ({
 
     return {
       isFocused,
-      label: options.title,
+      label: t(options.title, { defaultValue: options.title }),
       value: route.name,
       ...options,
     };

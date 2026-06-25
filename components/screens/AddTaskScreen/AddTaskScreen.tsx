@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   Accordion,
   AddProjectTaskChecklistInputs,
@@ -11,10 +12,12 @@ import {
 import { AddTaskScreenProps } from "./types";
 
 export const AddTaskScreen = ({ projectId, onClose }: AddTaskScreenProps) => {
+  const { t } = useTranslation("tasks");
+
   return (
     <AddProjectTaskProvider>
       <Drawer
-        title="Add task"
+        title={t("addTask.title")}
         actions={[
           <AddProjectTaskSubmissionButton
             key="submit"
@@ -28,14 +31,14 @@ export const AddTaskScreen = ({ projectId, onClose }: AddTaskScreenProps) => {
         <AddProjectTaskDetailsInputs />
 
         <Accordion>
-          <Accordion.Item id="checklist" label="Checklist">
+          <Accordion.Item id="checklist" label={t("accordion.checklist")}>
             <AddProjectTaskChecklistInputs />
           </Accordion.Item>
 
-          <Accordion.Item id="documents" label="Documents">
+          <Accordion.Item id="documents" label={t("accordion.documents")}>
             <AddProjectTaskDocumentsInputs />
           </Accordion.Item>
-          <Accordion.Item id="links" label="Links"></Accordion.Item>
+          <Accordion.Item id="links" label={t("accordion.links")}></Accordion.Item>
         </Accordion>
       </Drawer>
     </AddProjectTaskProvider>

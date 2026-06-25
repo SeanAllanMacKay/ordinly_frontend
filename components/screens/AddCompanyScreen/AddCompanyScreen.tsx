@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   AddCompanyForm,
   AddCompanyProvider,
@@ -12,21 +13,22 @@ import { useGetCurrentUserQuery, useResendVerificationMutation } from "@/api";
 import { AddCompanyScreenProps } from "./types";
 
 export const AddCompanyScreen = ({ onClose }: AddCompanyScreenProps) => {
+  const { t } = useTranslation("companies");
   const userQuery = useGetCurrentUserQuery();
   const user = userQuery.data?.user;
   const isUnverified = !!user && !user.isVerified;
 
   const resendMutation = useResendVerificationMutation();
   const resendLabel = resendMutation.isSuccess
-    ? "Email sent"
+    ? t("addCompany.emailSent")
     : resendMutation.isPending
-      ? "Sending…"
-      : "Resend email";
+      ? t("addCompany.sending")
+      : t("addCompany.resendEmail");
 
   if (isUnverified) {
     return (
       <Modal
-        title="Verification required"
+        title={t("addCompany.verificationRequiredTitle")}
         isVisible
         actions={[
           <Button
@@ -39,9 +41,7 @@ export const AddCompanyScreen = ({ onClose }: AddCompanyScreenProps) => {
         ]}
         onClose={onClose}
       >
-        <Typography>
-          Your account must be verified to create a company.
-        </Typography>
+        <Typography>{t("addCompany.verificationRequiredBody")}</Typography>
       </Modal>
     );
   }
@@ -49,7 +49,7 @@ export const AddCompanyScreen = ({ onClose }: AddCompanyScreenProps) => {
   return (
     <AddCompanyProvider>
       <Drawer
-        title="Add company"
+        title={t("addCompany.title")}
         actions={[
           <AddCompanySubmissionButton key="submit" onSuccess={onClose} />,
         ]}

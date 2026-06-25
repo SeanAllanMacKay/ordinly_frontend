@@ -7,7 +7,7 @@ const SignUp = () => {
   const router = useRouter();
 
   useEffect(() => {
-    navigation.setOptions({ headerTitle: "Sign Up" });
+    navigation.setOptions({ headerTitle: "headers.signUp" });
   }, [navigation]);
 
   return <UnauthorizedSignUpScreen onLogin={() => router.replace("/login")} />;

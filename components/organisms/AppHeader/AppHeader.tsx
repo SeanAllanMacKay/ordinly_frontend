@@ -7,9 +7,11 @@ import { Typography } from "@/components/atoms/Typography";
 import { EntitySwitcher } from "./EntitySwitcher";
 import { useShowVerificationBanner } from "@/components/organisms/VerificationBanner";
 import { Spacing } from "@/styles";
+import { useTranslation } from "react-i18next";
 
 export const AppHeader = () => {
   const { top } = useSafeAreaInsets();
+  const { t } = useTranslation("navigation");
 
   // The verification banner sits above this header and already consumes the top
   // safe-area inset when shown, so avoid double-padding in that case.
@@ -38,7 +40,7 @@ export const AppHeader = () => {
           emphasis="high"
           size={Platform.select({ default: "md", web: "lg" })}
         >
-          Ordinly
+          {t("brand")}
         </Typography>
       </View>
     </>

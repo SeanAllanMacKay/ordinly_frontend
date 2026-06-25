@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { CompanyListItem } from "@/components";
 import { CompanyType, useGetCompaniesQuery } from "@/api";
 import { usePagination } from "@/components/molecules/Pagination/utils";
@@ -6,6 +7,7 @@ import { ListableData } from "@/components/molecules/ListableData";
 import { CompaniesEmptyState } from "./CompaniesEmptyState";
 
 export const CompaniesDataList = () => {
+  const { t } = useTranslation("companies");
   const { page, onPaginationChange } = usePagination();
 
   const companiesQuery = useGetCompaniesQuery({ page });
@@ -27,7 +29,7 @@ export const CompaniesDataList = () => {
       keyExtractor={(item: CompanyType) => String(item.id)}
       item={CompanyListItem}
       // table
-      columns={[{ label: "Name", key: "name" }]}
+      columns={[{ label: t("companies.columnName"), key: "name" }]}
     />
   );
 };

@@ -1,4 +1,5 @@
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { FormFieldArrayProps } from "./types";
 import { ConditionalWrapper } from "../ContitionalWrapper";
 import React, { useContext } from "react";
@@ -15,6 +16,7 @@ export const FormFieldArray = ({
   itemValidation,
   label,
 }: FormFieldArrayProps) => {
+  const { t } = useTranslation("common");
   const formLoadingState = useContext(FormLoadingStateContext);
   const { control } = useFormContext();
 
@@ -55,7 +57,7 @@ export const FormFieldArray = ({
           <Button
             icon="plus"
             onPress={() => append(defaultItemValue)}
-            label="Add"
+            label={t("add")}
           />
         </View>
       </>

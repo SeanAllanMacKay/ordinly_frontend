@@ -7,6 +7,7 @@ import { PaperProvider } from "@/styles/PaperProvider";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useGetCurrentUserQuery } from "@/api";
 import { SplashScreen } from "@/components/screens";
+import { LanguageProvider } from "@/i18n/LanguagePreference";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,9 +26,11 @@ export default function RootLayout() {
     <QueryClientProvider client={queryClient}>
       <GestureHandlerRootView>
         <SafeAreaProvider>
-          <PaperProvider>
-            <RootNavigator />
-          </PaperProvider>
+          <LanguageProvider>
+            <PaperProvider>
+              <RootNavigator />
+            </PaperProvider>
+          </LanguageProvider>
         </SafeAreaProvider>
       </GestureHandlerRootView>
     </QueryClientProvider>

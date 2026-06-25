@@ -1,0 +1,31 @@
+{
+  "addClient": {
+    "title": "Agregar cliente",
+    "submit": "Agregar cliente"
+  },
+  "addContact": {
+    "title": "Agregar contacto",
+    "submit": "Agregar contacto",
+    "roleLabel": "Cargo",
+    "emailsLabel": "Correos electrónicos",
+    "phoneNumbersLabel": "Números de teléfono",
+    "locationsLabel": "Ubicaciones"
+  },
+  "clientsEmpty": {
+    "title": "Aún no hay clientes",
+    "subtitle": "Los clientes que agregues aparecerán aquí."
+  },
+  "contactsEmpty": {
+    "title": "Aún no hay contactos",
+    "subtitle": "Los contactos que agregues para este cliente aparecerán aquí."
+  },
+  "details": {
+    "title": "Detalles"
+  },
+  "documents": {
+    "title": "Documentos"
+  },
+  "invoices": {
+    "title": "Facturas"
+  }
+}

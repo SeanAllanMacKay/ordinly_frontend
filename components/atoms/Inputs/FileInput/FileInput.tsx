@@ -8,10 +8,12 @@ import { Typography } from "../../Typography";
 import { Icon } from "../../Icon";
 import { Button } from "../../Button";
 import { useTheme } from "react-native-paper";
+import { useTranslation } from "react-i18next";
 
 export const FileInput = ({ value = [], onChange }: FileInputProps) => {
   const [files, setFiles] = useState<FileInputProps["value"]>(value);
   const theme = useTheme();
+  const { t } = useTranslation("documents");
 
   const acceptedFileTypesQuery = useGetFileMetadataQuery();
 
@@ -44,7 +46,7 @@ export const FileInput = ({ value = [], onChange }: FileInputProps) => {
       }
     } catch (error) {
       console.error("Error picking document:", error);
-      Alert.alert("Error", "Failed to pick document");
+      Alert.alert(t("error"), t("pickDocumentFailed"));
     }
   };
 
@@ -75,7 +77,7 @@ export const FileInput = ({ value = [], onChange }: FileInputProps) => {
             sizeOverride={35}
             color="onSurfaceVariant"
           />
-          <Typography color="onSurfaceVariant">Select a file </Typography>
+          <Typography color="onSurfaceVariant">{t("selectFile")}</Typography>
         </View>
       </Pressable>
 

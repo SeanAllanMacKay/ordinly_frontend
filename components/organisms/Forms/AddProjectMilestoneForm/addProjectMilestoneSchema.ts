@@ -2,8 +2,8 @@ import zod from "zod";
 
 export const addProjectMilestoneSchema = zod.object({
   name: zod
-    .string({ error: "Name is required" })
-    .min(1, { error: "Name is required" }),
+    .string({ error: "validation:nameRequired" })
+    .min(1, { error: "validation:nameRequired" }),
   description: zod.string().optional(),
   status: zod.string().optional(),
   priority: zod.string().optional(),

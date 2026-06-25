@@ -1,0 +1,36 @@
+{
+  "addProject": {
+    "title": "Add project",
+    "submit": "Add project"
+  },
+  "editProject": {
+    "title": "Edit project"
+  },
+  "deleteProject": {
+    "title": "Delete project?",
+    "message": "This will permanently delete the project and all of its tasks, milestones, and phases. This action cannot be undone.",
+    "confirmLabel": "Delete project",
+    "trigger": "Delete project"
+  },
+  "details": {
+    "start": "Start",
+    "end": "End"
+  },
+  "emptyState": {
+    "title": "No projects yet",
+    "subtitle": "Projects you create will show up here."
+  },
+  "location": {
+    "search": "Search",
+    "searchHint": "Search to find the address you're looking for"
+  },
+  "documents": {
+    "placeholder": "Documents"
+  },
+  "invoices": {
+    "placeholder": "Invoices"
+  },
+  "milestones": {
+    "placeholder": "Milestones"
+  }
+}

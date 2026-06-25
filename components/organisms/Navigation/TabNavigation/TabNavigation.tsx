@@ -10,6 +10,8 @@ import { withLayoutContext } from "expo-router";
 import { ParamListBase, TabNavigationState } from "@react-navigation/native";
 import { TabNavigationProps } from "./types";
 import { useTheme } from "react-native-paper";
+import { useTranslation } from "react-i18next";
+import { Typography } from "@/components";
 
 const { Navigator } = createMaterialTopTabNavigator();
 
@@ -27,6 +29,7 @@ export const TabNavigation = ({
   screenOptions?: { headerShown?: boolean; isScrollable?: boolean };
 }) => {
   const theme = useTheme();
+  const { t } = useTranslation("navigation");
 
   return (
     <MaterialTopTabs
@@ -40,6 +43,17 @@ export const TabNavigation = ({
         },
         tabBarItemStyle: { width: "auto" },
         swipeEnabled: screenOptions.isScrollable,
+        tabBarLabel: ({
+          color,
+          children,
+        }: {
+          color: string;
+          children: string;
+        }) => (
+          <Typography colorOverride={color}>
+            {t(children, { defaultValue: children })}
+          </Typography>
+        ),
       }}
     >
       {children}

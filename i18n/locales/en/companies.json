@@ -1,0 +1,64 @@
+{
+  "addCompany": {
+    "title": "Add company",
+    "submit": "Add company",
+    "verificationRequiredTitle": "Verification required",
+    "verificationRequiredBody": "Your account must be verified to create a company.",
+    "resendEmail": "Resend email",
+    "emailSent": "Email sent",
+    "sending": "Sending…"
+  },
+  "addRole": {
+    "title": "Add role",
+    "submit": "Add role",
+    "descriptionLabel": "Description (optional)",
+    "permissions": "Permissions",
+    "permissionsComingSoon": "Permission management is coming soon."
+  },
+  "addTeam": {
+    "title": "Add team",
+    "submit": "Add team",
+    "members": "Members"
+  },
+  "addWorker": {
+    "title": "Add worker",
+    "submit": "Add worker",
+    "role": "Role"
+  },
+  "companies": {
+    "columnName": "Name",
+    "emptyTitle": "No companies yet",
+    "emptySubtitle": "Companies you create will show up here.",
+    "addCompany": "Add company"
+  },
+  "roles": {
+    "emptyTitle": "No roles yet",
+    "emptySubtitle": "Roles you create will show up here.",
+    "addRole": "Add role"
+  },
+  "teams": {
+    "columnMembers": "Members",
+    "memberCount": "{{count}} members",
+    "emptyTitle": "No teams yet",
+    "emptySubtitle": "Teams you create will show up here.",
+    "addTeam": "Add team"
+  },
+  "workers": {
+    "columnRoles": "Roles",
+    "emptyTitle": "No workers yet",
+    "emptySubtitle": "Workers you invite will show up here.",
+    "addWorker": "Add worker"
+  },
+  "home": {
+    "dashboard": "Company dashboard"
+  },
+  "settings": {
+    "deleteDescription": "Deleting this company permanently removes all of its projects, teams, and members. This action cannot be undone.",
+    "deleteCompany": "Delete company"
+  },
+  "deleteCompany": {
+    "title": "Delete company?",
+    "message": "This will permanently delete the company and all of its projects, teams, and members. This action cannot be undone.",
+    "confirmLabel": "Delete company"
+  }
+}

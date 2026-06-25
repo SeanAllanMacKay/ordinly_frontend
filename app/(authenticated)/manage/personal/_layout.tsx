@@ -7,33 +7,33 @@ export default function PersonalLayout() {
     <RootNavigation>
       <RootNavigation.Screen
         name="index"
-        options={{ title: "Home", icon: "home" }}
+        options={{ title: "tabs.home", icon: "home" }}
       />
 
       <RootNavigation.Screen
         name="clients"
         options={{
-          title: "Clients",
+          title: "tabs.clients",
           icon: "blueprint",
-          header: () => <ScreenHeader title="Clients" />,
+          header: () => <ScreenHeader title="tabs.clients" />,
         }}
       />
 
       <RootNavigation.Screen
         name="projects"
         options={{
-          title: "Projects",
+          title: "tabs.projects",
           icon: "projects",
-          header: () => <ScreenHeader title="Projects" />,
+          header: () => <ScreenHeader title="tabs.projects" />,
         }}
       />
 
       <RootNavigation.Screen
         name="account"
         options={{
-          title: "Account",
+          title: "tabs.account",
           icon: "account",
-          header: () => <ScreenHeader title="Account" />,
+          header: () => <ScreenHeader title="tabs.account" />,
         }}
       />
     </RootNavigation>

@@ -1,0 +1,12 @@
+{
+  "required": "Required",
+  "email": "Please enter a valid email address",
+  "phone": "Please enter a valid phone number",
+  "passwordMinLength": "Must be at least 8 characters",
+  "passwordUppercase": "Must contain at least one uppercase letter",
+  "passwordLowercase": "Must contain at least one lowercase letter",
+  "passwordNumber": "Must contain at least one number",
+  "nameRequired": "Name is required",
+  "itemNameRequired": "Item name is required",
+  "itemValueRequired": "Item value is required"
+}

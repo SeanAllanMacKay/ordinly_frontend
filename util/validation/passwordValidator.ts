@@ -4,18 +4,18 @@ const numberRegex = /.*[0-9].*/;
 
 export const passwordValidator = (value: any) => {
   if (value.length < 8) {
-    return "Must be at least 8 characters";
+    return "validation:passwordMinLength";
   }
 
   if (!value.match(uppercaseRegex)) {
-    return "Must contain at least one uppecase letter";
+    return "validation:passwordUppercase";
   }
 
   if (!value.match(lowercaseRegex)) {
-    return "Must contain at least one lowercase letter";
+    return "validation:passwordLowercase";
   }
 
   if (!value.match(numberRegex)) {
-    return "Must contain at least one number";
+    return "validation:passwordNumber";
   }
 };

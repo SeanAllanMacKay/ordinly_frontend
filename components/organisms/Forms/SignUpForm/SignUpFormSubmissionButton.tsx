@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useSignUpMutation } from "@/api";
 import { Button } from "@/components";
 import { UseFormReturn } from "react-hook-form";
@@ -9,6 +10,7 @@ export const SignUpFormSubmissionButton = ({
 }: {
   form: UseFormReturn<SignUpFormFieldValues>;
 }) => {
+  const { t } = useTranslation("auth");
   const signUpMutation = useSignUpMutation();
 
   const onSubmit = form.handleSubmit(
@@ -17,7 +19,7 @@ export const SignUpFormSubmissionButton = ({
         await signUpMutation.mutateAsync(formValues);
       } catch (e: any) {
         form.setError("root.serverError", {
-          message: e?.error ?? "Something went wrong. Please try again.",
+          message: e?.error ?? t("signUp.serverError"),
         });
       }
     },
@@ -28,7 +30,7 @@ export const SignUpFormSubmissionButton = ({
       mode="contained"
       onPress={onSubmit}
       isDisabled={form.formState.isSubmitting}
-      label={"Sign up"}
+      label={t("signUp.submit")}
     />
   );
 };

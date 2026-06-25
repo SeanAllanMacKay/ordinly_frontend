@@ -1,22 +1,24 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Button, EmptyState } from "@/components";
 import { useDrawers } from "@/util/navigation/useDrawers";
 
 export const CompanyTeamsListEmptyState = () => {
+  const { t } = useTranslation("companies");
   const { open } = useDrawers();
 
   return (
     <EmptyState
       icon="crew"
-      title="No teams yet"
-      subtitle="Teams you create will show up here."
+      title={t("teams.emptyTitle")}
+      subtitle={t("teams.emptySubtitle")}
       actions={[
         <Button
           key="add-team"
           variant="primary"
           mode="contained"
           icon="plus"
-          label="Add team"
+          label={t("teams.addTeam")}
           onPress={() => open("add-team")}
         />,
       ]}

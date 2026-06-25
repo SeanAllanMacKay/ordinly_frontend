@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   AddRoleForm,
   AddRoleProvider,
@@ -8,10 +9,12 @@ import {
 import { AddRoleScreenProps } from "./types";
 
 export const AddRoleScreen = ({ onClose }: AddRoleScreenProps) => {
+  const { t } = useTranslation("companies");
+
   return (
     <AddRoleProvider>
       <Drawer
-        title="Add role"
+        title={t("addRole.title")}
         actions={[<AddRoleSubmissionButton key="submit" onSuccess={onClose} />]}
         isVisible={true}
         onClose={onClose}

@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Card } from "@/components";
 import { useGetWorkersQuery } from "@/api";
 import { usePagination } from "@/components/molecules/Pagination/utils";
@@ -8,6 +9,7 @@ import { CompanyWorkersListEmptyState } from "./CompanyWorkersListEmptyState";
 type WorkerRow = { id: string; name: string; roles: string };
 
 export const CompanyWorkersList = () => {
+  const { t } = useTranslation("companies");
   const { page, onPaginationChange } = usePagination();
 
   const workersQuery = useGetWorkersQuery({ page });
@@ -40,8 +42,8 @@ export const CompanyWorkersList = () => {
       )}
       // table
       columns={[
-        { label: "Name", key: "name" },
-        { label: "Roles", key: "roles" },
+        { label: t("name"), key: "name" },
+        { label: t("workers.columnRoles"), key: "roles" },
       ]}
     />
   );

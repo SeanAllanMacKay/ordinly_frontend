@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { requiredValidator } from "@/util/validation";
 import {
   DateFieldInput,
@@ -13,11 +14,13 @@ import { View } from "react-native";
 import { Spacing } from "@/styles";
 
 export const AddProjectMilestoneDetailsInputs = () => {
+  const { t } = useTranslation("tasks");
+
   return (
     <>
       <TextFieldInput
         name="name"
-        label="Name"
+        label={t("name")}
         validation={{ requiredValidator }}
       />
 
@@ -26,11 +29,11 @@ export const AddProjectMilestoneDetailsInputs = () => {
         <TaskStatusDataFieldInput name="status" />
       </View>
 
-      <EnrichedTextFieldInput name="description" label="Description" />
+      <EnrichedTextFieldInput name="description" label={t("description")} />
 
-      <DateFieldInput name="dueDate" label="Due date" />
+      <DateFieldInput name="dueDate" label={t("dueDate")} />
 
-      <TextFieldInput name="approver" label="Approver" />
+      <TextFieldInput name="approver" label={t("milestone.approver")} />
     </>
   );
 };

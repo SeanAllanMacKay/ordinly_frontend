@@ -2,8 +2,8 @@ import zod from "zod";
 
 export const editProjectTaskSchema = zod.object({
   name: zod
-    .string({ error: "Name is required" })
-    .min(1, { error: "Name is required" }),
+    .string({ error: "validation:nameRequired" })
+    .min(1, { error: "validation:nameRequired" }),
   description: zod.string().optional(),
   status: zod.string().optional(),
   priority: zod.string().optional(),
@@ -12,7 +12,7 @@ export const editProjectTaskSchema = zod.object({
   checklist: zod
     .array(
       zod.object({
-        value: zod.string({ error: "Item value is required" }),
+        value: zod.string({ error: "validation:itemValueRequired" }),
       }),
     )
     .optional(),

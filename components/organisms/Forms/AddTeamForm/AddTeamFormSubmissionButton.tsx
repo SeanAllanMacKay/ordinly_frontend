@@ -1,5 +1,6 @@
 import { useCreateTeamMutation } from "@/api";
 import { useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { AddTeamFormFieldTypes } from "./types";
 import React, { useContext } from "react";
 import { Button, FormLoadingStateContext } from "@/components/atoms";
@@ -13,6 +14,7 @@ export const AddTeamSubmissionButton = ({
   const addTeamForm = useFormContext<AddTeamFormFieldTypes>();
   const formLoadingState = useContext(FormLoadingStateContext);
   const companyId = useActiveCompanyId();
+  const { t } = useTranslation("companies");
 
   const addTeamMutation = useCreateTeamMutation({ onSuccess });
 
@@ -34,7 +36,7 @@ export const AddTeamSubmissionButton = ({
         addTeamForm.formState.isSubmitting
       }
       isLoading={formLoadingState.isLoading}
-      label={"Add team"}
+      label={t("addTeam.submit")}
     />
   );
 };

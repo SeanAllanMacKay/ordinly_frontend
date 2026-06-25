@@ -7,10 +7,12 @@ import { useTheme } from "react-native-paper";
 import { Icon } from "@/components/atoms";
 import { EntitySwitcher } from "./EntitySwitcher";
 import { useIsDesktop } from "@/styles";
+import { useTranslation } from "react-i18next";
 
 export const LeftTabs = ({ tabs, onPress }: TabsProps) => {
   const theme = useTheme();
   const isDesktop = useIsDesktop();
+  const { t } = useTranslation("navigation");
 
   return (
     <View
@@ -24,7 +26,7 @@ export const LeftTabs = ({ tabs, onPress }: TabsProps) => {
         emphasis="high"
         size={Platform.select({ default: "md", web: "lg" })}
       >
-        Ordinly
+        {t("brand")}
       </Typography>
 
       <EntitySwitcher />
@@ -57,7 +59,7 @@ export const LeftTabs = ({ tabs, onPress }: TabsProps) => {
                   color={isFocused ? "onPrimaryContainer" : "onBackground"}
                   size="xs"
                 >
-                  {title}
+                  {t(title ?? "", { defaultValue: title ?? "" })}
                 </Typography>
               </View>
             </View>

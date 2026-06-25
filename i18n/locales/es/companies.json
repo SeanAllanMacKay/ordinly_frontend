@@ -1,0 +1,64 @@
+{
+  "addCompany": {
+    "title": "Agregar empresa",
+    "submit": "Agregar empresa",
+    "verificationRequiredTitle": "Verificación requerida",
+    "verificationRequiredBody": "Tu cuenta debe estar verificada para crear una empresa.",
+    "resendEmail": "Reenviar correo",
+    "emailSent": "Correo enviado",
+    "sending": "Enviando…"
+  },
+  "addRole": {
+    "title": "Agregar rol",
+    "submit": "Agregar rol",
+    "descriptionLabel": "Descripción (opcional)",
+    "permissions": "Permisos",
+    "permissionsComingSoon": "La gestión de permisos estará disponible pronto."
+  },
+  "addTeam": {
+    "title": "Agregar equipo",
+    "submit": "Agregar equipo",
+    "members": "Miembros"
+  },
+  "addWorker": {
+    "title": "Agregar trabajador",
+    "submit": "Agregar trabajador",
+    "role": "Rol"
+  },
+  "companies": {
+    "columnName": "Nombre",
+    "emptyTitle": "Aún no hay empresas",
+    "emptySubtitle": "Las empresas que crees aparecerán aquí.",
+    "addCompany": "Agregar empresa"
+  },
+  "roles": {
+    "emptyTitle": "Aún no hay roles",
+    "emptySubtitle": "Los roles que crees aparecerán aquí.",
+    "addRole": "Agregar rol"
+  },
+  "teams": {
+    "columnMembers": "Miembros",
+    "memberCount": "{{count}} miembros",
+    "emptyTitle": "Aún no hay equipos",
+    "emptySubtitle": "Los equipos que crees aparecerán aquí.",
+    "addTeam": "Agregar equipo"
+  },
+  "workers": {
+    "columnRoles": "Roles",
+    "emptyTitle": "Aún no hay trabajadores",
+    "emptySubtitle": "Los trabajadores que invites aparecerán aquí.",
+    "addWorker": "Agregar trabajador"
+  },
+  "home": {
+    "dashboard": "Panel de la empresa"
+  },
+  "settings": {
+    "deleteDescription": "Eliminar esta empresa borra permanentemente todos sus proyectos, equipos y miembros. Esta acción no se puede deshacer.",
+    "deleteCompany": "Eliminar empresa"
+  },
+  "deleteCompany": {
+    "title": "¿Eliminar empresa?",
+    "message": "Esto eliminará permanentemente la empresa y todos sus proyectos, equipos y miembros. Esta acción no se puede deshacer.",
+    "confirmLabel": "Eliminar empresa"
+  }
+}

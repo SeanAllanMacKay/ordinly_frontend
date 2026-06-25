@@ -1,9 +1,11 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useGetRolesQuery } from "@/api";
 import { emailValidator, requiredValidator } from "@/util/validation";
 import { SelectFieldInput, TextFieldInput } from "@/components/molecules";
 
 export const AddWorkerForm = () => {
+  const { t } = useTranslation("companies");
   const roles = useGetRolesQuery();
 
   const roleOptions =
@@ -16,13 +18,13 @@ export const AddWorkerForm = () => {
     <>
       <TextFieldInput
         name="email"
-        label="Email"
+        label={t("email")}
         validation={{ emailValidator }}
       />
 
       <SelectFieldInput
         name="roleId"
-        label="Role"
+        label={t("addWorker.role")}
         options={roleOptions}
         validation={{ requiredValidator }}
       />

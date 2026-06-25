@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   Accordion,
   AddProjectPhaseDetailsInputs,
@@ -10,10 +11,12 @@ import {
 import { AddPhaseScreenProps } from "./types";
 
 export const AddPhaseScreen = ({ projectId, onClose }: AddPhaseScreenProps) => {
+  const { t } = useTranslation("tasks");
+
   return (
     <AddProjectPhaseProvider>
       <Drawer
-        title="Add phase"
+        title={t("phase.title")}
         actions={[
           <AddProjectPhaseSubmissionButton
             key="submit"
@@ -25,14 +28,14 @@ export const AddPhaseScreen = ({ projectId, onClose }: AddPhaseScreenProps) => {
         onClose={onClose}
       >
         <Accordion defaultOpenSections={["details"]}>
-          <Accordion.Item id="details" label="Details">
+          <Accordion.Item id="details" label={t("accordion.details")}>
             <AddProjectPhaseDetailsInputs />
           </Accordion.Item>
 
-          <Accordion.Item id="documents" label="Documents">
+          <Accordion.Item id="documents" label={t("accordion.documents")}>
             <AddProjectPhaseDocumentsInputs />
           </Accordion.Item>
-          <Accordion.Item id="links" label="Links"></Accordion.Item>
+          <Accordion.Item id="links" label={t("accordion.links")}></Accordion.Item>
         </Accordion>
       </Drawer>
     </AddProjectPhaseProvider>

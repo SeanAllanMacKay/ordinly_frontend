@@ -10,11 +10,13 @@ import { SideBarItem } from "./SideBarItem";
 import { TabType } from "../MainNavigation";
 
 import { cns, useWidth } from "@/styles";
+import { useTranslation } from "react-i18next";
 
 const NAV_MEDIUM_WIDTH = 244;
 
 export const SideBar = ({ tabs }: { tabs: TabType[] }) => {
   const isLarge = useWidth(LARGE_BREAKPOINT);
+  const { t } = useTranslation("navigation");
 
   return (
     <View
@@ -53,7 +55,7 @@ export const SideBar = ({ tabs }: { tabs: TabType[] }) => {
           <View style={{ gap: 4, flex: 1 }}>
             {tabs.map(({ title, name, id, icon }) => (
               <SideBarItem key={id} name={name} icon={icon}>
-                {title}
+                {t(title, { defaultValue: title })}
               </SideBarItem>
             ))}
           </View>

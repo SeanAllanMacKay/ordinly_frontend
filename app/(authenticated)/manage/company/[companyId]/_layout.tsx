@@ -7,38 +7,38 @@ export default function CompanyLayout() {
     <RootNavigation>
       <RootNavigation.Screen
         name="index"
-        options={{ title: "Dashboard", icon: "chart-bar-horizontal" }}
+        options={{ title: "tabs.dashboard", icon: "chart-bar-horizontal" }}
       />
       <RootNavigation.Screen
         name="clients"
         options={{
-          title: "Clients",
+          title: "tabs.clients",
           icon: "blueprint",
-          header: () => <ScreenHeader title="Clients" />,
+          header: () => <ScreenHeader title="tabs.clients" />,
         }}
       />
       <RootNavigation.Screen
         name="projects"
         options={{
-          title: "Projects",
+          title: "tabs.projects",
           icon: "projects",
-          header: () => <ScreenHeader title="Projects" />,
+          header: () => <ScreenHeader title="tabs.projects" />,
         }}
       />
       <RootNavigation.Screen
         name="people"
         options={{
-          title: "People",
+          title: "tabs.people",
           icon: "identification-card",
-          header: () => <ScreenHeader title="People" />,
+          header: () => <ScreenHeader title="tabs.people" />,
         }}
       />
       <RootNavigation.Screen
         name="settings"
         options={{
-          title: "Settings",
+          title: "tabs.settings",
           icon: "gear",
-          header: () => <ScreenHeader title="Settings" />,
+          header: () => <ScreenHeader title="tabs.settings" />,
         }}
       />
     </RootNavigation>

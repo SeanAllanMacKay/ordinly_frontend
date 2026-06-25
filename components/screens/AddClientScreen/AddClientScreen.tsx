@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   AddClientForm,
   AddClientProvider,
@@ -8,10 +9,12 @@ import {
 import { AddClientScreenProps } from "./types";
 
 export const AddClientScreen = ({ onClose }: AddClientScreenProps) => {
+  const { t } = useTranslation("clients");
+
   return (
     <AddClientProvider>
       <Drawer
-        title="Add client"
+        title={t("addClient.title")}
         actions={[
           <AddClientSubmissionButton key="submit" onSuccess={onClose} />,
         ]}

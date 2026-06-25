@@ -1,5 +1,6 @@
 import { useCreateProjectTaskMutation } from "@/api";
 import { useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { AddProjectMilestoneFormFieldTypes } from "./types";
 import React, { useContext } from "react";
 import { Button, FormLoadingStateContext } from "@/components/atoms";
@@ -11,6 +12,7 @@ export const AddProjectMilestoneSubmissionButton = ({
   projectId: string;
   onSuccess?: Parameters<typeof useCreateProjectTaskMutation>[0]["onSuccess"];
 }) => {
+  const { t } = useTranslation("tasks");
   const addProjectTaskForm =
     useFormContext<AddProjectMilestoneFormFieldTypes>();
   const formLoadingState = useContext(FormLoadingStateContext);
@@ -32,7 +34,7 @@ export const AddProjectMilestoneSubmissionButton = ({
         formLoadingState.isLoading || addProjectTaskForm.formState.isSubmitting
       }
       isLoading={formLoadingState.isLoading}
-      label={"Add milestone"}
+      label={t("milestone.submit")}
     />
   );
 };

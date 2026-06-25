@@ -3,6 +3,6 @@ const emailRegex =
 
 export const emailValidator = (value: any) => {
   if (typeof value !== "string" || !value.match(emailRegex)) {
-    return "Please enter a valid email address";
+    return "validation:email";
   }
 };

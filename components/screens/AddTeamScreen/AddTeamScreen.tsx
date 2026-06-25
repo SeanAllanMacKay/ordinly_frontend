@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   AddTeamForm,
   AddTeamProvider,
@@ -8,10 +9,12 @@ import {
 import { AddTeamScreenProps } from "./types";
 
 export const AddTeamScreen = ({ onClose }: AddTeamScreenProps) => {
+  const { t } = useTranslation("companies");
+
   return (
     <AddTeamProvider>
       <Drawer
-        title="Add team"
+        title={t("addTeam.title")}
         actions={[<AddTeamSubmissionButton key="submit" onSuccess={onClose} />]}
         isVisible={true}
         onClose={onClose}

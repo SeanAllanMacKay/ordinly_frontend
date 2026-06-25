@@ -12,6 +12,6 @@ export const phoneValidator = (
     !value.region ||
     !isValidPhoneNumber(value.number, value.region)
   ) {
-    return "Please enter a valid phone number";
+    return "validation:phone";
   }
 };

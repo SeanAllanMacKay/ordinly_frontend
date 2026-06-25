@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Pressable } from "react-native";
 import { DatePickerModal } from "./DatePickerModal";
-import { format } from "date-fns";
+import { useDateFormat } from "@/i18n/useDateFormat";
 import { TextInput } from "../TextInput";
 import { DateInputProps } from "./types";
 
@@ -19,9 +19,11 @@ export const DateInput = ({
 }: DateInputProps) => {
   const [isOpen, setOpen] = useState(false);
 
+  const formatDate = useDateFormat();
+
   const displayValue = useMemo(() => {
-    return value ? format(value, "dd MMM yyyy") : "";
-  }, [value]);
+    return value ? formatDate(value, "dd MMM yyyy") : "";
+  }, [value, formatDate]);
 
   const onOpen = () => {
     setOpen(true);

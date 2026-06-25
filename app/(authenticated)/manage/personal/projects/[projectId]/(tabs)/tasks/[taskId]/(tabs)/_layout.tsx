@@ -34,12 +34,12 @@ export default function ProjectTaskIdRouter() {
       <TopTabNavigation>
         <TopTabNavigation.Screen
           name="checklist"
-          options={{ title: "Checklist" }}
+          options={{ title: "tabs.checklist" }}
         />
 
         <TopTabNavigation.Screen
           name="documents"
-          options={{ title: "Documents" }}
+          options={{ title: "tabs.documents" }}
         />
       </TopTabNavigation>
     </Drawer>

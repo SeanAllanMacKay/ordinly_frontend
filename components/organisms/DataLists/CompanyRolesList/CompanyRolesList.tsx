@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Card } from "@/components";
 import { useGetRolesQuery } from "@/api";
 import { ListableData } from "@/components/molecules/ListableData";
@@ -7,6 +8,7 @@ import { CompanyRolesListEmptyState } from "./CompanyRolesListEmptyState";
 type RoleRow = { id: string; name: string; description: string };
 
 export const CompanyRolesList = () => {
+  const { t } = useTranslation("companies");
   const rolesQuery = useGetRolesQuery();
 
   const roles: RoleRow[] = (rolesQuery.data?.roles ?? []).map((role) => ({
@@ -30,8 +32,8 @@ export const CompanyRolesList = () => {
       )}
       // table
       columns={[
-        { label: "Name", key: "name" },
-        { label: "Description", key: "description" },
+        { label: t("name"), key: "name" },
+        { label: t("description"), key: "description" },
       ]}
     />
   );

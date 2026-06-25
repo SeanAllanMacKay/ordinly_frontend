@@ -1,0 +1,12 @@
+{
+  "required": "Obligatorio",
+  "email": "Introduce una dirección de correo electrónico válida",
+  "phone": "Introduce un número de teléfono válido",
+  "passwordMinLength": "Debe tener al menos 8 caracteres",
+  "passwordUppercase": "Debe contener al menos una letra mayúscula",
+  "passwordLowercase": "Debe contener al menos una letra minúscula",
+  "passwordNumber": "Debe contener al menos un número",
+  "nameRequired": "El nombre es obligatorio",
+  "itemNameRequired": "El nombre del elemento es obligatorio",
+  "itemValueRequired": "El valor del elemento es obligatorio"
+}

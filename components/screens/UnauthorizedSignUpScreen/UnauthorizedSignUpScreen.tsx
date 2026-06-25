@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import {
   Button,
@@ -16,6 +17,7 @@ import { UnauthorizedSignUpScreenProps } from "./types";
 export const UnauthorizedSignUpScreen = ({
   onLogin,
 }: UnauthorizedSignUpScreenProps) => {
+  const { t } = useTranslation("auth");
   const form = useForm<SignUpFormFieldValues>({
     mode: "all",
     defaultValues: {
@@ -31,9 +33,13 @@ export const UnauthorizedSignUpScreen = ({
       <View style={unauthorizedSignUpScreenStyles.container}>
         <View style={unauthorizedSignUpScreenStyles.content}>
           <Card
-            title="Sign up"
+            title={t("signUp.title")}
             actions={[
-              <Button key="login" onPress={onLogin} label="Login" />,
+              <Button
+                key="login"
+                onPress={onLogin}
+                label={t("login.submit")}
+              />,
               <SignUpFormSubmissionButton key="submit" form={form} />,
             ]}
           >

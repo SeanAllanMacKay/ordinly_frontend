@@ -1,0 +1,87 @@
+{
+  "save": "Guardar",
+  "cancel": "Cancelar",
+  "delete": "Eliminar",
+  "edit": "Editar",
+  "add": "Añadir",
+  "remove": "Quitar",
+  "create": "Crear",
+  "confirm": "Confirmar",
+  "close": "Cerrar",
+  "back": "Atrás",
+  "next": "Siguiente",
+  "submit": "Enviar",
+  "error": "Error",
+  "success": "Correcto",
+  "loading": "Cargando…",
+  "sending": "Enviando…",
+  "saving": "Guardando…",
+  "retry": "Reintentar",
+  "emptyValue": "-",
+  "name": "Nombre",
+  "description": "Descripción",
+  "email": "Correo electrónico",
+  "password": "Contraseña",
+  "phone": "Teléfono",
+  "address": "Dirección",
+  "startDate": "Fecha de inicio",
+  "dueDate": "Fecha de vencimiento",
+  "status": "Estado",
+  "priority": "Prioridad",
+  "dangerZone": "Zona de peligro",
+  "noEntities": "No hay {{entity}} para mostrar",
+  "verificationBanner": {
+    "message": "Tu cuenta aún no está verificada.",
+    "emailSent": "Correo enviado",
+    "resend": "Reenviar correo"
+  },
+  "home": {
+    "welcome": "Te damos la bienvenida a Ordinly{{suffix}}",
+    "subtitle": "Elige por dónde empezar.",
+    "project": {
+      "title": "Crea tu primer proyecto",
+      "subtitle": "Haz seguimiento de tareas, tiempo y fotos para trabajos personales, encargos puntuales y tu portafolio profesional.",
+      "cta": "Crear un proyecto",
+      "features": {
+        "scheduleTitle": "Planificación",
+        "scheduleSubtitle": "Divide tu proyecto en tareas, fases e hitos",
+        "timeTitle": "Control de tiempo",
+        "timeSubtitle": "Registra las horas en obra",
+        "filesTitle": "Imágenes y archivos",
+        "filesSubtitle": "Guarda tus contratos, renuncias y pruebas de trabajo en un solo lugar",
+        "portfolioTitle": "Portafolio",
+        "portfolioSubtitle": "Muestra tu mejor trabajo para conseguir más empleos"
+      }
+    },
+    "company": {
+      "title": "Crear una empresa",
+      "subtitle": "Da el salto a gestionar pujas, facturas, clientes, equipo, herramientas y mucho más.",
+      "cta": "Crear una empresa",
+      "features": {
+        "communicationTitle": "Comunicación en tiempo real",
+        "communicationSubtitle": "No te pierdas nada con clientes, contratistas o tu equipo",
+        "paymentsTitle": "Pagos",
+        "paymentsSubtitle": "Cobra más rápido y fácil a través de nuestro portal de pagos",
+        "clientsTitle": "Gestión de clientes",
+        "clientsSubtitle": "Pujas, presupuestos, estimaciones, facturas y un portal de clientes dedicado",
+        "crewTitle": "Gestión de equipo",
+        "crewSubtitle": "Asegúrate de que todos trabajen en lo correcto en el momento adecuado"
+      }
+    }
+  },
+  "settings": {
+    "title": "Ajustes",
+    "darkMode": "Modo oscuro",
+    "deleteDescription": "Elimina permanentemente tu cuenta y todos los datos asociados. Esta acción no se puede deshacer.",
+    "deleteAccount": "Eliminar cuenta"
+  },
+  "deleteAccount": {
+    "title": "¿Eliminar cuenta?",
+    "warning": "Esto eliminará permanentemente tu cuenta y todos los datos asociados. Esta acción no se puede deshacer.",
+    "confirmEmailLabel": "Escribe tu correo para confirmar"
+  },
+  "permissionDenied": {
+    "title": "No tienes permiso",
+    "gotIt": "Entendido"
+  }
+}

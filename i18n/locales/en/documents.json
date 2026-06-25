@@ -1,0 +1,9 @@
+{
+  "noAppToOpenFile": "No app installed to open this file.",
+  "openPreviewFailed": "Unable to open file preview.",
+  "downloadFailed": "An unexpected error occurred during download.",
+  "selectFile": "Select a file ",
+  "pickDocumentFailed": "Failed to pick document",
+  "permissionNeeded": "Permission Needed",
+  "allowPhotoAccess": "Allow access to photos to set a profile picture."
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { ProjectDetailsProvider } from "./ProjectDetailsProvider";
 import { ProjectDetailsDescription } from "./ProjectDetailsDescription";
 import { ProjectDetailsMap } from "./ProjectDetailsMap";
@@ -16,6 +17,7 @@ export const ProjectDetailsScreenContent = ({
 }: {
   projectId: string;
 }) => {
+  const { t } = useTranslation("projects");
   const { open } = useModals();
 
   return (
@@ -34,7 +36,7 @@ export const ProjectDetailsScreenContent = ({
           variant="danger"
           mode="contained"
           icon="remove"
-          label="Delete project"
+          label={t("deleteProject.trigger")}
           onPress={() => open("confirm-delete-project")}
         />
       </View>

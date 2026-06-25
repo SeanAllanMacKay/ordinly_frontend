@@ -2,12 +2,14 @@ import React from "react";
 import { Button, Screen, Card, Typography, Grid } from "@/components";
 import { Switch, useTheme } from "react-native-paper";
 import { View } from "react-native";
+import { useTranslation } from "react-i18next";
 import { useGetCurrentUserQuery } from "@/api";
 import { useThemePreference } from "@/styles/ThemePreference";
 import { useModals } from "@/util/navigation/useModals";
 import { personalSettingsScreenStyles } from "./styles";
 
 export const PersonalSettingsScreen = () => {
+  const { t } = useTranslation("common");
   const theme = useTheme();
   const userQuery = useGetCurrentUserQuery();
   const { setPreference } = useThemePreference();
@@ -23,11 +25,11 @@ export const PersonalSettingsScreen = () => {
         >
           <View>
             <Typography size="lg" color="onSurfaceVariant">
-              Settings
+              {t("settings.title")}
             </Typography>
 
             <View style={personalSettingsScreenStyles.settingRow}>
-              <Typography>Dark Mode</Typography>
+              <Typography>{t("settings.darkMode")}</Typography>
 
               <Switch
                 value={theme.dark}
@@ -39,18 +41,17 @@ export const PersonalSettingsScreen = () => {
           </View>
         </Card>
 
-        <Card title="Danger zone">
+        <Card title={t("dangerZone")}>
           <View style={personalSettingsScreenStyles.dangerZone}>
             <Typography color="onSurfaceVariant">
-              Permanently delete your account and all associated data. This
-              action cannot be undone.
+              {t("settings.deleteDescription")}
             </Typography>
 
             <Button
               variant="danger"
               mode="contained"
               icon="remove"
-              label="Delete account"
+              label={t("settings.deleteAccount")}
               onPress={() => open("confirm-delete-account")}
             />
           </View>

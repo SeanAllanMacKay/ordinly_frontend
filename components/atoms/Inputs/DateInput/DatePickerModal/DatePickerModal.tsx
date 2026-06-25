@@ -6,7 +6,9 @@ import {
   useWindowDimensions,
   Pressable,
 } from "react-native";
-import { isValid } from "date-fns";
+import { addDays, format, isValid, startOfWeek } from "date-fns";
+import { useTranslation } from "react-i18next";
+import { dateFnsLocale } from "@/i18n/dateLocale";
 import { Week } from "./Week";
 import { DatePickerContext, DatePickerProvider } from "./DatePickerContext";
 import { MonthSelector } from "./MonthSelector";
@@ -34,6 +36,16 @@ const DatePickerModalContent = ({
   const isPhone = width <= PHONE_WIDTH;
 
   const { activeMonth } = useContext(DatePickerContext);
+
+  const { i18n } = useTranslation();
+  const locale = dateFnsLocale(i18n.language);
+
+  // The calendar grid renders Sunday-first (see `getWeeksOfMonth`), so derive
+  // the header letters from a Sunday-anchored week and localize each via the
+  // active date-fns locale (`EEEEE` = narrow weekday).
+  const weekdayLabels = Array.from({ length: 7 }, (_, index) =>
+    format(addDays(startOfWeek(new Date()), index), "EEEEE", { locale }),
+  );
 
   return (
     <Modal transparent={true} visible={isOpen}>
@@ -78,27 +90,11 @@ const DatePickerModalContent = ({
             <MonthSelector />
 
             <View style={weekStyles.container}>
-              <View style={dayStyles.container}>
-                <Typography color="onSurfaceVariant">S</Typography>
-              </View>
-              <View style={dayStyles.container}>
-                <Typography color="onSurfaceVariant">M</Typography>
-              </View>
-              <View style={dayStyles.container}>
-                <Typography color="onSurfaceVariant">T</Typography>
-              </View>
-              <View style={dayStyles.container}>
-                <Typography color="onSurfaceVariant">W</Typography>
-              </View>
-              <View style={dayStyles.container}>
-                <Typography color="onSurfaceVariant">T</Typography>
-              </View>
-              <View style={dayStyles.container}>
-                <Typography color="onSurfaceVariant">F</Typography>
-              </View>
-              <View style={dayStyles.container}>
-                <Typography color="onSurfaceVariant">S</Typography>
-              </View>
+              {weekdayLabels.map((weekday, index) => (
+                <View style={dayStyles.container} key={index}>
+                  <Typography color="onSurfaceVariant">{weekday}</Typography>
+                </View>
+              ))}
             </View>
 
             {activeMonth.map((week) => (

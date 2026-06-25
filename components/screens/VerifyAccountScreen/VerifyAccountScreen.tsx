@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import { Screen, Typography } from "@/components";
 import { useGetCurrentUserQuery, useVerifyAccountMutation } from "@/api";
@@ -9,6 +10,7 @@ export const VerifyAccountScreen = ({
   code,
   onRedirect,
 }: VerifyAccountScreenProps) => {
+  const { t } = useTranslation("auth");
   const [timer, setTimer] = useState(5);
 
   const userQuery = useGetCurrentUserQuery();
@@ -57,14 +59,16 @@ export const VerifyAccountScreen = ({
       <View style={verifyAccountScreenStyles.container}>
         {verifyAccountMutation.isSuccess ? (
           <>
-            <Typography>Account verified</Typography>
+            <Typography>{t("verifyAccount.verified")}</Typography>
 
-            <Typography>Redirecting in {timer} seconds...</Typography>
+            <Typography>
+              {t("verifyAccount.redirecting", { count: timer })}
+            </Typography>
           </>
         ) : verifyAccountMutation?.isError ? (
-          <Typography>Error verifying account</Typography>
+          <Typography>{t("verifyAccount.error")}</Typography>
         ) : (
-          <Typography>Verifying account...</Typography>
+          <Typography>{t("verifyAccount.verifying")}</Typography>
         )}
       </View>
     </Screen>

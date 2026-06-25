@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
 import { ConfirmDeleteModal } from "@/components";
 import { useDeleteProjectMutation } from "@/api";
@@ -9,6 +10,7 @@ export const DeleteProjectScreen = ({
   projectId,
   onClose,
 }: DeleteProjectScreenProps) => {
+  const { t } = useTranslation("projects");
   const router = useRouter();
   const projectRoutes = useProjectRoutes();
 
@@ -22,9 +24,9 @@ export const DeleteProjectScreen = ({
 
   return (
     <ConfirmDeleteModal
-      title="Delete project?"
-      message="This will permanently delete the project and all of its tasks, milestones, and phases. This action cannot be undone."
-      confirmLabel="Delete project"
+      title={t("deleteProject.title")}
+      message={t("deleteProject.message")}
+      confirmLabel={t("deleteProject.confirmLabel")}
       isDeleting={isPending}
       onConfirm={() => mutate()}
       onClose={onClose}

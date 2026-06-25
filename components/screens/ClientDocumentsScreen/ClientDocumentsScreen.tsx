@@ -1,5 +1,6 @@
 import React from "react";
 import { Text } from "react-native";
+import { useTranslation } from "react-i18next";
 import { Screen } from "@/components";
 
 export const ClientDocumentsScreen = ({
@@ -7,9 +8,11 @@ export const ClientDocumentsScreen = ({
 }: {
   clientId: string;
 }) => {
+  const { t } = useTranslation("clients");
+
   return (
     <Screen>
-      <Text>Documents</Text>
+      <Text>{t("documents.title")}</Text>
     </Screen>
   );
 };

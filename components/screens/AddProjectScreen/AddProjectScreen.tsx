@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   AddProjectForm,
   AddProjectProvider,
@@ -8,10 +9,12 @@ import {
 import { AddProjectScreenProps } from "./types";
 
 export const AddProjectScreen = ({ onClose }: AddProjectScreenProps) => {
+  const { t } = useTranslation("projects");
+
   return (
     <AddProjectProvider>
       <Drawer
-        title="Add project"
+        title={t("addProject.title")}
         actions={[
           <AddProjectSubmissionButton key="submit" onSuccess={onClose} />,
         ]}

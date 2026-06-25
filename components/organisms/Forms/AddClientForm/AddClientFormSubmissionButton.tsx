@@ -1,5 +1,6 @@
 import { useCreateClientMutation } from "@/api";
 import { useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { AddClientFormFieldTypes } from "./types";
 import React, { useContext } from "react";
 import { Button, FormLoadingStateContext } from "@/components/atoms";
@@ -10,6 +11,7 @@ export const AddClientSubmissionButton = ({
 }: {
   onSuccess?: Parameters<typeof useCreateClientMutation>[0]["onSuccess"];
 }) => {
+  const { t } = useTranslation("clients");
   const addClientForm = useFormContext<AddClientFormFieldTypes>();
   const formLoadingState = useContext(FormLoadingStateContext);
   const companyId = useActiveCompanyId();
@@ -30,7 +32,7 @@ export const AddClientSubmissionButton = ({
         addClientForm.formState.isSubmitting
       }
       isLoading={formLoadingState.isLoading}
-      label={"Add client"}
+      label={t("addClient.submit")}
     />
   );
 };

@@ -1,5 +1,6 @@
 import { useCreateProjectMutation } from "@/api";
 import { useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { AddProjectFormFieldTypes } from "./types";
 import React, { useContext } from "react";
 import { Button, FormLoadingStateContext } from "@/components/atoms";
@@ -10,6 +11,7 @@ export const AddProjectSubmissionButton = ({
 }: {
   onSuccess?: Parameters<typeof useCreateProjectMutation>[0]["onSuccess"];
 }) => {
+  const { t } = useTranslation("projects");
   const addProjectForm = useFormContext<AddProjectFormFieldTypes>();
   const formLoadingState = useContext(FormLoadingStateContext);
   const companyId = useActiveCompanyId();
@@ -30,7 +32,7 @@ export const AddProjectSubmissionButton = ({
         addProjectForm.formState.isSubmitting
       }
       isLoading={formLoadingState.isLoading}
-      label={"Add project"}
+      label={t("addProject.submit")}
     />
   );
 };

@@ -1,6 +1,7 @@
 import { useGetTaskPrioritiesQuery, useGetTaskStatusesQuery } from "@/api";
 import React from "react";
 import { useFormContext, useWatch } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { requiredValidator } from "@/util/validation";
 import {
   DateFieldInput,
@@ -11,6 +12,7 @@ import {
 import { EditProjectTaskFormFieldTypes } from "./types";
 
 export const EditProjectTaskDetailsInputs = () => {
+  const { t } = useTranslation("tasks");
   const editProjectTaskForm = useFormContext<EditProjectTaskFormFieldTypes>();
   const taskStatuses = useGetTaskStatusesQuery();
   const taskPriorities = useGetTaskPrioritiesQuery();
@@ -28,27 +30,27 @@ export const EditProjectTaskDetailsInputs = () => {
     <>
       <TextFieldInput
         name="name"
-        label="Name"
+        label={t("name")}
         validation={{ requiredValidator }}
       />
 
-      <EnrichedTextFieldInput name="description" label="Description" />
+      <EnrichedTextFieldInput name="description" label={t("description")} />
 
       <SelectFieldInput
         name="status"
-        label="Status"
+        label={t("status")}
         options={taskStatuses.data ?? []}
       />
 
       <SelectFieldInput
         name="priority"
-        label="Priority"
+        label={t("priority")}
         options={taskPriorities.data ?? []}
       />
 
-      <DateFieldInput name="startDate" label="Start date" max={max} />
+      <DateFieldInput name="startDate" label={t("startDate")} max={max} />
 
-      <DateFieldInput name="dueDate" label="Due date" min={min} />
+      <DateFieldInput name="dueDate" label={t("dueDate")} min={min} />
     </>
   );
 };

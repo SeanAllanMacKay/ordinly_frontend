@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   AddWorkerForm,
   AddWorkerProvider,
@@ -8,10 +9,12 @@ import {
 import { AddWorkerScreenProps } from "./types";
 
 export const AddWorkerScreen = ({ onClose }: AddWorkerScreenProps) => {
+  const { t } = useTranslation("companies");
+
   return (
     <AddWorkerProvider>
       <Drawer
-        title="Add worker"
+        title={t("addWorker.title")}
         actions={[
           <AddWorkerSubmissionButton key="submit" onSuccess={onClose} />,
         ]}

@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   AddContactForm,
   AddContactProvider,
@@ -11,10 +12,12 @@ export const AddContactScreen = ({
   clientId,
   onClose,
 }: AddContactScreenProps) => {
+  const { t } = useTranslation("clients");
+
   return (
     <AddContactProvider>
       <Drawer
-        title="Add contact"
+        title={t("addContact.title")}
         actions={[
           <AddContactSubmissionButton
             key="submit"

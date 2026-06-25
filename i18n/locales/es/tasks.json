@@ -1,0 +1,28 @@
+{
+  "addTask": {
+    "title": "Añadir tarea",
+    "submit": "Añadir tarea"
+  },
+  "editTask": {
+    "title": "Editar tarea"
+  },
+  "deleteTask": {
+    "title": "¿Eliminar tarea?",
+    "message": "Esto eliminará permanentemente este elemento y todo lo que contiene. Esta acción no se puede deshacer."
+  },
+  "milestone": {
+    "title": "Añadir hito",
+    "submit": "Añadir hito",
+    "approver": "Aprobador"
+  },
+  "phase": {
+    "title": "Añadir fase",
+    "submit": "Añadir fase"
+  },
+  "accordion": {
+    "details": "Detalles",
+    "checklist": "Lista de tareas",
+    "documents": "Documentos",
+    "links": "Enlaces"
+  }
+}

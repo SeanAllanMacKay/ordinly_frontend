@@ -1,22 +1,24 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Button, EmptyState } from "@/components";
 import { useDrawers } from "@/util/navigation/useDrawers";
 
 export const ProjectsEmptyState = () => {
+  const { t } = useTranslation("projects");
   const { open } = useDrawers();
 
   return (
     <EmptyState
       icon="projects"
-      title="No projects yet"
-      subtitle="Projects you create will show up here."
+      title={t("emptyState.title")}
+      subtitle={t("emptyState.subtitle")}
       actions={[
         <Button
           key="add-project"
           variant="primary"
           mode="contained"
           icon="plus"
-          label="Add project"
+          label={t("addProject.submit")}
           onPress={() => open("add-project")}
         />,
       ]}

@@ -1,6 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 
 import { useResendVerificationMutation } from "@/api";
 import { verificationBannerStyles } from "./styles";
@@ -16,6 +17,7 @@ import { ThemeScope } from "@/styles/ThemeScope";
  * verified (or before the current-user query resolves).
  */
 export const VerificationBannerContent = () => {
+  const { t } = useTranslation("common");
   const { top } = useSafeAreaInsets();
 
   const isPhone = useIsPhone();
@@ -28,10 +30,10 @@ export const VerificationBannerContent = () => {
   }
 
   const actionLabel = resendMutation.isSuccess
-    ? "Email sent"
+    ? t("verificationBanner.emailSent")
     : resendMutation.isPending
-      ? "Sending…"
-      : "Resend email";
+      ? t("sending")
+      : t("verificationBanner.resend");
 
   return (
     <View
@@ -69,7 +71,7 @@ export const VerificationBannerContent = () => {
           <Icon name="warning" size="xl" color="tertiary" />
 
           <Typography canWrap color="outline" size="sm">
-            Your account isn&apos;t verified yet.
+            {t("verificationBanner.message")}
           </Typography>
         </View>
 

@@ -1,5 +1,6 @@
 import { useInviteWorkerMutation } from "@/api";
 import { useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { AddWorkerFormFieldTypes } from "./types";
 import React, { useContext } from "react";
 import { Button, FormLoadingStateContext } from "@/components/atoms";
@@ -13,6 +14,7 @@ export const AddWorkerSubmissionButton = ({
   const addWorkerForm = useFormContext<AddWorkerFormFieldTypes>();
   const formLoadingState = useContext(FormLoadingStateContext);
   const companyId = useActiveCompanyId();
+  const { t } = useTranslation("companies");
 
   const inviteWorkerMutation = useInviteWorkerMutation({ onSuccess });
 
@@ -33,7 +35,7 @@ export const AddWorkerSubmissionButton = ({
         addWorkerForm.formState.isSubmitting
       }
       isLoading={formLoadingState.isLoading}
-      label={"Add worker"}
+      label={t("addWorker.submit")}
     />
   );
 };

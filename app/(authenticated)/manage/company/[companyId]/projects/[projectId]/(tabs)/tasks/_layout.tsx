@@ -14,7 +14,7 @@ export default function ProjectIdRouter() {
       <Stack.Screen
         name="[taskId]"
         options={{
-          title: "Add task",
+          title: "headers.addTask",
           presentation: "transparentModal",
           animation: "none",
         }}

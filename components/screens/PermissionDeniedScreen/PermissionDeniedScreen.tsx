@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Button, Modal, Typography } from "@/components";
 import { DEFAULT_DENIED_MESSAGE } from "@/util/permissions/usePermissionGate";
 import { PermissionDeniedScreenProps } from "./types";
@@ -11,9 +12,11 @@ export const PermissionDeniedScreen = ({
   message,
   onClose,
 }: PermissionDeniedScreenProps) => {
+  const { t } = useTranslation("common");
+
   return (
     <Modal
-      title="You don't have permission"
+      title={t("permissionDenied.title")}
       isVisible
       onClose={onClose}
       actions={[
@@ -21,7 +24,7 @@ export const PermissionDeniedScreen = ({
           key="ok"
           variant="primary"
           mode="contained"
-          label="Got it"
+          label={t("permissionDenied.gotIt")}
           onPress={onClose}
         />,
       ]}

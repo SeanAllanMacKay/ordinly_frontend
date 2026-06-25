@@ -1,5 +1,6 @@
 import { useCreateProjectTaskMutation } from "@/api";
 import { useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { AddProjectPhaseFormFieldTypes } from "./types";
 import React, { useContext } from "react";
 import { Button, FormLoadingStateContext } from "@/components/atoms";
@@ -11,6 +12,7 @@ export const AddProjectPhaseSubmissionButton = ({
   projectId: string;
   onSuccess?: Parameters<typeof useCreateProjectTaskMutation>[0]["onSuccess"];
 }) => {
+  const { t } = useTranslation("tasks");
   const addProjectPhaseForm = useFormContext<AddProjectPhaseFormFieldTypes>();
   const formLoadingState = useContext(FormLoadingStateContext);
 
@@ -42,7 +44,7 @@ export const AddProjectPhaseSubmissionButton = ({
         formLoadingState.isLoading || addProjectPhaseForm.formState.isSubmitting
       }
       isLoading={formLoadingState.isLoading}
-      label={"Add phase"}
+      label={t("phase.submit")}
     />
   );
 };

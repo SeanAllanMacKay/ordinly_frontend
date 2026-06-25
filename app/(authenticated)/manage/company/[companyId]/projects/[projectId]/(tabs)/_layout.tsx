@@ -4,10 +4,10 @@ import { TabNavigation } from "@/components";
 export default function ProjectIdRouter() {
   return (
     <TabNavigation>
-      <TabNavigation.Screen name="details" options={{ title: "Details" }} />
-      <TabNavigation.Screen name="tasks" options={{ title: "Work" }} />
-      <TabNavigation.Screen name="invoices" options={{ title: "Invoices" }} />
-      <TabNavigation.Screen name="documents" options={{ title: "Documents" }} />
+      <TabNavigation.Screen name="details" options={{ title: "tabs.details" }} />
+      <TabNavigation.Screen name="tasks" options={{ title: "tabs.work" }} />
+      <TabNavigation.Screen name="invoices" options={{ title: "tabs.invoices" }} />
+      <TabNavigation.Screen name="documents" options={{ title: "tabs.documents" }} />
     </TabNavigation>
   );
 }

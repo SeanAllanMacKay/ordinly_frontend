@@ -14,6 +14,8 @@ import {
   isSameYear,
 } from "date-fns";
 import { Menu, useTheme } from "react-native-paper";
+import { useTranslation } from "react-i18next";
+import { dateFnsLocale } from "@/i18n/dateLocale";
 import { Button } from "../../../../Button";
 import { Text } from "../../../../Text";
 import { Typography } from "../../../../Typography";
@@ -24,6 +26,8 @@ const RANGE = 10;
 export const YearSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
   const theme = useTheme();
+  const { i18n } = useTranslation();
+  const locale = dateFnsLocale(i18n.language);
   const { defaultDate, setActiveMonth, min, max, midpoint } =
     useContext(DatePickerContext);
 
@@ -60,7 +64,7 @@ export const YearSelector = () => {
         <Button
           icon="menu-down"
           onPress={openMenu}
-          label={format(midpoint, "MMMM, yyyy")}
+          label={format(midpoint, "MMMM, yyyy", { locale })}
         />
       }
       contentStyle={yearSelectorStyles.contentContainer}

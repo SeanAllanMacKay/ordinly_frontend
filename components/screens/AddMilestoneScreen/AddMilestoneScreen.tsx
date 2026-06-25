@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   Accordion,
   AddProjectMilestoneDetailsInputs,
@@ -13,10 +14,12 @@ export const AddMilestoneScreen = ({
   projectId,
   onClose,
 }: AddMilestoneScreenProps) => {
+  const { t } = useTranslation("tasks");
+
   return (
     <AddProjectMilestoneProvider>
       <Drawer
-        title="Add milestone"
+        title={t("milestone.title")}
         actions={[
           <AddProjectMilestoneSubmissionButton
             key="submit"
@@ -28,15 +31,15 @@ export const AddMilestoneScreen = ({
         onClose={onClose}
       >
         <Accordion defaultOpenSections={["details"]}>
-          <Accordion.Item id="details" label="Details">
+          <Accordion.Item id="details" label={t("accordion.details")}>
             <AddProjectMilestoneDetailsInputs />
           </Accordion.Item>
 
-          <Accordion.Item id="documents" label="Documents">
+          <Accordion.Item id="documents" label={t("accordion.documents")}>
             <AddProjectMilestoneDocumentsInputs />
           </Accordion.Item>
 
-          <Accordion.Item id="links" label="Links"></Accordion.Item>
+          <Accordion.Item id="links" label={t("accordion.links")}></Accordion.Item>
         </Accordion>
       </Drawer>
     </AddProjectMilestoneProvider>

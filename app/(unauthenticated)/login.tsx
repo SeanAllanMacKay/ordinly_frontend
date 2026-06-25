@@ -7,7 +7,7 @@ const Login = () => {
   const router = useRouter();
 
   useEffect(() => {
-    navigation.setOptions({ headerTitle: "Login" });
+    navigation.setOptions({ headerTitle: "headers.login" });
   }, [navigation]);
 
   return <UnauthorizedLoginScreen onSignUp={() => router.replace("/")} />;

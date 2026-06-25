@@ -1,11 +1,12 @@
 import { DocumentType } from "@/api";
 import { Button, Typography } from "@/components/atoms";
-import { format } from "date-fns";
 import React from "react";
 import { Pressable, View, Linking, Alert } from "react-native";
 import { downloadFile } from "@/util/files";
 import { documentsListStyles } from "./styles";
 import { useTheme } from "react-native-paper";
+import { useTranslation } from "react-i18next";
+import { useDateFormat } from "@/i18n/useDateFormat";
 
 export const DocumentsList = ({
   documents,
@@ -15,6 +16,8 @@ export const DocumentsList = ({
   getDownloadURL: (document: DocumentType) => Promise<string>;
 }) => {
   const theme = useTheme();
+  const { t } = useTranslation("documents");
+  const formatDate = useDateFormat();
   const openFile = async (url: string) => {
     try {
       const supported = await Linking.canOpenURL(url);
@@ -22,11 +25,11 @@ export const DocumentsList = ({
       if (supported) {
         await Linking.openURL(url);
       } else {
-        Alert.alert("Error", "No app installed to open this file.");
+        Alert.alert(t("error"), t("noAppToOpenFile"));
       }
     } catch (error) {
       console.error("An error occurred", error);
-      Alert.alert("Error", "Unable to open file preview.");
+      Alert.alert(t("error"), t("openPreviewFailed"));
     }
   };
 
@@ -37,7 +40,7 @@ export const DocumentsList = ({
       downloadFile(downloadURL, document.name);
     } catch (error) {
       console.error("Download error:", error);
-      Alert.alert("Error", "An unexpected error occurred during download.");
+      Alert.alert(t("error"), t("downloadFailed"));
     }
   };
 
@@ -65,7 +68,7 @@ export const DocumentsList = ({
               <View style={[documentsListStyles.info]}>
                 <Typography canWrap={false}>{name}</Typography>
                 <Typography emphasis="low" size="sm" color="onSurfaceVariant">
-                  {format(new Date(createdDate), "MMM dd, yyyy")}
+                  {formatDate(new Date(createdDate), "MMM dd, yyyy")}
                 </Typography>
               </View>
             </Pressable>
