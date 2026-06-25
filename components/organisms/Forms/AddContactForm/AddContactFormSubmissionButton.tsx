@@ -1,6 +1,7 @@
 import { useCreateClientContactMutation } from "@/api";
 import { useFormContext } from "react-hook-form";
 import { AddContactFormFieldTypes } from "./types";
+import { toContactInput } from "./util";
 import React, { useContext } from "react";
 import { Button, FormLoadingStateContext } from "@/components/atoms";
 import { useActiveCompanyId } from "@/util/navigation/useActiveCompanyId";
@@ -22,7 +23,7 @@ export const AddContactSubmissionButton = ({
   });
 
   const onSubmit = addContactForm.handleSubmit((formValues) => {
-    addContactMutation.mutateAsync(formValues);
+    addContactMutation.mutateAsync(toContactInput(formValues));
   });
 
   return (

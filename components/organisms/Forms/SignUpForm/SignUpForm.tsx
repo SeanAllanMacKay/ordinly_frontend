@@ -1,10 +1,6 @@
 import React from "react";
-import { Form, FormField, TextInput } from "@/components";
-import {
-  emailValidator,
-  passwordValidator,
-  requiredValidator,
-} from "@/util/validation";
+import { EmailFieldInput, Form, FormField, TextInput } from "@/components";
+import { passwordValidator, requiredValidator } from "@/util/validation";
 import { UseFormReturn } from "react-hook-form";
 
 export type SignUpFormFieldValues = {
@@ -28,11 +24,10 @@ export const SignUpForm = ({
         validation={{ requiredValidator }}
       />
 
-      <FormField
+      <EmailFieldInput
         name="email"
         label="Email"
-        component={TextInput}
-        validation={{ requiredValidator, emailValidator }}
+        validation={{ requiredValidator }}
       />
 
       <FormField

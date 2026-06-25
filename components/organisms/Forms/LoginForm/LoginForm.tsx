@@ -1,11 +1,7 @@
 import React from "react";
 import { UseFormReturn } from "react-hook-form";
-import { Form, FormField, TextInput } from "@/components";
-import {
-  emailValidator,
-  passwordValidator,
-  requiredValidator,
-} from "@/util/validation";
+import { EmailFieldInput, Form, FormField, TextInput } from "@/components";
+import { passwordValidator, requiredValidator } from "@/util/validation";
 
 export type LoginFormFieldValues = {
   email: string;
@@ -19,11 +15,10 @@ export const LoginForm = ({
 }) => {
   return (
     <Form form={form}>
-      <FormField
+      <EmailFieldInput
         name="email"
         label="Email"
-        component={TextInput}
-        validation={{ requiredValidator, emailValidator }}
+        validation={{ requiredValidator }}
       />
 
       <FormField
