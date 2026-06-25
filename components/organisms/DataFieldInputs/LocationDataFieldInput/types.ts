@@ -17,6 +17,8 @@ export type LocationValue = {
 export type LocationSearchInputProps =
   FormFieldInputProps<LocationValue | undefined> & {
     defaultDisplayValue?: string;
+    // fired when the user selects a location (same moment as onChange)
+    onCommit?: (value: LocationValue) => void;
   };
 
 export type LocationDataFieldInputProps = Omit<

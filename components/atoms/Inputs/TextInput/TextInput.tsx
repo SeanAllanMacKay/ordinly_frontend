@@ -3,7 +3,6 @@ import { TextInput as RNPTextInput, useTheme } from "react-native-paper";
 import { Skeleton } from "../../Skeleton";
 import { TextInputProps } from "./types";
 import { textInputStyles } from "./styles";
-import { Spacing } from "@/styles";
 import { Icon } from "../../Icon";
 
 export const TextInput = ({
@@ -12,6 +11,7 @@ export const TextInput = ({
   onBlur,
   onPress,
   onClear,
+  onCommit,
   isError,
   isDisabled,
   label,
@@ -27,6 +27,9 @@ export const TextInput = ({
   const [isSecure, setIsSecure] = useState(type === "password" ? true : false);
   const [isFocused, setIsFocused] = useState(false);
   const theme = useTheme();
+
+  const isMultiline = type === "multiline" || type === "stealth";
+  const canCommit = !!onCommit && !isMultiline;
 
   const handleClear = () => {
     onChange?.("");
@@ -85,7 +88,6 @@ export const TextInput = ({
           <RNPTextInput.Icon
             icon={() => <Icon name="chevron-down" color="onBackground" />}
             disabled={true}
-            style={{ marginLeft: Spacing.lg }}
           />
         ) : undefined
       }
@@ -97,7 +99,12 @@ export const TextInput = ({
           />
         ) : undefined
       }
-      multiline={type === "multiline" || type === "stealth"}
+      onSubmitEditing={
+        canCommit ? (e) => onCommit?.(e.nativeEvent.text) : undefined
+      }
+      returnKeyType={canCommit ? "done" : undefined}
+      blurOnSubmit={canCommit ? false : undefined}
+      multiline={isMultiline}
       dense={type === "stealth" || isDense}
       keyboardType={keyboardType}
       autoCapitalize="none"

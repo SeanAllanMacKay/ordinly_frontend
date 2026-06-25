@@ -6,7 +6,8 @@ import { useRouter } from "expo-router";
 export type ModalName =
   | "confirm-delete-project"
   | "confirm-delete-company"
-  | "confirm-delete-task";
+  | "confirm-delete-task"
+  | "confirm-delete-account";
 
 export const useModals = () => {
   const router = useRouter();

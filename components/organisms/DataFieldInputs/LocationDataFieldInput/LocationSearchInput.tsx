@@ -28,6 +28,7 @@ import { LocationSearchInputProps } from "./types";
 export const LocationSearchInput = ({
   value,
   onChange,
+  onCommit,
   defaultDisplayValue,
   label,
   isLoading,
@@ -101,7 +102,9 @@ export const LocationSearchInput = ({
       sessionId: suggestionsQuery.sessionId,
     });
 
-    onChange(mapFeatureToLocationValue(properties));
+    const location = mapFeatureToLocationValue(properties);
+    onChange(location);
+    onCommit?.(location);
     onDismiss();
   };
 

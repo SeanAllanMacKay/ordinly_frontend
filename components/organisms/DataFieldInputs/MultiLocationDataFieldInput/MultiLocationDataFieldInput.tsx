@@ -21,6 +21,7 @@ export const MultiLocationDataFieldInput = ({
         <MultiValueInputWrapper<LocationValue>
           {...props}
           variant="list"
+          showAddButton={false}
           component={(draftProps) => <LocationSearchInput {...draftProps} />}
           item={({ value, onRemove, isDisabled }) => (
             <Chip onClose={onRemove} disabled={isDisabled}>

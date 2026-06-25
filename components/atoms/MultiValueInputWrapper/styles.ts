@@ -14,9 +14,13 @@ export const multiValueInputWrapperStyles = StyleSheet.create({
     flexDirection: "column",
     gap: Spacing.sm,
   },
-  actionContainer: {
+  inputRow: {
     flexDirection: "row",
-    justifyContent: "flex-end",
+    alignItems: "center",
+    gap: Spacing.sm,
+  },
+  inputField: {
+    flex: 1,
   },
   errorContainer: {
     marginLeft: Spacing.xs,

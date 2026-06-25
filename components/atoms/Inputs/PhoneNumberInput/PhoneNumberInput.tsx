@@ -19,6 +19,7 @@ export const PhoneNumberInput = ({
   value,
   onChange,
   onBlur,
+  onCommit,
   isError,
   isDisabled,
   label,
@@ -53,6 +54,7 @@ export const PhoneNumberInput = ({
           value={number}
           onChange={onChangeNumber}
           onBlur={onBlur}
+          onCommit={onCommit ? () => onCommit({ region, number }) : undefined}
           label={label}
           isError={isError}
           isDisabled={isDisabled}

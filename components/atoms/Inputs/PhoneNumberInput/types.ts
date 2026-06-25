@@ -7,4 +7,7 @@ export type PhoneNumberInputValue = {
 };
 
 export type PhoneNumberInputProps =
-  FormFieldInputProps<PhoneNumberInputValue | undefined>;
+  FormFieldInputProps<PhoneNumberInputValue | undefined> & {
+    // fired when the underlying number input commits (Enter / "done" key)
+    onCommit?: (value: PhoneNumberInputValue) => void;
+  };

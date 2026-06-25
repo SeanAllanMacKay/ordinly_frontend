@@ -20,6 +20,7 @@ export * from "./CompanyRolesScreen";
 export * from "./CompanySettingsScreen";
 export * from "./CompanyTeamsScreen";
 export * from "./CompanyWorkersScreen";
+export * from "./DeleteAccountScreen";
 export * from "./DeleteCompanyScreen";
 export * from "./DeleteProjectScreen";
 export * from "./DeleteTaskScreen";

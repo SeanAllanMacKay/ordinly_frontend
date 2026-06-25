@@ -8,4 +8,9 @@ export const personalSettingsScreenStyles = StyleSheet.create({
     justifyContent: "space-between",
     paddingVertical: Spacing.md,
   },
+  dangerZone: {
+    display: "flex",
+    gap: Spacing.md,
+    alignItems: "flex-start",
+  },
 });

@@ -1,4 +1,4 @@
-import { POST, GET, REQUEST_ACTIONS } from "@/api/requests";
+import { POST, GET, DELETE, REQUEST_ACTIONS } from "@/api/requests";
 
 export type UserAuthArgs = {
   email: string;
@@ -59,7 +59,8 @@ export const userRequests = {
 
   updateUser: async () => {},
 
-  deleteUser: async () => {},
+  deleteUser: async (body: { password: string }) =>
+    await DELETE({ endpoint: "/user", body }),
 
   projects: {
     listProjects: async () => {},
@@ -88,4 +89,5 @@ export const userRequestKeys = {
   persistentLogin: () => [REQUEST_ACTIONS.POST, base, "persistent-login"],
   getCurrentUser: () => [REQUEST_ACTIONS.GET, base, "current"],
   getUserById: (userId: string) => [REQUEST_ACTIONS.GET, base, userId],
+  deleteUser: () => [REQUEST_ACTIONS.DELETE, base],
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import { useGlobalSearchParams } from "expo-router";
 import { useModals } from "@/util/navigation/useModals";
+import { DeleteAccountScreen } from "../DeleteAccountScreen";
 import { DeleteCompanyScreen } from "../DeleteCompanyScreen";
 import { DeleteProjectScreen } from "../DeleteProjectScreen";
 import { DeleteTaskScreen } from "../DeleteTaskScreen";
@@ -24,6 +25,8 @@ export const ModalHost = () => {
       return <DeleteProjectScreen projectId={projectId!} onClose={close} />;
     case "confirm-delete-company":
       return <DeleteCompanyScreen companyId={companyId!} onClose={close} />;
+    case "confirm-delete-account":
+      return <DeleteAccountScreen onClose={close} />;
     case "confirm-delete-task":
       return (
         <DeleteTaskScreen

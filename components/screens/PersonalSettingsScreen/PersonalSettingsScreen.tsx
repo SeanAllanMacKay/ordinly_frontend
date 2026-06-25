@@ -4,12 +4,14 @@ import { Switch, useTheme } from "react-native-paper";
 import { View } from "react-native";
 import { useGetCurrentUserQuery } from "@/api";
 import { useThemePreference } from "@/styles/ThemePreference";
+import { useModals } from "@/util/navigation/useModals";
 import { personalSettingsScreenStyles } from "./styles";
 
 export const PersonalSettingsScreen = () => {
   const theme = useTheme();
   const userQuery = useGetCurrentUserQuery();
   const { setPreference } = useThemePreference();
+  const { open } = useModals();
 
   return (
     <Screen>
@@ -34,6 +36,23 @@ export const PersonalSettingsScreen = () => {
                 }}
               />
             </View>
+          </View>
+        </Card>
+
+        <Card title="Danger zone">
+          <View style={personalSettingsScreenStyles.dangerZone}>
+            <Typography color="onSurfaceVariant">
+              Permanently delete your account and all associated data. This
+              action cannot be undone.
+            </Typography>
+
+            <Button
+              variant="danger"
+              mode="contained"
+              icon="remove"
+              label="Delete account"
+              onPress={() => open("confirm-delete-account")}
+            />
           </View>
         </Card>
       </Grid>

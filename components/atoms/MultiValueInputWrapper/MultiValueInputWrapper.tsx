@@ -17,6 +17,7 @@ export const MultiValueInputWrapper = <V,>({
   item,
   variant = "compact",
   validate,
+  showAddButton = true,
 }: MultiValueInputWrapperProps<V>) => {
   const [draft, setDraft] = useState<V | undefined>(undefined);
   const [draftError, setDraftError] = useState<string | undefined>(undefined);
@@ -30,18 +31,22 @@ export const MultiValueInputWrapper = <V,>({
     setDraft(newValue);
   };
 
-  const commit = () => {
-    if (draft === undefined || draft === null || draft === "") {
+  const commit = (explicit?: V) => {
+    // a value supplied synchronously (e.g. a selected location) wins over the
+    // draft, which may not have flushed to state yet in the same tick
+    const candidate = explicit ?? draft;
+
+    if (candidate === undefined || candidate === null || candidate === "") {
       return;
     }
 
-    const error = validate?.(draft);
+    const error = validate?.(candidate);
     if (error) {
       setDraftError(error);
       return;
     }
 
-    onChange([...items, draft]);
+    onChange([...items, candidate]);
     setDraft(undefined);
   };
 
@@ -53,30 +58,35 @@ export const MultiValueInputWrapper = <V,>({
 
   return (
     <View style={styles.container}>
-      {component({
-        value: draft,
-        onChange: onChangeDraft,
-        onBlur,
-        isDisabled,
-        isError: isError || !!draftError,
-        label,
-        isLoading,
-      })}
+      <View style={styles.inputRow}>
+        <View style={styles.inputField}>
+          {component({
+            value: draft,
+            onChange: onChangeDraft,
+            onBlur,
+            onCommit: commit,
+            isDisabled,
+            isError: isError || !!draftError,
+            label,
+            isLoading,
+          })}
+        </View>
+
+        {showAddButton ? (
+          <Button
+            icon="plus"
+            label="Add"
+            onPress={() => commit()}
+            isDisabled={isDisabled}
+          />
+        ) : null}
+      </View>
 
       {draftError ? (
         <View style={styles.errorContainer}>
           <Typography color="error">{draftError}</Typography>
         </View>
       ) : null}
-
-      <View style={styles.actionContainer}>
-        <Button
-          icon="plus"
-          label="Add"
-          onPress={commit}
-          isDisabled={isDisabled}
-        />
-      </View>
 
       {items.length ? (
         <View
