@@ -1,3 +1,4 @@
+export * from "./AvatarStack";
 export * from "./ConfirmDeleteModal";
 export * from "./Table";
 export * from "./FlatList";

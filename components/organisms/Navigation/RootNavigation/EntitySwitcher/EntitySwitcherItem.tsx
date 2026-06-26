@@ -2,8 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { Spacing } from "@/styles";
 import { Typography } from "@/components/atoms";
-import { CompanyAvatar } from "@/components/organisms/CompanyAvatar";
-import { UserAvatar } from "@/components/organisms/UserAvatar";
+import { CompanyAvatar, UserAvatar } from "@/components/organisms/Avatars";
 
 export const EntitySwitcherItem = ({
   name,

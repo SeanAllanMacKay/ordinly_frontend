@@ -22,6 +22,7 @@ export const FormField = <
   component,
   validation,
   defaultValue,
+  direction = "vertical",
 }: FormFieldProps<TFieldValues, TName>) => {
   const { control, getValues } = useFormContext<TFieldValues>();
   const formLoadingState = useContext(FormLoadingStateContext);
@@ -42,18 +43,31 @@ export const FormField = <
     defaultValue,
   });
 
+  const input = component({
+    value,
+    onChange,
+    onBlur,
+    isDisabled: disabled,
+    isError: !!errorMessage,
+    isLoading: formLoadingState.isLoading,
+    index,
+  });
+
   return (
     <View style={formFieldStyles.container}>
-      <Typography size="sm">{label}</Typography>
-      {component({
-        value,
-        onChange,
-        onBlur,
-        isDisabled: disabled,
-        isError: !!errorMessage,
-        isLoading: formLoadingState.isLoading,
-        index,
-      })}
+      {direction === "horizontal" ? (
+        <View style={formFieldStyles.horizontalRow}>
+          <View style={formFieldStyles.horizontalLabel}>
+            <Typography size="sm">{label}</Typography>
+          </View>
+          <View style={formFieldStyles.horizontalInput}>{input}</View>
+        </View>
+      ) : (
+        <>
+          <Typography size="sm">{label}</Typography>
+          {input}
+        </>
+      )}
 
       {errorMessage ? (
         <View style={formFieldStyles.errorContainer}>

@@ -1,8 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import {
-  MultiTeamDataFieldInput,
-  MultiWorkerDataFieldInput,
+  AssignedTeamsDataFieldInput,
+  AssignedUsersDataFieldInput,
 } from "@/components/organisms/DataFieldInputs";
 import { useCurrentCompany } from "@/util/navigation/useCurrentCompany";
 
@@ -12,16 +12,17 @@ export const AddProjectAssigneesInputs = () => {
 
   return (
     <>
-      <MultiWorkerDataFieldInput
+      <AssignedUsersDataFieldInput
         name="userIds"
         label={t("workers")}
+        direction="horizontal"
         companyId={companyId ?? ""}
       />
 
-      <MultiTeamDataFieldInput
+      <AssignedTeamsDataFieldInput
         name="teamIds"
         label={t("teams")}
-        companyId={companyId ?? ""}
+        direction="horizontal"
       />
     </>
   );

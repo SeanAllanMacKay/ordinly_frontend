@@ -34,6 +34,8 @@
   "contacts": "Contacts",
   "workers": "Travailleurs",
   "teams": "Équipes",
+  "selectWorkers": "Sélectionner des travailleurs",
+  "selectTeams": "Sélectionner des équipes",
   "phase": "Phase",
   "tasks": "Tâches",
   "dangerZone": "Zone de danger",

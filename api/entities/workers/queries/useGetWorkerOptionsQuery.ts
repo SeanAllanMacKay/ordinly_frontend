@@ -14,5 +14,10 @@ export const useGetWorkerOptionsQuery = ({
     queryFn: () => workerRequests.listWorkerOptions({ companyId: companyId! }),
     enabled: !!companyId,
     select: ({ options }) =>
-      options.map(({ value, label }) => ({ value, label: label ?? "" })),
+      options.map(({ value, label, description, imageURL }) => ({
+        value,
+        label: label ?? "",
+        description,
+        imageURL,
+      })),
   });

@@ -1,6 +1,13 @@
 // Display-only shape returned by the dedicated `/options` endpoints (unpaginated
 // select/multiselect data). `label` is nullable for some entities (e.g. clients).
-export type OptionType = { value: string; label: string | null };
+// `description` carries secondary text (e.g. a worker's role) and `imageURL` an
+// optional avatar; both are populated only by endpoints that support them.
+export type OptionType = {
+  value: string;
+  label: string | null;
+  description?: string | null;
+  imageURL?: string;
+};
 
 export type PermissionType<AssetTypes extends string> = {
   asset: AssetTypes;

@@ -6,6 +6,18 @@ export const formFieldStyles = StyleSheet.create({
   errorContainer: {
     marginLeft: Spacing.xs,
   },
+  horizontalRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: Spacing.md,
+  },
+  horizontalLabel: {
+    flexShrink: 0,
+    width: "35%",
+  },
+  horizontalInput: {
+    flex: 1,
+  },
 });
 
 export const formFieldArrayStyles = StyleSheet.create({

@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { EntitySwitcherContext } from "./EntitySwitcherContext";
-import { CompanyAvatar } from "@/components/organisms/CompanyAvatar";
-import { UserAvatar } from "@/components/organisms/UserAvatar";
+import { CompanyAvatar, UserAvatar } from "@/components/organisms/Avatars";
 
 export const MobileEntitySwitcherAnchor = () => {
   const { selectedEntity } = useContext(EntitySwitcherContext);

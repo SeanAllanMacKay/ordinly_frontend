@@ -17,3 +17,5 @@ export * from "./TaskDataFieldInput";
 export * from "./MultiTaskDataFieldInput";
 export * from "./PhaseDataFieldInput";
 export * from "./MultiPhaseDataFieldInput";
+export * from "./AssignedUsersDataFieldInput";
+export * from "./AssignedTeamsDataFieldInput";

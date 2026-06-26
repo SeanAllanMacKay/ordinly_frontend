@@ -38,6 +38,9 @@ export type FormFieldProps<
   >;
   isLoading?: boolean;
   defaultValue?: PathValue<TFieldValues, TName>;
+  // "vertical" (default) stacks the label above the input; "horizontal" places
+  // the label to the left of the input for denser, varied layouts.
+  direction?: "vertical" | "horizontal";
 };
 
 export type FormFieldArrayProps<

@@ -13,3 +13,6 @@ export * from "./EmailFieldInput";
 export * from "./MultiEmailFieldInput";
 export * from "./PhoneNumberFieldInput";
 export * from "./MultiPhoneNumberFieldInput";
+export * from "./AssignedUsersFieldInput";
+export * from "./AssignedTeamsFieldInput";
+export * from "./DateRangeFieldInput";

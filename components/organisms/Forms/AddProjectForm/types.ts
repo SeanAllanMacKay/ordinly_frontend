@@ -1,10 +1,11 @@
+import { DateRangeValue } from "@/components/atoms";
+
 export type AddProjectFormFieldTypes = {
   name: string;
   description: string;
   status: string;
   priority: string;
-  startDate: Date;
-  dueDate: Date;
+  dateRange?: DateRangeValue;
   clientId?: string;
   contactIds: string[];
   userIds: string[];

@@ -18,12 +18,16 @@ export const AddProjectSubmissionButton = ({
 
   const addProjectMutation = useCreateProjectMutation({ onSuccess });
 
-  const onSubmit = addProjectForm.handleSubmit(({ clientId, ...rest }) => {
-    addProjectMutation.mutateAsync({
-      ...rest,
-      clientIds: clientId ? [clientId] : [],
-    });
-  });
+  const onSubmit = addProjectForm.handleSubmit(
+    ({ clientId, dateRange, ...rest }) => {
+      addProjectMutation.mutateAsync({
+        ...rest,
+        clientIds: clientId ? [clientId] : [],
+        startDate: dateRange?.start,
+        dueDate: dateRange?.end,
+      });
+    },
+  );
 
   return (
     <Button

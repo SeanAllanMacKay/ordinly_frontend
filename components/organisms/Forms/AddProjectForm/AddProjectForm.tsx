@@ -4,7 +4,7 @@ import { useFormContext, useWatch } from "react-hook-form";
 import { AddProjectFormFieldTypes } from "./types";
 import { requiredValidator } from "@/util/validation";
 import {
-  DateFieldInput,
+  DateRangeFieldInput,
   EnrichedTextFieldInput,
   TextFieldInput,
 } from "@/components/molecules";
@@ -23,9 +23,6 @@ export const AddProjectForm = () => {
   const { t } = useTranslation("projects");
   const addProjectForm = useFormContext<AddProjectFormFieldTypes>();
   const { companyId } = useCurrentCompany();
-
-  const min = useWatch({ control: addProjectForm.control, name: "startDate" });
-  const max = useWatch({ control: addProjectForm.control, name: "dueDate" });
 
   // Contacts are scoped to the selected client; clear any chosen contacts when
   // the user switches client so we never submit contacts from a different one.
@@ -62,9 +59,11 @@ export const AddProjectForm = () => {
 
       <EnrichedTextFieldInput name="description" label={t("description")} />
 
-      <DateFieldInput name="startDate" label={t("startDate")} max={max} />
-
-      <DateFieldInput name="dueDate" label={t("dueDate")} min={min} />
+      <DateRangeFieldInput
+        name="dateRange"
+        startLabel={t("startDate")}
+        endLabel={t("dueDate")}
+      />
 
       <LocationDataFieldInput name="location" label={t("address")} />
 
