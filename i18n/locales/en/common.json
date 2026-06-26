@@ -82,7 +82,17 @@
     "darkMode": "Dark Mode",
     "language": "Language",
     "deleteDescription": "Permanently delete your account and all associated data. This action cannot be undone.",
-    "deleteAccount": "Delete account"
+    "deleteAccount": "Delete account",
+    "accountDetails": "Account details",
+    "name": "Name",
+    "email": "Email",
+    "additionalEmails": "Additional emails",
+    "phoneNumbers": "Phone numbers",
+    "twoFactor": "Two-factor authentication",
+    "removePhoto": "Remove photo",
+    "save": "Save",
+    "notifications": "Notifications",
+    "comingSoon": "Coming soon"
   },
   "deleteAccount": {
     "title": "Delete account?",
@@ -92,5 +102,18 @@
   "permissionDenied": {
     "title": "You don't have permission",
     "gotIt": "Got it"
+  },
+  "changePassword": {
+    "title": "Change password",
+    "description": "Update the password you use to sign in.",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm new password",
+    "submit": "Update password",
+    "comingSoon": "Password changes aren't available yet."
+  },
+  "editAccountDetails": {
+    "title": "Edit account details",
+    "submit": "Save"
   }
 }

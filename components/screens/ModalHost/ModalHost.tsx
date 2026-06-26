@@ -1,6 +1,7 @@
 import React from "react";
 import { useGlobalSearchParams } from "expo-router";
 import { useModals } from "@/util/navigation/useModals";
+import { ChangePasswordScreen } from "../ChangePasswordScreen";
 import { DeleteAccountScreen } from "../DeleteAccountScreen";
 import { DeleteCompanyScreen } from "../DeleteCompanyScreen";
 import { DeleteProjectScreen } from "../DeleteProjectScreen";
@@ -50,6 +51,8 @@ export const ModalHost = () => {
       return <DeleteCompanyScreen companyId={companyId!} onClose={close} />;
     case "confirm-delete-account":
       return <DeleteAccountScreen onClose={close} />;
+    case "change-password":
+      return <ChangePasswordScreen onClose={close} />;
     case "permission-denied":
       return (
         <PermissionDeniedScreen message={deniedMessage} onClose={close} />

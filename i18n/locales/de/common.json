@@ -82,7 +82,17 @@
     "darkMode": "Dunkelmodus",
     "language": "Sprache",
     "deleteDescription": "Löschen Sie Ihr Konto und alle zugehörigen Daten endgültig. Diese Aktion kann nicht rückgängig gemacht werden.",
-    "deleteAccount": "Konto löschen"
+    "deleteAccount": "Konto löschen",
+    "accountDetails": "Kontodetails",
+    "name": "Name",
+    "email": "E-Mail",
+    "additionalEmails": "Weitere E-Mails",
+    "phoneNumbers": "Telefonnummern",
+    "twoFactor": "Zwei-Faktor-Authentifizierung",
+    "removePhoto": "Foto entfernen",
+    "save": "Speichern",
+    "notifications": "Benachrichtigungen",
+    "comingSoon": "Demnächst"
   },
   "deleteAccount": {
     "title": "Konto löschen?",
@@ -92,5 +102,18 @@
   "permissionDenied": {
     "title": "Sie haben keine Berechtigung",
     "gotIt": "Verstanden"
+  },
+  "changePassword": {
+    "title": "Passwort ändern",
+    "description": "Aktualisieren Sie das Passwort, das Sie zum Anmelden verwenden.",
+    "currentPassword": "Aktuelles Passwort",
+    "newPassword": "Neues Passwort",
+    "confirmPassword": "Neues Passwort bestätigen",
+    "submit": "Passwort aktualisieren",
+    "comingSoon": "Passwortänderungen sind noch nicht verfügbar."
+  },
+  "editAccountDetails": {
+    "title": "Kontodetails bearbeiten",
+    "submit": "Speichern"
   }
 }

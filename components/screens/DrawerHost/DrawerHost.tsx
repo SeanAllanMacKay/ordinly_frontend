@@ -16,6 +16,7 @@ import { EditContactScreen } from "../EditContactScreen";
 import { EditRoleScreen } from "../EditRoleScreen";
 import { EditTeamScreen } from "../EditTeamScreen";
 import { EditWorkerScreen } from "../EditWorkerScreen";
+import { EditAccountDetailsScreen } from "../PersonalSettingsScreen/AccountDetailsCard";
 
 // Single global host for drawer modals. Mounted once in the authenticated
 // layout, it watches the `drawer` query param and renders the matching screen
@@ -72,6 +73,8 @@ export const DrawerHost = () => {
       return <EditWorkerScreen workerId={workerId!} onClose={close} />;
     case "edit-role":
       return <EditRoleScreen roleId={roleId!} onClose={close} />;
+    case "edit-account-details":
+      return <EditAccountDetailsScreen onClose={close} />;
     default:
       return null;
   }

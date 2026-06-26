@@ -15,5 +15,6 @@ export * from "./Badge";
 export * from "./Drawer";
 export * from "./MenuButton";
 export * from "./Image";
+export * from "./Avatar";
 export * from "./EnrichedTypography";
 export * from "./Accordion";

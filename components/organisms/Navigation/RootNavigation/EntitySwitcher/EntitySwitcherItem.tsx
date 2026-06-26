@@ -1,15 +1,20 @@
 import React from "react";
 import { View } from "react-native";
-import { EntitySwitcherAvatar } from "./EntitySwitcherAvatar";
 import { Spacing } from "@/styles";
-import { Icon, Typography } from "@/components/atoms";
+import { Typography } from "@/components/atoms";
+import { CompanyAvatar } from "@/components/organisms/CompanyAvatar";
+import { UserAvatar } from "@/components/organisms/UserAvatar";
 
 export const EntitySwitcherItem = ({
   name,
   description,
+  variant,
+  imageURL,
 }: {
   name: string;
   description: string;
+  variant: "user" | "company";
+  imageURL?: string;
 }) => {
   return (
     <View
@@ -20,7 +25,11 @@ export const EntitySwitcherItem = ({
         alignItems: "center",
       }}
     >
-      <EntitySwitcherAvatar name={name} />
+      {variant === "company" ? (
+        <CompanyAvatar name={name} imageURL={imageURL} />
+      ) : (
+        <UserAvatar name={name} imageURL={imageURL} />
+      )}
 
       <View
         style={{

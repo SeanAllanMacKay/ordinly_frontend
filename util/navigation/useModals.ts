@@ -13,6 +13,7 @@ export type ModalName =
   | "confirm-delete-team"
   | "confirm-delete-worker"
   | "confirm-delete-role"
+  | "change-password"
   | "permission-denied";
 
 // Ids of the entity a confirmation modal targets. Passed as query params (not

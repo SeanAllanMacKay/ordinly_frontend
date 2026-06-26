@@ -8,6 +8,7 @@ export * from "./AddRoleScreen";
 export * from "./AddTaskScreen";
 export * from "./AddTeamScreen";
 export * from "./AddWorkerScreen";
+export * from "./ChangePasswordScreen";
 export * from "./ClientContactsScreen";
 export * from "./ClientDetailsScreen";
 export * from "./ClientDocumentsScreen";

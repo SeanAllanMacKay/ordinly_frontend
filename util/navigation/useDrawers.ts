@@ -18,7 +18,8 @@ export type DrawerName =
   | "edit-contact"
   | "edit-team"
   | "edit-worker"
-  | "edit-role";
+  | "edit-role"
+  | "edit-account-details";
 
 // Ids of the entity an edit drawer targets. These are passed as query params
 // (not route path params) so they can be set from list screens where the entity

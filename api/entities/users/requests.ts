@@ -1,4 +1,11 @@
-import { POST, GET, PATCH, DELETE, REQUEST_ACTIONS } from "@/api/requests";
+import { POST, GET, PATCH, PUT, DELETE, REQUEST_ACTIONS } from "@/api/requests";
+
+// A file-like value `serializePayload` can upload (native image-picker object or
+// a web File/Blob). Declared here so the API layer stays independent of the UI
+// `ImageType`, while remaining structurally compatible with it.
+export type ProfilePictureUpload =
+  | Blob
+  | { uri: string; type: string; name?: string | null };
 
 export type UserAuthArgs = {
   email: string;
@@ -33,6 +40,12 @@ export type UserType = {
   createdDate: Date;
   /** The user's persisted language as a BCP-47 tag (e.g. "en-US"). */
   preferredLanguage: string;
+  /**
+   * The user's profile picture as the backend serializes it (raw image bytes
+   * keyed by index), or `null` when none is set. Use `profilePictureToUri` to
+   * turn it into a renderable data URI.
+   */
+  profilePicture: Record<string, number | string> | { data: number[] } | null;
 };
 
 export const userRequests = {
@@ -68,6 +81,14 @@ export const userRequests = {
   updateUser: async (body: { preferredLanguage: string }) =>
     await PATCH({ endpoint: "/user", body }),
 
+  // `serializePayload` detects the file-like `profilePicture` value and sends
+  // the request as multipart/form-data with a `profilePicture` part.
+  updateProfilePicture: async (body: { profilePicture: ProfilePictureUpload }) =>
+    await PUT({ endpoint: "/user/profile-picture", body }),
+
+  deleteProfilePicture: async () =>
+    await DELETE({ endpoint: "/user/profile-picture" }),
+
   deleteUser: async (body: { password: string }) =>
     await DELETE({ endpoint: "/user", body }),
 
@@ -99,5 +120,7 @@ export const userRequestKeys = {
   getCurrentUser: () => [REQUEST_ACTIONS.GET, base, "current"],
   getUserById: (userId: string) => [REQUEST_ACTIONS.GET, base, userId],
   updateUser: () => [REQUEST_ACTIONS.PATCH, base],
+  updateProfilePicture: () => [REQUEST_ACTIONS.PUT, base, "profile-picture"],
+  deleteProfilePicture: () => [REQUEST_ACTIONS.DELETE, base, "profile-picture"],
   deleteUser: () => [REQUEST_ACTIONS.DELETE, base],
 };

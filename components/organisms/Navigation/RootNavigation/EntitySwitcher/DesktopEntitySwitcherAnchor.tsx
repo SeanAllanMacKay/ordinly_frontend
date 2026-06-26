@@ -20,7 +20,9 @@ export const DesktopEntitySwitcherAnchor = () => {
         }}
       >
         <EntitySwitcherItem
+          variant={selectedEntity.variant}
           name={selectedEntity.name}
+          imageURL={selectedEntity.imageURL}
           description={
             selectedEntity.variant === "company"
               ? t("entitySwitcher.company")

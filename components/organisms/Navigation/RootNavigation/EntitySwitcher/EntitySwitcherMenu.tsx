@@ -9,6 +9,7 @@ import { Spacing } from "@/styles";
 import { EntitySwitcherItem } from "./EntitySwitcherItem";
 import { useDrawers } from "@/util/navigation/useDrawers";
 import { useLogoutMutation } from "@/api";
+import { profilePictureToUri } from "@/util/images";
 import { useTranslation } from "react-i18next";
 
 export const EntitySwitcherMenu = ({
@@ -67,7 +68,9 @@ export const EntitySwitcherMenu = ({
               }
             >
               <EntitySwitcherItem
+                variant="user"
                 name={user.name}
+                imageURL={profilePictureToUri(user.profilePicture)}
                 description={t("entitySwitcher.personalAccount")}
               />
             </Pressable>
@@ -76,7 +79,7 @@ export const EntitySwitcherMenu = ({
               {t("entitySwitcher.companies")}
             </Typography>
 
-            {companyOptions.map(({ name, id }) => (
+            {companyOptions.map(({ name, id, logo }) => (
               <Pressable
                 key={id}
                 onPress={
@@ -87,7 +90,9 @@ export const EntitySwitcherMenu = ({
                 }
               >
                 <EntitySwitcherItem
+                  variant="company"
                   name={name}
+                  imageURL={logo?.externalURL}
                   description={t("entitySwitcher.company")}
                 />
               </Pressable>

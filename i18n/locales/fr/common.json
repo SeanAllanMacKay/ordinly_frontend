@@ -82,7 +82,17 @@
     "darkMode": "Mode sombre",
     "language": "Langue",
     "deleteDescription": "Supprimez définitivement votre compte et toutes les données associées. Cette action est irréversible.",
-    "deleteAccount": "Supprimer le compte"
+    "deleteAccount": "Supprimer le compte",
+    "accountDetails": "Détails du compte",
+    "name": "Nom",
+    "email": "E-mail",
+    "additionalEmails": "E-mails supplémentaires",
+    "phoneNumbers": "Numéros de téléphone",
+    "twoFactor": "Authentification à deux facteurs",
+    "removePhoto": "Supprimer la photo",
+    "save": "Enregistrer",
+    "notifications": "Notifications",
+    "comingSoon": "Bientôt disponible"
   },
   "deleteAccount": {
     "title": "Supprimer le compte ?",
@@ -92,5 +102,18 @@
   "permissionDenied": {
     "title": "Vous n'avez pas l'autorisation",
     "gotIt": "Compris"
+  },
+  "changePassword": {
+    "title": "Changer le mot de passe",
+    "description": "Mettez à jour le mot de passe que vous utilisez pour vous connecter.",
+    "currentPassword": "Mot de passe actuel",
+    "newPassword": "Nouveau mot de passe",
+    "confirmPassword": "Confirmer le nouveau mot de passe",
+    "submit": "Mettre à jour le mot de passe",
+    "comingSoon": "Le changement de mot de passe n'est pas encore disponible."
+  },
+  "editAccountDetails": {
+    "title": "Modifier les détails du compte",
+    "submit": "Enregistrer"
   }
 }

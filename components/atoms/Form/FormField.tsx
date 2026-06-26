@@ -44,13 +44,13 @@ export const FormField = <
 
   return (
     <View style={formFieldStyles.container}>
+      <Typography size="sm">{label}</Typography>
       {component({
         value,
         onChange,
         onBlur,
         isDisabled: disabled,
         isError: !!errorMessage,
-        label,
         isLoading: formLoadingState.isLoading,
         index,
       })}

@@ -1,4 +1,5 @@
 import { useGetCompaniesQuery, useGetCurrentUserQuery } from "@/api";
+import { profilePictureToUri } from "@/util/images";
 import { useGlobalSearchParams } from "expo-router";
 import React, {
   createContext,
@@ -20,6 +21,7 @@ type EntitySwitcherSelectedEntity = {
   variant: "user" | "company";
   id: EntitySwitcherUser["id"] | EntitySwitcherCompany["id"];
   name: EntitySwitcherUser["name"] | EntitySwitcherCompany["name"];
+  imageURL?: string;
 };
 
 export const EntitySwitcherContext = createContext<{
@@ -54,11 +56,17 @@ export const EntitySwitcherProvider = ({ children }: PropsWithChildren) => {
           variant: "company",
           id: match.id,
           name: match.name,
+          imageURL: match.logo?.externalURL,
         };
       }
     }
 
-    return { variant: "user", id: user.id, name: user.name };
+    return {
+      variant: "user",
+      id: user.id,
+      name: user.name,
+      imageURL: profilePictureToUri(user.profilePicture),
+    };
   }, [user, companyId, companyOptions]);
 
   return (

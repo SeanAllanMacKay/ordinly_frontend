@@ -82,7 +82,17 @@
     "darkMode": "Modo oscuro",
     "language": "Idioma",
     "deleteDescription": "Elimina permanentemente tu cuenta y todos los datos asociados. Esta acción no se puede deshacer.",
-    "deleteAccount": "Eliminar cuenta"
+    "deleteAccount": "Eliminar cuenta",
+    "accountDetails": "Detalles de la cuenta",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "additionalEmails": "Correos adicionales",
+    "phoneNumbers": "Números de teléfono",
+    "twoFactor": "Autenticación de dos factores",
+    "removePhoto": "Quitar foto",
+    "save": "Guardar",
+    "notifications": "Notificaciones",
+    "comingSoon": "Próximamente"
   },
   "deleteAccount": {
     "title": "¿Eliminar cuenta?",
@@ -92,5 +102,18 @@
   "permissionDenied": {
     "title": "No tienes permiso",
     "gotIt": "Entendido"
+  },
+  "changePassword": {
+    "title": "Cambiar contraseña",
+    "description": "Actualiza la contraseña que usas para iniciar sesión.",
+    "currentPassword": "Contraseña actual",
+    "newPassword": "Nueva contraseña",
+    "confirmPassword": "Confirmar nueva contraseña",
+    "submit": "Actualizar contraseña",
+    "comingSoon": "El cambio de contraseña aún no está disponible."
+  },
+  "editAccountDetails": {
+    "title": "Editar detalles de la cuenta",
+    "submit": "Guardar"
   }
 }
