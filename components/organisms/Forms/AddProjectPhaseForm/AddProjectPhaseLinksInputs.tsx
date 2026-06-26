@@ -1,11 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import {
-  MultiTaskDataFieldInput,
-  MultiTeamDataFieldInput,
-  MultiWorkerDataFieldInput,
-} from "@/components/organisms/DataFieldInputs";
-import { useActiveCompanyId } from "@/util/navigation/useActiveCompanyId";
+import { MultiTaskDataFieldInput } from "@/components/organisms/DataFieldInputs";
+import { useCurrentCompany } from "@/util/navigation/useCurrentCompany";
 
 export const AddProjectPhaseLinksInputs = ({
   projectId,
@@ -14,28 +10,14 @@ export const AddProjectPhaseLinksInputs = ({
 }) => {
   // `common` namespace: these link labels are shared across forms.
   const { t } = useTranslation("common");
-  const companyId = useActiveCompanyId();
+  const { companyId } = useCurrentCompany();
 
   return (
-    <>
-      <MultiTaskDataFieldInput
-        name="taskIds"
-        label={t("tasks")}
-        companyId={companyId ?? ""}
-        projectId={projectId}
-      />
-
-      <MultiWorkerDataFieldInput
-        name="userIds"
-        label={t("workers")}
-        companyId={companyId ?? ""}
-      />
-
-      <MultiTeamDataFieldInput
-        name="teamIds"
-        label={t("teams")}
-        companyId={companyId ?? ""}
-      />
-    </>
+    <MultiTaskDataFieldInput
+      name="taskIds"
+      label={t("tasks")}
+      companyId={companyId ?? ""}
+      projectId={projectId}
+    />
   );
 };

@@ -47,5 +47,8 @@
   },
   "invoices": {
     "title": "Rechnungen"
+  },
+  "accordion": {
+    "assignees": "Zuständige"
   }
 }

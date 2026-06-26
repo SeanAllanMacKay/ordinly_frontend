@@ -14,7 +14,10 @@ const ProjectHeader = ({ projectId }: { projectId?: string }) => {
 export default function TabLayout() {
   return (
     <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="index"
+        options={{ header: () => <ScreenHeader title="tabs.projects" /> }}
+      />
 
       <Stack.Screen
         name="[projectId]"
@@ -24,7 +27,6 @@ export default function TabLayout() {
               projectId={(params as { projectId?: string })?.projectId}
             />
           ),
-          presentation: "transparentModal",
           animation: "slide_from_right",
         })}
       />

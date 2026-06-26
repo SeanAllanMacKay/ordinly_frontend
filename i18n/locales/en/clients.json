@@ -47,5 +47,8 @@
   },
   "invoices": {
     "title": "Invoices"
+  },
+  "accordion": {
+    "assignees": "Assignees"
   }
 }

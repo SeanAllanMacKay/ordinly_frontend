@@ -1,12 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Drawer } from "@/components";
+import { Accordion, Drawer } from "@/components";
 import {
+  EditProjectTaskAssigneesInputs,
   EditProjectTaskDetailsInputs,
   EditProjectTaskLinksInputs,
   EditProjectTaskProvider,
   EditProjectTaskSubmissionButton,
 } from "@/components/organisms/Forms/EditProjectTaskForm";
+import { useCurrentCompany } from "@/util/navigation/useCurrentCompany";
 import { EditTaskScreenProps } from "./types";
 
 export const EditTaskScreen = ({
@@ -15,6 +17,7 @@ export const EditTaskScreen = ({
   onClose,
 }: EditTaskScreenProps) => {
   const { t } = useTranslation("tasks");
+  const { isPersonal } = useCurrentCompany();
 
   return (
     <EditProjectTaskProvider projectId={projectId} taskId={taskId}>
@@ -34,6 +37,14 @@ export const EditTaskScreen = ({
         <EditProjectTaskDetailsInputs />
 
         <EditProjectTaskLinksInputs projectId={projectId} />
+
+        {!isPersonal && (
+          <Accordion>
+            <Accordion.Item id="assignees" label={t("accordion.assignees")}>
+              <EditProjectTaskAssigneesInputs />
+            </Accordion.Item>
+          </Accordion>
+        )}
       </Drawer>
     </EditProjectTaskProvider>
   );

@@ -5,3 +5,4 @@ export * from "./types";
 export * from "./AddProjectPhaseChecklistInputs";
 export * from "./AddProjectPhaseDocumentsInputs";
 export * from "./AddProjectPhaseLinksInputs";
+export * from "./AddProjectPhaseAssigneesInputs";

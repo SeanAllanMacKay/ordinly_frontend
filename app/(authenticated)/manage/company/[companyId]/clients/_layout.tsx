@@ -14,7 +14,10 @@ const ClientHeader = ({ clientId }: { clientId?: string }) => {
 export default function TabLayout() {
   return (
     <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="index"
+        options={{ header: () => <ScreenHeader title="tabs.clients" /> }}
+      />
 
       <Stack.Screen
         name="[clientId]"
@@ -24,7 +27,6 @@ export default function TabLayout() {
               clientId={(params as { clientId?: string })?.clientId}
             />
           ),
-          presentation: "transparentModal",
           animation: "slide_from_right",
         })}
       />

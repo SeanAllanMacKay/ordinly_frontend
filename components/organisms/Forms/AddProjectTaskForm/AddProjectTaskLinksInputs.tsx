@@ -1,11 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import {
-  MultiTeamDataFieldInput,
-  MultiWorkerDataFieldInput,
-  PhaseDataFieldInput,
-} from "@/components/organisms/DataFieldInputs";
-import { useActiveCompanyId } from "@/util/navigation/useActiveCompanyId";
+import { PhaseDataFieldInput } from "@/components/organisms/DataFieldInputs";
+import { useCurrentCompany } from "@/util/navigation/useCurrentCompany";
 
 export const AddProjectTaskLinksInputs = ({
   projectId,
@@ -15,28 +11,14 @@ export const AddProjectTaskLinksInputs = ({
   // `common` namespace: the link labels are shared and `tasks.phase` is an
   // object (the add-phase screen strings), which would shadow the "phase" label.
   const { t } = useTranslation("common");
-  const companyId = useActiveCompanyId();
+  const { companyId } = useCurrentCompany();
 
   return (
-    <>
-      <PhaseDataFieldInput
-        name="phaseId"
-        label={t("phase")}
-        companyId={companyId ?? ""}
-        projectId={projectId}
-      />
-
-      <MultiWorkerDataFieldInput
-        name="userIds"
-        label={t("workers")}
-        companyId={companyId ?? ""}
-      />
-
-      <MultiTeamDataFieldInput
-        name="teamIds"
-        label={t("teams")}
-        companyId={companyId ?? ""}
-      />
-    </>
+    <PhaseDataFieldInput
+      name="phaseId"
+      label={t("phase")}
+      companyId={companyId ?? ""}
+      projectId={projectId}
+    />
   );
 };

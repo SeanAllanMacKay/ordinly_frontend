@@ -5,3 +5,4 @@ export * from "./types";
 export * from "./AddProjectTaskChecklistInputs";
 export * from "./AddProjectTaskDocumentsInputs";
 export * from "./AddProjectTaskLinksInputs";
+export * from "./AddProjectTaskAssigneesInputs";

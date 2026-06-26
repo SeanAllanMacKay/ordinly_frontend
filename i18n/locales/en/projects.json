@@ -32,5 +32,8 @@
   },
   "milestones": {
     "placeholder": "Milestones"
+  },
+  "accordion": {
+    "assignees": "Assignees"
   }
 }

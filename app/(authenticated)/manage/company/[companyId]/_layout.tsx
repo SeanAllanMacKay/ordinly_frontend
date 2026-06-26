@@ -14,7 +14,6 @@ export default function CompanyLayout() {
         options={{
           title: "tabs.clients",
           icon: "blueprint",
-          header: () => <ScreenHeader title="tabs.clients" />,
         }}
       />
       <RootNavigation.Screen
@@ -22,7 +21,6 @@ export default function CompanyLayout() {
         options={{
           title: "tabs.projects",
           icon: "projects",
-          header: () => <ScreenHeader title="tabs.projects" />,
         }}
       />
       <RootNavigation.Screen

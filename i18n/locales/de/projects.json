@@ -32,5 +32,8 @@
   },
   "milestones": {
     "placeholder": "Meilensteine"
+  },
+  "accordion": {
+    "assignees": "Zuständige"
   }
 }

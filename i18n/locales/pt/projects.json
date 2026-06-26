@@ -32,5 +32,8 @@
   },
   "milestones": {
     "placeholder": "Marcos"
+  },
+  "accordion": {
+    "assignees": "Responsáveis"
   }
 }

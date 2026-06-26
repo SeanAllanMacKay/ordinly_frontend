@@ -32,5 +32,8 @@
   },
   "milestones": {
     "placeholder": "Hitos"
+  },
+  "accordion": {
+    "assignees": "Asignados"
   }
 }

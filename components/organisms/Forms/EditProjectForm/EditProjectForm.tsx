@@ -18,17 +18,15 @@ import {
   ClientDataFieldInput,
   LocationDataFieldInput,
   MultiContactDataFieldInput,
-  MultiTeamDataFieldInput,
-  MultiWorkerDataFieldInput,
   formatLocationDisplayValue,
   mapFeatureToLocationValue,
 } from "@/components/organisms/DataFieldInputs";
-import { useActiveCompanyId } from "@/util/navigation/useActiveCompanyId";
+import { useCurrentCompany } from "@/util/navigation/useCurrentCompany";
 
 export const EditProjectForm = ({ projectId }: { projectId: string }) => {
   const { t } = useTranslation("projects");
   const editProjectForm = useFormContext<EditProjectFormFieldTypes>();
-  const companyId = useActiveCompanyId();
+  const { companyId } = useCurrentCompany();
   const projectStatuses = useGetProjectStatusesQuery();
   const projectPriorities = useGetProjectPrioritiesQuery();
   const projectQuery = useGetProjectQuery({ projectId });
@@ -104,18 +102,6 @@ export const EditProjectForm = ({ projectId }: { projectId: string }) => {
         label={t("contacts")}
         companyId={companyId ?? ""}
         clientId={selectedClientId ?? ""}
-      />
-
-      <MultiWorkerDataFieldInput
-        name="userIds"
-        label={t("workers")}
-        companyId={companyId ?? ""}
-      />
-
-      <MultiTeamDataFieldInput
-        name="teamIds"
-        label={t("teams")}
-        companyId={companyId ?? ""}
       />
     </>
   );

@@ -15,7 +15,6 @@ export default function PersonalLayout() {
         options={{
           title: "tabs.clients",
           icon: "blueprint",
-          header: () => <ScreenHeader title="tabs.clients" />,
         }}
       />
 
@@ -24,7 +23,6 @@ export default function PersonalLayout() {
         options={{
           title: "tabs.projects",
           icon: "projects",
-          header: () => <ScreenHeader title="tabs.projects" />,
         }}
       />
 

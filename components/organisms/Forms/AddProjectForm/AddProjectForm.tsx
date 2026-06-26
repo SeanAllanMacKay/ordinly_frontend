@@ -12,19 +12,17 @@ import {
   ClientDataFieldInput,
   LocationDataFieldInput,
   MultiContactDataFieldInput,
-  MultiTeamDataFieldInput,
-  MultiWorkerDataFieldInput,
   ProjectPriorityDataFieldInput,
   ProjectStatusDataFieldInput,
 } from "@/components/organisms/DataFieldInputs";
 import { View } from "react-native";
 import { Spacing } from "@/styles";
-import { useActiveCompanyId } from "@/util/navigation/useActiveCompanyId";
+import { useCurrentCompany } from "@/util/navigation/useCurrentCompany";
 
 export const AddProjectForm = () => {
   const { t } = useTranslation("projects");
   const addProjectForm = useFormContext<AddProjectFormFieldTypes>();
-  const companyId = useActiveCompanyId();
+  const { companyId } = useCurrentCompany();
 
   const min = useWatch({ control: addProjectForm.control, name: "startDate" });
   const max = useWatch({ control: addProjectForm.control, name: "dueDate" });
@@ -81,18 +79,6 @@ export const AddProjectForm = () => {
         label={t("contacts")}
         companyId={companyId ?? ""}
         clientId={selectedClientId ?? ""}
-      />
-
-      <MultiWorkerDataFieldInput
-        name="userIds"
-        label={t("workers")}
-        companyId={companyId ?? ""}
-      />
-
-      <MultiTeamDataFieldInput
-        name="teamIds"
-        label={t("teams")}
-        companyId={companyId ?? ""}
       />
     </>
   );

@@ -47,5 +47,8 @@
   },
   "invoices": {
     "title": "Faturas"
+  },
+  "accordion": {
+    "assignees": "Responsáveis"
   }
 }

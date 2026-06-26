@@ -32,5 +32,8 @@
   },
   "milestones": {
     "placeholder": "Jalons"
+  },
+  "accordion": {
+    "assignees": "Personnes assignées"
   }
 }

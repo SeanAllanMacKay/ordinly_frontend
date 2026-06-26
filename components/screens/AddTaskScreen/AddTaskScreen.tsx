@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import {
   Accordion,
+  AddProjectTaskAssigneesInputs,
   AddProjectTaskChecklistInputs,
   AddProjectTaskDetailsInputs,
   AddProjectTaskDocumentsInputs,
@@ -10,10 +11,12 @@ import {
   AddProjectTaskSubmissionButton,
   Drawer,
 } from "@/components";
+import { useCurrentCompany } from "@/util/navigation/useCurrentCompany";
 import { AddTaskScreenProps } from "./types";
 
 export const AddTaskScreen = ({ projectId, onClose }: AddTaskScreenProps) => {
   const { t } = useTranslation("tasks");
+  const { isPersonal } = useCurrentCompany();
 
   return (
     <AddProjectTaskProvider>
@@ -42,6 +45,12 @@ export const AddTaskScreen = ({ projectId, onClose }: AddTaskScreenProps) => {
           <Accordion.Item id="links" label={t("accordion.links")}>
             <AddProjectTaskLinksInputs projectId={projectId} />
           </Accordion.Item>
+
+          {!isPersonal && (
+            <Accordion.Item id="assignees" label={t("accordion.assignees")}>
+              <AddProjectTaskAssigneesInputs />
+            </Accordion.Item>
+          )}
         </Accordion>
       </Drawer>
     </AddProjectTaskProvider>
