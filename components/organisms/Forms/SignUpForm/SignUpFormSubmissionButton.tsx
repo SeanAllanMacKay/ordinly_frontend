@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useSignUpMutation } from "@/api";
 import { Button } from "@/components";
+import { getDeviceLanguageTag } from "@/i18n/detectLanguage";
 import { UseFormReturn } from "react-hook-form";
 import { SignUpFormFieldValues } from "./SignUpForm";
 
@@ -16,7 +17,12 @@ export const SignUpFormSubmissionButton = ({
   const onSubmit = form.handleSubmit(
     async ({ "verify-password": _verifyPassword, ...formValues }) => {
       try {
-        await signUpMutation.mutateAsync(formValues);
+        await signUpMutation.mutateAsync({
+          ...formValues,
+          // Persist the browser/device language at sign-up so the user's first
+          // session (and future devices) honour it.
+          preferredLanguage: getDeviceLanguageTag(),
+        });
       } catch (e: any) {
         form.setError("root.serverError", {
           message: e?.error ?? t("signUp.serverError"),

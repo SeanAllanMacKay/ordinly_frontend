@@ -68,7 +68,7 @@ export const EntitySwitcherMenu = ({
             >
               <EntitySwitcherItem
                 name={user.name}
-                description="Personal account"
+                description={t("entitySwitcher.personalAccount")}
               />
             </Pressable>
 
@@ -86,7 +86,10 @@ export const EntitySwitcherMenu = ({
                     : () => changeAccount(routes.manage.company.root(id))
                 }
               >
-                <EntitySwitcherItem name={name} description="Company" />
+                <EntitySwitcherItem
+                  name={name}
+                  description={t("entitySwitcher.company")}
+                />
               </Pressable>
             ))}
           </>

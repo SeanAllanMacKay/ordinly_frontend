@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { ClientListItem } from "@/components";
 import { useGetClientsQuery } from "@/api";
 import { ClientType } from "@/api/entities/types";
@@ -9,6 +10,7 @@ import { useClientRoutes } from "@/util/navigation/useClientRoutes";
 import { ClientsEmptyState } from "./ClientsEmptyState";
 
 export const ClientsDataList = () => {
+  const { t } = useTranslation();
   const { page, onPaginationChange } = usePagination();
   const router = useRouter();
   const clientRoutes = useClientRoutes();
@@ -36,8 +38,8 @@ export const ClientsDataList = () => {
       item={ClientListItem}
       // table
       columns={[
-        { label: "Name", key: "name" },
-        { label: "Description", key: "description" },
+        { label: t("name"), key: "name" },
+        { label: t("description"), key: "description" },
       ]}
     />
   );

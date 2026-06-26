@@ -20,6 +20,8 @@
   "emptyValue": "-",
   "name": "Nombre",
   "description": "Descripción",
+  "role": "Rol",
+  "pagination": "Página {{page}} de {{totalPages}}",
   "email": "Correo electrónico",
   "password": "Contraseña",
   "phone": "Teléfono",
@@ -78,6 +80,7 @@
   "settings": {
     "title": "Ajustes",
     "darkMode": "Modo oscuro",
+    "language": "Idioma",
     "deleteDescription": "Elimina permanentemente tu cuenta y todos los datos asociados. Esta acción no se puede deshacer.",
     "deleteAccount": "Eliminar cuenta"
   },

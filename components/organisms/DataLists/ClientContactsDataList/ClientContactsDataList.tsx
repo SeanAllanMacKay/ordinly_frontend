@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Card } from "@/components";
 import { useGetClientContactsQuery } from "@/api";
 import { ContactType } from "@/api/entities/types";
@@ -12,6 +13,7 @@ export const ClientContactsDataList = ({
 }: {
   clientId: string;
 }) => {
+  const { t } = useTranslation();
   const contactsQuery = useGetClientContactsQuery({ clientId });
   const { open } = useDrawers();
   const { isDenied, showDenied } = usePermissionGate({
@@ -36,8 +38,8 @@ export const ClientContactsDataList = ({
       )}
       // table
       columns={[
-        { label: "Name", key: "name" },
-        { label: "Role", key: "role" },
+        { label: t("name"), key: "name" },
+        { label: t("role"), key: "role" },
       ]}
     />
   );

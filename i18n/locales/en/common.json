@@ -20,6 +20,8 @@
   "emptyValue": "-",
   "name": "Name",
   "description": "Description",
+  "role": "Role",
+  "pagination": "Page {{page}} of {{totalPages}}",
   "email": "Email",
   "password": "Password",
   "phone": "Phone",
@@ -78,6 +80,7 @@
   "settings": {
     "title": "Settings",
     "darkMode": "Dark Mode",
+    "language": "Language",
     "deleteDescription": "Permanently delete your account and all associated data. This action cannot be undone.",
     "deleteAccount": "Delete account"
   },

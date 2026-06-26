@@ -1,10 +1,12 @@
 import { Card, Icon } from "@/components/atoms";
 import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { EntitySwitcherContext } from "./EntitySwitcherContext";
 import { EntitySwitcherItem } from "./EntitySwitcherItem";
 import { View } from "react-native";
 
 export const DesktopEntitySwitcherAnchor = () => {
+  const { t } = useTranslation("navigation");
   const { selectedEntity } = useContext(EntitySwitcherContext);
 
   return selectedEntity ? (
@@ -21,8 +23,8 @@ export const DesktopEntitySwitcherAnchor = () => {
           name={selectedEntity.name}
           description={
             selectedEntity.variant === "company"
-              ? "Company"
-              : "Personal account"
+              ? t("entitySwitcher.company")
+              : t("entitySwitcher.personalAccount")
           }
         />
 

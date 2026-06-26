@@ -1,8 +1,14 @@
-import { POST, GET, DELETE, REQUEST_ACTIONS } from "@/api/requests";
+import { POST, GET, PATCH, DELETE, REQUEST_ACTIONS } from "@/api/requests";
 
 export type UserAuthArgs = {
   email: string;
   password: string;
+};
+
+export type UserSignUpArgs = UserAuthArgs & {
+  name: string;
+  /** The user's browser/device language as a BCP-47 tag (e.g. "en-US"). */
+  preferredLanguage?: string;
 };
 
 export type UserGETArgs = {
@@ -25,10 +31,12 @@ export type UserType = {
   };
   isVerified: boolean;
   createdDate: Date;
+  /** The user's persisted language as a BCP-47 tag (e.g. "en-US"). */
+  preferredLanguage: string;
 };
 
 export const userRequests = {
-  signUp: async (body: UserAuthArgs) =>
+  signUp: async (body: UserSignUpArgs) =>
     await POST<{ user: UserType }>({
       endpoint: "/user/sign-up",
       body,
@@ -57,7 +65,8 @@ export const userRequests = {
   getUserById: async ({ userId }: UserGETArgs) =>
     await GET({ endpoint: `/user/${userId}` }),
 
-  updateUser: async () => {},
+  updateUser: async (body: { preferredLanguage: string }) =>
+    await PATCH({ endpoint: "/user", body }),
 
   deleteUser: async (body: { password: string }) =>
     await DELETE({ endpoint: "/user", body }),
@@ -89,5 +98,6 @@ export const userRequestKeys = {
   persistentLogin: () => [REQUEST_ACTIONS.POST, base, "persistent-login"],
   getCurrentUser: () => [REQUEST_ACTIONS.GET, base, "current"],
   getUserById: (userId: string) => [REQUEST_ACTIONS.GET, base, userId],
+  updateUser: () => [REQUEST_ACTIONS.PATCH, base],
   deleteUser: () => [REQUEST_ACTIONS.DELETE, base],
 };

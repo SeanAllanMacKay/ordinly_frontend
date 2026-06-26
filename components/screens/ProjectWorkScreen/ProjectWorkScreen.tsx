@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   FloatingActionButton,
   ProjectTasksDataList,
@@ -8,6 +9,7 @@ import { useDrawers } from "@/util/navigation/useDrawers";
 import { ProjectWorkScreenProps } from "./types";
 
 export const ProjectWorkScreen = (_props: ProjectWorkScreenProps) => {
+  const { t } = useTranslation("tasks");
   const { open } = useDrawers();
 
   return (
@@ -18,17 +20,17 @@ export const ProjectWorkScreen = (_props: ProjectWorkScreenProps) => {
         icon="plus"
         items={[
           {
-            label: "Add phase",
+            label: t("phase.submit"),
             icon: "phases",
             onPress: () => open("add-phase"),
           },
           {
-            label: "Add milestone",
+            label: t("milestone.submit"),
             icon: "milestones",
             onPress: () => open("add-milestone"),
           },
           {
-            label: "Add task",
+            label: t("addTask.submit"),
             icon: "tasks",
             onPress: () => open("add-task"),
           },
