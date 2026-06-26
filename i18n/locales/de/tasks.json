@@ -1,0 +1,28 @@
+{
+  "addTask": {
+    "title": "Aufgabe hinzufügen",
+    "submit": "Aufgabe hinzufügen"
+  },
+  "editTask": {
+    "title": "Aufgabe bearbeiten"
+  },
+  "deleteTask": {
+    "title": "Aufgabe löschen?",
+    "message": "Dadurch werden dieses Element und alles darin enthaltene endgültig gelöscht. Diese Aktion kann nicht rückgängig gemacht werden."
+  },
+  "milestone": {
+    "title": "Meilenstein hinzufügen",
+    "submit": "Meilenstein hinzufügen",
+    "approver": "Genehmiger"
+  },
+  "phase": {
+    "title": "Phase hinzufügen",
+    "submit": "Phase hinzufügen"
+  },
+  "accordion": {
+    "details": "Details",
+    "checklist": "Checkliste",
+    "documents": "Dokumente",
+    "links": "Links"
+  }
+}

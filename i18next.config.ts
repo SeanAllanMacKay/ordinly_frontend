@@ -14,7 +14,7 @@ import { defineConfig } from "i18next-cli";
  * hand.
  */
 export default defineConfig({
-  locales: ["en", "es"],
+  locales: ["en", "es", "pt", "fr", "de"],
   extract: {
     input: [
       "app/**/*.{ts,tsx}",

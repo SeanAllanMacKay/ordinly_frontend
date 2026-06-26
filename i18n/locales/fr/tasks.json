@@ -1,0 +1,28 @@
+{
+  "addTask": {
+    "title": "Ajouter une tâche",
+    "submit": "Ajouter une tâche"
+  },
+  "editTask": {
+    "title": "Modifier la tâche"
+  },
+  "deleteTask": {
+    "title": "Supprimer la tâche ?",
+    "message": "Cela supprimera définitivement cet élément et tout ce qu'il contient. Cette action est irréversible."
+  },
+  "milestone": {
+    "title": "Ajouter un jalon",
+    "submit": "Ajouter un jalon",
+    "approver": "Approbateur"
+  },
+  "phase": {
+    "title": "Ajouter une phase",
+    "submit": "Ajouter une phase"
+  },
+  "accordion": {
+    "details": "Détails",
+    "checklist": "Liste de contrôle",
+    "documents": "Documents",
+    "links": "Liens"
+  }
+}

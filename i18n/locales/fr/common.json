@@ -1,0 +1,96 @@
+{
+  "save": "Enregistrer",
+  "cancel": "Annuler",
+  "delete": "Supprimer",
+  "edit": "Modifier",
+  "add": "Ajouter",
+  "remove": "Retirer",
+  "create": "Créer",
+  "confirm": "Confirmer",
+  "close": "Fermer",
+  "back": "Retour",
+  "next": "Suivant",
+  "submit": "Envoyer",
+  "error": "Erreur",
+  "success": "Succès",
+  "loading": "Chargement…",
+  "sending": "Envoi…",
+  "saving": "Enregistrement…",
+  "retry": "Réessayer",
+  "emptyValue": "-",
+  "name": "Nom",
+  "description": "Description",
+  "role": "Rôle",
+  "pagination": "Page {{page}} sur {{totalPages}}",
+  "email": "E-mail",
+  "password": "Mot de passe",
+  "phone": "Téléphone",
+  "address": "Adresse",
+  "startDate": "Date de début",
+  "dueDate": "Date d'échéance",
+  "status": "Statut",
+  "priority": "Priorité",
+  "client": "Client",
+  "contacts": "Contacts",
+  "workers": "Travailleurs",
+  "teams": "Équipes",
+  "phase": "Phase",
+  "tasks": "Tâches",
+  "dangerZone": "Zone de danger",
+  "noEntities": "Aucun {{entity}} à afficher",
+  "verificationBanner": {
+    "message": "Votre compte n'est pas encore vérifié.",
+    "emailSent": "E-mail envoyé",
+    "resend": "Renvoyer l'e-mail"
+  },
+  "home": {
+    "welcome": "Bienvenue sur Ordinly{{suffix}}",
+    "subtitle": "Choisissez un point de départ.",
+    "project": {
+      "title": "Créez votre premier projet",
+      "subtitle": "Suivez les tâches, le temps et les photos pour vos travaux personnels, vos activités secondaires et votre portfolio professionnel.",
+      "cta": "Créer un projet",
+      "features": {
+        "scheduleTitle": "Planning",
+        "scheduleSubtitle": "Décomposez votre projet en tâches, phases et jalons",
+        "timeTitle": "Suivi du temps",
+        "timeSubtitle": "Enregistrez les heures sur place",
+        "filesTitle": "Images et fichiers",
+        "filesSubtitle": "Conservez vos contrats, vos décharges et vos preuves de travail au même endroit",
+        "portfolioTitle": "Portfolio",
+        "portfolioSubtitle": "Présentez vos meilleurs travaux pour obtenir plus de contrats"
+      }
+    },
+    "company": {
+      "title": "Créez une entreprise",
+      "subtitle": "Passez à la gestion des appels d'offres, des factures, des clients, des équipes, du matériel et bien plus encore.",
+      "cta": "Créer une entreprise",
+      "features": {
+        "communicationTitle": "Communication en temps réel",
+        "communicationSubtitle": "Ne manquez jamais rien avec vos clients, vos sous-traitants ou votre équipe",
+        "paymentsTitle": "Paiements",
+        "paymentsSubtitle": "Soyez payé plus rapidement et plus facilement grâce à notre portail de paiement",
+        "clientsTitle": "Gestion des clients",
+        "clientsSubtitle": "Appels d'offres, devis, estimations, factures et un portail client dédié",
+        "crewTitle": "Gestion d'équipe",
+        "crewSubtitle": "Assurez-vous que chacun travaille sur la bonne tâche au bon moment"
+      }
+    }
+  },
+  "settings": {
+    "title": "Paramètres",
+    "darkMode": "Mode sombre",
+    "language": "Langue",
+    "deleteDescription": "Supprimez définitivement votre compte et toutes les données associées. Cette action est irréversible.",
+    "deleteAccount": "Supprimer le compte"
+  },
+  "deleteAccount": {
+    "title": "Supprimer le compte ?",
+    "warning": "Cela supprimera définitivement votre compte et toutes les données associées. Cette action est irréversible.",
+    "confirmEmailLabel": "Saisissez votre e-mail pour confirmer"
+  },
+  "permissionDenied": {
+    "title": "Vous n'avez pas l'autorisation",
+    "gotIt": "Compris"
+  }
+}

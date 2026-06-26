@@ -1,0 +1,96 @@
+{
+  "save": "Guardar",
+  "cancel": "Cancelar",
+  "delete": "Eliminar",
+  "edit": "Editar",
+  "add": "Adicionar",
+  "remove": "Remover",
+  "create": "Criar",
+  "confirm": "Confirmar",
+  "close": "Fechar",
+  "back": "Voltar",
+  "next": "Seguinte",
+  "submit": "Submeter",
+  "error": "Erro",
+  "success": "Sucesso",
+  "loading": "A carregar…",
+  "sending": "A enviar…",
+  "saving": "A guardar…",
+  "retry": "Tentar novamente",
+  "emptyValue": "-",
+  "name": "Nome",
+  "description": "Descrição",
+  "role": "Função",
+  "pagination": "Página {{page}} de {{totalPages}}",
+  "email": "Email",
+  "password": "Palavra-passe",
+  "phone": "Telefone",
+  "address": "Morada",
+  "startDate": "Data de início",
+  "dueDate": "Data de conclusão",
+  "status": "Estado",
+  "priority": "Prioridade",
+  "client": "Cliente",
+  "contacts": "Contactos",
+  "workers": "Trabalhadores",
+  "teams": "Equipas",
+  "phase": "Fase",
+  "tasks": "Tarefas",
+  "dangerZone": "Zona de perigo",
+  "noEntities": "Sem {{entity}} para mostrar",
+  "verificationBanner": {
+    "message": "A sua conta ainda não está verificada.",
+    "emailSent": "Email enviado",
+    "resend": "Reenviar email"
+  },
+  "home": {
+    "welcome": "Bem-vindo ao Ordinly{{suffix}}",
+    "subtitle": "Escolha um ponto de partida.",
+    "project": {
+      "title": "Crie o seu primeiro projeto",
+      "subtitle": "Acompanhe tarefas, tempo e fotografias para trabalhos pessoais, trabalhos secundários e o seu portefólio profissional.",
+      "cta": "Criar um projeto",
+      "features": {
+        "scheduleTitle": "Agenda",
+        "scheduleSubtitle": "Divida o seu projeto em tarefas, fases e marcos",
+        "timeTitle": "Controlo de tempo",
+        "timeSubtitle": "Registe horas no local",
+        "filesTitle": "Imagens e ficheiros",
+        "filesSubtitle": "Mantenha os seus contratos, autorizações e provas de trabalho num só lugar",
+        "portfolioTitle": "Portefólio",
+        "portfolioSubtitle": "Mostre o seu melhor trabalho para conseguir mais projetos"
+      }
+    },
+    "company": {
+      "title": "Crie uma empresa",
+      "subtitle": "Avance para a gestão de propostas, faturas, clientes, equipa, equipamento e muito mais.",
+      "cta": "Criar uma empresa",
+      "features": {
+        "communicationTitle": "Comunicação em tempo real",
+        "communicationSubtitle": "Nunca perca um pormenor com clientes, contratantes ou a sua equipa",
+        "paymentsTitle": "Pagamentos",
+        "paymentsSubtitle": "Receba pagamentos de forma mais rápida e fácil através do nosso portal de pagamentos",
+        "clientsTitle": "Gestão de clientes",
+        "clientsSubtitle": "Propostas, orçamentos, estimativas, faturas e um portal de cliente dedicado",
+        "crewTitle": "Gestão de equipa",
+        "crewSubtitle": "Garanta que todos trabalham na coisa certa no momento certo"
+      }
+    }
+  },
+  "settings": {
+    "title": "Definições",
+    "darkMode": "Modo escuro",
+    "language": "Idioma",
+    "deleteDescription": "Elimine permanentemente a sua conta e todos os dados associados. Esta ação não pode ser anulada.",
+    "deleteAccount": "Eliminar conta"
+  },
+  "deleteAccount": {
+    "title": "Eliminar conta?",
+    "warning": "Isto irá eliminar permanentemente a sua conta e todos os dados associados. Esta ação não pode ser anulada.",
+    "confirmEmailLabel": "Escreva o seu email para confirmar"
+  },
+  "permissionDenied": {
+    "title": "Não tem permissão",
+    "gotIt": "Compreendi"
+  }
+}

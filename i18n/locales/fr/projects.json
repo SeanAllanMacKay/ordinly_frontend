@@ -1,0 +1,36 @@
+{
+  "addProject": {
+    "title": "Ajouter un projet",
+    "submit": "Ajouter un projet"
+  },
+  "editProject": {
+    "title": "Modifier le projet"
+  },
+  "deleteProject": {
+    "title": "Supprimer le projet ?",
+    "message": "Cela supprimera définitivement le projet ainsi que toutes ses tâches, jalons et phases. Cette action est irréversible.",
+    "confirmLabel": "Supprimer le projet",
+    "trigger": "Supprimer le projet"
+  },
+  "details": {
+    "start": "Début",
+    "end": "Fin"
+  },
+  "emptyState": {
+    "title": "Aucun projet pour l'instant",
+    "subtitle": "Les projets que vous créez apparaîtront ici."
+  },
+  "location": {
+    "search": "Rechercher",
+    "searchHint": "Recherchez pour trouver l'adresse que vous cherchez"
+  },
+  "documents": {
+    "placeholder": "Documents"
+  },
+  "invoices": {
+    "placeholder": "Factures"
+  },
+  "milestones": {
+    "placeholder": "Jalons"
+  }
+}

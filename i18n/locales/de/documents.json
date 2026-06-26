@@ -1,0 +1,9 @@
+{
+  "noAppToOpenFile": "Keine App installiert, um diese Datei zu öffnen.",
+  "openPreviewFailed": "Dateivorschau kann nicht geöffnet werden.",
+  "downloadFailed": "Beim Herunterladen ist ein unerwarteter Fehler aufgetreten.",
+  "selectFile": "Datei auswählen ",
+  "pickDocumentFailed": "Dokument konnte nicht ausgewählt werden",
+  "permissionNeeded": "Berechtigung erforderlich",
+  "allowPhotoAccess": "Erlauben Sie den Zugriff auf Fotos, um ein Profilbild festzulegen."
+}

@@ -7,18 +7,18 @@ import { useGetCurrentUserQuery } from "@/api";
 import { useThemePreference } from "@/styles/ThemePreference";
 import { useLanguagePreference } from "@/i18n/LanguagePreference";
 import {
-  FALLBACK_LANGUAGE,
-  LANGUAGE_LABELS,
-  SUPPORTED_LANGUAGES,
-  normalizeLanguageTag,
-  type Language,
+  FALLBACK_LOCALE,
+  LOCALE_LABELS,
+  SUPPORTED_LOCALES,
+  normalizeLocale,
+  type Locale,
 } from "@/i18n/config";
 import { useModals } from "@/util/navigation/useModals";
 import { personalSettingsScreenStyles } from "./styles";
 
-const LANGUAGE_OPTIONS = SUPPORTED_LANGUAGES.map((code) => ({
+const LANGUAGE_OPTIONS = SUPPORTED_LOCALES.map((code) => ({
   value: code,
-  label: LANGUAGE_LABELS[code],
+  label: LOCALE_LABELS[code],
 }));
 
 export const PersonalSettingsScreen = () => {
@@ -56,8 +56,8 @@ export const PersonalSettingsScreen = () => {
             <View style={personalSettingsScreenStyles.settingRow}>
               <Typography>{t("settings.language")}</Typography>
 
-              <SelectInput<Language>
-                value={normalizeLanguageTag(language) ?? FALLBACK_LANGUAGE}
+              <SelectInput<Locale>
+                value={normalizeLocale(language) ?? FALLBACK_LOCALE}
                 onChange={setLanguage}
                 options={LANGUAGE_OPTIONS}
                 label={t("settings.language")}

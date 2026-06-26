@@ -1,0 +1,51 @@
+{
+  "addClient": {
+    "title": "Ajouter un client",
+    "submit": "Ajouter un client"
+  },
+  "addContact": {
+    "title": "Ajouter un contact",
+    "submit": "Ajouter un contact",
+    "roleLabel": "Rôle",
+    "emailsLabel": "Adresses e-mail",
+    "phoneNumbersLabel": "Numéros de téléphone",
+    "locationsLabel": "Emplacements"
+  },
+  "editClient": {
+    "title": "Modifier le client",
+    "submit": "Enregistrer les modifications"
+  },
+  "deleteClient": {
+    "title": "Supprimer le client ?",
+    "message": "Cela supprimera définitivement le client et ses contacts. Cette action est irréversible.",
+    "confirmLabel": "Supprimer le client",
+    "trigger": "Supprimer le client"
+  },
+  "editContact": {
+    "title": "Modifier le contact",
+    "submit": "Enregistrer les modifications"
+  },
+  "deleteContact": {
+    "title": "Supprimer le contact ?",
+    "message": "Cela supprimera définitivement le contact. Cette action est irréversible.",
+    "confirmLabel": "Supprimer le contact",
+    "trigger": "Supprimer le contact"
+  },
+  "clientsEmpty": {
+    "title": "Aucun client pour l'instant",
+    "subtitle": "Les clients que vous ajoutez apparaîtront ici."
+  },
+  "contactsEmpty": {
+    "title": "Aucun contact pour l'instant",
+    "subtitle": "Les contacts que vous ajoutez pour ce client apparaîtront ici."
+  },
+  "details": {
+    "title": "Détails"
+  },
+  "documents": {
+    "title": "Documents"
+  },
+  "invoices": {
+    "title": "Factures"
+  }
+}

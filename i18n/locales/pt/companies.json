@@ -1,0 +1,95 @@
+{
+  "addCompany": {
+    "title": "Adicionar empresa",
+    "submit": "Adicionar empresa",
+    "verificationRequiredTitle": "Verificação necessária",
+    "verificationRequiredBody": "A sua conta tem de estar verificada para criar uma empresa.",
+    "resendEmail": "Reenviar email",
+    "emailSent": "Email enviado",
+    "sending": "A enviar…"
+  },
+  "addRole": {
+    "title": "Adicionar função",
+    "submit": "Adicionar função",
+    "descriptionLabel": "Descrição (opcional)",
+    "permissions": "Permissões",
+    "permissionsComingSoon": "A gestão de permissões estará disponível em breve."
+  },
+  "addTeam": {
+    "title": "Adicionar equipa",
+    "submit": "Adicionar equipa",
+    "members": "Membros"
+  },
+  "addWorker": {
+    "title": "Adicionar trabalhador",
+    "submit": "Adicionar trabalhador",
+    "role": "Função"
+  },
+  "editRole": {
+    "title": "Editar função",
+    "submit": "Guardar alterações"
+  },
+  "deleteRole": {
+    "title": "Eliminar função?",
+    "message": "Isto irá eliminar permanentemente a função. Os membros a ela atribuídos perderão as suas permissões. Esta ação não pode ser anulada.",
+    "confirmLabel": "Eliminar função",
+    "trigger": "Eliminar função"
+  },
+  "editTeam": {
+    "title": "Editar equipa",
+    "submit": "Guardar alterações"
+  },
+  "deleteTeam": {
+    "title": "Eliminar equipa?",
+    "message": "Isto irá eliminar permanentemente a equipa. Os seus membros não serão removidos da empresa. Esta ação não pode ser anulada.",
+    "confirmLabel": "Eliminar equipa",
+    "trigger": "Eliminar equipa"
+  },
+  "editWorker": {
+    "title": "Editar trabalhador",
+    "submit": "Guardar alterações",
+    "roles": "Funções"
+  },
+  "deleteWorker": {
+    "title": "Remover trabalhador?",
+    "message": "Isto irá remover o trabalhador da empresa. Esta ação não pode ser anulada.",
+    "confirmLabel": "Remover trabalhador",
+    "trigger": "Remover trabalhador"
+  },
+  "companies": {
+    "columnName": "Nome",
+    "emptyTitle": "Ainda não há empresas",
+    "emptySubtitle": "As empresas que criar aparecerão aqui.",
+    "addCompany": "Adicionar empresa"
+  },
+  "roles": {
+    "emptyTitle": "Ainda não há funções",
+    "emptySubtitle": "As funções que criar aparecerão aqui.",
+    "addRole": "Adicionar função"
+  },
+  "teams": {
+    "columnMembers": "Membros",
+    "memberCount": "{{count}} membros",
+    "emptyTitle": "Ainda não há equipas",
+    "emptySubtitle": "As equipas que criar aparecerão aqui.",
+    "addTeam": "Adicionar equipa"
+  },
+  "workers": {
+    "columnRoles": "Funções",
+    "emptyTitle": "Ainda não há trabalhadores",
+    "emptySubtitle": "Os trabalhadores que convidar aparecerão aqui.",
+    "addWorker": "Adicionar trabalhador"
+  },
+  "home": {
+    "dashboard": "Painel da empresa"
+  },
+  "settings": {
+    "deleteDescription": "Eliminar esta empresa remove permanentemente todos os seus projetos, equipas e membros. Esta ação não pode ser anulada.",
+    "deleteCompany": "Eliminar empresa"
+  },
+  "deleteCompany": {
+    "title": "Eliminar empresa?",
+    "message": "Isto irá eliminar permanentemente a empresa e todos os seus projetos, equipas e membros. Esta ação não pode ser anulada.",
+    "confirmLabel": "Eliminar empresa"
+  }
+}

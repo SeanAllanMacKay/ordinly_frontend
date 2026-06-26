@@ -1,0 +1,36 @@
+{
+  "addProject": {
+    "title": "Projekt hinzufügen",
+    "submit": "Projekt hinzufügen"
+  },
+  "editProject": {
+    "title": "Projekt bearbeiten"
+  },
+  "deleteProject": {
+    "title": "Projekt löschen?",
+    "message": "Dadurch werden das Projekt und alle seine Aufgaben, Meilensteine und Phasen endgültig gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "confirmLabel": "Projekt löschen",
+    "trigger": "Projekt löschen"
+  },
+  "details": {
+    "start": "Beginn",
+    "end": "Ende"
+  },
+  "emptyState": {
+    "title": "Noch keine Projekte",
+    "subtitle": "Projekte, die Sie erstellen, werden hier angezeigt."
+  },
+  "location": {
+    "search": "Suchen",
+    "searchHint": "Suchen Sie, um die gewünschte Adresse zu finden"
+  },
+  "documents": {
+    "placeholder": "Dokumente"
+  },
+  "invoices": {
+    "placeholder": "Rechnungen"
+  },
+  "milestones": {
+    "placeholder": "Meilensteine"
+  }
+}

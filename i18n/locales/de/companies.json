@@ -1,0 +1,95 @@
+{
+  "addCompany": {
+    "title": "Unternehmen hinzufügen",
+    "submit": "Unternehmen hinzufügen",
+    "verificationRequiredTitle": "Verifizierung erforderlich",
+    "verificationRequiredBody": "Ihr Konto muss verifiziert sein, um ein Unternehmen zu erstellen.",
+    "resendEmail": "E-Mail erneut senden",
+    "emailSent": "E-Mail gesendet",
+    "sending": "Wird gesendet…"
+  },
+  "addRole": {
+    "title": "Rolle hinzufügen",
+    "submit": "Rolle hinzufügen",
+    "descriptionLabel": "Beschreibung (optional)",
+    "permissions": "Berechtigungen",
+    "permissionsComingSoon": "Die Berechtigungsverwaltung ist bald verfügbar."
+  },
+  "addTeam": {
+    "title": "Team hinzufügen",
+    "submit": "Team hinzufügen",
+    "members": "Mitglieder"
+  },
+  "addWorker": {
+    "title": "Mitarbeiter hinzufügen",
+    "submit": "Mitarbeiter hinzufügen",
+    "role": "Rolle"
+  },
+  "editRole": {
+    "title": "Rolle bearbeiten",
+    "submit": "Änderungen speichern"
+  },
+  "deleteRole": {
+    "title": "Rolle löschen?",
+    "message": "Dadurch wird die Rolle endgültig gelöscht. Zugewiesene Mitglieder verlieren ihre Berechtigungen. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "confirmLabel": "Rolle löschen",
+    "trigger": "Rolle löschen"
+  },
+  "editTeam": {
+    "title": "Team bearbeiten",
+    "submit": "Änderungen speichern"
+  },
+  "deleteTeam": {
+    "title": "Team löschen?",
+    "message": "Dadurch wird das Team endgültig gelöscht. Seine Mitglieder werden nicht aus dem Unternehmen entfernt. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "confirmLabel": "Team löschen",
+    "trigger": "Team löschen"
+  },
+  "editWorker": {
+    "title": "Mitarbeiter bearbeiten",
+    "submit": "Änderungen speichern",
+    "roles": "Rollen"
+  },
+  "deleteWorker": {
+    "title": "Mitarbeiter entfernen?",
+    "message": "Dadurch wird der Mitarbeiter aus dem Unternehmen entfernt. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "confirmLabel": "Mitarbeiter entfernen",
+    "trigger": "Mitarbeiter entfernen"
+  },
+  "companies": {
+    "columnName": "Name",
+    "emptyTitle": "Noch keine Unternehmen",
+    "emptySubtitle": "Unternehmen, die Sie erstellen, werden hier angezeigt.",
+    "addCompany": "Unternehmen hinzufügen"
+  },
+  "roles": {
+    "emptyTitle": "Noch keine Rollen",
+    "emptySubtitle": "Rollen, die Sie erstellen, werden hier angezeigt.",
+    "addRole": "Rolle hinzufügen"
+  },
+  "teams": {
+    "columnMembers": "Mitglieder",
+    "memberCount": "{{count}} Mitglieder",
+    "emptyTitle": "Noch keine Teams",
+    "emptySubtitle": "Teams, die Sie erstellen, werden hier angezeigt.",
+    "addTeam": "Team hinzufügen"
+  },
+  "workers": {
+    "columnRoles": "Rollen",
+    "emptyTitle": "Noch keine Mitarbeiter",
+    "emptySubtitle": "Mitarbeiter, die Sie einladen, werden hier angezeigt.",
+    "addWorker": "Mitarbeiter hinzufügen"
+  },
+  "home": {
+    "dashboard": "Unternehmens-Dashboard"
+  },
+  "settings": {
+    "deleteDescription": "Durch das Löschen dieses Unternehmens werden alle seine Projekte, Teams und Mitglieder endgültig entfernt. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "deleteCompany": "Unternehmen löschen"
+  },
+  "deleteCompany": {
+    "title": "Unternehmen löschen?",
+    "message": "Dadurch werden das Unternehmen und alle seine Projekte, Teams und Mitglieder endgültig gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "confirmLabel": "Unternehmen löschen"
+  }
+}

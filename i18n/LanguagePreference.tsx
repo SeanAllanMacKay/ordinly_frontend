@@ -16,14 +16,15 @@ import {
   LANGUAGE_STORAGE_KEY,
   isRtlLanguage,
   normalizeLanguageTag,
-  type Language,
+  normalizeLocale,
+  type Locale,
 } from "./config";
 
 type LanguagePreferenceContextValue = {
-  /** The active language code (e.g. "en"). */
+  /** The active regional locale tag (e.g. "en-GB"). */
   language: string;
-  /** Persist and apply a new language; re-renders all consumers. */
-  setLanguage: (language: Language) => void;
+  /** Persist and apply a new locale; re-renders all consumers. */
+  setLanguage: (locale: Locale) => void;
 };
 
 const LanguagePreferenceContext =
@@ -71,7 +72,7 @@ export const LanguageProvider = ({ children }: PropsWithChildren) => {
       return;
     }
 
-    const normalized = normalizeLanguageTag(backendLanguage);
+    const normalized = normalizeLocale(backendLanguage);
     if (!normalized || normalized === i18n.language) {
       return;
     }
@@ -81,7 +82,7 @@ export const LanguageProvider = ({ children }: PropsWithChildren) => {
     AsyncStorage.setItem(LANGUAGE_STORAGE_KEY, backendLanguage);
   }, [ready, backendLanguage]);
 
-  const setLanguage = (next: Language) => {
+  const setLanguage = (next: Locale) => {
     setLanguageState(next);
     AsyncStorage.setItem(LANGUAGE_STORAGE_KEY, next);
     i18n.changeLanguage(next);
@@ -93,15 +94,22 @@ export const LanguageProvider = ({ children }: PropsWithChildren) => {
       updateUserMutation.mutate({ preferredLanguage: next });
     }
 
-    // Layout direction only flips on a native reload. en/es are both LTR, so
-    // this is dormant today; when an RTL language is added, switching to/from
-    // it triggers the reload. Same-direction switches re-render instantly.
-    const nextIsRtl = isRtlLanguage(next);
-    if (I18nManager.isRTL !== nextIsRtl) {
+    // Layout direction only flips on a native reload. Direction is a property
+    // of the base language, so check that rather than the regional tag. All
+    // supported languages are LTR today, so this is dormant; when an RTL
+    // language is added, switching to/from it triggers the reload. On web
+    // `I18nManager.isRTL` can be `undefined`, so coerce to a boolean to avoid a
+    // spurious `undefined !== false` match.
+    const nextIsRtl = isRtlLanguage(normalizeLanguageTag(next) ?? next);
+    if (Boolean(I18nManager.isRTL) !== nextIsRtl) {
       I18nManager.allowRTL(nextIsRtl);
       I18nManager.forceRTL(nextIsRtl);
-      // In production add `expo-updates` and call `Updates.reloadAsync()`.
-      DevSettings.reload();
+      // Reload to apply the direction flip. `DevSettings` is native-only (it's
+      // undefined on web), so guard the call. In production add `expo-updates`
+      // and call `Updates.reloadAsync()`.
+      if (typeof DevSettings?.reload === "function") {
+        DevSettings.reload();
+      }
     }
   };
 

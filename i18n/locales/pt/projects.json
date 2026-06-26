@@ -1,0 +1,36 @@
+{
+  "addProject": {
+    "title": "Adicionar projeto",
+    "submit": "Adicionar projeto"
+  },
+  "editProject": {
+    "title": "Editar projeto"
+  },
+  "deleteProject": {
+    "title": "Eliminar projeto?",
+    "message": "Isto irá eliminar permanentemente o projeto e todas as suas tarefas, marcos e fases. Esta ação não pode ser anulada.",
+    "confirmLabel": "Eliminar projeto",
+    "trigger": "Eliminar projeto"
+  },
+  "details": {
+    "start": "Início",
+    "end": "Fim"
+  },
+  "emptyState": {
+    "title": "Ainda não há projetos",
+    "subtitle": "Os projetos que criar aparecerão aqui."
+  },
+  "location": {
+    "search": "Pesquisar",
+    "searchHint": "Pesquise para encontrar a morada que procura"
+  },
+  "documents": {
+    "placeholder": "Documentos"
+  },
+  "invoices": {
+    "placeholder": "Faturas"
+  },
+  "milestones": {
+    "placeholder": "Marcos"
+  }
+}

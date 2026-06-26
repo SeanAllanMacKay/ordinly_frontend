@@ -1,0 +1,39 @@
+{
+  "brand": "Ordinly",
+  "tabs": {
+    "home": "Start",
+    "clients": "Kunden",
+    "projects": "Projekte",
+    "account": "Konto",
+    "dashboard": "Dashboard",
+    "people": "Personen",
+    "settings": "Einstellungen",
+    "details": "Details",
+    "contacts": "Kontakte",
+    "invoices": "Rechnungen",
+    "documents": "Dokumente",
+    "work": "Arbeit",
+    "checklist": "Checkliste",
+    "workers": "Mitarbeiter",
+    "teams": "Teams",
+    "roles": "Rollen"
+  },
+  "headers": {
+    "signUp": "Registrieren",
+    "login": "Anmelden",
+    "verifyAccount": "Konto verifizieren",
+    "dashboard": "Dashboard",
+    "account": "Konto",
+    "editProject": "Projekt bearbeiten",
+    "addTask": "Aufgabe hinzufügen",
+    "taskDetails": "Aufgabendetails"
+  },
+  "entitySwitcher": {
+    "personal": "Persönlich",
+    "companies": "Unternehmen",
+    "personalAccount": "Persönliches Konto",
+    "company": "Unternehmen",
+    "addCompany": "Unternehmen hinzufügen",
+    "logout": "Abmelden"
+  }
+}

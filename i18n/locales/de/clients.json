@@ -1,0 +1,51 @@
+{
+  "addClient": {
+    "title": "Kunde hinzufügen",
+    "submit": "Kunde hinzufügen"
+  },
+  "addContact": {
+    "title": "Kontakt hinzufügen",
+    "submit": "Kontakt hinzufügen",
+    "roleLabel": "Rolle",
+    "emailsLabel": "E-Mail-Adressen",
+    "phoneNumbersLabel": "Telefonnummern",
+    "locationsLabel": "Standorte"
+  },
+  "editClient": {
+    "title": "Kunde bearbeiten",
+    "submit": "Änderungen speichern"
+  },
+  "deleteClient": {
+    "title": "Kunde löschen?",
+    "message": "Dadurch werden der Kunde und seine Kontakte endgültig gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "confirmLabel": "Kunde löschen",
+    "trigger": "Kunde löschen"
+  },
+  "editContact": {
+    "title": "Kontakt bearbeiten",
+    "submit": "Änderungen speichern"
+  },
+  "deleteContact": {
+    "title": "Kontakt löschen?",
+    "message": "Dadurch wird der Kontakt endgültig gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "confirmLabel": "Kontakt löschen",
+    "trigger": "Kontakt löschen"
+  },
+  "clientsEmpty": {
+    "title": "Noch keine Kunden",
+    "subtitle": "Kunden, die Sie hinzufügen, werden hier angezeigt."
+  },
+  "contactsEmpty": {
+    "title": "Noch keine Kontakte",
+    "subtitle": "Kontakte, die Sie für diesen Kunden hinzufügen, werden hier angezeigt."
+  },
+  "details": {
+    "title": "Details"
+  },
+  "documents": {
+    "title": "Dokumente"
+  },
+  "invoices": {
+    "title": "Rechnungen"
+  }
+}

@@ -9,7 +9,9 @@ import {
   DEFAULT_NS,
   FALLBACK_LANGUAGE,
   NAMESPACES,
-  type Language,
+  SUPPORTED_LANGUAGES,
+  SUPPORTED_LOCALES,
+  type Locale,
 } from "./config";
 import { resolveInitialLanguage } from "./detectLanguage";
 
@@ -23,12 +25,18 @@ let initPromise: Promise<typeof i18n> | undefined;
  */
 export function initI18n(): Promise<typeof i18n> {
   if (!initPromise) {
-    initPromise = resolveInitialLanguage().then(async (lng: Language) => {
+    initPromise = resolveInitialLanguage().then(async (lng: Locale) => {
       if (!i18n.isInitialized) {
         await i18n.use(initReactI18next).init({
           resources,
           lng,
           fallbackLng: FALLBACK_LANGUAGE,
+          // Accept regional tags (e.g. "en-GB") and base codes. With
+          // `nonExplicitSupportedLngs`, a region resolves text via its base
+          // catalog while `i18n.language` keeps the region for formatting.
+          // (Do NOT set `load: "languageOnly"` — it would strip the region.)
+          supportedLngs: [...SUPPORTED_LOCALES, ...SUPPORTED_LANGUAGES],
+          nonExplicitSupportedLngs: true,
           ns: NAMESPACES as unknown as string[],
           defaultNS: DEFAULT_NS,
           // Generic keys (e.g. "save", "error") resolve from `common` even when

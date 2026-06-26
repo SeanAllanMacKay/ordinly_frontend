@@ -1,0 +1,96 @@
+{
+  "save": "Speichern",
+  "cancel": "Abbrechen",
+  "delete": "Löschen",
+  "edit": "Bearbeiten",
+  "add": "Hinzufügen",
+  "remove": "Entfernen",
+  "create": "Erstellen",
+  "confirm": "Bestätigen",
+  "close": "Schließen",
+  "back": "Zurück",
+  "next": "Weiter",
+  "submit": "Absenden",
+  "error": "Fehler",
+  "success": "Erfolg",
+  "loading": "Wird geladen…",
+  "sending": "Wird gesendet…",
+  "saving": "Wird gespeichert…",
+  "retry": "Erneut versuchen",
+  "emptyValue": "-",
+  "name": "Name",
+  "description": "Beschreibung",
+  "role": "Rolle",
+  "pagination": "Seite {{page}} von {{totalPages}}",
+  "email": "E-Mail",
+  "password": "Passwort",
+  "phone": "Telefon",
+  "address": "Adresse",
+  "startDate": "Startdatum",
+  "dueDate": "Fälligkeitsdatum",
+  "status": "Status",
+  "priority": "Priorität",
+  "client": "Kunde",
+  "contacts": "Kontakte",
+  "workers": "Mitarbeiter",
+  "teams": "Teams",
+  "phase": "Phase",
+  "tasks": "Aufgaben",
+  "dangerZone": "Gefahrenzone",
+  "noEntities": "Keine {{entity}} vorhanden",
+  "verificationBanner": {
+    "message": "Ihr Konto ist noch nicht verifiziert.",
+    "emailSent": "E-Mail gesendet",
+    "resend": "E-Mail erneut senden"
+  },
+  "home": {
+    "welcome": "Willkommen bei Ordinly{{suffix}}",
+    "subtitle": "Wählen Sie einen Ausgangspunkt.",
+    "project": {
+      "title": "Erstellen Sie Ihr erstes Projekt",
+      "subtitle": "Verfolgen Sie Aufgaben, Zeit und Fotos für persönliche Arbeiten, Nebenjobs und Ihr berufliches Portfolio.",
+      "cta": "Projekt erstellen",
+      "features": {
+        "scheduleTitle": "Zeitplan",
+        "scheduleSubtitle": "Unterteilen Sie Ihr Projekt in Aufgaben, Phasen und Meilensteine",
+        "timeTitle": "Zeiterfassung",
+        "timeSubtitle": "Erfassen Sie Arbeitsstunden vor Ort",
+        "filesTitle": "Bilder und Dateien",
+        "filesSubtitle": "Bewahren Sie Ihre Verträge, Verzichtserklärungen und Arbeitsnachweise an einem Ort auf",
+        "portfolioTitle": "Portfolio",
+        "portfolioSubtitle": "Zeigen Sie Ihre besten Arbeiten, um mehr Aufträge zu erhalten"
+      }
+    },
+    "company": {
+      "title": "Erstellen Sie ein Unternehmen",
+      "subtitle": "Verwalten Sie Angebote, Rechnungen, Kunden, Personal, Ausrüstung und vieles mehr.",
+      "cta": "Unternehmen erstellen",
+      "features": {
+        "communicationTitle": "Echtzeit-Kommunikation",
+        "communicationSubtitle": "Verpassen Sie nichts mit Kunden, Auftragnehmern oder Ihrem Team",
+        "paymentsTitle": "Zahlungen",
+        "paymentsSubtitle": "Werden Sie schneller und einfacher über unser Zahlungsportal bezahlt",
+        "clientsTitle": "Kundenverwaltung",
+        "clientsSubtitle": "Angebote, Kostenvoranschläge, Schätzungen, Rechnungen und ein eigenes Kundenportal",
+        "crewTitle": "Teamverwaltung",
+        "crewSubtitle": "Stellen Sie sicher, dass alle zur richtigen Zeit am Richtigen arbeiten"
+      }
+    }
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "darkMode": "Dunkelmodus",
+    "language": "Sprache",
+    "deleteDescription": "Löschen Sie Ihr Konto und alle zugehörigen Daten endgültig. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "deleteAccount": "Konto löschen"
+  },
+  "deleteAccount": {
+    "title": "Konto löschen?",
+    "warning": "Dadurch werden Ihr Konto und alle zugehörigen Daten endgültig gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "confirmEmailLabel": "Geben Sie zur Bestätigung Ihre E-Mail-Adresse ein"
+  },
+  "permissionDenied": {
+    "title": "Sie haben keine Berechtigung",
+    "gotIt": "Verstanden"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "addTask": {
+    "title": "Adicionar tarefa",
+    "submit": "Adicionar tarefa"
+  },
+  "editTask": {
+    "title": "Editar tarefa"
+  },
+  "deleteTask": {
+    "title": "Eliminar tarefa?",
+    "message": "Isto irá eliminar permanentemente este item e tudo o que contém. Esta ação não pode ser anulada."
+  },
+  "milestone": {
+    "title": "Adicionar marco",
+    "submit": "Adicionar marco",
+    "approver": "Aprovador"
+  },
+  "phase": {
+    "title": "Adicionar fase",
+    "submit": "Adicionar fase"
+  },
+  "accordion": {
+    "details": "Detalhes",
+    "checklist": "Lista de verificação",
+    "documents": "Documentos",
+    "links": "Ligações"
+  }
+}

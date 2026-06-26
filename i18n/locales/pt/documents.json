@@ -1,0 +1,9 @@
+{
+  "noAppToOpenFile": "Nenhuma aplicação instalada para abrir este ficheiro.",
+  "openPreviewFailed": "Não foi possível abrir a pré-visualização do ficheiro.",
+  "downloadFailed": "Ocorreu um erro inesperado durante a transferência.",
+  "selectFile": "Selecionar um ficheiro ",
+  "pickDocumentFailed": "Falha ao selecionar o documento",
+  "permissionNeeded": "Permissão necessária",
+  "allowPhotoAccess": "Permita o acesso às fotografias para definir uma imagem de perfil."
+}

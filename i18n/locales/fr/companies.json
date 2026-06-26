@@ -1,0 +1,95 @@
+{
+  "addCompany": {
+    "title": "Ajouter une entreprise",
+    "submit": "Ajouter une entreprise",
+    "verificationRequiredTitle": "Vérification requise",
+    "verificationRequiredBody": "Votre compte doit être vérifié pour créer une entreprise.",
+    "resendEmail": "Renvoyer l'e-mail",
+    "emailSent": "E-mail envoyé",
+    "sending": "Envoi…"
+  },
+  "addRole": {
+    "title": "Ajouter un rôle",
+    "submit": "Ajouter un rôle",
+    "descriptionLabel": "Description (facultatif)",
+    "permissions": "Autorisations",
+    "permissionsComingSoon": "La gestion des autorisations arrive bientôt."
+  },
+  "addTeam": {
+    "title": "Ajouter une équipe",
+    "submit": "Ajouter une équipe",
+    "members": "Membres"
+  },
+  "addWorker": {
+    "title": "Ajouter un travailleur",
+    "submit": "Ajouter un travailleur",
+    "role": "Rôle"
+  },
+  "editRole": {
+    "title": "Modifier le rôle",
+    "submit": "Enregistrer les modifications"
+  },
+  "deleteRole": {
+    "title": "Supprimer le rôle ?",
+    "message": "Cela supprimera définitivement le rôle. Les membres qui y sont affectés perdront ses autorisations. Cette action est irréversible.",
+    "confirmLabel": "Supprimer le rôle",
+    "trigger": "Supprimer le rôle"
+  },
+  "editTeam": {
+    "title": "Modifier l'équipe",
+    "submit": "Enregistrer les modifications"
+  },
+  "deleteTeam": {
+    "title": "Supprimer l'équipe ?",
+    "message": "Cela supprimera définitivement l'équipe. Ses membres ne seront pas retirés de l'entreprise. Cette action est irréversible.",
+    "confirmLabel": "Supprimer l'équipe",
+    "trigger": "Supprimer l'équipe"
+  },
+  "editWorker": {
+    "title": "Modifier le travailleur",
+    "submit": "Enregistrer les modifications",
+    "roles": "Rôles"
+  },
+  "deleteWorker": {
+    "title": "Retirer le travailleur ?",
+    "message": "Cela retirera le travailleur de l'entreprise. Cette action est irréversible.",
+    "confirmLabel": "Retirer le travailleur",
+    "trigger": "Retirer le travailleur"
+  },
+  "companies": {
+    "columnName": "Nom",
+    "emptyTitle": "Aucune entreprise pour l'instant",
+    "emptySubtitle": "Les entreprises que vous créez apparaîtront ici.",
+    "addCompany": "Ajouter une entreprise"
+  },
+  "roles": {
+    "emptyTitle": "Aucun rôle pour l'instant",
+    "emptySubtitle": "Les rôles que vous créez apparaîtront ici.",
+    "addRole": "Ajouter un rôle"
+  },
+  "teams": {
+    "columnMembers": "Membres",
+    "memberCount": "{{count}} membres",
+    "emptyTitle": "Aucune équipe pour l'instant",
+    "emptySubtitle": "Les équipes que vous créez apparaîtront ici.",
+    "addTeam": "Ajouter une équipe"
+  },
+  "workers": {
+    "columnRoles": "Rôles",
+    "emptyTitle": "Aucun travailleur pour l'instant",
+    "emptySubtitle": "Les travailleurs que vous invitez apparaîtront ici.",
+    "addWorker": "Ajouter un travailleur"
+  },
+  "home": {
+    "dashboard": "Tableau de bord de l'entreprise"
+  },
+  "settings": {
+    "deleteDescription": "La suppression de cette entreprise retire définitivement tous ses projets, équipes et membres. Cette action est irréversible.",
+    "deleteCompany": "Supprimer l'entreprise"
+  },
+  "deleteCompany": {
+    "title": "Supprimer l'entreprise ?",
+    "message": "Cela supprimera définitivement l'entreprise ainsi que tous ses projets, équipes et membres. Cette action est irréversible.",
+    "confirmLabel": "Supprimer l'entreprise"
+  }
+}

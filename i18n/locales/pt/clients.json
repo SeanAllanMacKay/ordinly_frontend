@@ -1,0 +1,51 @@
+{
+  "addClient": {
+    "title": "Adicionar cliente",
+    "submit": "Adicionar cliente"
+  },
+  "addContact": {
+    "title": "Adicionar contacto",
+    "submit": "Adicionar contacto",
+    "roleLabel": "Função",
+    "emailsLabel": "Endereços de email",
+    "phoneNumbersLabel": "Números de telefone",
+    "locationsLabel": "Localizações"
+  },
+  "editClient": {
+    "title": "Editar cliente",
+    "submit": "Guardar alterações"
+  },
+  "deleteClient": {
+    "title": "Eliminar cliente?",
+    "message": "Isto irá eliminar permanentemente o cliente e os seus contactos. Esta ação não pode ser anulada.",
+    "confirmLabel": "Eliminar cliente",
+    "trigger": "Eliminar cliente"
+  },
+  "editContact": {
+    "title": "Editar contacto",
+    "submit": "Guardar alterações"
+  },
+  "deleteContact": {
+    "title": "Eliminar contacto?",
+    "message": "Isto irá eliminar permanentemente o contacto. Esta ação não pode ser anulada.",
+    "confirmLabel": "Eliminar contacto",
+    "trigger": "Eliminar contacto"
+  },
+  "clientsEmpty": {
+    "title": "Ainda não há clientes",
+    "subtitle": "Os clientes que adicionar aparecerão aqui."
+  },
+  "contactsEmpty": {
+    "title": "Ainda não há contactos",
+    "subtitle": "Os contactos que adicionar para este cliente aparecerão aqui."
+  },
+  "details": {
+    "title": "Detalhes"
+  },
+  "documents": {
+    "title": "Documentos"
+  },
+  "invoices": {
+    "title": "Faturas"
+  }
+}

@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useSignUpMutation } from "@/api";
 import { Button } from "@/components";
 import { getDeviceLanguageTag } from "@/i18n/detectLanguage";
+import { FALLBACK_LOCALE, normalizeLocale } from "@/i18n/config";
 import { UseFormReturn } from "react-hook-form";
 import { SignUpFormFieldValues } from "./SignUpForm";
 
@@ -20,8 +21,10 @@ export const SignUpFormSubmissionButton = ({
         await signUpMutation.mutateAsync({
           ...formValues,
           // Persist the browser/device language at sign-up so the user's first
-          // session (and future devices) honour it.
-          preferredLanguage: getDeviceLanguageTag(),
+          // session (and future devices) honour it. Normalize to a supported
+          // regional locale so the backend stores a tag the app can resolve.
+          preferredLanguage:
+            normalizeLocale(getDeviceLanguageTag()) ?? FALLBACK_LOCALE,
         });
       } catch (e: any) {
         form.setError("root.serverError", {
