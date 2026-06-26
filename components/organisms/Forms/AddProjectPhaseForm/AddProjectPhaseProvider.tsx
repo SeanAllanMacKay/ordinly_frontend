@@ -14,6 +14,9 @@ export const AddProjectPhaseProvider = ({ children }: PropsWithChildren) => {
     mode: "all",
     defaultValues: {
       checklist: [{ value: "" }],
+      taskIds: [],
+      userIds: [],
+      teamIds: [],
     },
     resolver: zodResolver(addProjectPhaseSchema),
     shouldUnregister: false,

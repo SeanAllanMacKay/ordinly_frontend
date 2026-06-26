@@ -201,6 +201,15 @@ export type ChecklistItemType = {
 
 export type ProjectTaskKind = "task" | "milestone" | "phase";
 
+// Lightweight shape for the linked worker/team entities returned on projects,
+// tasks/phases, and clients (the `users`/`teams` arrays). Only enough to drive
+// the multiselect prefill + display; full detail lives on the dedicated reads.
+export type LinkedTeamType = {
+  id: string;
+  name: string;
+  description: string | null;
+};
+
 export type TaskType = {
   id: string;
   name: string;
@@ -212,6 +221,11 @@ export type TaskType = {
   checklist: ChecklistItemType[];
   documents?: DocumentType[];
   externalURL: string;
+  // The phase this task belongs to (GET task response). Null when unassigned.
+  parentPhase?: { id: string; name: string } | null;
+  // Directly-assigned workers/teams (distinct from the inherited assignedUsers).
+  users?: MemberUserType[];
+  teams?: LinkedTeamType[];
 } & AssigneeFieldTypes;
 
 export type ProjectPermissionType = PermissionType<
@@ -237,6 +251,11 @@ export type ProjectType = {
   dueDate?: Date;
   updatedAt?: Date;
   locations?: LocationType[];
+  // Linked entities returned on the GET project response.
+  clients?: ClientType[];
+  contacts?: ContactType[];
+  users?: MemberUserType[];
+  teams?: LinkedTeamType[];
 } & CreatedFieldTypes &
   DeletedFieldTypes & {
     assignedUsers: AssigneeFieldTypes["assignedUsers"] & {
@@ -417,6 +436,9 @@ export type ClientType = {
   phoneNumbers?: PhoneNumberType[];
   emails?: EmailType[];
   locations?: LocationType[];
+  // Linked workers/teams returned on the GET client response.
+  users?: MemberUserType[];
+  teams?: LinkedTeamType[];
 } & CreatedFieldTypes &
   DeletedFieldTypes;
 

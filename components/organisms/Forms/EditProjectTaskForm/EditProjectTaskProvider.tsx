@@ -25,8 +25,17 @@ export const EditProjectTaskProvider = ({
 
   const defaultValues = useMemo(() => {
     if (taskQuery.data?.task) {
-      const { name, description, startDate, dueDate, status, priority } =
-        taskQuery.data.task;
+      const {
+        name,
+        description,
+        startDate,
+        dueDate,
+        status,
+        priority,
+        parentPhase,
+        users,
+        teams,
+      } = taskQuery.data.task;
 
       return {
         name,
@@ -35,6 +44,9 @@ export const EditProjectTaskProvider = ({
         dueDate: dueDate ?? undefined,
         status: status?.id,
         priority: priority?.id,
+        phaseId: parentPhase?.id,
+        userIds: users?.map((user) => user.id) ?? [],
+        teamIds: teams?.map((team) => team.id) ?? [],
       };
     }
   }, [taskQuery.data]);

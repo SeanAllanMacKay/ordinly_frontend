@@ -15,6 +15,11 @@ export const AddProjectProvider = ({ children }: PropsWithChildren) => {
 
   const addProjectForm = useForm<AddProjectFormFieldTypes>({
     mode: "all",
+    defaultValues: {
+      contactIds: [],
+      userIds: [],
+      teamIds: [],
+    },
   });
 
   return (

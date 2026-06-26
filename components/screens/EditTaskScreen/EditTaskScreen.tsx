@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Drawer } from "@/components";
 import {
   EditProjectTaskDetailsInputs,
+  EditProjectTaskLinksInputs,
   EditProjectTaskProvider,
   EditProjectTaskSubmissionButton,
 } from "@/components/organisms/Forms/EditProjectTaskForm";
@@ -31,6 +32,8 @@ export const EditTaskScreen = ({
         onClose={onClose}
       >
         <EditProjectTaskDetailsInputs />
+
+        <EditProjectTaskLinksInputs projectId={projectId} />
       </Drawer>
     </EditProjectTaskProvider>
   );

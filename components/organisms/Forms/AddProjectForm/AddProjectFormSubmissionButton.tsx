@@ -18,8 +18,11 @@ export const AddProjectSubmissionButton = ({
 
   const addProjectMutation = useCreateProjectMutation({ onSuccess });
 
-  const onSubmit = addProjectForm.handleSubmit((formValues) => {
-    addProjectMutation.mutateAsync(formValues);
+  const onSubmit = addProjectForm.handleSubmit(({ clientId, ...rest }) => {
+    addProjectMutation.mutateAsync({
+      ...rest,
+      clientIds: clientId ? [clientId] : [],
+    });
   });
 
   return (

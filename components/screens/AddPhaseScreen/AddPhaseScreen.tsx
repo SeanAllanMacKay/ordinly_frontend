@@ -4,6 +4,7 @@ import {
   Accordion,
   AddProjectPhaseDetailsInputs,
   AddProjectPhaseDocumentsInputs,
+  AddProjectPhaseLinksInputs,
   AddProjectPhaseProvider,
   AddProjectPhaseSubmissionButton,
   Drawer,
@@ -35,7 +36,9 @@ export const AddPhaseScreen = ({ projectId, onClose }: AddPhaseScreenProps) => {
           <Accordion.Item id="documents" label={t("accordion.documents")}>
             <AddProjectPhaseDocumentsInputs />
           </Accordion.Item>
-          <Accordion.Item id="links" label={t("accordion.links")}></Accordion.Item>
+          <Accordion.Item id="links" label={t("accordion.links")}>
+            <AddProjectPhaseLinksInputs projectId={projectId} />
+          </Accordion.Item>
         </Accordion>
       </Drawer>
     </AddProjectPhaseProvider>

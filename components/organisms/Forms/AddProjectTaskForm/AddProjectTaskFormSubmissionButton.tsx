@@ -1,5 +1,5 @@
 import { useCreateProjectTaskMutation } from "@/api";
-import { useFormContext, useWatch } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { AddProjectTaskFormFieldTypes } from "./types";
 import React, { useContext } from "react";
@@ -32,6 +32,7 @@ export const AddProjectTaskSubmissionButton = ({
     addProjectTaskMutation.mutateAsync({
       ...formValues,
       checklist: formattedChecklist,
+      phaseId: formValues.phaseId || null,
       type: "task",
     });
   });

@@ -69,6 +69,10 @@ export const projectRequests = {
     priority: string;
     startDate?: Date;
     dueDate?: Date;
+    clientIds?: string[];
+    contactIds?: string[];
+    userIds?: string[];
+    teamIds?: string[];
   }) =>
     await POST<{ project: ProjectType }>({
       endpoint: `/company/${companyId}/projects`,
@@ -97,6 +101,10 @@ export const projectRequests = {
     priority?: string;
     startDate?: Date;
     dueDate?: Date;
+    clientIds?: string[];
+    contactIds?: string[];
+    userIds?: string[];
+    teamIds?: string[];
   }) =>
     await PUT<{ project: ProjectType }>({
       endpoint: `/company/${companyId}/projects/${projectId}`,
@@ -167,6 +175,9 @@ export const projectRequests = {
       startDate?: Date;
       dueDate?: Date;
       checklist?: string[];
+      phaseId?: string | null;
+      userIds?: string[];
+      teamIds?: string[];
     }) =>
       await POST<{ task: TaskType }>({
         endpoint: `/company/${companyId}/projects/${projectId}/tasks`,
@@ -188,6 +199,9 @@ export const projectRequests = {
       priority?: string;
       startDate?: Date;
       dueDate?: Date;
+      phaseId?: string | null;
+      userIds?: string[];
+      teamIds?: string[];
     }) =>
       await PUT<{ task: TaskType }>({
         endpoint: `/company/${companyId}/projects/${projectId}/tasks/${taskId}`,
@@ -253,6 +267,54 @@ export const projectRequests = {
     }) =>
       await GET<{ options: OptionType[] }>({
         endpoint: `/company/${companyId}/projects/${projectId}/phases/options`,
+      }),
+
+    createPhase: async ({
+      companyId,
+      projectId,
+      ...body
+    }: {
+      companyId: string;
+      projectId: string;
+      name: string;
+      description?: string;
+      status?: string;
+      priority?: string;
+      startDate?: Date;
+      dueDate?: Date;
+      checklist?: string[];
+      taskIds?: string[];
+      userIds?: string[];
+      teamIds?: string[];
+    }) =>
+      await POST<{ phase: TaskType }>({
+        endpoint: `/company/${companyId}/projects/${projectId}/phases`,
+        body,
+      }),
+
+    editPhase: async ({
+      companyId,
+      projectId,
+      phaseId,
+      ...body
+    }: {
+      companyId: string;
+      projectId: string;
+      phaseId: string;
+      name: string;
+      description?: string;
+      status?: string;
+      priority?: string;
+      startDate?: Date;
+      dueDate?: Date;
+      taskIds?: string[];
+      userIds?: string[];
+      teamIds?: string[];
+    }) =>
+      await PUT<{ phase: TaskType }>({
+        endpoint: `/company/${companyId}/projects/${projectId}/phases/${phaseId}`,
+        // The phases PUT endpoint expects `phaseId` in the body as well as the URL.
+        body: { ...body, phaseId },
       }),
   },
 };
@@ -457,6 +519,37 @@ export const projectRequestKeys = {
       projectId,
       "phases",
       "options",
+    ],
+    createPhase: ({
+      companyId,
+      projectId,
+    }: {
+      companyId?: string;
+      projectId: string;
+    }) => [
+      REQUEST_ACTIONS.POST,
+      "company",
+      companyId,
+      "projects",
+      projectId,
+      "phases",
+    ],
+    editPhase: ({
+      companyId,
+      projectId,
+      phaseId,
+    }: {
+      companyId?: string;
+      projectId: string;
+      phaseId: string;
+    }) => [
+      REQUEST_ACTIONS.PUT,
+      "company",
+      companyId,
+      "projects",
+      projectId,
+      "phases",
+      phaseId,
     ],
   },
 };

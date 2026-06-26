@@ -11,6 +11,11 @@ import { AddRoleScreen } from "../AddRoleScreen";
 import { AddTaskScreen } from "../AddTaskScreen";
 import { AddTeamScreen } from "../AddTeamScreen";
 import { AddWorkerScreen } from "../AddWorkerScreen";
+import { EditClientScreen } from "../EditClientScreen";
+import { EditContactScreen } from "../EditContactScreen";
+import { EditRoleScreen } from "../EditRoleScreen";
+import { EditTeamScreen } from "../EditTeamScreen";
+import { EditWorkerScreen } from "../EditWorkerScreen";
 
 // Single global host for drawer modals. Mounted once in the authenticated
 // layout, it watches the `drawer` query param and renders the matching screen
@@ -18,11 +23,16 @@ import { AddWorkerScreen } from "../AddWorkerScreen";
 // everything overlay comes from the Drawer atom's own RN <Modal>, so no route
 // or presentation config is involved. Add a `case` per modal here.
 export const DrawerHost = () => {
-  const { drawer, projectId, clientId } = useGlobalSearchParams<{
-    drawer?: string;
-    projectId?: string;
-    clientId?: string;
-  }>();
+  const { drawer, projectId, clientId, contactId, teamId, workerId, roleId } =
+    useGlobalSearchParams<{
+      drawer?: string;
+      projectId?: string;
+      clientId?: string;
+      contactId?: string;
+      teamId?: string;
+      workerId?: string;
+      roleId?: string;
+    }>();
   const { close } = useDrawers();
 
   switch (drawer) {
@@ -46,6 +56,22 @@ export const DrawerHost = () => {
       return <AddMilestoneScreen projectId={projectId!} onClose={close} />;
     case "add-phase":
       return <AddPhaseScreen projectId={projectId!} onClose={close} />;
+    case "edit-client":
+      return <EditClientScreen clientId={clientId!} onClose={close} />;
+    case "edit-contact":
+      return (
+        <EditContactScreen
+          clientId={clientId!}
+          contactId={contactId!}
+          onClose={close}
+        />
+      );
+    case "edit-team":
+      return <EditTeamScreen teamId={teamId!} onClose={close} />;
+    case "edit-worker":
+      return <EditWorkerScreen workerId={workerId!} onClose={close} />;
+    case "edit-role":
+      return <EditRoleScreen roleId={roleId!} onClose={close} />;
     default:
       return null;
   }

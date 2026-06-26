@@ -10,3 +10,8 @@ export * from "./AddProjectPhaseForm";
 export * from "./AddRoleForm";
 export * from "./AddTeamForm";
 export * from "./AddWorkerForm";
+export * from "./EditClientForm";
+export * from "./EditContactForm";
+export * from "./EditRoleForm";
+export * from "./EditTeamForm";
+export * from "./EditWorkerForm";

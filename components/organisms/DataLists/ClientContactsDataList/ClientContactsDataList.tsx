@@ -3,6 +3,8 @@ import { Card } from "@/components";
 import { useGetClientContactsQuery } from "@/api";
 import { ContactType } from "@/api/entities/types";
 import { ListableData } from "@/components/molecules/ListableData";
+import { useDrawers } from "@/util/navigation/useDrawers";
+import { usePermissionGate } from "@/util/permissions/usePermissionGate";
 import { ClientContactsEmptyState } from "./ClientContactsEmptyState";
 
 export const ClientContactsDataList = ({
@@ -11,6 +13,10 @@ export const ClientContactsDataList = ({
   clientId: string;
 }) => {
   const contactsQuery = useGetClientContactsQuery({ clientId });
+  const { open } = useDrawers();
+  const { isDenied, showDenied } = usePermissionGate({
+    permission: "all_clients:update",
+  });
 
   return (
     <ListableData
@@ -20,6 +26,9 @@ export const ClientContactsDataList = ({
       isLoading={contactsQuery.isLoading}
       isFetching={contactsQuery.isFetching}
       emptyState={<ClientContactsEmptyState />}
+      onPressItem={(item: ContactType) =>
+        isDenied ? showDenied() : open("edit-contact", { contactId: item.id })
+      }
       // cards
       keyExtractor={(item: ContactType) => String(item.id)}
       item={({ item }: { item: ContactType }) => (

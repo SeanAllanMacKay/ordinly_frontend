@@ -1,4 +1,4 @@
-import { useCreateProjectTaskMutation } from "@/api";
+import { useCreateProjectPhaseMutation } from "@/api";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { AddProjectPhaseFormFieldTypes } from "./types";
@@ -10,13 +10,13 @@ export const AddProjectPhaseSubmissionButton = ({
   onSuccess,
 }: {
   projectId: string;
-  onSuccess?: Parameters<typeof useCreateProjectTaskMutation>[0]["onSuccess"];
+  onSuccess?: Parameters<typeof useCreateProjectPhaseMutation>[0]["onSuccess"];
 }) => {
   const { t } = useTranslation("tasks");
   const addProjectPhaseForm = useFormContext<AddProjectPhaseFormFieldTypes>();
   const formLoadingState = useContext(FormLoadingStateContext);
 
-  const addProjectPhaseMutation = useCreateProjectTaskMutation({
+  const addProjectPhaseMutation = useCreateProjectPhaseMutation({
     projectId,
     onSuccess,
   });
@@ -32,7 +32,6 @@ export const AddProjectPhaseSubmissionButton = ({
     addProjectPhaseMutation.mutateAsync({
       ...formValues,
       checklist: formattedChecklist,
-      type: "phase",
     });
   });
 

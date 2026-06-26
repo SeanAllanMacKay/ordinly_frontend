@@ -28,6 +28,12 @@
   "dueDate": "Due date",
   "status": "Status",
   "priority": "Priority",
+  "client": "Client",
+  "contacts": "Contacts",
+  "workers": "Workers",
+  "teams": "Teams",
+  "phase": "Phase",
+  "tasks": "Tasks",
   "dangerZone": "Danger zone",
   "noEntities": "No {{entity}} to show",
   "verificationBanner": {

@@ -5,6 +5,11 @@ import { DeleteAccountScreen } from "../DeleteAccountScreen";
 import { DeleteCompanyScreen } from "../DeleteCompanyScreen";
 import { DeleteProjectScreen } from "../DeleteProjectScreen";
 import { DeleteTaskScreen } from "../DeleteTaskScreen";
+import { DeleteClientScreen } from "../DeleteClientScreen";
+import { DeleteContactScreen } from "../DeleteContactScreen";
+import { DeleteTeamScreen } from "../DeleteTeamScreen";
+import { DeleteWorkerScreen } from "../DeleteWorkerScreen";
+import { DeleteRoleScreen } from "../DeleteRoleScreen";
 import { PermissionDeniedScreen } from "../PermissionDeniedScreen";
 
 // Single global host for confirmation modals. Mounted once in the authenticated
@@ -13,14 +18,29 @@ import { PermissionDeniedScreen } from "../PermissionDeniedScreen";
 // the active route params (exactly like DrawerHost reads `projectId`). Add a
 // `case` per modal here.
 export const ModalHost = () => {
-  const { modal, projectId, companyId, taskId, deniedMessage } =
-    useGlobalSearchParams<{
-      modal?: string;
-      projectId?: string;
-      companyId?: string;
-      taskId?: string;
-      deniedMessage?: string;
-    }>();
+  const {
+    modal,
+    projectId,
+    companyId,
+    taskId,
+    clientId,
+    contactId,
+    teamId,
+    workerId,
+    roleId,
+    deniedMessage,
+  } = useGlobalSearchParams<{
+    modal?: string;
+    projectId?: string;
+    companyId?: string;
+    taskId?: string;
+    clientId?: string;
+    contactId?: string;
+    teamId?: string;
+    workerId?: string;
+    roleId?: string;
+    deniedMessage?: string;
+  }>();
   const { close } = useModals();
 
   switch (modal) {
@@ -42,6 +62,22 @@ export const ModalHost = () => {
           onClose={close}
         />
       );
+    case "confirm-delete-client":
+      return <DeleteClientScreen clientId={clientId!} onClose={close} />;
+    case "confirm-delete-contact":
+      return (
+        <DeleteContactScreen
+          clientId={clientId!}
+          contactId={contactId!}
+          onClose={close}
+        />
+      );
+    case "confirm-delete-team":
+      return <DeleteTeamScreen teamId={teamId!} onClose={close} />;
+    case "confirm-delete-worker":
+      return <DeleteWorkerScreen workerId={workerId!} onClose={close} />;
+    case "confirm-delete-role":
+      return <DeleteRoleScreen roleId={roleId!} onClose={close} />;
     default:
       return null;
   }

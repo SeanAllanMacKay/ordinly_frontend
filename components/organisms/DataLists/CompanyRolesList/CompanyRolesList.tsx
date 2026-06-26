@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { Card } from "@/components";
 import { useGetRolesQuery } from "@/api";
 import { ListableData } from "@/components/molecules/ListableData";
+import { useDrawers } from "@/util/navigation/useDrawers";
+import { usePermissionGate } from "@/util/permissions/usePermissionGate";
 import { CompanyRolesListEmptyState } from "./CompanyRolesListEmptyState";
 
 type RoleRow = { id: string; name: string; description: string };
@@ -10,6 +12,10 @@ type RoleRow = { id: string; name: string; description: string };
 export const CompanyRolesList = () => {
   const { t } = useTranslation("companies");
   const rolesQuery = useGetRolesQuery();
+  const { open } = useDrawers();
+  const { isDenied, showDenied } = usePermissionGate({
+    permission: "roles:update",
+  });
 
   const roles: RoleRow[] = (rolesQuery.data?.roles ?? []).map((role) => ({
     id: role.id,
@@ -25,6 +31,9 @@ export const CompanyRolesList = () => {
       isLoading={rolesQuery.isLoading}
       isFetching={rolesQuery.isFetching}
       emptyState={<CompanyRolesListEmptyState />}
+      onPressItem={(item: RoleRow) =>
+        isDenied ? showDenied() : open("edit-role", { roleId: item.id })
+      }
       // cards
       keyExtractor={(item: RoleRow) => String(item.id)}
       item={({ item }: { item: RoleRow }) => (

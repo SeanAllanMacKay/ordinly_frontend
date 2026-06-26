@@ -11,6 +11,26 @@
     "phoneNumbersLabel": "Phone numbers",
     "locationsLabel": "Locations"
   },
+  "editClient": {
+    "title": "Edit client",
+    "submit": "Save changes"
+  },
+  "deleteClient": {
+    "title": "Delete client?",
+    "message": "This will permanently delete the client and its contacts. This action cannot be undone.",
+    "confirmLabel": "Delete client",
+    "trigger": "Delete client"
+  },
+  "editContact": {
+    "title": "Edit contact",
+    "submit": "Save changes"
+  },
+  "deleteContact": {
+    "title": "Delete contact?",
+    "message": "This will permanently delete the contact. This action cannot be undone.",
+    "confirmLabel": "Delete contact",
+    "trigger": "Delete contact"
+  },
   "clientsEmpty": {
     "title": "No clients yet",
     "subtitle": "Clients you add will show up here."

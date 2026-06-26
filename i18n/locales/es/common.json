@@ -28,6 +28,12 @@
   "dueDate": "Fecha de vencimiento",
   "status": "Estado",
   "priority": "Prioridad",
+  "client": "Cliente",
+  "contacts": "Contactos",
+  "workers": "Trabajadores",
+  "teams": "Equipos",
+  "phase": "Fase",
+  "tasks": "Tareas",
   "dangerZone": "Zona de peligro",
   "noEntities": "No hay {{entity}} para mostrar",
   "verificationBanner": {

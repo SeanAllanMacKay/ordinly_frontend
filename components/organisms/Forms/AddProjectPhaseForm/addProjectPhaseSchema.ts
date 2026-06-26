@@ -9,6 +9,9 @@ export const addProjectPhaseSchema = zod.object({
   priority: zod.string().optional(),
   startDate: zod.date().optional(),
   dueDate: zod.date().optional(),
+  taskIds: zod.array(zod.string()).optional(),
+  userIds: zod.array(zod.string()).optional(),
+  teamIds: zod.array(zod.string()).optional(),
   documents: zod
     .array(
       zod.union([

@@ -1,4 +1,4 @@
-import { POST, GET, PUT, REQUEST_ACTIONS } from "@/api/requests";
+import { POST, GET, PUT, DELETE, REQUEST_ACTIONS } from "@/api/requests";
 
 import { ClientType, ContactType, OptionType } from "../types";
 
@@ -69,6 +69,8 @@ export const clientRequests = {
     clientCompanyId?: string;
     clientUserId?: string;
     contacts?: ContactInput[];
+    userIds?: string[];
+    teamIds?: string[];
     phoneNumbers?: PhoneNumberInput[];
     emails?: EmailInput[];
     locations?: LocationInput[];
@@ -89,6 +91,8 @@ export const clientRequests = {
     description?: string;
     clientCompanyId?: string;
     clientUserId?: string;
+    userIds?: string[];
+    teamIds?: string[];
     phoneNumbers?: PhoneNumberInput[];
     emails?: EmailInput[];
     locations?: LocationInput[];
@@ -98,7 +102,16 @@ export const clientRequests = {
       body,
     }),
 
-  deleteClient: async () => {},
+  deleteClient: async ({
+    companyId,
+    clientId,
+  }: {
+    companyId: string;
+    clientId: string;
+  }) =>
+    await DELETE({
+      endpoint: `/company/${companyId}/clients/${clientId}`,
+    }),
 
   listClientOptions: async ({ companyId }: { companyId: string }) =>
     await GET<{ options: OptionType[] }>({
@@ -183,6 +196,19 @@ export const clientRequests = {
       await PUT<{ contact: ContactType }>({
         endpoint: `/company/${companyId}/clients/${clientId}/contacts/${contactId}`,
         body,
+      }),
+
+    deleteContact: async ({
+      companyId,
+      clientId,
+      contactId,
+    }: {
+      companyId: string;
+      clientId: string;
+      contactId: string;
+    }) =>
+      await DELETE({
+        endpoint: `/company/${companyId}/clients/${clientId}/contacts/${contactId}`,
       }),
   },
 };
@@ -306,6 +332,23 @@ export const clientRequestKeys = {
       contactId: string;
     }) => [
       REQUEST_ACTIONS.PUT,
+      "company",
+      companyId,
+      "clients",
+      clientId,
+      "contacts",
+      contactId,
+    ],
+    deleteContact: ({
+      companyId,
+      clientId,
+      contactId,
+    }: {
+      companyId?: string;
+      clientId: string;
+      contactId: string;
+    }) => [
+      REQUEST_ACTIONS.DELETE,
       "company",
       companyId,
       "clients",

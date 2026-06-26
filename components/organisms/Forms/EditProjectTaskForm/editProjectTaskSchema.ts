@@ -9,6 +9,9 @@ export const editProjectTaskSchema = zod.object({
   priority: zod.string().optional(),
   startDate: zod.date().optional(),
   dueDate: zod.date().optional(),
+  phaseId: zod.string().optional(),
+  userIds: zod.array(zod.string()).optional(),
+  teamIds: zod.array(zod.string()).optional(),
   checklist: zod
     .array(
       zod.object({

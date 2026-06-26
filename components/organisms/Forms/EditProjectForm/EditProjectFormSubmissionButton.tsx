@@ -18,8 +18,11 @@ export const EditProjectSubmissionButton = ({
 
   const editProjectMutation = useEditProjectMutation({ projectId, onSuccess });
 
-  const onSubmit = editProjectForm.handleSubmit((formValues) => {
-    editProjectMutation.mutateAsync(formValues);
+  const onSubmit = editProjectForm.handleSubmit(({ clientId, ...rest }) => {
+    editProjectMutation.mutateAsync({
+      ...rest,
+      clientIds: clientId ? [clientId] : [],
+    });
   });
 
   return (

@@ -25,6 +25,37 @@
     "submit": "Agregar trabajador",
     "role": "Rol"
   },
+  "editRole": {
+    "title": "Editar rol",
+    "submit": "Guardar cambios"
+  },
+  "deleteRole": {
+    "title": "¿Eliminar rol?",
+    "message": "Esto eliminará permanentemente el rol. Los miembros asignados a él perderán sus permisos. Esta acción no se puede deshacer.",
+    "confirmLabel": "Eliminar rol",
+    "trigger": "Eliminar rol"
+  },
+  "editTeam": {
+    "title": "Editar equipo",
+    "submit": "Guardar cambios"
+  },
+  "deleteTeam": {
+    "title": "¿Eliminar equipo?",
+    "message": "Esto eliminará permanentemente el equipo. Sus miembros no serán eliminados de la empresa. Esta acción no se puede deshacer.",
+    "confirmLabel": "Eliminar equipo",
+    "trigger": "Eliminar equipo"
+  },
+  "editWorker": {
+    "title": "Editar trabajador",
+    "submit": "Guardar cambios",
+    "roles": "Roles"
+  },
+  "deleteWorker": {
+    "title": "¿Quitar trabajador?",
+    "message": "Esto quitará al trabajador de la empresa. Esta acción no se puede deshacer.",
+    "confirmLabel": "Quitar trabajador",
+    "trigger": "Quitar trabajador"
+  },
   "companies": {
     "columnName": "Nombre",
     "emptyTitle": "Aún no hay empresas",

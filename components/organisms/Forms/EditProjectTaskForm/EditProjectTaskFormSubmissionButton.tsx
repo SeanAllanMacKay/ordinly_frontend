@@ -25,7 +25,10 @@ export const EditProjectTaskSubmissionButton = ({
   });
 
   const onSubmit = editProjectTaskForm.handleSubmit((formValues) => {
-    editrojectTaskMutation.mutateAsync(formValues);
+    editrojectTaskMutation.mutateAsync({
+      ...formValues,
+      phaseId: formValues.phaseId || null,
+    });
   });
 
   return (

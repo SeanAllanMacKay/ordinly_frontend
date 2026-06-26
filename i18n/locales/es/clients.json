@@ -11,6 +11,26 @@
     "phoneNumbersLabel": "Números de teléfono",
     "locationsLabel": "Ubicaciones"
   },
+  "editClient": {
+    "title": "Editar cliente",
+    "submit": "Guardar cambios"
+  },
+  "deleteClient": {
+    "title": "¿Eliminar cliente?",
+    "message": "Esto eliminará permanentemente el cliente y sus contactos. Esta acción no se puede deshacer.",
+    "confirmLabel": "Eliminar cliente",
+    "trigger": "Eliminar cliente"
+  },
+  "editContact": {
+    "title": "Editar contacto",
+    "submit": "Guardar cambios"
+  },
+  "deleteContact": {
+    "title": "¿Eliminar contacto?",
+    "message": "Esto eliminará permanentemente el contacto. Esta acción no se puede deshacer.",
+    "confirmLabel": "Eliminar contacto",
+    "trigger": "Eliminar contacto"
+  },
   "clientsEmpty": {
     "title": "Aún no hay clientes",
     "subtitle": "Los clientes que agregues aparecerán aquí."

@@ -6,6 +6,10 @@ import { AddClientFormFieldTypes } from "./types";
 export const AddClientProvider = ({ children }: PropsWithChildren) => {
   const addClientForm = useForm<AddClientFormFieldTypes>({
     mode: "all",
+    defaultValues: {
+      userIds: [],
+      teamIds: [],
+    },
   });
 
   return <Form form={addClientForm}>{children}</Form>;

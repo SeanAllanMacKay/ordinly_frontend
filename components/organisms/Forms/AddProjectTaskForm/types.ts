@@ -6,4 +6,7 @@ export type AddProjectTaskFormFieldTypes = {
   startDate?: Date;
   dueDate?: Date;
   checklist?: { value: string }[];
+  phaseId?: string;
+  userIds?: string[];
+  teamIds?: string[];
 };

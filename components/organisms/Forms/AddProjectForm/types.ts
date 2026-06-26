@@ -5,4 +5,8 @@ export type AddProjectFormFieldTypes = {
   priority: string;
   startDate: Date;
   dueDate: Date;
+  clientId?: string;
+  contactIds: string[];
+  userIds: string[];
+  teamIds: string[];
 };

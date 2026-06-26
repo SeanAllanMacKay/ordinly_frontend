@@ -25,6 +25,37 @@
     "submit": "Add worker",
     "role": "Role"
   },
+  "editRole": {
+    "title": "Edit role",
+    "submit": "Save changes"
+  },
+  "deleteRole": {
+    "title": "Delete role?",
+    "message": "This will permanently delete the role. Members assigned to it will lose its permissions. This action cannot be undone.",
+    "confirmLabel": "Delete role",
+    "trigger": "Delete role"
+  },
+  "editTeam": {
+    "title": "Edit team",
+    "submit": "Save changes"
+  },
+  "deleteTeam": {
+    "title": "Delete team?",
+    "message": "This will permanently delete the team. Its members will not be removed from the company. This action cannot be undone.",
+    "confirmLabel": "Delete team",
+    "trigger": "Delete team"
+  },
+  "editWorker": {
+    "title": "Edit worker",
+    "submit": "Save changes",
+    "roles": "Roles"
+  },
+  "deleteWorker": {
+    "title": "Remove worker?",
+    "message": "This will remove the worker from the company. This action cannot be undone.",
+    "confirmLabel": "Remove worker",
+    "trigger": "Remove worker"
+  },
   "companies": {
     "columnName": "Name",
     "emptyTitle": "No companies yet",

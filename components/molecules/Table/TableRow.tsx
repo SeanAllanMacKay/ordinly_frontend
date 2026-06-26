@@ -8,14 +8,15 @@ import { TableCell } from "./TableCell";
 export const TableRow = <ListItem extends Record<string, any>>({
   item,
   columns,
-}: TableRowProps<ListItem>) => {
+  onPress,
+}: TableRowProps<ListItem> & { onPress?: () => void }) => {
   return (
     <ConditionalWrapper
       isWrapped={item?.href}
       wrapper={<Link href={item?.href} asChild />}
       key={`table-row-${item.id}`}
     >
-      <DataTable.Row>
+      <DataTable.Row onPress={item?.href ? undefined : onPress}>
         {columns.map(({ key, variant = "string" }, index) => (
           <TableCell
             key={`table-cell-${key}-row-${index}`}

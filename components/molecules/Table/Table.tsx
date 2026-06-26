@@ -11,13 +11,19 @@ export const Table = <ItemType extends Record<string, any>>({
   isFetching,
   columns,
   pagination,
+  onPressItem,
 }: TableProps<ItemType>) => {
   return (
     <DataTable>
       <TableHeader columns={columns} />
 
       {items.map((row) => (
-        <TableRow key={`table-row-${row.id}`} item={row} columns={columns} />
+        <TableRow
+          key={`table-row-${row.id}`}
+          item={row}
+          columns={columns}
+          onPress={onPressItem ? () => onPressItem(row) : undefined}
+        />
       ))}
 
       {pagination ? <Pagination {...pagination} /> : null}

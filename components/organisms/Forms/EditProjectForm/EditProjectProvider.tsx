@@ -16,18 +16,23 @@ export const EditProjectProvider = ({
 
   const values = useMemo(() => {
     if (projectQuery.data) {
+      const { project } = projectQuery.data;
       return {
-        name: projectQuery.data.project.name,
-        description: projectQuery.data.project.description,
-        status: projectQuery.data.project.status?.id,
-        priority: projectQuery.data.project.priority?.id,
-        startDate: projectQuery.data.project.startDate,
-        dueDate: projectQuery.data.project.dueDate,
+        name: project.name,
+        description: project.description,
+        status: project.status?.id,
+        priority: project.priority?.id,
+        startDate: project.startDate,
+        dueDate: project.dueDate,
         location: {
-          latitude: projectQuery.data.project.locations?.[0]?.latitude,
-          longitude: projectQuery.data.project.locations?.[0]?.longitude,
-          type: projectQuery.data.project.locations?.[0]?.type,
+          latitude: project.locations?.[0]?.latitude,
+          longitude: project.locations?.[0]?.longitude,
+          type: project.locations?.[0]?.type,
         },
+        clientId: project.clients?.[0]?.id,
+        contactIds: project.contacts?.map((contact) => contact.id) ?? [],
+        userIds: project.users?.map((user) => user.id) ?? [],
+        teamIds: project.teams?.map((team) => team.id) ?? [],
       };
     }
   }, [projectQuery.data]);

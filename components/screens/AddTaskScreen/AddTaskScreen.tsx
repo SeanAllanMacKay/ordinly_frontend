@@ -5,6 +5,7 @@ import {
   AddProjectTaskChecklistInputs,
   AddProjectTaskDetailsInputs,
   AddProjectTaskDocumentsInputs,
+  AddProjectTaskLinksInputs,
   AddProjectTaskProvider,
   AddProjectTaskSubmissionButton,
   Drawer,
@@ -38,7 +39,9 @@ export const AddTaskScreen = ({ projectId, onClose }: AddTaskScreenProps) => {
           <Accordion.Item id="documents" label={t("accordion.documents")}>
             <AddProjectTaskDocumentsInputs />
           </Accordion.Item>
-          <Accordion.Item id="links" label={t("accordion.links")}></Accordion.Item>
+          <Accordion.Item id="links" label={t("accordion.links")}>
+            <AddProjectTaskLinksInputs projectId={projectId} />
+          </Accordion.Item>
         </Accordion>
       </Drawer>
     </AddProjectTaskProvider>

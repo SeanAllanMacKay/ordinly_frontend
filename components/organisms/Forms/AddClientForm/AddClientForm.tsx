@@ -5,9 +5,15 @@ import {
   EnrichedTextFieldInput,
   TextFieldInput,
 } from "@/components/molecules";
+import {
+  MultiTeamDataFieldInput,
+  MultiWorkerDataFieldInput,
+} from "@/components/organisms/DataFieldInputs";
+import { useActiveCompanyId } from "@/util/navigation/useActiveCompanyId";
 
 export const AddClientForm = () => {
   const { t } = useTranslation("clients");
+  const companyId = useActiveCompanyId();
 
   return (
     <>
@@ -20,6 +26,18 @@ export const AddClientForm = () => {
       <EnrichedTextFieldInput
         name="description"
         label={t("description")}
+      />
+
+      <MultiWorkerDataFieldInput
+        name="userIds"
+        label={t("workers")}
+        companyId={companyId ?? ""}
+      />
+
+      <MultiTeamDataFieldInput
+        name="teamIds"
+        label={t("teams")}
+        companyId={companyId ?? ""}
       />
     </>
   );
